@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="RiscvRV32FreeRTOS"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="imperas.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets">
+        <net name="eip"/>
+        <net name="MTimerInterrupt"/>
+        <net name="MSWInterrupt"/>
+    </nets>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Example platform to instance RISCV RV32I processor core with extensions M and SU. Peripherals and memory address layout to boot pre-compiled FreeRTOS operating system."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="https://github.com/RISCV-on-Microsemi-FPGA/FreeRTOS/tree/master/FreeRTOS_on_Mi-V_Processor"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Limitations">
+        <doctext name="txt"
+            text="Created to executed the specific software"/>
+    </docsection>
+    <bus addresswidth="32"
+        name="bus0"/>
+    <processorinstance mips="50"
+        name="cpu0"
+        simulateexceptions="T">
+        <vlnvreference library="processor"
+            name="riscv"
+            vendor="riscv.ovpworld.org"
+            version="1.0"/>
+        <attribute content="RVB32I"
+            name="variant"/>
+        <attribute content="MSU"
+            name="add_Extensions"/>
+        <busmasterportconnection connection="bus0"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus0"
+            name="DATA"/>
+        <netportconnection connection="eip"
+            name="MExternalInterrupt"/>
+        <netportconnection connection="MTimerInterrupt"
+            name="MTimerInterrupt"/>
+        <netportconnection connection="MSWInterrupt"
+            name="MSWInterrupt"/>
+    </processorinstance>
+    <memoryinstance name="nvram">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus0"
+            hiaddress="0x6003FFFF"
+            loaddress="0x60000000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="ddr">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus0"
+            hiaddress="0x8FFFFFFF"
+            loaddress="0x80000000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="stk">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus0"
+            hiaddress="0xFFFFFFFF"
+            loaddress="0xfff00000"
+            name="sp1"/>
+    </memoryinstance>
+    <peripheralinstance name="uart0">
+        <vlnvreference library="peripheral"
+            name="CoreUARTapb"
+            vendor="microsemi.ovpworld.org"
+            version="1.0"/>
+        <busslaveportconnection connection="bus0"
+            hiaddress="0x70001017"
+            loaddress="0x70001000"
+            name="port0"/>
+    </peripheralinstance>
+    <peripheralinstance name="plic0">
+        <vlnvreference library="peripheral"
+            name="PLIC"
+            vendor="riscv.ovpworld.org"
+            version="1.0"/>
+        <busslaveportconnection connection="bus0"
+            hiaddress="0x43FFFFFF"
+            loaddress="0x40000000"
+            name="port0"/>
+        <attribute content="256"
+            name="num_sources"/>
+        <attribute content="1"
+            name="num_targets"/>
+        <netportconnection connection="eip"
+            name="irqT0"/>
+    </peripheralinstance>
+    <peripheralinstance name="prci0">
+        <vlnvreference library="peripheral"
+            name="CLINT"
+            vendor="riscv.ovpworld.org"
+            version="1.0"/>
+        <busslaveportconnection connection="bus0"
+            hiaddress="0x4400BFFF"
+            loaddress="0x44000000"
+            name="port0"/>
+        <attribute content="1.0"
+            name="clockMHz"/>
+        <netportconnection connection="MTimerInterrupt"
+            name="MTimerInterrupt0"/>
+        <netportconnection connection="MSWInterrupt"
+            name="MSWInterrupt0"/>
+    </peripheralinstance>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

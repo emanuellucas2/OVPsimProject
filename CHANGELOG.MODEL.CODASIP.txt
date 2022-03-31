@@ -1,0 +1,29 @@
+###############################################################################
+#                       CHANGELOG.MODEL.RISCV.txt                             #
+#      Copyright (c) 2005-2021 Imperas Software Ltd., www.imperas.com         #
+#               Covered under your Software License Agreement                 #
+#                                                                             #
+###############################################################################
+#                                                                             #
+# This CHANGELOG contains information specific to the SIFIVE RISC-V processor #
+# model                                                                       #
+# Please also refer to the change logs below that form part of this changelog #
+#    CHANGELOG.MODEL.RISCV.txt                                                #
+#    CHANGELOG.OVP.txt                                                        #
+#                                                                             #
+###############################################################################
+    Date : 20211231                        Version : 20211118.0
+###############################################################################
+
+###############################################################################
+##                                                                           ##
+## Date 2021-December-06                                                     ##
+##                                                                           ##
+## Release 20211118.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+Codasip Model
+--------------------------------------------------------------------------------
+- Added preliminary definitions for L10, L30, L30F, L50, L50F, A70X, A70X-MP,
+  A70XP, A70XP-MP, A71X, H50X and H50XF core variants

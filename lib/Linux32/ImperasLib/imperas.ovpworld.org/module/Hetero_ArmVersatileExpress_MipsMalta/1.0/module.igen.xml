@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="Hetero_ArmVersatileExpress_MipsMalta"
+    purpose="4"
+    releasestatus="3"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="imperas.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="This platform instances an ARM VersatileExpress with a MIPS Malta"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Peripherals are modeled to the extent required to boot and run Operating Systems such as Linux."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="ARM Development Boards Versatile Express BaseBoard and ARM CoreTile Express A15x2 
+	 MIPS Malta User&apos;s Manual MD00048-2B-MALTA-USM-1.07.pdf
+	 MIPS Malta-R Development Platform User&apos;s Manual MD00627-2B-MALTA_R-USM-01.01.pdf    
+	 CoreFPGA User&apos;s Manual MD00116-2B-COREFPGA-USM-01.00.pdf
+	 Linux for the MIPS Malta Development Platform User&apos;s Guide MD00646-2B-LINUXMALTA-USM-01.03.pdf"/>
+    </docsection>
+    <module name="versatileexpress">
+        <vlnvreference library="module"
+            name="ArmVersatileExpress-CA15"
+            vendor="arm.ovpworld.org"
+            version="1.0"/>
+    </module>
+    <module name="malta">
+        <vlnvreference library="module"
+            name="MipsMalta"
+            vendor="mips.ovpworld.org"
+            version="1.0"/>
+    </module>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

@@ -1,0 +1,3 @@
+install RUNTIME OVPsim CpuManager
+install mips32.model mips32.mips.model
+install mips-mti.toolchain

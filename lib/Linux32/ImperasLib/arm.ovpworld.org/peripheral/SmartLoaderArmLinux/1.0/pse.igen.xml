@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="SmartLoaderArmLinux"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="arm.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Psuedo-peripheral to perform memory initialisation for an ARM based Linux kernel boot:
+    Loads Linux kernel image file and (optional) initial ram disk image into memory. 
+    Writes ATAG data into memory.
+    Writes tiny boot code at physical memory base that configures the registers as expected by Linux Kernel and then jumps to boot address (image load address by default)."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Only supports little endian"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="See ARM Linux boot requirements in Linux source tree at documentation/arm/Booting"/>
+    </docsection>
+    <busmasterport addresswidth="32"
+        addresswidthmax="49"
+        addresswidthmin="32"
+        mustbeconnected="T"
+        name="mport">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Master port - connect to same bus connected to Linux processor&apos;s data port"/>
+        </docsection>
+    </busmasterport>
+    <formalattribute name="kernel"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Name of the the Linux kernel image file (e.g. zImage) to load. (required)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="kerneladdr"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Address to load the Linux kernel image file (default: physicalbase+0x00010000)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="initrd"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Name of the initial ram disk file to load (optional)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="initrdaddr"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Address to load the initial ram disk file (default: physicalbase+0x00d00000)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="dtb"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Name of the device tree blob file (optional - ATAGs used when not specified)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="dtbaddr"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Address to load the device tree blob (DTB) file (default: physicalbase+0x00c00000)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="atagsaddr"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Address to write Linux ATAGS data - not allowed when dtb specified (default: physicalbase+0x100)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="physicalbase"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The physical address of the base of memory (default: 0)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="memsize"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The size of memory in bytes- not allowed when dtb specified (default: 128M)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="command"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set command line passed to kernel (optional)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="append"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Append to the command line passed to kernel. (optional)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="boardid"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The boardid passed to the kernel - not allowed when dtb specified (default: ArmIntegrator value = 0x113)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="bootaddr"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Address to call from smart Loader&apos;s tiny startup code (default: kerneladdr)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="disable"
+        type="boolean">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set to True to disable the smart loader"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

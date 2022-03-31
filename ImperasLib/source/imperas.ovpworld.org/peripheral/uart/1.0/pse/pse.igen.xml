@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="uart"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="imperas.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Simple UART model"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Provides the base functionality to allow read/write character communication."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="Example Linux Kernel Driver"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x20">
+        <addressblock name="ab"
+            size="0x20"
+            width="8">
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="rbr_dll"
+                nbyte="F"
+                readfunction="readRBR_DLL"
+                viewfunction="viewRBR_DLL"
+                width="8">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Receiver Buffer Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="thr_dll"
+                nbyte="F"
+                offset="0x4"
+                viewfunction="viewTHR_DLL"
+                width="8"
+                writefunction="writeTHR_DLL">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Transmitter Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="sz"
+                nbyte="F"
+                offset="0x8"
+                readfunction="readSZ"
+                width="8">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Receive FIFO Fill Size Register"/>
+                </docsection>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="reset"
+        type="input"
+        updatefunction="resetCB"/>
+    <netport name="intOut"
+        type="output"/>
+    <formalattribute name="uart16450"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Run in 16450 mode (no FIFOs)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="fifoSize"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Size of fifos"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="refClkFreq"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Frequency (in hertz) of reference clock rate used in baud rate calculation"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="simulatebaud"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set to true to simulate baud delay determined by the Divisor Latch register value and reference clock frequency."/>
+            <doctext name="txt_1"
+                text="Set to false to run without delay - next read data is made available immediately upon read of Receiver Buffer Register."/>
+            <doctext name="txt_2"
+                text="Defaults to false"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="charmode"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set to true when the port is used to connect to a Telnet program and character mode is desired rather than the default Telnet line mode."/>
+            <doctext name="txt_1"
+                text="When set to true a Telnet command sequence is sent at startup that configures the Telnet program into character mode. In addition null bytes are stripped from the data received."/>
+        </docsection>
+    </formalattribute>
+    <formalmacro name="BHM_SER_OPEN_AUTO_FORMALS"/>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

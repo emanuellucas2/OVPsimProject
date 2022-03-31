@@ -1,0 +1,159 @@
+#
+# Defined in Environment
+# IMPERAS_HOME
+# IMPERAS_UNAME
+# IMPERAS_ARCH
+# IMPERAS_SHRSUF
+
+# Defined in this Makefile
+# IMPERAS_LIB
+# IMPERAS_BIN
+# IMPERAS_VMISTUBS
+# IMPERAS_VMIINC
+# SIM_CFLAGS
+# SIM_LDFLAGS
+# SIM_CXXFLAGS
+# SIM_LDXXFLAGS
+#
+IMPERAS_UNAME_SUPPORTED=0
+ifeq ($(IMPERAS_UNAME),Linux)
+  LIBSUF=a
+  OBJSUF=o
+  IMPERAS_UNAME_SUPPORTED=1
+endif
+ifeq ($(IMPERAS_UNAME),Windows)
+  LIBSUF=lib
+  OBJSUF=obj
+  # make sure there are no spaces in the Working Directory
+  aSpace:=
+  aSpace+=
+  ifneq ($(CURDIR),$(subst $(aSpace),,$(CURDIR)))
+    IMPERAS_WARN := $(warning "Warning: Current working directory contains spaces, this is not supported by mingw-make")
+  endif
+  IMPERAS_UNAME_SUPPORTED=1
+endif
+
+ifeq ($(IMPERAS_UNAME_SUPPORTED),0)
+  IMPERAS_ERROR := $(error "IMPERAS_UNAME=$(IMPERAS_UNAME) not supported")
+endif
+
+IMPERAS_LIB      = $(IMPERAS_HOME)/lib/$(IMPERAS_ARCH)
+IMPERAS_BIN      = $(IMPERAS_HOME)/bin/$(IMPERAS_ARCH)
+IMPERAS_VMISTUBS = $(IMPERAS_BIN)/vmiStubs.$(LIBSUF)
+IMPERAS_VMIINC   = -I$(IMPERAS_HOME)/ImpPublic/include/host
+IMPERAS_VMIINC  += -I$(IMPERAS_HOME)/ImpProprietary/include/host
+IMPERAS_LDISL    = -L$(IMPERAS_BIN) -lisl
+
+#
+# Default to debug, specify OPT=1 on command line for optimised
+#
+OPT ?= 0
+ifeq ($(OPT),1)
+  SIM_CFLAGS = $(IMPERAS_VMIINC) -Wall -Werror -O2
+else
+  SIM_CFLAGS = $(IMPERAS_VMIINC) -Wall -Werror -O0 -g -gdwarf-2
+endif
+
+#
+# Additional when compiling Cxx (.cpp, .cxx, .c++) files
+#
+SIM_CXXFLAGS       ?= 
+SIM_LDXXFLAGS      ?= 
+SIM_RUNTIME_LOADER ?= RuntimeLoader
+
+#
+# Indirect runtime loaders
+#
+SIM_LDFLAGS  = -L$(IMPERAS_HOME)/bin/$(IMPERAS_ARCH) -l$(SIM_RUNTIME_LOADER) -lisl
+
+# Development (internal use only)
+-include $(IMPERAS_HOME)/bin/Makefile.internal.development
+
+#
+# Host/Emulation Mode setup
+#
+ifeq ($(IMPERAS_ARCH),Linux32)
+  SIM_CFLAGS  += -m32
+  SIM_LDFLAGS += -m32
+  HOST_PREFIX =
+  HOST_BIN_FORMAT = elf32-i386
+  SYM_PREFIX=
+endif
+ifeq ($(IMPERAS_ARCH),Windows32)
+  SIM_CFLAGS  += -m32 -static-libgcc -mno-ms-bitfields
+  SIM_LDFLAGS += -m32 -static-libgcc
+  HOST_PREFIX =
+  HOST_BIN_FORMAT = elf32-i386
+  SYM_PREFIX=_
+endif
+
+ifeq ($(IMPERAS_ARCH),Linux64)
+ifeq ($(IMPERAS_M32),1)
+  SIM_CFLAGS  += -m32
+  SIM_LDFLAGS += -m32
+  HOST_BIN_FORMAT = elf32-i386
+  SYM_PREFIX=
+else
+  SIM_CFLAGS  += -m64 -fPIC
+  SIM_LDFLAGS += -m64 -fPIC
+  HOST_BIN_FORMAT = elf64-x86-64
+  SYM_PREFIX=
+endif
+  HOST_PREFIX =
+  SYM_PREFIX=
+endif
+ifeq ($(IMPERAS_ARCH),Windows64)
+ifeq ($(IMPERAS_M32),1)
+  SIM_CFLAGS  += -m32 -static-libgcc -mno-ms-bitfields
+  SIM_LDFLAGS += -m32 -static-libgcc
+  HOST_PREFIX =
+  HOST_BIN_FORMAT = elf32-i386
+  SYM_PREFIX=_
+else
+  SIM_CFLAGS  += -m64 -static-libgcc -mno-ms-bitfields
+  SIM_LDFLAGS += -m64 -static-libgcc
+  HOST_PREFIX = x86_64-w64-mingw32-
+  HOST_BIN_FORMAT = elf64-x86-64
+  SYM_PREFIX=
+endif
+endif
+
+#
+# Externally defined flags
+#
+ifneq ($(OTHER_CFLAGS),)
+  SIM_CFLAGS += $(OTHER_CFLAGS)
+endif
+ifneq ($(OTHER_LDFLAGS),)
+  SIM_LDFLAGS += $(OTHER_LDFLAGS)
+endif
+
+HOST_AR         ?= $(HOST_PREFIX)ar
+HOST_AS         ?= $(HOST_PREFIX)as
+HOST_CXX        ?= $(HOST_PREFIX)c++
+HOST_CPP        ?= $(HOST_PREFIX)cpp
+HOST_DLLTOOL    ?= $(HOST_PREFIX)dlltool
+HOST_GCC        ?= $(HOST_PREFIX)gcc
+HOST_GXX        ?= $(HOST_PREFIX)g++
+HOST_NM         ?= $(HOST_PREFIX)nm
+HOST_OBJCOPY    ?= $(HOST_PREFIX)objcopy
+HOST_OBJDUMP    ?= $(HOST_PREFIX)objdump
+HOST_RANLIB     ?= $(HOST_PREFIX)ranlib
+HOST_READELF    ?= $(HOST_PREFIX)readelf
+HOST_SIZE       ?= $(HOST_PREFIX)size
+HOST_STRINGS    ?= $(HOST_PREFIX)strings
+HOST_STRIP      ?= $(HOST_PREFIX)strip
+
+#
+# Use $(V) in place of '@' on command lines in Makefiles 
+# to control echoing command lines with VERBOSE=1 on make command
+# 
+ifeq ($(VERBOSE),1)
+  V=
+else
+  V=@
+endif
+
+# Override default settings
+-include $(IMPERAS_HOME)/bin/Makefile.defaults
+

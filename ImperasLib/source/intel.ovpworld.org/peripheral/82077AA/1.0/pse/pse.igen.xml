@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="82077AA"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="intel.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Dummy Floppy Disc Controller."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Register stubs only."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="http://www.buchty.net/casio/files/82077.pdf http://www.alldatasheet.com/datesheet-pdf/pdf/167793/INTEL/82077AA.html"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x8">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Byte:wide access to control and status registers."/>
+        </docsection>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

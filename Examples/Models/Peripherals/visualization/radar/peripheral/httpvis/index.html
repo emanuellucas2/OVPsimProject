@@ -1,0 +1,479 @@
+<!DOCTYPE html>    
+<head>
+    <meta charset="utf-8">
+    
+    <titleRadar</title>
+    <style>
+        html, body {
+            width:    100%;
+            height:   100%;
+            margin:   0px;
+            border:   0;
+            overflow: hidden; /*  Disable scrollbars */
+            display:  block;  /* No floating content on sides */
+        }
+    </style>
+    
+<body>
+    <div id='versionError'></div>
+    <script>
+        var agent = navigator.userAgent;
+        if (agent.toLowerCase().indexOf('firefox') > -1) {
+            var match = agent.match(/Firefox\/([0-9]+)\./);
+            var ver = parseInt(match[1]);
+            //alert (ver);
+            if (ver < 10) { // arbitrary but 3 is too low...
+                document.getElementById('versionError').innerHTML = "<font color=red>FATAL: THIS VERSON OF FIREFOX IS NOT SUPPORTED.<br>PLEASE USE A LATER VERSION.";
+            }
+        }
+    </script>
+    
+    <canvas id='c' style = 'position: absolute; left: 0px; top: 0px;' >
+    </canvas>
+
+    <input style="z-index:2; position:relative; top:x; left:y; height:30px; width:90px"
+        type="button" value="Exit" onClick="topfunc.exitFn()" id='exit0'/>
+    <input style="z-index:2; position:relative; top:x; left:y; height:30px; width:90px"
+        type="button" value="Reset Planes" onClick="topfunc.resetFn()"/>
+    <br/>
+
+    <input style="z-index:2; position:relative; top:x; left:y; height:30px; width:90px"
+        type="button" value="Zoom +" onClick="topfunc.zoomIn()"/>
+    <input style="z-index:2; position:relative; top:x; left:y; height:30px; width:90px"
+        type="button" value="Zoom -" onClick="topfunc.zoomOut()"/>
+    <br>
+    <input style="z-index:2; position:relative; top:x; left:y; height:30px; width:90px"
+        type="button" value="Filter +" onClick="topfunc.filtIn()"/>
+    <input style="z-index:2; position:relative; top:x; left:y; height:30px; width:90px"
+        type="button" value="Filter -" onClick="topfunc.filtOut()"/>
+     
+    <script>
+    
+        var topfunc = (function() {
+            // Obtain a reference to the canvas element
+            // using its id.
+            var htmlCanvas = document.getElementById('c');
+            
+            // Obtain a graphics context on the
+            // canvas element for drawing.
+            var context = htmlCanvas.getContext('2d');
+            
+            var acft_cntre = new Image();
+            var acft_wht   = new Image();
+            var acft_red   = new Image();
+            var acft_amb   = new Image();
+            var acft_grn   = new Image();
+            var up         = new Image();
+            var dn         = new Image();
+            var tcas       = new Image();
+
+            acft_cntre.src = "/Resources/ac-60x60-white.png";
+            acft_wht.src   = "/Resources/ac-60x60-white.png";
+            acft_red.src   = "/Resources/ac-60x60-red.png";
+            acft_amb.src   = "/Resources/ac-60x60-amb.png";
+            acft_grn.src   = "/Resources/ac-60x60-grn.png";
+
+            up.src         = "/Resources/up-white.png";
+            dn.src         = "/Resources/dn-white.png";
+            tcas.src       = "/Resources/tcas-white.png";
+            
+            var heading = 0;
+            
+            var max_zoom = 250;
+            var min_zoom = 5;
+            var zoom     = max_zoom;
+            var filt     = 50000;
+            
+            // Start listening to resize events and
+            // draw canvas.
+            initialize();
+            
+            setInterval(redraw, 1000);
+            
+            function initialize() {
+                // Register an event listener to
+                // call the resizeCanvas() function each time 
+                // the window is resized.
+                window.addEventListener('resize', resizeCanvas, false);
+                
+                // Draw canvas border for the first time.
+                resizeCanvas();
+            }
+
+            //
+            // Process Data for moving planes
+            //
+            var heading_offset = 0;
+            function get_traffic() {
+                var data = [];
+                var xhttp = new XMLHttpRequest();
+                
+                xhttp.onreadystatechange = function() {
+                if ((this.readyState==4) && (this.status==200)) { 
+                    var resp = JSON.parse(this.responseText); 
+                    
+                    heading = resp.ovpelement[0].idvalue;
+                    
+                    for (i = 1; i < resp.ovpelement.length; i+=8) { 
+                        var v_icao  = resp.ovpelement[i+0].idvalue;
+                        var v_xy    = resp.ovpelement[i+1].idvalue; 
+                        var v_x     = resp.ovpelement[i+2].idvalue; 
+                        var v_y     = resp.ovpelement[i+3].idvalue;
+                        var v_z     = resp.ovpelement[i+4].idvalue; 
+                        var v_kns   = resp.ovpelement[i+5].idvalue;
+                        var v_trk   = resp.ovpelement[i+6].idvalue;
+                        var v_climb = resp.ovpelement[i+7].idvalue; 
+
+                        console.log("JSON_" + i + " " + heading + " " + v_icao + " " + v_x + " " + v_y + " " + v_z + " " + v_kns + " " + v_trk + " " + v_climb);
+                        
+                        data.push({icao:v_icao, xy:v_xy, x:v_x, y:v_y, z:v_z, kns:v_kns, trk:v_trk, climb:v_climb});
+                    }
+                }
+
+                }
+                xhttp.open('GET', "/?command=Refresh&value=none&format=json", false);
+                xhttp.send();
+
+                return data;
+            }
+                
+            // Display custom canvas.
+            // In this case it's a blue, 5 pixel border that 
+            // resizes along with the browser window.                    
+            function redraw() {
+                context.clearRect(0, 0, htmlCanvas.width, htmlCanvas.height);
+                context.strokeStyle = 'blue';
+                context.lineWidth = 1;
+                //context.setLineDash([]);
+                context.strokeRect(0, 0, htmlCanvas.width, htmlCanvas.height);
+                var img_off  = (acft_red.width / 2);
+                var tcas_off = (tcas.width / 2);
+                var rotation = Math.PI/180 * (360 - heading);
+                
+                context.rect(0, 0, htmlCanvas.width, htmlCanvas.height);
+                context.fillStyle = "black";
+                context.fill();
+                
+                //
+                // Make the centre 2/3 down screen
+                //
+                var centreX = htmlCanvas.width / 2;
+                var centreY = (htmlCanvas.height / 2);;
+                var minXY = htmlCanvas.width;
+                if (htmlCanvas.width > htmlCanvas.height) {
+                    minXY = htmlCanvas.height;
+                }
+                
+                //
+                // Centre dot, radii and scale
+                //
+                context.save();
+                    context.translate(centreX, centreY);
+                    // rotate
+                    context.rotate(rotation);
+                    
+                    scale1 = minXY;
+                    context.drawImage(tcas, -(scale1/2), -(scale1/2), scale1, scale1);
+                    //console.log("x=" + centreX + " y=" + centreY + " off=" + off + " scale1=" + scale1);
+                context.restore();
+                
+                context.save();
+                  context.translate(centreX, centreY);
+                  context.drawImage(acft_cntre, -img_off, -img_off);
+                  //context.setLineDash([5]);
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(0, -100);
+                  context.stroke();
+                  context.closePath();
+                          
+                  //context.setLineDash([]);
+                  
+                  //
+                  // all X/Y units are in metres 
+                  // modified by zoom factor
+                  // so 1000 / zoom = xcaling of 1km
+                  //
+                  var rad1      = minXY / 2;
+                  var km1_scale = rad1 / 1000 * zoom;
+                  var km1_f     = Math.floor(km1_scale);
+                  var rad1_f    = rad1 * km1_f / km1_scale;
+                  
+                  var rad2      = minXY / 4;
+                  var km2_scale = rad2 / 1000 * zoom;
+                  var km2_f     = Math.floor(km2_scale);
+                  var rad2_f    = rad2 * km2_f / km2_scale;
+                  
+                  context.beginPath();
+                  context.arc(0, 0, rad1_f, 0, 2*Math.PI);
+                  context.stroke();
+                  context.closePath();
+                  
+                  context.beginPath();
+                  context.arc(0, 0, rad2_f, 0, 2*Math.PI);
+                  context.stroke();
+                  context.closePath();
+
+                  // scale
+                  //context.font = "bold 12pt Courier";
+                  context.font = "12pt Courier";
+                  context.fillStyle = 'white';
+                  context.fillText(km1_f + "km", rad1_f+5, 10);
+                  context.fillText(km2_f + "km", rad2_f+5, 10);
+                  context.fillText(km1_f + "km", -15, -(rad1_f)+15);
+                  context.fillText(km2_f + "km", -15, -(rad2_f)-10);
+                context.restore();
+
+                // vertical scale
+                context.save();
+                  //context.font = "bold 12pt Courier";
+                  context.font = "12pt Courier";
+                  context.fillStyle = 'white';
+                  context.fillText("Filter=" + filt + "ft", 0, 100);
+                context.restore();
+                  
+                var traffic = get_traffic();
+                for(var i=0; i<traffic.length; i++) {
+                    var icao  = traffic[i].icao;
+                    if (icao == "SELF") {
+                        continue;
+                    }
+                    var xy    = traffic[i].xy;
+                    var x0    = traffic[i].x;
+                    var y0    = traffic[i].y;
+                    var z     = traffic[i].z * 3.2808399; // #define METRES_TO_FEET 3.2808399
+                    var climb = traffic[i].climb * 3.2808399; // #define METRES_TO_FEET 3.2808399
+                    z         = Math.round(z);
+                                        
+                    var kns  = traffic[i].kns;
+                    var trk1 = traffic[i].trk;
+                    
+                    //
+                    // x, y, track need rotating through heading
+                    // convert x,y to vector length, dir then back to xy
+                    //
+                    // (old coordinates are (x, y) and the new coordinates are (x', y'))
+                    // q = initial angle, f = angle of rotation.
+                    // 
+                    // x = r cos q
+                    // y = r sin q
+                    // 
+                    // x' = r cos ( q + f ) = r cos q cos f - r sin q sin f
+                    // y' = r sin ( q + w ) = r sin q cos f + r cos q sin f
+                    // 
+                    // hence:
+                    // x' = x cos f - y sin f
+                    // y' = y cos f + x sin f 
+                    //
+                    var x1   = (x0 * Math.cos(-rotation)) - (y0 * Math.sin(-rotation));
+                    var y1   = (y0 * Math.cos(-rotation)) + (x0 * Math.sin(-rotation));
+                    var trk2 = trk1 - heading;
+                    
+                    var tz = "";
+                    var kz = z / 1000.0;
+                    var rounded = parseFloat(Math.round(kz * 10) / 10).toFixed(1);
+                    if (rounded > 0.0) {
+                        tz = tz.concat("+");
+                    }
+                    tz = tz.concat(rounded);
+
+                    var tkns = "";
+                    tkns = tkns.concat(kns);
+                    tkns = tkns.concat("kns");
+
+                    var mx =  x1 / zoom;
+                    var my = -y1 / zoom;
+
+                    var x2 = centreX+mx;
+                    var y2 = centreY+my;
+                    
+                    var zmag = z;
+                    if (zmag < 0) {
+                        zmag = -(zmag);
+                    }
+                    var invrange;
+                    if (zmag > filt) {
+                        inrange = 0;
+                    } else {
+                        inrange = 1;
+                    }
+                    //console.log("+/-" + filt + "ft, AC=" + z + "ft inrange=" + inrange);
+                    
+                    // Positioned or Bearingless ?
+                    if (xy==1 && inrange) {
+                        // Positioned
+                        context.save();
+                          context.translate(x2, y2);
+                          //context.font = "bold 8pt Courier";
+                          context.font = "16pt Courier";
+                          context.fillStyle = 'white';
+                          //context.fillText(icao, img_off+8, -10);
+                          context.fillText(tz,   img_off+8,  0);
+                          //context.fillText(tkns, img_off+8,  10);
+                          if (climb > 0) {
+                              context.drawImage(up, img_off-2, -img_off+5);
+                          } else if (climb < 0) {
+                              context.drawImage(dn, img_off-2, -img_off+5);
+                          }
+                        context.restore();
+                          
+                        context.save();
+                          // Move to origin
+                          context.translate(x2, y2);
+                          
+                          // rotate
+                          context.rotate(Math.PI/180 * trk2);
+                          
+                          // extended track line
+                          var track_len = -(kns * 50 / zoom);
+                          //context.setLineDash([5]);
+                          context.beginPath();
+                          context.moveTo(0, 0);
+                          context.lineTo(0, track_len);
+                          context.stroke();
+                          context.closePath();
+                          
+                          // color choice
+                          var horiz = Math.sqrt(x0*x0 + y0*y0);
+                          var verti = z;
+                          
+                          if        ((horiz < 3000) && (verti < 500)) {             // 3km +/- 500ft
+                              context.drawImage(acft_red, -img_off, -img_off);
+                          } else if ((horiz < 5000) && (verti < 1000)) {            // 5km +/- 1000ft
+                              context.drawImage(acft_amb, -img_off, -img_off);
+                          } else if ((horiz < 10000) && (verti < 2000)) {           // 10km +/- 2000ft
+                              context.drawImage(acft_grn, -img_off, -img_off);
+                          } else {
+                              context.drawImage(acft_wht, -img_off, -img_off);
+                          }
+                          
+                        context.restore();
+                    } else {
+                        // Bearingless draw a ring
+                    }
+                }
+            }
+        
+            // Runs each time the DOM window resize event fires.
+            // Resets the canvas dimensions to match window,
+            // then draws the new borders accordingly.
+            function resizeCanvas() {
+                var x, y, v;
+                var len = 16.0;
+                var wid =  9.0;
+                x = window.innerWidth;
+                y = window.innerHeight * (len/wid);
+                
+                if (x>y) {
+                    v = y;
+                } else {
+                    v = x;
+                }
+                
+                htmlCanvas.width  = window.innerWidth;
+                htmlCanvas.height = window.innerHeight  * 5 / 3;
+                console.log("window W=" + htmlCanvas.width  + " H=" + htmlCanvas.height);
+                console.log("canvas W=" + window.innerWidth + " H=" + window.innerHeight);
+                redraw();
+            }
+            
+            function zoomOut() {
+                zoom = zoom * 2;
+                if (zoom > max_zoom) {
+                    zoom = max_zoom;
+                }
+                redraw();
+                //console.log("zoomOut = " + zoom);
+            }
+            
+            function resetFn() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.open('POST', "/?click", false);
+                xhttp.send("reset=clicked");
+                console.log("resetFn()");
+            }  
+            function exitFn() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.open('POST', "/?click", false);
+                xhttp.send("exit=clicked");
+                console.log("exitFn()");
+            }              
+            function zoomIn() {
+                zoom = zoom / 2;
+                if (zoom < min_zoom) {
+                    zoom = min_zoom;
+                }
+                redraw();
+                //console.log("zoomIn = " + zoom);
+            }
+            
+            function filtOut() {
+                switch (filt) {
+                    case 500:
+                        filt = 1000;
+                        break;
+                    case 1000:
+                        filt = 2000;
+                        break;
+                    case 2000:
+                        filt = 5000;
+                        break;
+                    case 5000:
+                        filt = 10000;
+                        break;
+                    case 10000:
+                        filt = 20000;
+                        break;
+                    case 20000:
+                        filt = 50000;
+                        break;
+                    case 50000:
+                        break;
+                    default:
+                        filt = 1000;
+                }
+                //console.log("filtOut = " + filt);
+            }
+            
+            function filtIn() {
+                switch (filt) {
+                    case 500:
+                        break;
+                    case 1000:
+                        filt = 500;
+                        break;
+                    case 2000:
+                        filt = 1000;
+                        break;
+                    case 5000:
+                        filt = 2000;
+                        break;
+                    case 10000:
+                        filt = 5000;
+                        break;
+                    case 20000:
+                        filt = 10000;
+                        break;
+                    case 50000:
+                        filt = 20000;
+                        break;
+                    default:
+                        filt = 1000;
+                }
+                //console.log("filtIn = " + filt);
+            }
+            
+            return {
+                zoomIn:  zoomIn,
+                zoomOut: zoomOut,
+                filtIn:  filtIn,
+                filtOut: filtOut,
+                resetFn: resetFn,
+                exitFn: exitFn,
+            };
+        })();
+    </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="crc"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="renesas.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Renesas Cyclic Redundancy Generator"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Register View Model Only"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="R01UH0128ED0700, Rev. 7.00, Oct 06, 2010"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="CRCP0"
+        size="0x80">
+        <addressblock name="reg0"
+            size="0x48"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCRCIN0"
+                nbyte="F"
+                width="32"
+                writefunction="writeCCRCIN0">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCRCD0"
+                nbyte="F"
+                offset="0x4"
+                width="32"
+                writefunction="writeCCRCD0">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCRCIN1"
+                nbyte="F"
+                offset="0x8"
+                width="32"
+                writefunction="writeCCRCIN1">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCRCD1"
+                nbyte="F"
+                offset="0xc"
+                width="32"
+                writefunction="writeCCRCD1">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCRCIN2"
+                nbyte="F"
+                offset="0x10"
+                width="32"
+                writefunction="writeCCRCIN2">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCRCD2"
+                nbyte="F"
+                offset="0x14"
+                width="32"
+                writefunction="writeCCRCD2">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCRCIN3"
+                nbyte="F"
+                offset="0x18"
+                width="32"
+                writefunction="writeCCRCIN3">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCRCD3"
+                nbyte="F"
+                offset="0x1c"
+                width="32"
+                writefunction="writeCCRCD3">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCRCIN4"
+                nbyte="F"
+                offset="0x20"
+                width="32"
+                writefunction="writeCCRCIN4">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCRCD4"
+                nbyte="F"
+                offset="0x24"
+                width="32"
+                writefunction="writeCCRCD4">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DCRCIN"
+                nbyte="F"
+                offset="0x30"
+                width="32"
+                writefunction="writeDCRCIN"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DCRCD"
+                nbyte="F"
+                offset="0x34"
+                width="32"
+                writefunction="writeDCRCD"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CRCC"
+                nbyte="F"
+                offset="0x40"
+                width="32"
+                writefunction="writeCRCC">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+                <field access="rw"
+                    name="POL"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="ISZ"
+                    width="2"/>
+                <field access="rw"
+                    bitoffset="8"
+                    name="CRCEN0"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="9"
+                    name="CRCEN1"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="10"
+                    name="CRCEN2"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="11"
+                    name="CRCEN3"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="12"
+                    name="CRCEN4"
+                    width="1"/>
+                <field bitoffset="3"
+                    name="__pad3"
+                    width="5"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

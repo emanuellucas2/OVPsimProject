@@ -1,0 +1,107 @@
+/*
+ * QEMU VGA Emulator.
+ *
+ * Copyright (c) 2003 Fabrice Bellard
+ * Copyright (c) 2006 Openedhand Ltd.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * 
+ * Copyright (c) 2005-2021 Imperas Software Ltd., www.imperas.com
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied.
+ * 
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+#ifndef TYPES_H
+#define TYPES_H
+
+#include "hostapi/impTypes.h"
+
+#define xglue(x, y) x ## y
+#define glue(x, y) xglue(x, y)
+
+// CPU
+#define TARGET_PAGE_BITS 12
+#define TARGET_PAGE_SIZE (1 << TARGET_PAGE_BITS)
+#define TARGET_PAGE_MASK ~(TARGET_PAGE_SIZE - 1)
+#define TARGET_PAGE_ALIGN(addr) (((addr) + TARGET_PAGE_SIZE - 1) & TARGET_PAGE_MASK)
+
+void cpu_to_32wu(Uns32 *p, Uns32 v);
+
+
+// swap routines
+
+static inline Uns32 rgb_to_pixel8(Uns32 r, Uns32 g, Uns32 b)
+{
+    return ((r >> 5) << 5) | ((g >> 5) << 2) | (b >> 6);
+}
+
+static inline Uns32 rgb_to_pixel15(Uns32 r, Uns32 g, Uns32 b)
+{
+    return ((r >> 3) << 10) | ((g >> 3) << 5) | (b >> 3);
+}
+
+static inline Uns32 rgb_to_pixel15bgr(Uns32 r, Uns32 g, Uns32 b)
+{
+    return ((b >> 3) << 10) | ((g >> 3) << 5) | (r >> 3);
+}
+
+static inline Uns32 rgb_to_pixel16(Uns32 r, Uns32 g, Uns32 b)
+{
+    return ((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3);
+}
+
+static inline Uns32 rgb_to_pixel16bgr(Uns32 r, Uns32 g, Uns32 b)
+{
+    return ((b >> 3) << 11) | ((g >> 2) << 5) | (r >> 3);
+}
+
+static inline Uns32 rgb_to_pixel24(Uns32 r, Uns32 g, Uns32 b)
+{
+    return (r << 16) | (g << 8) | b;
+}
+
+static inline Uns32 rgb_to_pixel24bgr(Uns32 r, Uns32 g, Uns32 b)
+{
+    return (b << 16) | (g << 8) | r;
+}
+
+static inline Uns32 rgb_to_pixel32(Uns32 r, Uns32 g, Uns32 b)
+{
+    return (r << 16) | (g << 8) | b;
+}
+
+static inline Uns32 rgb_to_pixel32bgr(Uns32 r, Uns32 g, Uns32 b)
+{
+    return (b << 16) | (g << 8) | r;
+}
+
+#endif

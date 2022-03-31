@@ -1,0 +1,4921 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="VybridDMA"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="freescale.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Freescale Vybrid Direct Memory Access Controller"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Only models control register read/write - control register CX and ECX bits are modeled as RAZ/WI"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Freescale Vybrid Peripheral User Guide"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x2000">
+        <addressblock name="ab"
+            size="0x1400"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CR"
+                nbyte="F"
+                readfunction="regReadCR"
+                width="32"
+                writefunction="regWriteCR"
+                writemask="198142">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000400"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Control Register, offset: 0x0 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="6"
+                    name="CLM"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="17"
+                    name="CX"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="ECX"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="EDBG"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="EMLM"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="ERCA"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="ERGA"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="8"
+                    name="GRP0PRI"
+                    width="2"/>
+                <field access="rw"
+                    bitoffset="10"
+                    name="GRP1PRI"
+                    width="2"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="HALT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="HOE"
+                    width="1"/>
+                <field bitoffset="0"
+                    name="__pad0"
+                    width="1"/>
+                <field bitoffset="12"
+                    name="__pad12"
+                    width="4"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="ES"
+                nbyte="F"
+                offset="0x4"
+                readfunction="regReadES"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Error Status Register, offset: 0x4 "/>
+                </docsection>
+                <field access="r"
+                    bitoffset="14"
+                    name="CPE"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="5"
+                    name="DAE"
+                    width="1"/>
+                <field access="r"
+                    name="DBE"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="4"
+                    name="DOE"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="16"
+                    name="ECX"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="8"
+                    name="ERRCHN"
+                    width="5"/>
+                <field access="r"
+                    bitoffset="15"
+                    name="GPE"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="3"
+                    name="NCE"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="7"
+                    name="SAE"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="1"
+                    name="SBE"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="2"
+                    name="SGE"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="6"
+                    name="SOE"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="31"
+                    name="VLD"
+                    width="1"/>
+                <field bitoffset="13"
+                    name="__pad13"
+                    width="1"/>
+                <field bitoffset="17"
+                    name="__pad17"
+                    width="14"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ERQ"
+                nbyte="F"
+                offset="0xc"
+                readfunction="regRead32"
+                width="32"
+                writefunction="regWrite32"
+                writemask="4294967295">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Enable Request Register, offset: 0xC "/>
+                </docsection>
+                <field access="rw"
+                    name="ERQ0"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="ERQ1"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="10"
+                    name="ERQ10"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="11"
+                    name="ERQ11"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="12"
+                    name="ERQ12"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="13"
+                    name="ERQ13"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="14"
+                    name="ERQ14"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="15"
+                    name="ERQ15"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="ERQ16"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="17"
+                    name="ERQ17"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="18"
+                    name="ERQ18"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="19"
+                    name="ERQ19"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="ERQ2"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="20"
+                    name="ERQ20"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="21"
+                    name="ERQ21"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="22"
+                    name="ERQ22"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="23"
+                    name="ERQ23"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="24"
+                    name="ERQ24"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="25"
+                    name="ERQ25"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="26"
+                    name="ERQ26"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="27"
+                    name="ERQ27"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="28"
+                    name="ERQ28"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="29"
+                    name="ERQ29"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="ERQ3"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="30"
+                    name="ERQ30"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="31"
+                    name="ERQ31"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="ERQ4"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="ERQ5"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="ERQ6"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="ERQ7"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="8"
+                    name="ERQ8"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="9"
+                    name="ERQ9"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="EEI"
+                nbyte="F"
+                offset="0x14"
+                readfunction="regRead32"
+                width="32"
+                writefunction="regWrite32"
+                writemask="4294967295">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+                <field access="rw"
+                    name="EEI0"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="EEI1"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="10"
+                    name="EEI10"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="11"
+                    name="EEI11"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="12"
+                    name="EEI12"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="13"
+                    name="EEI13"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="14"
+                    name="EEI14"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="15"
+                    name="EEI15"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="EEI16"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="17"
+                    name="EEI17"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="18"
+                    name="EEI18"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="19"
+                    name="EEI19"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="EEI2"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="20"
+                    name="EEI20"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="21"
+                    name="EEI21"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="22"
+                    name="EEI22"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="23"
+                    name="EEI23"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="24"
+                    name="EEI24"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="25"
+                    name="EEI25"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="26"
+                    name="EEI26"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="27"
+                    name="EEI27"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="28"
+                    name="EEI28"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="29"
+                    name="EEI29"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="EEI3"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="30"
+                    name="EEI30"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="31"
+                    name="EEI31"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="EEI4"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="EEI5"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="EEI6"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="EEI7"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="8"
+                    name="EEI8"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="9"
+                    name="EEI9"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CS_EEI_ERC"
+                nbyte="F"
+                offset="0x18"
+                readfunction="regReadZero"
+                width="32"
+                writefunction="regSetGroup"
+                writemask="3755991007">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Clear/Set EEI, ERC"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DNE_SRT_ERR_INT"
+                nbyte="F"
+                offset="0x1c"
+                readfunction="regReadZero"
+                width="32"
+                writefunction="regSetGroup"
+                writemask="3755991007">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Clear/Set DNE, START, ERR, INT registers"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INT"
+                nbyte="F"
+                offset="0x24"
+                readfunction="regRead32"
+                width="32"
+                writefunction="regWrite1c"
+                writemask="4294967295">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+                <field access="rw"
+                    name="INT0"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="INT1"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="10"
+                    name="INT10"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="11"
+                    name="INT11"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="12"
+                    name="INT12"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="13"
+                    name="INT13"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="14"
+                    name="INT14"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="15"
+                    name="INT15"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="INT16"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="17"
+                    name="INT17"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="18"
+                    name="INT18"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="19"
+                    name="INT19"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="INT2"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="20"
+                    name="INT20"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="21"
+                    name="INT21"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="22"
+                    name="INT22"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="23"
+                    name="INT23"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="24"
+                    name="INT24"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="25"
+                    name="INT25"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="26"
+                    name="INT26"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="27"
+                    name="INT27"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="28"
+                    name="INT28"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="29"
+                    name="INT29"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="INT3"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="30"
+                    name="INT30"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="31"
+                    name="INT31"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="INT4"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="INT5"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="INT6"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="INT7"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="8"
+                    name="INT8"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="9"
+                    name="INT9"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ERR"
+                nbyte="F"
+                offset="0x2c"
+                readfunction="regRead32"
+                width="32"
+                writefunction="regWrite1c"
+                writemask="4294967295">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Error Register, offset: 0x2C "/>
+                </docsection>
+                <field access="rw"
+                    name="ERR0"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="ERR1"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="10"
+                    name="ERR10"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="11"
+                    name="ERR11"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="12"
+                    name="ERR12"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="13"
+                    name="ERR13"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="14"
+                    name="ERR14"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="15"
+                    name="ERR15"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="ERR16"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="17"
+                    name="ERR17"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="18"
+                    name="ERR18"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="19"
+                    name="ERR19"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="ERR2"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="20"
+                    name="ERR20"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="21"
+                    name="ERR21"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="22"
+                    name="ERR22"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="23"
+                    name="ERR23"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="24"
+                    name="ERR24"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="25"
+                    name="ERR25"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="26"
+                    name="ERR26"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="27"
+                    name="ERR27"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="28"
+                    name="ERR28"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="29"
+                    name="ERR29"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="ERR3"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="30"
+                    name="ERR30"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="31"
+                    name="ERR31"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="ERR4"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="ERR5"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="ERR6"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="ERR7"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="8"
+                    name="ERR8"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="9"
+                    name="ERR9"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="HRS"
+                nbyte="F"
+                offset="0x34"
+                readfunction="regRead32"
+                width="32"
+                writefunction="regWrite32"
+                writemask="4294967295">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+                <field access="rw"
+                    name="HRS0"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="HRS1"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="10"
+                    name="HRS10"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="11"
+                    name="HRS11"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="12"
+                    name="HRS12"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="13"
+                    name="HRS13"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="14"
+                    name="HRS14"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="15"
+                    name="HRS15"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="HRS16"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="17"
+                    name="HRS17"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="18"
+                    name="HRS18"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="19"
+                    name="HRS19"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="HRS2"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="20"
+                    name="HRS20"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="21"
+                    name="HRS21"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="22"
+                    name="HRS22"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="23"
+                    name="HRS23"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="24"
+                    name="HRS24"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="25"
+                    name="HRS25"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="26"
+                    name="HRS26"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="27"
+                    name="HRS27"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="28"
+                    name="HRS28"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="29"
+                    name="HRS29"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="HRS3"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="30"
+                    name="HRS30"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="31"
+                    name="HRS31"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="HRS4"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="HRS5"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="HRS6"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="HRS7"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="8"
+                    name="HRS8"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="9"
+                    name="HRS9"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="EARS"
+                nbyte="F"
+                offset="0x44"
+                width="32"
+                writemask="4294967295">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Enable Asyncronous Request"/>
+                </docsection>
+                <field access="rw"
+                    name="EDREQ_0"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="EDREQ_1"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="10"
+                    name="EDREQ_10"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="11"
+                    name="EDREQ_11"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="12"
+                    name="EDREQ_12"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="13"
+                    name="EDREQ_13"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="14"
+                    name="EDREQ_14"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="15"
+                    name="EDREQ_15"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="EDREQ_16"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="17"
+                    name="EDREQ_17"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="18"
+                    name="EDREQ_18"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="19"
+                    name="EDREQ_19"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="EDREQ_2"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="20"
+                    name="EDREQ_20"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="21"
+                    name="EDREQ_21"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="22"
+                    name="EDREQ_22"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="23"
+                    name="EDREQ_23"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="24"
+                    name="EDREQ_24"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="25"
+                    name="EDREQ_25"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="26"
+                    name="EDREQ_26"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="27"
+                    name="EDREQ_27"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="28"
+                    name="EDREQ_28"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="29"
+                    name="EDREQ_29"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="EDREQ_3"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="30"
+                    name="EDREQ_30"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="31"
+                    name="EDREQ_31"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="EDREQ_4"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="EDREQ_5"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="EDREQ_6"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="EDREQ_7"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="8"
+                    name="EDREQ_8"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="9"
+                    name="EDREQ_9"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DCHPRI3_0"
+                nbyte="F"
+                offset="0x100"
+                readfunction="regReadCHPRI"
+                width="32"
+                writefunction="regWriteCHPRI"
+                writemask="3486502863">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel n Priority Registers 3 to 0"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DCHPRI7_4"
+                nbyte="F"
+                offset="0x104"
+                readfunction="regReadCHPRI"
+                width="32"
+                writefunction="regWriteCHPRI"
+                writemask="3486502863">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DCHPRI11_8"
+                nbyte="F"
+                offset="0x108"
+                readfunction="regReadCHPRI"
+                width="32"
+                writefunction="regWriteCHPRI"
+                writemask="3486502863">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DCHPRI15_12"
+                nbyte="F"
+                offset="0x10c"
+                readfunction="regReadCHPRI"
+                width="32"
+                writefunction="regWriteCHPRI"
+                writemask="3486502863">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DCHPRI19_16"
+                nbyte="F"
+                offset="0x110"
+                readfunction="regReadCHPRI"
+                width="32"
+                writefunction="regWriteCHPRI"
+                writemask="3486502863">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DCHPRI23_20"
+                nbyte="F"
+                offset="0x114"
+                readfunction="regReadCHPRI"
+                width="32"
+                writefunction="regWriteCHPRI"
+                writemask="3486502863">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DCHPRI27_24"
+                nbyte="F"
+                offset="0x118"
+                readfunction="regReadCHPRI"
+                width="32"
+                writefunction="regWriteCHPRI"
+                writemask="3486502863">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DCHPRI31_28"
+                nbyte="F"
+                offset="0x11c"
+                readfunction="regReadCHPRI"
+                width="32"
+                writefunction="regWriteCHPRI"
+                writemask="3486502863">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD0_SADDR"
+                nbyte="F"
+                offset="0x1000"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD0_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1004"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD0_NBYTES"
+                nbyte="F"
+                offset="0x1008"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD0_SLAST"
+                nbyte="F"
+                offset="0x100c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD0_DADDR"
+                nbyte="F"
+                offset="0x1010"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD0_DOFF_CITER"
+                nbyte="F"
+                offset="0x1014"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD0_DLASTSGA"
+                nbyte="F"
+                offset="0x1018"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD0_CSR_BITER"
+                nbyte="F"
+                offset="0x101c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD1_SADDR"
+                nbyte="F"
+                offset="0x1020"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD1_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1024"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD1_NBYTES"
+                nbyte="F"
+                offset="0x1028"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD1_SLAST"
+                nbyte="F"
+                offset="0x102c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD1_DADDR"
+                nbyte="F"
+                offset="0x1030"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD1_DOFF_CITER"
+                nbyte="F"
+                offset="0x1034"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD1_DLASTSGA"
+                nbyte="F"
+                offset="0x1038"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD1_CSR_BITER"
+                nbyte="F"
+                offset="0x103c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD2_SADDR"
+                nbyte="F"
+                offset="0x1040"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD2_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1044"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD2_NBYTES"
+                nbyte="F"
+                offset="0x1048"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD2_SLAST"
+                nbyte="F"
+                offset="0x104c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD2_DADDR"
+                nbyte="F"
+                offset="0x1050"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD2_DOFF_CITER"
+                nbyte="F"
+                offset="0x1054"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD2_DLASTSGA"
+                nbyte="F"
+                offset="0x1058"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD2_CSR_BITER"
+                nbyte="F"
+                offset="0x105c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD3_SADDR"
+                nbyte="F"
+                offset="0x1060"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD3_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1064"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD3_NBYTES"
+                nbyte="F"
+                offset="0x1068"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD3_SLAST"
+                nbyte="F"
+                offset="0x106c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD3_DADDR"
+                nbyte="F"
+                offset="0x1070"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD3_DOFF_CITER"
+                nbyte="F"
+                offset="0x1074"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD3_DLASTSGA"
+                nbyte="F"
+                offset="0x1078"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD3_CSR_BITER"
+                nbyte="F"
+                offset="0x107c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD4_SADDR"
+                nbyte="F"
+                offset="0x1080"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD4_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1084"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD4_NBYTES"
+                nbyte="F"
+                offset="0x1088"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD4_SLAST"
+                nbyte="F"
+                offset="0x108c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD4_DADDR"
+                nbyte="F"
+                offset="0x1090"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD4_DOFF_CITER"
+                nbyte="F"
+                offset="0x1094"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD4_DLASTSGA"
+                nbyte="F"
+                offset="0x1098"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD4_CSR_BITER"
+                nbyte="F"
+                offset="0x109c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD5_SADDR"
+                nbyte="F"
+                offset="0x10a0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD5_SOFF_ATTR"
+                nbyte="F"
+                offset="0x10a4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD5_NBYTES"
+                nbyte="F"
+                offset="0x10a8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD5_SLAST"
+                nbyte="F"
+                offset="0x10ac"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD5_DADDR"
+                nbyte="F"
+                offset="0x10b0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD5_DOFF_CITER"
+                nbyte="F"
+                offset="0x10b4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD5_DLASTSGA"
+                nbyte="F"
+                offset="0x10b8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD5_CSR_BITER"
+                nbyte="F"
+                offset="0x10bc"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD6_SADDR"
+                nbyte="F"
+                offset="0x10c0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD6_SOFF_ATTR"
+                nbyte="F"
+                offset="0x10c4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD6_NBYTES"
+                nbyte="F"
+                offset="0x10c8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD6_SLAST"
+                nbyte="F"
+                offset="0x10cc"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD6_DADDR"
+                nbyte="F"
+                offset="0x10d0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD6_DOFF_CITER"
+                nbyte="F"
+                offset="0x10d4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD6_DLASTSGA"
+                nbyte="F"
+                offset="0x10d8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD6_CSR_BITER"
+                nbyte="F"
+                offset="0x10dc"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD7_SADDR"
+                nbyte="F"
+                offset="0x10e0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD7_SOFF_ATTR"
+                nbyte="F"
+                offset="0x10e4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD7_NBYTES"
+                nbyte="F"
+                offset="0x10e8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD7_SLAST"
+                nbyte="F"
+                offset="0x10ec"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD7_DADDR"
+                nbyte="F"
+                offset="0x10f0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD7_DOFF_CITER"
+                nbyte="F"
+                offset="0x10f4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD7_DLASTSGA"
+                nbyte="F"
+                offset="0x10f8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD7_CSR_BITER"
+                nbyte="F"
+                offset="0x10fc"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD8_SADDR"
+                nbyte="F"
+                offset="0x1100"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD8_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1104"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD8_NBYTES"
+                nbyte="F"
+                offset="0x1108"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD8_SLAST"
+                nbyte="F"
+                offset="0x110c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD8_DADDR"
+                nbyte="F"
+                offset="0x1110"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD8_DOFF_CITER"
+                nbyte="F"
+                offset="0x1114"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD8_DLASTSGA"
+                nbyte="F"
+                offset="0x1118"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD8_CSR_BITER"
+                nbyte="F"
+                offset="0x111c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD9_SADDR"
+                nbyte="F"
+                offset="0x1120"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD9_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1124"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD9_NBYTES"
+                nbyte="F"
+                offset="0x1128"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD9_SLAST"
+                nbyte="F"
+                offset="0x112c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD9_DADDR"
+                nbyte="F"
+                offset="0x1130"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD9_DOFF_CITER"
+                nbyte="F"
+                offset="0x1134"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD9_DLASTSGA"
+                nbyte="F"
+                offset="0x1138"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD9_CSR_BITER"
+                nbyte="F"
+                offset="0x113c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD10_SADDR"
+                nbyte="F"
+                offset="0x1140"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD10_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1144"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD10_NBYTES"
+                nbyte="F"
+                offset="0x1148"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD10_SLAST"
+                nbyte="F"
+                offset="0x114c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD10_DADDR"
+                nbyte="F"
+                offset="0x1150"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD10_DOFF_CITER"
+                nbyte="F"
+                offset="0x1154"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD10_DLASTSGA"
+                nbyte="F"
+                offset="0x1158"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD10_CSR_BITER"
+                nbyte="F"
+                offset="0x115c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD11_SADDR"
+                nbyte="F"
+                offset="0x1160"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD11_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1164"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD11_NBYTES"
+                nbyte="F"
+                offset="0x1168"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD11_SLAST"
+                nbyte="F"
+                offset="0x116c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD11_DADDR"
+                nbyte="F"
+                offset="0x1170"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD11_DOFF_CITER"
+                nbyte="F"
+                offset="0x1174"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD11_DLASTSGA"
+                nbyte="F"
+                offset="0x1178"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD11_CSR_BITER"
+                nbyte="F"
+                offset="0x117c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD12_SADDR"
+                nbyte="F"
+                offset="0x1180"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD12_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1184"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD12_NBYTES"
+                nbyte="F"
+                offset="0x1188"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD12_SLAST"
+                nbyte="F"
+                offset="0x118c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD12_DADDR"
+                nbyte="F"
+                offset="0x1190"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD12_DOFF_CITER"
+                nbyte="F"
+                offset="0x1194"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD12_DLASTSGA"
+                nbyte="F"
+                offset="0x1198"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD12_CSR_BITER"
+                nbyte="F"
+                offset="0x119c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD13_SADDR"
+                nbyte="F"
+                offset="0x11a0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD13_SOFF_ATTR"
+                nbyte="F"
+                offset="0x11a4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD13_NBYTES"
+                nbyte="F"
+                offset="0x11a8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD13_SLAST"
+                nbyte="F"
+                offset="0x11ac"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD13_DADDR"
+                nbyte="F"
+                offset="0x11b0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD13_DOFF_CITER"
+                nbyte="F"
+                offset="0x11b4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD13_DLASTSGA"
+                nbyte="F"
+                offset="0x11b8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD13_CSR_BITER"
+                nbyte="F"
+                offset="0x11bc"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD14_SADDR"
+                nbyte="F"
+                offset="0x11c0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD14_SOFF_ATTR"
+                nbyte="F"
+                offset="0x11c4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD14_NBYTES"
+                nbyte="F"
+                offset="0x11c8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD14_SLAST"
+                nbyte="F"
+                offset="0x11cc"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD14_DADDR"
+                nbyte="F"
+                offset="0x11d0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD14_DOFF_CITER"
+                nbyte="F"
+                offset="0x11d4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD14_DLASTSGA"
+                nbyte="F"
+                offset="0x11d8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD14_CSR_BITER"
+                nbyte="F"
+                offset="0x11dc"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD15_SADDR"
+                nbyte="F"
+                offset="0x11e0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD15_SOFF_ATTR"
+                nbyte="F"
+                offset="0x11e4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD15_NBYTES"
+                nbyte="F"
+                offset="0x11e8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD15_SLAST"
+                nbyte="F"
+                offset="0x11ec"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD15_DADDR"
+                nbyte="F"
+                offset="0x11f0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD15_DOFF_CITER"
+                nbyte="F"
+                offset="0x11f4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD15_DLASTSGA"
+                nbyte="F"
+                offset="0x11f8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD15_CSR_BITER"
+                nbyte="F"
+                offset="0x11fc"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD16_SADDR"
+                nbyte="F"
+                offset="0x1200"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD16_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1204"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD16_NBYTES"
+                nbyte="F"
+                offset="0x1208"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD16_SLAST"
+                nbyte="F"
+                offset="0x120c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD16_DADDR"
+                nbyte="F"
+                offset="0x1210"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD16_DOFF_CITER"
+                nbyte="F"
+                offset="0x1214"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD16_DLASTSGA"
+                nbyte="F"
+                offset="0x1218"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD16_CSR_BITER"
+                nbyte="F"
+                offset="0x121c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD17_SADDR"
+                nbyte="F"
+                offset="0x1220"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD17_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1224"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD17_NBYTES"
+                nbyte="F"
+                offset="0x1228"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD17_SLAST"
+                nbyte="F"
+                offset="0x122c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD17_DADDR"
+                nbyte="F"
+                offset="0x1230"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD17_DOFF_CITER"
+                nbyte="F"
+                offset="0x1234"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD17_DLASTSGA"
+                nbyte="F"
+                offset="0x1238"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD17_CSR_BITER"
+                nbyte="F"
+                offset="0x123c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD18_SADDR"
+                nbyte="F"
+                offset="0x1240"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD18_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1244"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD18_NBYTES"
+                nbyte="F"
+                offset="0x1248"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD18_SLAST"
+                nbyte="F"
+                offset="0x124c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD18_DADDR"
+                nbyte="F"
+                offset="0x1250"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD18_DOFF_CITER"
+                nbyte="F"
+                offset="0x1254"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD18_DLASTSGA"
+                nbyte="F"
+                offset="0x1258"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD18_CSR_BITER"
+                nbyte="F"
+                offset="0x125c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD19_SADDR"
+                nbyte="F"
+                offset="0x1260"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD19_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1264"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD19_NBYTES"
+                nbyte="F"
+                offset="0x1268"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD19_SLAST"
+                nbyte="F"
+                offset="0x126c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD19_DADDR"
+                nbyte="F"
+                offset="0x1270"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD19_DOFF_CITER"
+                nbyte="F"
+                offset="0x1274"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD19_DLASTSGA"
+                nbyte="F"
+                offset="0x1278"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD19_CSR_BITER"
+                nbyte="F"
+                offset="0x127c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD20_SADDR"
+                nbyte="F"
+                offset="0x1280"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD20_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1284"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD20_NBYTES"
+                nbyte="F"
+                offset="0x1288"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD20_SLAST"
+                nbyte="F"
+                offset="0x128c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD20_DADDR"
+                nbyte="F"
+                offset="0x1290"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD20_DOFF_CITER"
+                nbyte="F"
+                offset="0x1294"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD20_DLASTSGA"
+                nbyte="F"
+                offset="0x1298"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD20_CSR_BITER"
+                nbyte="F"
+                offset="0x129c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD21_SADDR"
+                nbyte="F"
+                offset="0x12a0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD21_SOFF_ATTR"
+                nbyte="F"
+                offset="0x12a4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD21_NBYTES"
+                nbyte="F"
+                offset="0x12a8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD21_SLAST"
+                nbyte="F"
+                offset="0x12ac"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD21_DADDR"
+                nbyte="F"
+                offset="0x12b0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD21_DOFF_CITER"
+                nbyte="F"
+                offset="0x12b4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD21_DLASTSGA"
+                nbyte="F"
+                offset="0x12b8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD21_CSR_BITER"
+                nbyte="F"
+                offset="0x12bc"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD22_SADDR"
+                nbyte="F"
+                offset="0x12c0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD22_SOFF_ATTR"
+                nbyte="F"
+                offset="0x12c4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD22_NBYTES"
+                nbyte="F"
+                offset="0x12c8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD22_SLAST"
+                nbyte="F"
+                offset="0x12cc"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD22_DADDR"
+                nbyte="F"
+                offset="0x12d0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD22_DOFF_CITER"
+                nbyte="F"
+                offset="0x12d4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD22_DLASTSGA"
+                nbyte="F"
+                offset="0x12d8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD22_CSR_BITER"
+                nbyte="F"
+                offset="0x12dc"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD23_SADDR"
+                nbyte="F"
+                offset="0x12e0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD23_SOFF_ATTR"
+                nbyte="F"
+                offset="0x12e4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD23_NBYTES"
+                nbyte="F"
+                offset="0x12e8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD23_SLAST"
+                nbyte="F"
+                offset="0x12ec"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD23_DADDR"
+                nbyte="F"
+                offset="0x12f0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD23_DOFF_CITER"
+                nbyte="F"
+                offset="0x12f4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD23_DLASTSGA"
+                nbyte="F"
+                offset="0x12f8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD23_CSR_BITER"
+                nbyte="F"
+                offset="0x12fc"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD24_SADDR"
+                nbyte="F"
+                offset="0x1300"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD24_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1304"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD24_NBYTES"
+                nbyte="F"
+                offset="0x1308"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD24_SLAST"
+                nbyte="F"
+                offset="0x130c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD24_DADDR"
+                nbyte="F"
+                offset="0x1310"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD24_DOFF_CITER"
+                nbyte="F"
+                offset="0x1314"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD24_DLASTSGA"
+                nbyte="F"
+                offset="0x1318"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD24_CSR_BITER"
+                nbyte="F"
+                offset="0x131c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD25_SADDR"
+                nbyte="F"
+                offset="0x1320"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD25_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1324"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD25_NBYTES"
+                nbyte="F"
+                offset="0x1328"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD25_SLAST"
+                nbyte="F"
+                offset="0x132c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD25_DADDR"
+                nbyte="F"
+                offset="0x1330"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD25_DOFF_CITER"
+                nbyte="F"
+                offset="0x1334"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD25_DLASTSGA"
+                nbyte="F"
+                offset="0x1338"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD25_CSR_BITER"
+                nbyte="F"
+                offset="0x133c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD26_SADDR"
+                nbyte="F"
+                offset="0x1340"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD26_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1344"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD26_NBYTES"
+                nbyte="F"
+                offset="0x1348"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD26_SLAST"
+                nbyte="F"
+                offset="0x134c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD26_DADDR"
+                nbyte="F"
+                offset="0x1350"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD26_DOFF_CITER"
+                nbyte="F"
+                offset="0x1354"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD26_DLASTSGA"
+                nbyte="F"
+                offset="0x1358"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD26_CSR_BITER"
+                nbyte="F"
+                offset="0x135c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD27_SADDR"
+                nbyte="F"
+                offset="0x1360"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD27_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1364"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD27_NBYTES"
+                nbyte="F"
+                offset="0x1368"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD27_SLAST"
+                nbyte="F"
+                offset="0x136c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD27_DADDR"
+                nbyte="F"
+                offset="0x1370"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD27_DOFF_CITER"
+                nbyte="F"
+                offset="0x1374"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD27_DLASTSGA"
+                nbyte="F"
+                offset="0x1378"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD27_CSR_BITER"
+                nbyte="F"
+                offset="0x137c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD28_SADDR"
+                nbyte="F"
+                offset="0x1380"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD28_SOFF_ATTR"
+                nbyte="F"
+                offset="0x1384"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD28_NBYTES"
+                nbyte="F"
+                offset="0x1388"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD28_SLAST"
+                nbyte="F"
+                offset="0x138c"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD28_DADDR"
+                nbyte="F"
+                offset="0x1390"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD28_DOFF_CITER"
+                nbyte="F"
+                offset="0x1394"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD28_DLASTSGA"
+                nbyte="F"
+                offset="0x1398"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD28_CSR_BITER"
+                nbyte="F"
+                offset="0x139c"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD29_SADDR"
+                nbyte="F"
+                offset="0x13a0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD29_SOFF_ATTR"
+                nbyte="F"
+                offset="0x13a4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD29_NBYTES"
+                nbyte="F"
+                offset="0x13a8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD29_SLAST"
+                nbyte="F"
+                offset="0x13ac"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD29_DADDR"
+                nbyte="F"
+                offset="0x13b0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD29_DOFF_CITER"
+                nbyte="F"
+                offset="0x13b4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD29_DLASTSGA"
+                nbyte="F"
+                offset="0x13b8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD29_CSR_BITER"
+                nbyte="F"
+                offset="0x13bc"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD30_SADDR"
+                nbyte="F"
+                offset="0x13c0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD30_SOFF_ATTR"
+                nbyte="F"
+                offset="0x13c4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD30_NBYTES"
+                nbyte="F"
+                offset="0x13c8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD30_SLAST"
+                nbyte="F"
+                offset="0x13cc"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD30_DADDR"
+                nbyte="F"
+                offset="0x13d0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD30_DOFF_CITER"
+                nbyte="F"
+                offset="0x13d4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD30_DLASTSGA"
+                nbyte="F"
+                offset="0x13d8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD30_CSR_BITER"
+                nbyte="F"
+                offset="0x13dc"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD31_SADDR"
+                nbyte="F"
+                offset="0x13e0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Source Address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD31_SOFF_ATTR"
+                nbyte="F"
+                offset="0x13e4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Source Address Offset"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD31_NBYTES"
+                nbyte="F"
+                offset="0x13e8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TCD Signed Minor Loop Offset, Minor Loop Disabled"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD31_SLAST"
+                nbyte="F"
+                offset="0x13ec"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD31_DADDR"
+                nbyte="F"
+                offset="0x13f0"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD31_DOFF_CITER"
+                nbyte="F"
+                offset="0x13f4"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD31_DLASTSGA"
+                nbyte="F"
+                offset="0x13f8"
+                readfunction="regReadTCD"
+                width="32"
+                writefunction="regWriteTCD"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCD31_CSR_BITER"
+                nbyte="F"
+                offset="0x13fc"
+                readfunction="regReadTCD16"
+                width="32"
+                writefunction="regWriteTCD16"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="Reset"
+        type="input"
+        updatefunction="DMAReset"/>
+    <netport name="eDMARequest"
+        type="input"
+        updatefunction="DMARequest"/>
+    <netport name="eDMADone"
+        type="output"/>
+    <busmasterport addresswidth="32"
+        addresswidthmax="0"
+        addresswidthmin="32"
+        name="MREAD">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="DMA Master Read of address space"/>
+        </docsection>
+    </busmasterport>
+    <busmasterport addresswidth="32"
+        addresswidthmax="0"
+        addresswidthmin="32"
+        name="MWRITE">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="DMA Master Write of address space"/>
+        </docsection>
+    </busmasterport>
+    <netport name="errorInterrupt"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="DMA Error Interrupt port"/>
+        </docsection>
+    </netport>
+    <netport hiarray="31"
+        loarray="0"
+        name="dmaInterrupt_ch%u"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="DMA Done. Interrupt port"/>
+        </docsection>
+    </netport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

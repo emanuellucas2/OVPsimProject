@@ -1,0 +1,295 @@
+<html>
+<title>OVP Cortex-M7 Single Core Demo</title>
+<head><style>
+	body {
+		text-align: center;
+	}
+	#page-wrap {
+		text-align: left;
+		 width: 90%;
+		 margin: 0 auto;
+	 }
+	#checkFiles {
+		text-align: left;
+		width: 90%;
+		margin: 0 auto;
+	 }
+	 
+</style></head>
+<body><div id='page-wrap'>
+<h1>Demonstration README - Single Core Example</h1>
+<p>Contents:</p>
+<ul>
+<li><a href=#rmWriteSectionSingleIntro >Single core variant: Cortex-M7</a><br/></li>
+<li><a href=#rmWriteSectionRun >Running the simulation</a><br/></li>
+<li><a href=#rmWriteSectionResults >Interpreting results</a><br/></li>
+<li><a href=#rmWriteSectionBuild >Building a Test Harness and Re-Building Applications</a><br/></li>
+<li><a href=#rmWriteSectionGdb >Debugging with GDB</a><br/></li>
+<li><a href=#rmWriteSectionEclipse >Debugging with the Imperas Eclipse based eGui</a><br/></li>
+<li><a href=#rmWriteSectionISS >The Imperas Instruction Set Simulator (ISS)</a><br/></li>
+</ul>
+<hr>
+<a id='rmWriteSectionSingleIntro'>
+<h1>Single core variant: Cortex-M7</h1>
+</a>
+<p>
+		This demonstration shows running a simulation of a platform containing a single <a href=http://www.ovpworld.org/processor-model-variant-arm-cortex-cortex-m7 title='look at OVPWorld page on this variant'>ARM Cortex-M7</a>
+		processor instance, and a memory map ranging from #00000000 to #FFFFFFFF.
+	</p>
+<p><img src=../../../../pictures/Single_Run.jpg alt=IMG_SINGLE_RUN height=400></p>
+<p>
+		This platform can then be used to execute pre-compiled applications; the 
+		following are provided as examples:
+	</p>
+<ul>
+<li><a href=../../../Applications/peakSpeed2/peakSpeed2.c title='look at application source'>peakSpeed2.c</a> (<a href=../../../Applications/peakSpeed2 title='look at application directory'>../../../Applications/peakSpeed2/peakSpeed2.ARM_CORTEX_M7-O0-g.elf</a>)</li>
+<li><a href=../../../Applications/dhrystone/dhrystone.c title='look at application source'>dhrystone.c</a> (<a href=../../../Applications/dhrystone title='look at application directory'>../../../Applications/dhrystone/dhrystone.ARM_CORTEX_M7-O0-g.elf</a>)</li>
+<li><a href=../../../Applications/linpack/linpack.c title='look at application source'>linpack.c</a> (<a href=../../../Applications/linpack title='look at application directory'>../../../Applications/linpack/linpack.ARM_CORTEX_M7-O0-g.elf</a>)</li>
+<li><a href=../../../Applications/fibonacci/fibonacci.c title='look at application source'>fibonacci.c</a> (<a href=../../../Applications/fibonacci title='look at application directory'>../../../Applications/fibonacci/fibonacci.ARM_CORTEX_M7-O3-g.elf</a>)</li>
+</ul>
+<p>
+		After each application has executed, a simulation summary will be printed,
+		indicating the number of instructions executed, and the performance of the
+		simulation in terms of Millions of simulated Instructions executed Per
+		Second (MIPS)
+		<br/><br/>
+		This demonstration actually runs using the Imperas Instruction Set Simulator (ISS) but a platform/module very similar to the one being used in this demonstration can be found
+		in the <a href=../../../../../../Examples/SimulationControl/simplePlatformInHarnessUsingOP/harness title='look at example platform source and Makefile'>Examples/SimulationControl/simplePlatformInHarnessUsingOP</a> directory that is installed in an OVPsim or Imperas install. There is more information on the ISS below.
+		<br/><br/>
+		This example platform is written in C and is compiled with GCC under Linux or
+		using MinGW/MSYS from http://www.mingw.org under Windows.
+		The version of <a href=http://www.ovpworld.org/resources/windows title='look at MinGW/MSYS download page on OVPWorld'>MinGW/MSYS</a> that we use is available here.
+	</p>
+<hr>
+<a id='rmWriteSectionRun'>
+<h1>Running the simulation</h1>
+</a>
+<h2>From a Microsoft window manager or Linux / MSYS shell</h2>
+<p>
+		Launch the platform with a pre-compiled application; in Windows by double 
+		clicking one of the batch files (.bat) or in Linux / MSYS by executing one of the shell 
+		scripts (.sh).
+		<br/><br/>
+		The scripts will be available dependent upon the applications available:
+	</p>
+<ul>
+<li>Run_PeakSpeed2.bat (Windows)</li>
+<li>Run_PeakSpeed2.sh (Linux/MSYS)</li>
+<li>Run_Dhrystone.bat (Windows)</li>
+<li>Run_Dhrystone.sh (Linux/MSYS)</li>
+<li>Run_Linpack.bat (Windows)</li>
+<li>Run_Linpack.sh (Linux/MSYS)</li>
+<li>Run_Fibonacci.bat (Windows)</li>
+<li>Run_Fibonacci.sh (Linux/MSYS)</li>
+</ul>
+<p>The simulation will run and print statistics upon completion.</p>
+<h2>From the command line</h2>
+<p>
+		If running a DOS command window, or a MSYS shell, or a Linux shell, simply change
+		directory to an appropriate directory, then type the name of the ISS executable, iss.exe or issdemo.exe (dependent on installation), 
+		provide the name of the variant you want after the --variant argument, and provide the
+		application after the --program argument, for example:
+		<br/><br/>
+		cmd > issdemo.exe --variant Cortex-M7 --numprocessors 1   --program ../../../Applications/peakSpeed2/peakSpeed2.ARM_CORTEX_M7-O0-g.elf
+		<br/><br/>
+		Note that often other options like --processorname and parameters such as --parameter endian=little, are also needed. Look at the above script files to see what is needed for a specific variant.
+		<br/><br/>
+		You can use issdemo.exe --help to see more options.
+		<br/><br/>
+		The simulation will run and print statistics upon completion.
+	</p>
+<hr>
+<a id='rmWriteSectionResults'>
+<h1>Interpreting results</h1>
+</a>
+<p>
+		At the end of simulation, a number of statistics will be printed.
+		Amongst the statistical information which is reported, are the number
+		of 'Simulated instructions' and the 'Simulated MIPS'.
+	</p>
+<p><img src=../../../../pictures/Single_Run_Output.jpg alt=IMG_RUNOUTPUT height=200></p>
+<p>
+		The 'Simulated instructions' will vary depending upon the application being
+		executed, this count indicates the number of simulated processor
+		instructions for the processors in the platform.
+		<br/><br>
+		The 'Simulated MIPS' will be a measure of the number of 'Simulated
+		instructions' over the host elapsed time.
+		The simulation must run for around 1 second of simulated time in order to print 
+		simulated MIPS statistics.
+		<br/><br>
+		If you have multiple processors in your simulation, there will be a statistics sections for
+		each processor, and then a summary for the overall simulation run.
+	</p>
+<hr>
+<a id='rmWriteSectionBuild'>
+<h1>Building a Test Harness and Re-Building Applications</h1>
+</a>
+<p>
+		In order to build a full product install must have been carried out. This may
+		be the OVP 'OVPsim' package or one of the Imperas Professional Tools
+		packages (*SDK or *DEV). 
+		<br/><br>
+		A processor cross compiler toolchain package must be installed to allow the 
+		applications to be rebuilt.
+	</p>
+<p>
+			This will be available from OVPWorld, with a package name similar to 
+			<b>armv7.toolchain.YYYYMMDD.v.OS.exe</b>. Alternatively an external 
+			toolchain to support this processor variant can be used. Please check the requirements.
+			<br/><br>
+		</p>
+<p>
+		An example of a Harness and Makefile to build it can be found in the example <a href=../../../../../../Examples/SimulationControl/simplePlatformInHarnessUsingOP/harness title='look at a Harness and a Makefile for building'>../Examples/SimulationControl/simplePlatformInHarnessUsingOP/harness</a> directory
+		<br/><br>
+		The application ELF files used can be re-built in the <a href=../../../Applications/peakSpeed2 title='look at the Applications build directory'>applications</a> directory.
+	</p>
+<h3>Re-building Platform</h3>
+<p>
+		The platform/module can be compiled using MSYS/MinGW 
+		under Windows, and GCC under Linux.
+		<br/><br>
+		The compilation can be performed using the following command lines:
+		<br/><br>
+		<b>Windows Command shell</b><br>
+		This requires an MSYS environment setup<br>
+		>mingw32-make -f %IMPERAS_HOME%\ImperasLib\buildutils\Makefile.harness ^<br>
+				  &nbsp;&nbsp;&nbsp;&nbsp;SRC=harness.c ^<br>
+				  &nbsp;&nbsp;&nbsp;&nbsp;NOVLNV=1<br>
+		<br>
+		<b>Linux or Windows MSYS shell (if you have an MSYS environment set up)</b><br>
+		>make -f ${IMPERAS_HOME}/ImperasLib/buildutils/Makefile.harness \<br>
+				 &nbsp;&nbsp;&nbsp;&nbsp;SRC=harness.c \<br>
+				 &nbsp;&nbsp;&nbsp;&nbsp;NOVLNV=1<br>
+	</p>
+<h3>Re-building Application</h3>
+<p>
+		The applications were built using a Cross Compiler toolchain, that may be 
+		available from the OVPWorld website. An ARM_CORTEX_M7.makefile.include is included
+		that is used to setup a basic build environment for that toolchain. This can 
+		be modified to use alternative compiler flags.
+	</p>
+<hr>
+<a id='rmWriteSectionGdb'>
+<h1>Debugging with GDB</h1>
+</a>
+<p>
+		This demo provides example scripts that allow the same simulation platform
+		to be executed and a GDB debugger connected to the RSP port to allow the 
+		debugging of any application running on the platform. 
+	</p>
+<p><img src=../../../../pictures/Single_Debug_GDB.jpg alt=IMG_SINGLE_DEBUG_GDB height=400></p>
+<p>
+		The scripts will launch GDB in a new console window. You interact with the GDB in that console, typing 'c' to continue for example.
+		When finished use 'quit' to exit the simulation.
+		The following GDB debug scripts are available for this example:
+	</p>
+<ul>
+<li>Debug_GDB_Dhrystone.bat (Windows)</li>
+<li>Debug_GDB_Dhrystone.sh (Linux/MSYS)</li>
+</ul>
+<p>
+		The GDB is expected to be found in one of the CrossCompiler or $IMPERAS_HOME/lib/$IMPERAS_ARCH/gdb directories. If it is
+		not available the script will fail. (See Cross Compiler Toolchains below.)
+		<br/><br>
+		If available, a .key file gives a minimal set of commands; that, if used, will 
+		run the simulation under the debugger.
+	</p>
+<hr>
+<a id='rmWriteSectionEclipse'>
+<h1>Debugging with the Imperas Eclipse based eGui</h1>
+</a>
+<p>The Imperas eGui product is a GUI built on Eclipse that enables you to debug your embedded systems in a standard, easy to use, coherent, use-model built on the Eclipse CDT debug interface. </p>
+<p>eGui can be used with GDB for single core software development, or for Imperas professional tools users, eGui can control the Imperas Multi Processor Debugger. The Imperas Multi Processor Debugger enables the simultaneous debugging of host code, cross compiled software running on target CPUs, and the programmers view and source code of behavioral models.</p>
+<p>Click the link for more information on the Imperas <a href=https://www.imperas.com/mpd title='look at Multi Processor Debug page on Imperas'>Multi Processor Debugger</a> product.</p>
+<p>To use eGui, you will need to have installed the eGui package. It has a package name similar to eGui_Eclipse.YYYYMMDD.v.OS.exe.</p>
+<p>There is a comprehensive eGui user guide available on the OVPworld website and also in the OVP/Imperas installations in the documentation directories.</p>
+<p>To run with the GDB debugger in the Imperas eGui, use one of the example scripts:</p>
+<ul>
+<li>Debug_eGui_Dhrystone.bat (Windows)</li>
+<li>Debug_eGui_Dhrystone.sh (Linux/MSYS)</li>
+</ul>
+<p>The scripts use a simple command line option to the Imperas simulator that starts up and connects an eGui session to the simulator. It could not be easier, you just use the command --gdbegui (or --mpdegui for Imperas MPD users) and the simulator and eGui will start up and connect.</p>
+<p><img src=../../../../pictures/Single_Debug_eGui.jpg alt=IMG_SINGLE_DEBUG_EGUI height=400></p>
+<h2>eGui: An Example Debugging Session for Dhrystone Benchmark application</h2>
+<p><img src=../../../../pictures/Single_Debug_eGui_Info.jpg alt=IMG_SINGLE_DEBUG_EGUI_INFO height=400></p>
+<p>
+		You should be familiar with the general debug control 'buttons' within Eclipse 
+		in order to work through the following
+		<br/><br>
+		1.  Set a breakpoint on the line containing the call to 'Proc_5();', this is 
+			found on line 604 (this may change slightly with versions of the application). You can use ctrl-F to find the function<br>
+		2.  Continue the simulation using the yellow/green 'Resume' symbol (or Function key F8)<br>
+		3.  Step the application forward using the 'Step Into' button (arrow down between two dots)<br>
+		4.  Open the register view; expand 'General Registers', select the registers and set the 
+			format to hexadecimal by right-click and selecting the format<br>
+		5.  Step the application forward using the 'Step Into' button.
+			This will show you the colored highlighting of the registers that change<br>
+		6.  Open the Variables view; showing the current local variables
+	<br><br>
+		7.  Select 'Instruction Stepping Mode' using the button (letter i with arrow to the right).<br>
+		8.  Step the application forward using the 'Step Into' button
+			this will open the disassembly view and highlight the instructions as they are 
+			stepped.
+		<br/><br>
+		9.  In the 'Memory' window, select 'Add Memory Monitor'
+			Use the value of the register 'SP' with bottom two bits as zeros to set the 
+			memory monitor base address so that it will show the program stack.
+			NOTE: Only use the bottom 32-bit address if the register has been sign 
+			extended. For example, if the register contains 0xffffffff87654321 use the 
+			address 0x87654320 for the memory base.<br>
+		10. Move the application forward using the 'Step Return' button (arrow up from between two dots).
+			The memory locations that are modified will be highlighted.
+		<br/><br>
+		11. To finish the simulation you may either:<br>
+			a) Remove breakpoints and use 'Resume' (green triangle) to continue to the end of the 
+			   application<br>
+			b) Use 'Terminate' (red square)
+			After either of these the debug perspective can be cleaned up with the 'Remove
+			All terminated Launches' button (two crosses)
+		<br/><br>
+		NOTE: When in a debug session there are different consoles associated with each
+		item that is invoked. The application output to stdout is provided in the
+		simulated platform console.
+	</p>
+<hr>
+<a id='rmWriteSectionISS'>
+<h1>The Imperas Instruction Set Simulator (ISS)</h1>
+</a>
+<p>
+		The demonstrations provided for single core processors use the Imperas ISS to create a simple platform and run the cross compiled target applications.
+	</p>
+<p>
+		The Imperas ISS is often the first simulation product used in an embedded software development project.
+		The Imperas ISS allows the development and debug of code for the target architecture on an x86/x64 host PC with the minimum of setup and effort.
+		It simply requires the cross compilation of your application and running the ISS with an argument to specify the name of the application object.
+	</p>
+<p><img src=../../../../pictures/ISS_Overview.jpg alt=IMG_ISS_OVERVIEW height=400></p>
+<p>
+		The ISS makes use of the Imperas OVP Fast Processor Model library providing access to over 130 different instruction accurate embedded CPU model variants from the MIPS 24Kc to the ARM Cortex-A57MPx4 quad core 64 bit processor.
+		The ISS product package comes with all these CPU models and example usage of them.
+	</p>
+<h3>Imperas ISS Detailed Features</h3>
+<ul>
+<li>Released to run in x86 32 bit Windows/Linux and x64 64 bit Windows/Linux environments</li>
+<li>Includes the full library of all publicly released Imperas OVP Fast Processor Models</li>
+<li>Includes a GDB debugger for each CPU family</li>
+<li>Connects to the Imperas Graphical User Interface (eGui) to provide full source code debug</li>
+<li>Configurable trace subsystem to provide instruction and register tracing</li>
+<li>Loads .elf file binaries directly</li>
+<li>Allows one instance of a single or multi-core CPU with full memory construction</li>
+<li>Uses built in semi-hosting to support library functions such as printf and fopen, and can access host native resources</li>
+<li>Can be run interactively or in script/batch mode for regression testing</li>
+<li>Includes Imperas Just-In-Time (JIT) Code Morphing high performance CPU simulator technology</li>
+<li>Works with Eclipse/CDT GUI</li>
+</ul>
+<p>
+		For more information on the Imperas ISS, visit the <a href=https://www.imperas.com/iss title='look at the ISS page on Imperas.com'>ISS page</a> on the Imperas web site.
+	</p>
+<p>
+		To see the command line options available for the ISS, type 'iss.exe or issdemo.exe -help' to see a list.
+	</p>
+<hr>
+<p>###</p>
+</div></body>
+</html>

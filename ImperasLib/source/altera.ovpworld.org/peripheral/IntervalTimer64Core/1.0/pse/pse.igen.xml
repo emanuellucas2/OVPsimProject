@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="IntervalTimer64Core"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="altera.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Altera Avalon Interval Timer32 Core"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="No Support for pin level transitions"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Altera Interval Timer Core"/>
+    </docsection>
+    <formalattribute defaultvalue="10000"
+        name="timeoutPeriod"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The timout period in microSeconds (default 10000 uS)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="166"
+        name="timerFrequency"
+        type="double">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The frequency of operation in MHz (default 166MHz)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="Simple"
+        name="timeoutConfig"
+        type="enumeration">
+        <enum name="Simple"
+            value="0"/>
+        <enum name="Full"
+            value="1"/>
+        <enum name="Watchdog"
+            value="2"/>
+    </formalattribute>
+    <formalattribute defaultvalue="0"
+        name="writeablePeriod"
+        type="bool"/>
+    <formalattribute defaultvalue="0"
+        name="readableSnapshot"
+        type="bool"/>
+    <formalattribute defaultvalue="0"
+        name="startStopControlBits"
+        type="bool"/>
+    <formalattribute defaultvalue="0"
+        name="timeoutPulse"
+        type="bool"/>
+    <formalattribute defaultvalue="0"
+        name="systemResetOnTimeout"
+        type="bool"/>
+    <netport name="irq"
+        type="output"/>
+    <netport name="resetrequest"
+        type="output"/>
+    <netport name="timeout_pulse"
+        type="output"/>
+    <busslaveport addresswidth="32"
+        name="sp1"
+        size="0x28">
+        <addressblock name="reg0"
+            size="0x28"
+            width="16">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="status"
+                nbyte="F"
+                readfunction="read_status"
+                width="16"
+                writefunction="write_status">
+                <reset mask="0xffff"
+                    name="IRESET"
+                    value="0x0000"/>
+                <field access="rw"
+                    name="TO"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="RUN"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="control"
+                nbyte="F"
+                offset="0x4"
+                readfunction="read_control"
+                width="16"
+                writefunction="write_control">
+                <reset mask="0xffff"
+                    name="IRESET"
+                    value="0x0000"/>
+                <field access="rw"
+                    name="ITO"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="CONT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="START"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="STOP"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="period_0"
+                nbyte="F"
+                offset="0x8"
+                readfunction="read_period"
+                userdata="0"
+                width="16"
+                writefunction="write_period">
+                <reset mask="0xffff"
+                    name="IRESET"
+                    value="0x0000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="period_1"
+                nbyte="F"
+                offset="0xc"
+                readfunction="read_period"
+                userdata="1"
+                width="16"
+                writefunction="write_period">
+                <reset mask="0xffff"
+                    name="IRESET"
+                    value="0x0000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="period_2"
+                nbyte="F"
+                offset="0x10"
+                readfunction="read_period"
+                userdata="2"
+                width="16"
+                writefunction="write_period">
+                <reset mask="0xffff"
+                    name="IRESET"
+                    value="0x0000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="period_3"
+                nbyte="F"
+                offset="0x14"
+                readfunction="read_period"
+                userdata="3"
+                width="16"
+                writefunction="write_period">
+                <reset mask="0xffff"
+                    name="IRESET"
+                    value="0x0000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="snap_0"
+                nbyte="F"
+                offset="0x18"
+                readfunction="read_snap"
+                userdata="0"
+                width="16"
+                writefunction="write_snap">
+                <reset mask="0xffff"
+                    name="IRESET"
+                    value="0x0000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="snap_1"
+                nbyte="F"
+                offset="0x1c"
+                readfunction="read_snap"
+                userdata="1"
+                width="16"
+                writefunction="write_snap">
+                <reset mask="0xffff"
+                    name="IRESET"
+                    value="0x0000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="snap_2"
+                nbyte="F"
+                offset="0x20"
+                readfunction="read_snap"
+                userdata="2"
+                width="16"
+                writefunction="write_snap">
+                <reset mask="0xffff"
+                    name="IRESET"
+                    value="0x0000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="snap_3"
+                nbyte="F"
+                offset="0x24"
+                readfunction="read_snap"
+                userdata="3"
+                width="16"
+                writefunction="write_snap">
+                <reset mask="0xffff"
+                    name="IRESET"
+                    value="0x0000"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="VirtioBlkMMIO"
+    nbyte="T"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="
+ VIRTIO version 1 mmio block device
+ This model implements a VIRTIO  MMIO block device as described in:
+      http://docs.oasis-open.org/virtio/virtio/v1.0/virtio-v1.0.pdf.
+ Use the VB_DRIVE parameter to specify the disk image file to use.
+ Set the VB_DRIVE_DELTA parameter to 1 to prevent writes to disk during 
+ simulation from changing the image file.
+"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="
+Only supports the Legacy (Device Version 1) interface.
+Only little endian guests are supported.
+"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="
+http://docs.oasis-open.org/virtio/virtio/v1.0/virtio-v1.0.pdf
+"/>
+    </docsection>
+    <busmasterport addresswidth="40"
+        addresswidthmax="0"
+        addresswidthmin="40"
+        mustbeconnected="T"
+        name="dma"/>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x200">
+        <addressblock name="ab"
+            size="0x200"
+            width="32">
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="MagicValue"
+                nbyte="T"
+                readfunction="rdMagic"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x74726976"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Magic value (&apos;virt&apos; string)"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Version"
+                nbyte="T"
+                offset="0x4"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000001"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Device Version number"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="DeviceID"
+                nbyte="T"
+                offset="0x8"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000002"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Block Subsystem Device ID"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="VendorID"
+                nbyte="T"
+                offset="0xc"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x0050564F"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Subsystem Vendor ID (&apos;OVP&apos; string)"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="HostFeatures"
+                nbyte="T"
+                offset="0x10"
+                readfunction="rdHostF"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x08000000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Host features flags"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="HostFSel"
+                nbyte="T"
+                offset="0x14"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Host features select"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="GuestFeatures"
+                nbyte="T"
+                offset="0x20"
+                width="32"
+                writefunction="wrGuestF">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Guest features flags"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="GuestFSel"
+                nbyte="T"
+                offset="0x24"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Guest features select"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="GuestPageSz"
+                nbyte="T"
+                offset="0x28"
+                width="32"
+                writefunction="wrGPgSz">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Guest page size"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="QueueSel"
+                nbyte="T"
+                offset="0x30"
+                width="32"
+                writefunction="wrQSel">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Virtual queue index"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="QueueNumMax"
+                nbyte="T"
+                offset="0x34"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000100"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Maximum virtual queue size"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="QueueNum"
+                nbyte="T"
+                offset="0x38"
+                width="32"
+                writefunction="wrQNum">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Virtual queue size"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="QueueAlign"
+                nbyte="T"
+                offset="0x3c"
+                width="32"
+                writefunction="wrQAlign">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Virtual queue align"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="QueuePFN"
+                nbyte="T"
+                offset="0x40"
+                readfunction="rdQPFN"
+                width="32"
+                writefunction="wrQPFN">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Virtual queue PFN"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="QueueNotify"
+                nbyte="T"
+                offset="0x50"
+                width="32"
+                writefunction="wrQNotify">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Virtual queue notify"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="IntStatus"
+                nbyte="T"
+                offset="0x60"
+                readfunction="rdIntStat"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt status"/>
+                </docsection>
+                <field access="r"
+                    name="UsedRingUpdate"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="1"
+                    name="ConfigChange"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="IntAck"
+                nbyte="T"
+                offset="0x64"
+                width="32"
+                writefunction="wrIntAck"
+                writemask="3">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt acknowlege"/>
+                </docsection>
+                <field access="w"
+                    name="UsedRingUpdate"
+                    width="1"/>
+                <field access="w"
+                    bitoffset="1"
+                    name="ConfigChange"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Status"
+                nbyte="T"
+                offset="0x70"
+                readfunction="rdStatus"
+                width="32"
+                writefunction="wrStatus">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Device status"/>
+                </docsection>
+                <field access="rw"
+                    name="Ack"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="Driver"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="DriverOk"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="Failed"
+                    width="1"/>
+                <field bitoffset="3"
+                    name="__pad3"
+                    width="4"/>
+            </memorymappedregister>
+            <localmemory access="r"
+                name="BlkConfig"
+                nbyte="T"
+                offset="0x100"
+                readfunction="readCfg"
+                size="0x100"/>
+        </addressblock>
+    </busslaveport>
+    <netport name="Interrupt"
+        type="output"/>
+    <formalattribute name="VB_DRIVE"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Filename of image for Virtio Block device"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="VB_DRIVE_DELTA"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="If true the Drive uses delta writes (image will not be updated)"/>
+        </docsection>
+    </formalattribute>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

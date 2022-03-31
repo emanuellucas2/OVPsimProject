@@ -1,0 +1,119 @@
+#
+# User must set one of the following variables
+# NOVLNV=1,        this will write files to the current directory
+# SYSTEMVLNV=1,    this will overwrite, back to the system library
+# VLNVROOT=<path>, this will write to a new VLNV, rooted at <path>
+#
+
+ifeq ($(VERBOSE),1)
+	V=
+else
+	V=@
+endif
+
+#
+# Statically determined dependencies
+#
+CSRC   += $(sort $(wildcard *.c))
+CPPSRC += $(sort $(wildcard *.cpp))
+ASRC   += $(sort $(wildcard *.S))
+XML    += $(sort $(wildcard *.xml))
+
+ifneq ($(LINKED),)
+  VPATH   = $(LINKED)
+  CSRC   += $(sort $(notdir $(foreach p,$(LINKED),$(wildcard $(p)/*.c))))
+  CPPSRC += $(sort $(notdir $(foreach p,$(LINKED),$(wildcard $(p)/*.cpp))))
+  ASRC   += $(sort $(notdir $(foreach p,$(LINKED),$(wildcard $(p)/*.S))))
+endif
+
+OBJROOT?= $(CURDIR)/obj
+OBJDIR ?= $(OBJROOT)/$(IMPERAS_ARCH)
+
+COBJ    = $(patsubst %.c,   $(OBJDIR)/%.o, $(CSRC))
+AOBJ   += $(patsubst %.S,   $(OBJDIR)/%.o, $(ASRC))
+CPPOBJ += $(patsubst %.cpp, $(OBJDIR)/%.o, $(CPPSRC))
+OBJ    ?= $(COBJ) $(AOBJ) $(CPPOBJ)
+
+CDEP    = $(patsubst %.c,   $(OBJDIR)/%.d, $(CSRC))
+ADEP   += $(patsubst %.S,   $(OBJDIR)/%.d, $(ASRC))
+CPPDEP += $(patsubst %.cpp, $(OBJDIR)/%.d, $(CPPSRC))
+DEP    ?= $(CDEP) $(ADEP) $(CPPDEP)
+
+#
+# Synthesize path to VLNV
+#
+PWD  = $(CURDIR)
+UP1  = $(shell dirname "$(PWD)")
+UP2  = $(shell dirname "$(UP1)")
+UP3  = $(shell dirname "$(UP2)")
+UP4  = $(shell dirname "$(UP3)")
+
+#
+# Pre-Defined path to VLNV
+#
+VLNV_VENDOR  ?= $(shell basename "$(UP4)")
+VLNV_LIBRARY ?= $(shell basename "$(UP3)")
+VLNV_NAME    ?= $(shell basename "$(UP2)")
+VLNV_VERSION ?= $(shell basename "$(UP1)")
+VLNV         ?= $(VLNV_VENDOR)/$(VLNV_LIBRARY)/$(VLNV_NAME)/$(VLNV_VERSION)
+VLNV_VAR     := $(subst /,_,$(subst .,_,$(VLNV)))
+
+SYSTEMVLNVROOT := $(shell getpath.exe "$(IMPERAS_HOME)/lib/$(IMPERAS_ARCH)/ImperasLib")
+SYSTEMVLNV ?= 0
+ifeq ($(SYSTEMVLNV),1)
+  VLNVROOT = $(SYSTEMVLNVROOT)
+endif
+
+NOVLNV  ?= 0
+ifeq ($(NOVLNV),1)
+	WORKDIR = .
+else
+	# No Longer Allow this - user must supply VLNVROOT
+	ifeq ($(VLNVROOT),)
+		IMPERAS_ERROR := $(error "Please set the NOVLNV=1, VLNVROOT=<path to existing directory>, define SYSTEMVLNV=1")
+	endif
+	WORKDIR = $(VLNVROOT)/$(VLNV)
+endif
+
+# Logic to decide whether to Copy the XML files
+COPYXML=0
+ifneq ($(XML),)
+	ifneq ($(WORKDIR),.)
+		COPYXML=1
+	endif
+endif
+
+# Default header to be used
+USERHEADER?=$(IMPERAS_HOME)/ImperasLib/fileheaders/refApache.txt
+
+ifeq ($(wildcard $(USERHEADER)),)
+	WRITEHEADER=
+else
+	WRITEHEADER=--userheader $(USERHEADER)
+endif
+
+#
+# Set variables for headers
+# $(1) variable
+# $(2) file
+#
+define CR_HDR
+    ifeq ($(wildcard $(2)),)
+        export $(1) =
+    else
+        export $(1) = -userheader $(2)
+    endif
+endef
+
+$(eval $(call CR_HDR, HDR_APACHE,  $(IMPERAS_HOME)/ImperasLib/fileheaders/refApache.txt))
+$(eval $(call CR_HDR, HDR_IMPERAS, $(IMPERAS_HOME)/ImperasLib/fileheaders/refImperas.txt))
+
+#
+# Warning, Unsupported Coverage Annotation
+#
+ifeq ($(IMPERAS_UNAME),Linux)
+	ifeq ($(GCOV),1)
+		CFLAGS  += -DGCOV -fprofile-arcs -ftest-coverage
+		LDFLAGS += -lgcov
+	endif
+endif

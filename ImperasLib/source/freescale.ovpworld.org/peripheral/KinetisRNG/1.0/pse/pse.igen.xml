@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="KinetisRNG"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="freescale.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Model of the RNG peripheral used on the Freescale Kinetis platform"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Provides the base behaviour for the OVP Freescale Kinetis platforms"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="www.freescale.com/Kinetis"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x10"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CR"
+                nbyte="F"
+                width="32"
+                writemask="31">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="RNGA Control Register, offset: 0x0 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="3"
+                    name="CLRI"
+                    width="1"/>
+                <field access="rw"
+                    name="GO"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="HA"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="INTM"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="SLP"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="SR"
+                nbyte="F"
+                offset="0x4"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00010000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="RNGA Status Register, offset: 0x4 "/>
+                </docsection>
+                <field access="r"
+                    bitoffset="3"
+                    name="ERRI"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="1"
+                    name="LRS"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="8"
+                    name="OREG_LVL"
+                    width="8"/>
+                <field access="r"
+                    bitoffset="16"
+                    name="OREG_SIZE"
+                    width="8"/>
+                <field access="r"
+                    bitoffset="2"
+                    name="ORU"
+                    width="1"/>
+                <field access="r"
+                    name="SECV"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="4"
+                    name="SLP"
+                    width="1"/>
+                <field bitoffset="5"
+                    name="__pad5"
+                    width="3"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="ER"
+                nbyte="F"
+                offset="0x8"
+                width="32"
+                writemask="4294967295">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="RNGA Entropy Register, offset: 0x8 "/>
+                </docsection>
+                <field access="w"
+                    bitoffset="0"
+                    name="EXT_ENT"
+                    width="32"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="OR"
+                nbyte="F"
+                offset="0xc"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="RNGA Output Register, offset: 0xC "/>
+                </docsection>
+                <field access="r"
+                    bitoffset="0"
+                    name="RANDOUT"
+                    width="32"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="Reset"
+        type="input"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

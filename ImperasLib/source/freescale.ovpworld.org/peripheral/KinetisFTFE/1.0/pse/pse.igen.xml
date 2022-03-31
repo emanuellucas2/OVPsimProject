@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="KinetisFTFE"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="freescale.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Model of the FTFE peripheral used on the Freescale Kinetis platform"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Provides the base behaviour for the OVP Freescale Kinetis platforms"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="www.freescale.com/Kinetis"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x18"
+            width="8">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FSTAT"
+                nbyte="F"
+                width="8"
+                writemask="240">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Status Register, offset: 0x0 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="5"
+                    name="ACCERR"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="CCIF"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="FPVIOL"
+                    width="1"/>
+                <field access="rw"
+                    name="MGSTAT0"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="RDCOLERR"
+                    width="1"/>
+                <field bitoffset="1"
+                    name="__pad1"
+                    width="3"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FCNFG"
+                nbyte="F"
+                offset="0x1"
+                width="8"
+                writemask="208">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Configuration Register, offset: 0x1 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="7"
+                    name="CCIE"
+                    width="1"/>
+                <field access="rw"
+                    name="EEERDY"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="ERSAREQ"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="ERSSUSP"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="PFLSH"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="RAMRDY"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="RDCOLLIE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="SWAP"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="FSEC"
+                nbyte="F"
+                offset="0x2"
+                width="8">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Security Register, offset: 0x2 "/>
+                </docsection>
+                <field access="r"
+                    bitoffset="2"
+                    name="FSLACC"
+                    width="2"/>
+                <field access="r"
+                    bitoffset="6"
+                    name="KEYEN"
+                    width="2"/>
+                <field access="r"
+                    bitoffset="4"
+                    name="MEEN"
+                    width="2"/>
+                <field access="r"
+                    name="SEC"
+                    width="2"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="FOPT"
+                nbyte="F"
+                offset="0x3"
+                width="8">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Option Register, offset: 0x3 "/>
+                </docsection>
+                <field access="r"
+                    bitoffset="0"
+                    name="OPT"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FCCOB3"
+                nbyte="F"
+                offset="0x4"
+                width="8"
+                writemask="255">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Common Command Object Registers, offset: 0x4 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="CCOBn"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FCCOB2"
+                nbyte="F"
+                offset="0x5"
+                width="8"
+                writemask="255">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Common Command Object Registers, offset: 0x5 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="CCOBn"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FCCOB1"
+                nbyte="F"
+                offset="0x6"
+                width="8"
+                writemask="255">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Common Command Object Registers, offset: 0x6 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="CCOBn"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FCCOB0"
+                nbyte="F"
+                offset="0x7"
+                width="8"
+                writemask="255">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Common Command Object Registers, offset: 0x7 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="CCOBn"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FCCOB7"
+                nbyte="F"
+                offset="0x8"
+                width="8"
+                writemask="255">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Common Command Object Registers, offset: 0x8 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="CCOBn"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FCCOB6"
+                nbyte="F"
+                offset="0x9"
+                width="8"
+                writemask="255">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Common Command Object Registers, offset: 0x9 "/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FCCOB5"
+                nbyte="F"
+                offset="0xa"
+                width="8"
+                writemask="255">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Common Command Object Registers, offset: 0xA "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="CCOBn"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FCCOB4"
+                nbyte="F"
+                offset="0xb"
+                width="8"
+                writemask="255">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Common Command Object Registers, offset: 0xB "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="CCOBn"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FCCOBB"
+                nbyte="F"
+                offset="0xc"
+                width="8"
+                writemask="255">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Common Command Object Registers, offset: 0xC "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="CCOBn"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FCCOBA"
+                nbyte="F"
+                offset="0xd"
+                width="8"
+                writemask="255">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Common Command Object Registers, offset: 0xD "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="CCOBn"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FCCOB9"
+                nbyte="F"
+                offset="0xe"
+                width="8"
+                writemask="255">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Common Command Object Registers, offset: 0xE "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="CCOBn"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FCCOB8"
+                nbyte="F"
+                offset="0xf"
+                width="8"
+                writemask="255">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash Common Command Object Registers, offset: 0xF "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="CCOBn"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPROT3"
+                nbyte="F"
+                offset="0x10"
+                width="8"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Program Flash Protection Registers, offset: 0x10 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="PROT"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPROT2"
+                nbyte="F"
+                offset="0x11"
+                width="8"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Program Flash Protection Registers, offset: 0x11 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="PROT"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPROT1"
+                nbyte="F"
+                offset="0x12"
+                width="8"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Program Flash Protection Registers, offset: 0x12 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="PROT"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPROT0"
+                nbyte="F"
+                offset="0x13"
+                width="8"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Program Flash Protection Registers, offset: 0x13 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="PROT"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FEPROT"
+                nbyte="F"
+                offset="0x16"
+                width="8"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="EEPROM Protection Register, offset: 0x16 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="EPROT"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FDPROT"
+                nbyte="F"
+                offset="0x17"
+                width="8"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Data Flash Protection Register, offset: 0x17 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="DPROT"
+                    width="8"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="Reset"
+        type="input"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

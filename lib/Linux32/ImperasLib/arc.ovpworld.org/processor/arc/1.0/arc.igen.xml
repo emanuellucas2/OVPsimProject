@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <processor QLQualified="T"
+    defaultsemihostlibrary="semihosting"
+    defaultsemihostname="arcNewlib"
+    defaultsemihostvendor="arc.ovpworld.org"
+    defaultsemihostversion="1.0"
+    elfcode="93"
+    endian="either"
+    family="Synopsys_ARC"
+    gdbpath="$IMPERAS_HOME/lib/$IMPERAS_ARCH/gdb/arc-elf32-gdb"
+    imagefile="model"
+    library="processor"
+    name="arc"
+    procdoc="$IMPERAS_HOME/ImperasLib/source/arc.ovpworld.org/processor/arc/1.0/doc/OVP_Model_Specific_Information_arc_generic.pdf"
+    releasestatus="4"
+    useindefaultplatform="T"
+    vendor="arc.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="ARC 600 processor model (ARCv1 architecture)"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Usage of binary model under license governing simulator usage. Source of model available under Imperas Software License Agreement."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Instruction pipelines are not modeled in any way. All instructions are assumed to complete immediately."/>
+        <doctext name="txt_1"
+            text="Instruction and data caches are not modeled, except for the auxiliary register interface."/>
+        <doctext name="txt_2"
+            text="External host debug is not modeled, except for the auxiliary register interface."/>
+        <doctext name="txt_3"
+            text="Real-world timing effects are not modeled. All instructions are assumed to complete in a single cycle."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Verification">
+        <doctext name="txt"
+            text="Models have been validated correct in a cooperative project between Imperas and ARC"/>
+    </docsection>
+    <docsection name="doc_4"
+        text="Reference">
+        <doctext name="txt"
+            text="ARC Processor ARC6xx/ARC7xx Reference Documentation"/>
+    </docsection>
+    <docsection name="doc_5"
+        text="Debugging">
+        <doctext name="txt"
+            text="The model has been designed for debug using GNU gdb ARCompact/ARCv2 ISA elf32 version 7.5.1. To ensure correct behavior, enter the following command into gdb before attempting to connect to the processor:"/>
+        <doctext name="txt_1"
+            text="	set architecture ARC600
+"/>
+        <doctext name="txt_2"
+            text="Failure to do this may cause the debugging session to fail because of g-packet size mismatch."/>
+    </docsection>
+    <docsection name="doc_6"
+        text="Features">
+        <doctext name="txt"
+            text="The model implements the full ARCv1 instruction set."/>
+        <doctext name="txt_1"
+            text="The model can be configured with either a 16-entry or 32-entry register file using parameter opt-rf16."/>
+        <doctext name="txt_2"
+            text="The exact set of core instructions present can be configured by a number of parameters: see information for opt-swap, opt-bitscan, opt-extended-arith and opt-multiply in the table below."/>
+        <doctext name="txt_3"
+            text="Parameter opt-extension-interrupts can be used to enable extension interrupts 16-31."/>
+        <doctext name="txt_4"
+            text="Timer 0 and Timer 1 can be enabled using parameters opt-timer0 and opt-timer1, respectively."/>
+        <doctext name="txt_5"
+            text="The versions of DCCM and ICCM build config registers can be specified using parameters opt-dccm-version and opt-iccm-version, respectively. The sizes of DCCM, ICCM0 and ICCM1 can be specified using parameters opt-dccm-size, opt-iccm0-size and opt-iccm1-size, respectively. Reset base addresses for the ICCMs can be specified using opt-iccm0-base and opt-iccm1-base. Note that the DCCM reset base address is architecturally defined (0x80000000) and not configurable. When CCMs are present, bus ports called DCCM0, ICCM0 and ICCM1 are created so that CCM contents may be viewed or modified externally by connecting to these ports. Parameter opt-internal-ccms specifies whether CCM memory is modeled internally or externally. If modeled externally, the CCMs must be implemented on a bus which is then connected to the CCM bus ports listed above (this parameter is ignored if CCM ports are unconnected; in that case, CCMs are always modeled internally). Parameter opt-reset-internal-ccms indicates that internally-modeled CCMs should be cleared to zero on a processor reset; if False, then internally-modeled CCMs retain their previous state after a reset."/>
+        <doctext name="txt_6"
+            text="The set of core registers can be specified using parameter opt-extension-core-regs. This is a 64-bit value in which a 1-bit implies the presence of that core extension register. For example, a value of 0xf00000000ULL implies that extension registers r32-r35 should be configured."/>
+        <doctext name="txt_7"
+            text="The reset value of the exception vector base register can be specified using parameter opt-intvbase-preset."/>
+    </docsection>
+    <docsection name="doc_7"
+        text="Auxiliary Register External Implementation">
+        <doctext name="txt"
+            text="If parameter &quot;enable-aux-bus&quot; is True, an artifact 36-bit bus &quot;Auxiliary&quot; is enabled. Slave callbacks installed on this bus can be used to implement auxiliary register behavior (use opBusSlaveNew or icmMapExternalMemory, depending on the client API). An auxiliary with 32-bit index 0xABCDEFGH is mapped on the bus at address 0xABCDEFGH0."/>
+    </docsection>
+    <formalattribute name="variant"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Processor variant"/>
+        </docsection>
+        <enum name="600"
+            value="0"/>
+        <enum name="605"
+            value="1"/>
+        <enum name="700"
+            value="2"/>
+        <enum name="0x21"
+            value="3"/>
+        <enum name="0x22"
+            value="4"/>
+        <enum name="0x31"
+            value="5"/>
+        <enum name="0x32"
+            value="6"/>
+    </formalattribute>
+    <formalattribute name="verbose"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable verbose messages"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="end-on-halt"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify whether to end simulation when halt bit set in STATUS/STATUS32"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="dump-bcrs"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Add BCRs to register trace"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="format"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Select register format"/>
+        </docsection>
+        <enum name="gdb"
+            value="0"/>
+        <enum name="metaware"
+            value="1"/>
+    </formalattribute>
+    <formalattribute name="compatibility"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Select compatibility mode"/>
+        </docsection>
+        <enum name="ISA"
+            value="0"/>
+        <enum name="metaware8.2"
+            value="1"/>
+    </formalattribute>
+    <formalattribute name="enable-aux-bus"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Add artifact Auxiliary bus port, allowing auxiliary registers to be externally implemented"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-identity"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override value of IDENTITY register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-intvbase-preset"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify reset vector base register x 1024 (VECBASE_AC_BUILD.Addr)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-rf16"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify 16-entry core register file (RF_BUILD.E)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-swap"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify swap instructions version (SWAP_BUILD.Version)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-bitscan"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify bitscan instructions version (NORM_BUILD.Version)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-extended-arith"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify extended arithmetic version (EA_BUILD.Version)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-multiply"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify multiply instructions version (MULTIPLY_BUILD.Version)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-extension-interrupts"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable extension interrupts 16-31"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-timer0"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Timer 0 present (TIMER_BUILD.T0)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-timer1"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Timer 1 present (TIMER_BUILD.T1)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-dccm-version"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify DCCM RAM version (DCCM_BUILD.Version)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-dccm-size"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify DCCM RAM size (DCCM_BUILD.Size)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-iccm-version"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify ICCM RAM version (ICCM_BUILD.Version)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-iccm0-size"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify ICCM0 RAM size (ICCM_BUILD.ICCM0_SIZE)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-iccm1-size"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify ICCM1 RAM size (ICCM_BUILD.ICCM1_SIZE)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-iccm0-base"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify ICCM0 RAM base address at reset"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-iccm1-base"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify ICCM1 RAM base address at reset"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-internal-ccms"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify that configured CCMs should be modeled internally"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-reset-internal-ccms"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify that internally-modeled configured CCMs should be zeroed at reset"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-ccm-wrap"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify that CCMs should wrap to fill 1/16th of memory space"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="opt-extension-core-regs"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Bitmask specifying extension core registers"/>
+        </docsection>
+    </formalattribute>
+    <busmasterport addresswidth="32"
+        addresswidthmax="32"
+        addresswidthmin="32"
+        mustbeconnected="T"
+        name="INSTRUCTION"/>
+    <busmasterport addresswidth="32"
+        addresswidthmax="32"
+        addresswidthmin="32"
+        mustbeconnected="F"
+        name="DATA"/>
+    <netport mustbeconnected="F"
+        name="reset"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Processor reset"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="watchdog"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Watchdog timer"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="irq4"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="irq5"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="irq6"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="irq8"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="irq9"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="irq10"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="irq11"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="irq12"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="irq13"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="irq14"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="irq15"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <command name="isync">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="specify instruction address range for synchronous execution"/>
+        </docsection>
+        <commandarg name="addresshi"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="end address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="addresslo"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="start address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="itrace">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="enable or disable instruction tracing"/>
+        </docsection>
+        <commandarg name="after"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="apply after this many instructions"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="enable"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="instructioncount"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="include the instruction number in each trace"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="memory"
+            type="String">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show memory accesses by this instruction. Argument can be any combination of X (execute), L (load or store access) and S (system)"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="off"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="disable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="on"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="processorname"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Include processor name in all trace lines"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registerchange"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers changed by this instruction"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registers"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers after each trace"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <exceptions name="Exceptions">
+        <exception code="0"
+            name="Reset"/>
+        <exception code="2"
+            name="IllegalInstruction"/>
+        <exception code="28"
+            name="MisalignedDataAccess"/>
+        <exception code="29"
+            name="Interrupt"/>
+    </exceptions>
+    <modes name="Modes">
+        <mode code="0"
+            name="Kernel">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Kernel mode"/>
+            </docsection>
+        </mode>
+    </modes>
+    <registers name="core.arcompact">
+        <register alias="F"
+            name="R0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R10"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R11"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R12"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R13"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R14"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R15"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GP"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="FP"
+            readonly="F"
+            type="3"
+            width="32"/>
+        <register alias="F"
+            name="SP"
+            readonly="F"
+            type="2"
+            width="32"/>
+        <register alias="F"
+            name="ILINK1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="ILINK2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BLINK"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="LP_COUNT"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="PCL"
+            readonly="T"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="aux-minimal">
+        <register alias="F"
+            name="STATUS"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SEMAPHORE"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="LP_START"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="LP_END"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="IDENTITY"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="DEBUG"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="PC"
+            readonly="F"
+            type="1"
+            width="32"/>
+        <register alias="F"
+            name="STATUS32"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="STATUS32_L1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="STATUS32_L2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="COUNT0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="CONTROL0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="LIMIT0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="INT_VECTOR_BASE"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="AUX_IRQ_LV12"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="COUNT1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="CONTROL1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="LIMIT1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="AUX_IRQ_LEV"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="AUX_IRQ_HINT"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="BCR">
+        <register alias="F"
+            name="BCR_VER"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_DCCM_BASE"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_CRC"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_VBFDW"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_EA_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_DATASPACE"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_MEMSUBSYS"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_VECBASE_AC_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_PBASEADDR"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_MPU_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_RF_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_VECBASE_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_DCACHE_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_MADI"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_LDSTRAM"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_TIMER_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_AP_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_ICACHE_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_ICCM_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_DSPRAM"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_MAC_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_MULTIPLY_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_SWAP_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_NORM_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_MINMAX_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_BARREL_BUILD"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_PMU"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="BCR_IFETCHQUEUE"
+            readonly="T"
+            type="0"
+            width="32"/>
+    </registers>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </processor>

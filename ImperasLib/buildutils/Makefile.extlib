@@ -1,0 +1,45 @@
+#
+# This contains specific rules for building intercept libraries
+#
+
+IMPERAS_HOME := $(shell getpath.exe "$(IMPERAS_HOME)")
+include $(IMPERAS_HOME)/bin/Makefile.include
+
+ifndef IMPERAS_HOME
+	IMPERAS_ERROR := $(error "IMPERAS_HOME not defined")
+endif
+
+#
+# %.extlib.tcl -> %.igen.c %.igen.h %.c.igen.stubs %.macros.igen.h
+#
+IGEN?= igen.exe
+IGENFLAGS?= --quiet --nobanner --excludem GPT_NH --excludem GPT_UFNR $(EXTRA_IGENFLAGS)
+
+extlib-tcl      ?= $(sort $(wildcard *.extlib.tcl))
+extlib-igen-ext  = igen.c igen.h c.igen.stubs igen.xml macros.igen.h
+extlib-igen-src  = $(foreach src, $(extlib-tcl), \
+                     $(foreach tgt, $(extlib-igen-ext), \
+                       $(patsubst %.extlib.tcl, %.$(tgt), $(src))))
+.PRECIOUS: $(extlib-igen-src)
+
+#
+# Extlib Generate all derived C and XML files using --newargparser
+#
+%.igen.c %.igen.h %.c.igen.stubs %.igen.xml %.macros.igen.h: %.extlib.tcl 
+	@    echo "# iGen Create EXTLIB $*"
+	$(V) $(IGEN) $(IGENFLAGS)               \
+        --batch         $(<)                \
+        --writec        $(*)                \
+        --writexml      $(*).igen.xml       \
+        --newargparser                      \
+        $(WRITEHEADER)                      \
+        --overwrite
+
+#
+# Include standard Host build rules
+#
+igen-src=$(extlib-igen-src)
+include $(IMPERAS_HOME)/ImperasLib/buildutils/Makefile.host
+
+clean::
+	$(V) - rm -f $(extlib-igen-src)

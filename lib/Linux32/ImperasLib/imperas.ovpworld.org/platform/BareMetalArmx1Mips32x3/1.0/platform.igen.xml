@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw clp="T"
+    clpAllArgs="T"
+    clpExtArgs="T"
+    clpStdArgs="T"
+    diagnostics="F"
+    httpvis="F"
+    library="platform"
+    name="BareMetalArmx1Mips32x3"
+    purpose="0"
+    releasestatus="3"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="imperas.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="
+    This is a platform that instantiates 1 ARM processor and 3 MIPS processors.
+    Each processor has private independent memory areas from 0x00000000 to 0x9fffffff.
+    the ARM processor also has private memory (for stack) from 0xf0000000 to 0xffffffff.
+    There is a shared area of memory that appears from 0xa0000000 to 0xbfffffff in each processor memory map. "/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="BareMetal platform for execution of specific example applications for MIPS32 and ARM Cortex-A."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="None, BareMetal platform definition"/>
+    </docsection>
+    <bus addresswidth="32"
+        name="bus0"/>
+    <bus addresswidth="32"
+        name="bus1"/>
+    <bus addresswidth="32"
+        name="bus2"/>
+    <bus addresswidth="32"
+        name="bus3"/>
+    <bus addresswidth="32"
+        name="busS"/>
+    <processorinstance enableintercepts="T"
+        endian="little"
+        id="4"
+        imagefile="writer.ARM_CORTEX_A9UP.elf"
+        name="CPU-0"
+        useobjectentry="T">
+        <vlnvreference name="arm"
+            vendor="arm.ovpworld.org"/>
+        <attribute content="Cortex-A9UP"
+            name="variant"/>
+        <attribute content="nopSVC"
+            name="compatibility"/>
+        <busmasterportconnection connection="bus0"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus0"
+            name="DATA"/>
+    </processorinstance>
+    <processorinstance endian="little"
+        id="1"
+        imagefile="reader1.CS_MIPS32LE.elf"
+        name="CPU-1"
+        useobjectentry="T">
+        <vlnvreference name="mips32_r1r5"
+            vendor="mips.ovpworld.org"/>
+        <attribute content="24KEc"
+            name="variant"/>
+        <busmasterportconnection connection="bus1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus1"
+            name="DATA"/>
+    </processorinstance>
+    <processorinstance endian="little"
+        id="2"
+        imagefile="reader2.CS_MIPS32LE.elf"
+        name="CPU-2"
+        useobjectentry="T">
+        <vlnvreference name="mips32_r1r5"
+            vendor="mips.ovpworld.org"/>
+        <attribute content="24KEc"
+            name="variant"/>
+        <busmasterportconnection connection="bus2"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus2"
+            name="DATA"/>
+    </processorinstance>
+    <processorinstance endian="little"
+        id="3"
+        imagefile="reader3.CS_MIPS32LE.elf"
+        name="CPU-3"
+        useobjectentry="T">
+        <vlnvreference name="mips32_r1r5"
+            vendor="mips.ovpworld.org"/>
+        <attribute content="24KEc"
+            name="variant"/>
+        <busmasterportconnection connection="bus3"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus3"
+            name="DATA"/>
+    </processorinstance>
+    <memoryinstance name="mem0">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus0"
+            hiaddress="0x01ffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="mem1">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x01ffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="mem2">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus2"
+            hiaddress="0x01ffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="mem3">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus3"
+            hiaddress="0x01ffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="shared">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="busS"
+            hiaddress="0x02ffffff"
+            loaddress="0x02000000"
+            name="sp1"/>
+    </memoryinstance>
+    <bridge name="br0">
+        <busslaveportconnection connection="bus0"
+            hiaddress="0x02ffffff"
+            loaddress="0x02000000"
+            name="sp1"/>
+        <busmasterportconnection connection="busS"
+            hiaddress="0x02ffffff"
+            loaddress="0x02000000"
+            name="mp1"/>
+    </bridge>
+    <bridge name="br1">
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x02ffffff"
+            loaddress="0x02000000"
+            name="sp1"/>
+        <busmasterportconnection connection="busS"
+            hiaddress="0x02ffffff"
+            loaddress="0x02000000"
+            name="mp1"/>
+    </bridge>
+    <bridge name="br2">
+        <busslaveportconnection connection="bus2"
+            hiaddress="0x02ffffff"
+            loaddress="0x02000000"
+            name="sp1"/>
+        <busmasterportconnection connection="busS"
+            hiaddress="0x02ffffff"
+            loaddress="0x02000000"
+            name="mp1"/>
+    </bridge>
+    <bridge name="br3">
+        <busslaveportconnection connection="bus3"
+            hiaddress="0x02ffffff"
+            loaddress="0x02000000"
+            name="sp1"/>
+        <busmasterportconnection connection="busS"
+            hiaddress="0x02ffffff"
+            loaddress="0x02000000"
+            name="mp1"/>
+    </bridge>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

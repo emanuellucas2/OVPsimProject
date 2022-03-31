@@ -1,0 +1,1664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <processor QLQualified="T"
+    defaultsemihostlibrary="semihosting"
+    defaultsemihostname="microblazeNewlib"
+    defaultsemihostvendor="xilinx.ovpworld.org"
+    defaultsemihostversion="1.0"
+    elfcode="189"
+    endian="either"
+    family="xilinx_microblaze"
+    gdbpath="$IMPERAS_HOME/lib/$IMPERAS_ARCH/gdb/microblaze-xilinx-elf-gdb"
+    imagefile="model"
+    library="processor"
+    name="microblaze"
+    procdoc="$IMPERAS_HOME/ImperasLib/source/xilinx.ovpworld.org/processor/microblaze/1.0/doc/OVP_Model_Specific_Information_microblaze_generic.pdf"
+    releasestatus="4"
+    useindefaultplatform="T"
+    vendor="xilinx.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <elfoption code="47787"
+        name="elf47787"/>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Microblaze Processor Model"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Apache 2.0 Open Source License"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Features">
+        <doctext name="txt"
+            text="Instruction Set: This model fully implements the instruction set upto and including V10."/>
+        <doctext name="txt_1"
+            text="Privileged Instructions: Implemented"/>
+        <doctext name="txt_2"
+            text="Virtual-Memory Management: Implemented"/>
+        <doctext name="txt_3"
+            text="Reset, Interrupts, Exceptions and Break: Implemented"/>
+        <doctext name="txt_4"
+            text="Floating Point Unit: Implemented"/>
+        <doctext name="txt_5"
+            text="Stream Link Interface: Implemented"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Limitations">
+        <doctext name="txt"
+            text="GDB: There is a known issue in the microblaze gdb, a lockup can occur when disassembling from address 0"/>
+    </docsection>
+    <docsection name="doc_4"
+        text="ConfigurationFeatures">
+        <doctext name="txt"
+            text="Barrel Shifter."/>
+        <doctext name="txt_1"
+            text="Hardware Divider."/>
+        <doctext name="txt_2"
+            text="Machine Status Set/Clear Instructions."/>
+        <doctext name="txt_3"
+            text="Hardware Exceptions."/>
+        <doctext name="txt_4"
+            text="Pattern Compare Instructions."/>
+        <doctext name="txt_5"
+            text="Floating Point Unit (FPU)."/>
+        <doctext name="txt_6"
+            text="Disable Hardware Multiplier."/>
+        <doctext name="txt_7"
+            text="Processor Version Register (PVR)."/>
+        <doctext name="txt_8"
+            text="Hardware Multiplier 64-bit Result."/>
+        <doctext name="txt_9"
+            text="Floating Point Conversion and Square Root Instructions."/>
+        <doctext name="txt_10"
+            text="Memory Management Unit."/>
+        <doctext name="txt_11"
+            text="Extended Stream Instructions ."/>
+    </docsection>
+    <docsection name="doc_5"
+        text="Verification">
+        <doctext name="txt"
+            text="Models have been validated correct by running through extensive tests using test suites and technology provided by Xilinx"/>
+    </docsection>
+    <formalattribute name="variant"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Selects variant (either a generic ISA or a specific model)"/>
+        </docsection>
+        <enum name="V7_00"
+            value="0"/>
+        <enum name="V7_10"
+            value="1"/>
+        <enum name="V7_20"
+            value="2"/>
+        <enum name="V7_30"
+            value="3"/>
+        <enum name="V8_00"
+            value="4"/>
+        <enum name="V8_10"
+            value="5"/>
+        <enum name="V8_20"
+            value="6"/>
+        <enum name="V9_50"
+            value="7"/>
+        <enum name="V10_00"
+            value="8"/>
+        <enum name="ISA"
+            value="9"/>
+    </formalattribute>
+    <formalattribute name="verbose"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify verbose output messages"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_FAMILY"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Target Family"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_AREA_OPTIMIZED"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Select implementation to optimize area with lower instruction throughput"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_INTERCONNECT"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Select interconnect 1 = PLBv46, 2 = AXI4"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_ENDIANNESS"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Select endianness 0 = Big endian, 1 = Little endian"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_FAULT_TOLERANT"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Implement fault tolerance"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_ECC_USE_CE_EXCEPTION"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Generate Bus Error Exceptions for correctable errors"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_PVR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Processor version register mode selection"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_PVR_USER1"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Processor version register USER1 constant"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_PVR_USER2"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Processor version register USER2 constant"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_RESET_MSR"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Reset value for MSR register"/>
+        </docsection>
+        <enum name="0x00"
+            value="0"/>
+        <enum name="0x20"
+            value="1"/>
+        <enum name="0x80"
+            value="2"/>
+        <enum name="0xa0"
+            value="3"/>
+    </formalattribute>
+    <formalattribute name="C_BASE_VECTORS"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Location of Microblaze Vectors"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_D_PLB"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data side PLB interface"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_D_AXI"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data side AXI interface"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_D_LMB"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data side LMB interface"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_I_PLB"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction side PLB interface"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_I_AXI"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction side AXI interface"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_I_LMB"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction side LMB interface"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_M_AXI_DP_EXCLUSIVE_ACCESS"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data Peripheral AXI Interface uses AXI4 protocol, with support for exclusive access"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_M_AXI_DC_EXCLUSIVE_ACCESS"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data Cache AXI Interface uses AXI4 protocol, with support for exclusive access"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_BARREL"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Include barrel shifter"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_DIV"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Include hardware divider"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_HW_MUL"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Include hardware integer multiplier"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_FPU"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Include hardware floating integer point unit"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_MSR_INSTR"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable use of instructions: integer MSRSET and MSRCLR"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_PCMP_INSTR"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable use of instructions: integer CLZ, PCMPBF, PCMPEQ, and PCMPNE"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_REORDER_INSTR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable use of instructions: LBUR, LHUR, LWR, SBR. SHR, SWR, SWAPB, SWAPH"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_UNALIGNED_EXCEPTIONS"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable exception handling for unaligned data accesses"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_ILL_OPCODE_EXCEPTION"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable exception handling for illegal op-code"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_IPLB_BUS_EXCEPTION"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable exception handling for IPLB bus error"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_DPLB_BUS_EXCEPTION"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable exception handling for DPLB bus error"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_M_AXI_I_BUS_EXCEPTION"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable exception handling for M_AXI_I bus error"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_M_AXI_D_BUS_EXCEPTION"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable exception handling for M_AXI_D bus error"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_DIV_ZERO_EXCEPTION"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable exception handling for division by zero or division overflow"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_FPU_EXCEPTION"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable exception handling for hardware floating point unit exceptions"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_OPCODE_0x0_ILLEGAL"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Detect opcode 0x0 as an illegal instruction"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_FSL_EXCEPTION"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable exception handling for Stream Links"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_STACK_PROTECTION"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Generate exception for stack overflow or stack underflow"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_DEBUG_ENABLED"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="MDM Debug interface"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_NUMBER_OF_PC_BRK"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Number of hardware breakpoints"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_NUMBER_OF_RD_ADDR_BRK"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Number of read address watchpoints"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_NUMBER_OF_WR_ADDR_BRK"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Number of write address watchpoints"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_INTERRUPT_IS_EDGE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Level/Edge Interrupt"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_EDGE_IS_POSITIVE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Negative/Positive Edge integer Interrupt"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_FSL_LINKS"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Number of stream interfaces (FSL or AXI)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_EXTENDED_FSL_INSTR"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable use of extended integer stream instructions"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_ICACHE_BASEADDR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction cache base address"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_ICACHE_HIGHADDR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction cache high address"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_ICACHE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction cache"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_ALLOW_ICACHE_WR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction cache write enable"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_ICACHE_LINE_LEN"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction cache line length"/>
+        </docsection>
+        <enum name="4"
+            value="0"/>
+        <enum name="8"
+            value="1"/>
+    </formalattribute>
+    <formalattribute name="C_ICACHE_ALWAYS_USED"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction cache CacheLink used for all memory accesses"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_ICACHE_INTERFACE"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction cache CacheLink interface protocol"/>
+        </docsection>
+        <enum name="IXCL"
+            value="0"/>
+        <enum name="IXCL2"
+            value="1"/>
+    </formalattribute>
+    <formalattribute name="C_ICACHE_FORCE_TAG_LUTRAM"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction cache tag always implemented with distributed RAM"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_ICACHE_STREAMS"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction cache streams"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_ICACHE_VICTIMS"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction cache victims"/>
+        </docsection>
+        <enum name="0"
+            value="0"/>
+        <enum name="2"
+            value="1"/>
+        <enum name="4"
+            value="2"/>
+        <enum name="8"
+            value="3"/>
+    </formalattribute>
+    <formalattribute name="C_ICACHE_DATA_WIDTH"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction cache data width, 0 = 32 bits, 1 = Full cache line, 2 = 512 bits"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_ADDR_TAG_BITS"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction cache address tags"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_CACHE_BYTE_SIZE"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction cache size"/>
+        </docsection>
+        <enum name="64"
+            value="0"/>
+        <enum name="128"
+            value="1"/>
+        <enum name="256"
+            value="2"/>
+        <enum name="512"
+            value="3"/>
+        <enum name="1024"
+            value="4"/>
+        <enum name="2048"
+            value="5"/>
+        <enum name="4096"
+            value="6"/>
+        <enum name="8192"
+            value="7"/>
+        <enum name="16384"
+            value="8"/>
+        <enum name="32768"
+            value="9"/>
+        <enum name="65536"
+            value="10"/>
+    </formalattribute>
+    <formalattribute name="C_ICACHE_USE_FSL"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Cache over CacheLink instead of peripheral bus for instructions"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_DCACHE_BASEADDR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data cache base address"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_DCACHE_HIGHADDR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data cache high address"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_DCACHE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data cache"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_ALLOW_DCACHE_WR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data cache write enable"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_DCACHE_LINE_LEN"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data cache line length"/>
+        </docsection>
+        <enum name="4"
+            value="0"/>
+        <enum name="8"
+            value="1"/>
+    </formalattribute>
+    <formalattribute name="C_DCACHE_ALWAYS_USED"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data cache CacheLink used for all memory accesses"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_DCACHE_INTERFACE"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data cache CacheLink interface protocol"/>
+        </docsection>
+        <enum name="DXCL"
+            value="0"/>
+        <enum name="DXCL2"
+            value="1"/>
+    </formalattribute>
+    <formalattribute name="C_DCACHE_FORCE_TAG_LUTRAM"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data cache tag always implemented with distributed RAM"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_DCACHE_USE_WRITEBACK"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data cache write-back storage policy used"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_DCACHE_VICTIMS"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data cache victims"/>
+        </docsection>
+        <enum name="0"
+            value="0"/>
+        <enum name="2"
+            value="1"/>
+        <enum name="4"
+            value="2"/>
+        <enum name="8"
+            value="3"/>
+    </formalattribute>
+    <formalattribute name="C_DCACHE_DATA_WIDTH"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data cache data width, 0 = 32 bits, 1 = Full cache line, 2 = 512 bits"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_DCACHE_ADDR_TAG"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data cache address tags"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_DCACHE_BYTE_SIZE"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data cache size"/>
+        </docsection>
+        <enum name="64"
+            value="0"/>
+        <enum name="128"
+            value="1"/>
+        <enum name="256"
+            value="2"/>
+        <enum name="512"
+            value="3"/>
+        <enum name="1024"
+            value="4"/>
+        <enum name="2048"
+            value="5"/>
+        <enum name="4096"
+            value="6"/>
+        <enum name="8192"
+            value="7"/>
+        <enum name="16384"
+            value="8"/>
+        <enum name="32768"
+            value="9"/>
+        <enum name="65536"
+            value="10"/>
+    </formalattribute>
+    <formalattribute name="C_DCACHE_USE_FSL"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Cache over CacheLink instead of peripheral bus for data"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_MMU"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="0 = None, 1 = Usermode, 2 = Protection, 3 = Virtual"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_MMU_DTLB_SIZE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data shadow Translation Look-Aside Buffer size 1,2,4,8"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_MMU_ITLB_SIZE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction shadow Translation Look-Aside Buffer size 1,2,4,8"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_MMU_TLB_ACCESS"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Access to memory management special registers: 0 = Minimal, 1 = Read, 2 = Write, 3 = Full"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_MMU_ZONES"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Number of memory protection zones"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_MMU_PRIVILEGED_INSTR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Privileged instructions 0 = Full protection, 1 = Allow stream instrs"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_INTERRUPT"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable interrupt handling"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_EXT_BRK"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable external break handling"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_EXT_NM_BRK"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable external non-maskable break handling"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_USE_BRANCH_TARGET_CACHE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable Branch Target Cache"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_BRANCH_TARGET_CACHE_SIZE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Branch Target Cache size: 0 = Default, 1 = 8 entries, 2 = 16 entries, 3 = 32 entries, 4 = 64 entries, 5 = 512 entries, 6 = 1024 entries, 7 = 2048 entries"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_STREAM_INTERCONNECT"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Select AXI4-Stream integer interconnect"/>
+        </docsection>
+    </formalattribute>
+    <busmasterport addresswidth="32"
+        addresswidthmax="32"
+        addresswidthmin="32"
+        mustbeconnected="T"
+        name="INSTRUCTION"/>
+    <busmasterport addresswidth="32"
+        addresswidthmax="32"
+        addresswidthmin="32"
+        mustbeconnected="F"
+        name="DATA"/>
+    <netport mustbeconnected="F"
+        name="Interrupt"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="Reset"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="MB_Reset"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="Ext_BRK"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="Ext_NM_BRK"
+        type="input"/>
+    <fifoport name="SFSL0"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="SFSL1"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="SFSL2"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="SFSL3"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="SFSL4"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="SFSL5"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="SFSL6"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="SFSL7"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="SFSL8"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="SFSL9"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="SFSL10"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="SFSL11"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="SFSL12"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="SFSL13"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="SFSL14"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="SFSL15"
+        type="input"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Input port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL0"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL1"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL2"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL3"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL4"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL5"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL6"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL7"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL8"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL9"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL10"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL11"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL12"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL13"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL14"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <fifoport name="MFSL15"
+        type="output"
+        width="64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FSL Fifo Output port - Controlled by Parameter C_FSL_LINKS"/>
+        </docsection>
+    </fifoport>
+    <command name="dumpTLB">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Display the current contents of the TLB"/>
+        </docsection>
+    </command>
+    <command name="isync">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="specify instruction address range for synchronous execution"/>
+        </docsection>
+        <commandarg name="addresshi"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="end address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="addresslo"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="start address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="itrace">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="enable or disable instruction tracing"/>
+        </docsection>
+        <commandarg name="after"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="apply after this many instructions"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="enable"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="instructioncount"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="include the instruction number in each trace"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="memory"
+            type="String">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show memory accesses by this instruction. Argument can be any combination of X (execute), L (load or store access) and S (system)"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="off"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="disable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="on"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="processorname"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Include processor name in all trace lines"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registerchange"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers changed by this instruction"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registers"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers after each trace"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <exceptions name="Exceptions">
+        <exception code="0"
+            name="STREAM_EXCEPTION"/>
+        <exception code="1"
+            name="UNALIGNED_DATA_ACCESS"/>
+        <exception code="2"
+            name="ILLEGAL_OPCODE_EXCEPTION"/>
+        <exception code="3"
+            name="INSTRUCTION_BUS_ERROR_EXCEPTION"/>
+        <exception code="4"
+            name="DATA_BUS_ERROR_EXCEPTION"/>
+        <exception code="5"
+            name="DIVIDE_EXCEPTION"/>
+        <exception code="6"
+            name="FLOATING_POINT_UNIT_EXCEPTION"/>
+        <exception code="7"
+            name="PRIVILEGED_INSTRUCTION_EXCEPTION"/>
+        <exception code="8"
+            name="STACK_PROTECTION_VIOLATION_EXCEPTION"/>
+        <exception code="9"
+            name="DATA_STORAGE_EXCEPTION"/>
+        <exception code="10"
+            name="INSTRUCTION_STORAGE_EXCEPTION"/>
+        <exception code="11"
+            name="DATA_TLB_MISS_EXCEPTION"/>
+        <exception code="12"
+            name="INSTRUCTION_TLB_MISS_EXCEPTION"/>
+        <exception code="13"
+            name="RESET"/>
+        <exception code="14"
+            name="INTERRUPT"/>
+    </exceptions>
+    <modes name="Modes">
+        <mode code="0"
+            name="REAL">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Real mode"/>
+            </docsection>
+        </mode>
+        <mode code="1"
+            name="VIRTUAL_PRIV">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Virtual privileged mode"/>
+            </docsection>
+        </mode>
+        <mode code="2"
+            name="VIRTUAL_USER">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Virtual user mode"/>
+            </docsection>
+        </mode>
+    </modes>
+    <registers name="User">
+        <register alias="F"
+            name="R0"
+            readonly="T"
+            type="4"
+            width="32"/>
+        <register alias="F"
+            name="R1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R4"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R5"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R7"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R8"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R9"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R10"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R11"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R12"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R13"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R14"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R15"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R16"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R17"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R18"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R19"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R20"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R21"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R22"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R23"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R24"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R25"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R26"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R27"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R28"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R29"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R30"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="R31"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="System">
+        <register alias="F"
+            name="SPR_PC"
+            readonly="F"
+            type="1"
+            width="32"/>
+        <register alias="F"
+            name="SPR_MSR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_EAR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_ESR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_FSR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_BTR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_PVR0"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_PVR1"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_PVR2"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_PVR3"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_PVR4"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_PVR5"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_PVR6"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_PVR7"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_PVR8"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_PVR9"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_PVR10"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_PVR11"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_EDR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_PID"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_ZPR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_TLBX"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_TLBSX"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_TLBLO"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SPR_TLBHI"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="Integration_support">
+        <register alias="F"
+            name="stop"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </processor>

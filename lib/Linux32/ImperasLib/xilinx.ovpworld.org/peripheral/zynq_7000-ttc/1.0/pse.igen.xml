@@ -1,0 +1,856 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="zynq_7000-ttc"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="xilinx.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Zynq 7000 Triple Timer Counter Registers"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model implements the full set of registers and basic behavior. It is not yet completed."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Zynq-7000 TRM (https://www.xilinx.com/support/documentation/user_guides/ug585-Zynq-7000-TRM.pdf)"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="32">
+            <localmemory name="buffer"
+                readfunction="regNoDefinitionRead"
+                size="0x1000"
+                writefunction="regNoDefinitionWrite"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Clock_Control_1"
+                nbyte="F"
+                width="32"
+                writefunction="wrClkCtrl1"
+                writemask="127">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Clock Control register"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="6"
+                    name="E"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="SRC"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="PS_V"
+                    width="4"/>
+                <field access="rw"
+                    name="PS_EN"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Clock_Control_2"
+                nbyte="F"
+                offset="0x4"
+                width="32"
+                writefunction="wrClkCtrl2"
+                writemask="127">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Clock Control register"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="6"
+                    name="E"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="SRC"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="PS_V"
+                    width="4"/>
+                <field access="rw"
+                    name="PS_EN"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Clock_Control_3"
+                nbyte="F"
+                offset="0x8"
+                width="32"
+                writefunction="wrClkCtrl3"
+                writemask="127">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Clock Control register"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="6"
+                    name="E"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="SRC"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="PS_V"
+                    width="4"/>
+                <field access="rw"
+                    name="PS_EN"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Counter_Control_1"
+                nbyte="F"
+                offset="0xc"
+                width="32"
+                writefunction="wrCntrCtrl1"
+                writemask="127">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Operational mode and reset"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="6"
+                    name="WAVPOL"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="WAVEN"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="RST"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="MATCH"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="DEC"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="INT"
+                    width="1"/>
+                <field access="rw"
+                    name="DIS"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000021"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Counter_Control_2"
+                nbyte="F"
+                offset="0x10"
+                width="32"
+                writefunction="wrCntrCtrl2"
+                writemask="127">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Operational mode and reset"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="6"
+                    name="WAVPOL"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="WAVEN"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="RST"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="MATCH"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="DEC"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="INT"
+                    width="1"/>
+                <field access="rw"
+                    name="DIS"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000021"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Counter_Control_3"
+                nbyte="F"
+                offset="0x14"
+                width="32"
+                writefunction="wrCntrCtrl3"
+                writemask="127">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Operational mode and reset"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="6"
+                    name="WAVPOL"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="WAVEN"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="RST"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="MATCH"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="DEC"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="INT"
+                    width="1"/>
+                <field access="rw"
+                    name="DIS"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000021"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Counter_Value_1"
+                nbyte="F"
+                offset="0x18"
+                readfunction="rdCurrent1"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Current counter value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Counter_Value_2"
+                nbyte="F"
+                offset="0x1c"
+                readfunction="rdCurrent2"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Current counter value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Counter_Value_3"
+                nbyte="F"
+                offset="0x20"
+                readfunction="rdCurrent3"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Current counter value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Interval_Counter_1"
+                nbyte="F"
+                offset="0x24"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interval value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Interval_Counter_2"
+                nbyte="F"
+                offset="0x28"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interval value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Interval_Counter_3"
+                nbyte="F"
+                offset="0x2c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interval value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Match_1_Counter_1"
+                nbyte="F"
+                offset="0x30"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Match value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Match_1_Counter_2"
+                nbyte="F"
+                offset="0x34"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Match value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Match_1_Counter_3"
+                nbyte="F"
+                offset="0x38"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Match value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Match_2_Counter_1"
+                nbyte="F"
+                offset="0x3c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Match value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Match_2_Counter_2"
+                nbyte="F"
+                offset="0x40"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Match value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Match_2_Counter_3"
+                nbyte="F"
+                offset="0x44"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Match value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Match_3_Counter_1"
+                nbyte="F"
+                offset="0x48"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Match value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Match_3_Counter_2"
+                nbyte="F"
+                offset="0x4c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Match value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Match_3_Counter_3"
+                nbyte="F"
+                offset="0x50"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Match value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Interrupt_Register_1"
+                nbyte="F"
+                offset="0x54"
+                readfunction="rdInt1"
+                width="32"
+                writefunction="wrInt">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Counter 1 Interval, Match, Overflow and Event interrupts"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="5"
+                    name="EV"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="OV"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="M3"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="M2"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="M1"
+                    width="1"/>
+                <field access="rw"
+                    name="IV"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Interrupt_Register_2"
+                nbyte="F"
+                offset="0x58"
+                readfunction="rdInt2"
+                width="32"
+                writefunction="wrInt">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Counter 2 Interval, Match, Overflow and Event interrupts"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="5"
+                    name="EV"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="OV"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="M3"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="M2"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="M1"
+                    width="1"/>
+                <field access="rw"
+                    name="IV"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Interrupt_Register_3"
+                nbyte="F"
+                offset="0x5c"
+                readfunction="rdInt3"
+                width="32"
+                writefunction="wrInt">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Counter 3 Interval, Match, Overflow and Event interrupts"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="5"
+                    name="EV"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="OV"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="M3"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="M2"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="M1"
+                    width="1"/>
+                <field access="rw"
+                    name="IV"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Interrupt_Enable_1"
+                nbyte="F"
+                offset="0x60"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="ANDed with corresponding Interrupt Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Interrupt_Enable_2"
+                nbyte="F"
+                offset="0x64"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="ANDed with corresponding Interrupt Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Interrupt_Enable_3"
+                nbyte="F"
+                offset="0x68"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="ANDed with corresponding Interrupt Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Event_Control_Timer_1"
+                nbyte="F"
+                offset="0x6c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Enable, pulse and overflow"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="2"
+                    name="OV"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="LO"
+                    width="1"/>
+                <field access="rw"
+                    name="EN"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Event_Control_Timer_2"
+                nbyte="F"
+                offset="0x70"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Enable, pulse and overflow"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="2"
+                    name="OV"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="LO"
+                    width="1"/>
+                <field access="rw"
+                    name="EN"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Event_Control_Timer_3"
+                nbyte="F"
+                offset="0x74"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Enable, pulse and overflow"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="2"
+                    name="OV"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="LO"
+                    width="1"/>
+                <field access="rw"
+                    name="EN"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Event_Register_1"
+                nbyte="F"
+                offset="0x78"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="pclk cycle count for event"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Event_Register_2"
+                nbyte="F"
+                offset="0x7c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="pclk cycle count for event"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Event_Register_3"
+                nbyte="F"
+                offset="0x80"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="pclk cycle count for event"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="int1"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Interrupt Timer 1"/>
+        </docsection>
+    </netport>
+    <netport name="int2"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Interrupt Timer 2"/>
+        </docsection>
+    </netport>
+    <netport name="int3"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Interrupt Timer 3"/>
+        </docsection>
+    </netport>
+    <formalattribute defaultvalue="33"
+        name="clk1"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Timer 1 Clock Rate MHz (default 33MHz)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="33"
+        name="clk2"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Timer 2 Clock Rate MHz (default 33MHz)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="33"
+        name="clk3"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Timer 3 Clock Rate MHz (default 33MHz)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="little"
+        name="endian"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify the endian of the processor interface (default little endian)"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

@@ -1,0 +1,147 @@
+%
+%Copyright (c) 2005-2021 Imperas Software Ltd., www.imperas.com
+%
+%The contents of this file are provided under the Software License Agreement
+%that you accepted before downloading this file.
+%
+%This header forms part of the Software but may be included and used unaltered
+%in derivative works.
+%
+%For more information, please visit www.OVPworld.org or www.imperas.com
+%
+% Package includes
+
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{hyperref}
+\usepackage{placeins}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{comment}
+\usepackage{enumitem}
+\usepackage[olditem,oldenum]{paralist}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{tabularx}
+
+% caption package for tables; wide captions
+\usepackage[width=0.99\textwidth]{caption}
+
+\usepackage [english]{babel}
+\usepackage [english = american]{csquotes}
+\MakeOuterQuote{"}
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+\renewcommand{\headrulewidth}{0.4pt}% Default \headrulewidth is 0.4pt
+\renewcommand{\footrulewidth}{0.4pt}% Default \footrulewidth is 0pt
+
+% Set up margins
+
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+
+% Useful macros
+
+\newcommand{\note}[1]{{\bf [ NOTE: #1 ]}}
+\newcommand{\fixme}[1]{{\bf [ FIXME: #1 ]}}
+\newcommand{\todo}[1]{\marginpar{\footnotesize #1}}
+
+\newcommand{\wunits}[2]{\mbox{#1\,#2}}
+\newcommand{\um}{\mbox{$\mu$m}}
+\newcommand{\xum}[1]{\wunits{#1}{\um}}
+\newcommand{\by}[2]{\mbox{#1$\times$#2}}
+\newcommand{\byby}[3]{\mbox{#1$\times$#2$\times$#3}}
+
+\newlength\savedwidth
+\newcommand\whline[1]{%
+  \noalign{%
+    \global\savedwidth\arrayrulewidth\global\arrayrulewidth 1.5pt%
+  }%
+  \cline{#1}%
+  \noalign{\vskip\arrayrulewidth}%
+  \noalign{\global\arrayrulewidth\savedwidth}%
+}
+
+% Custom list environments
+
+\newenvironment{tightlist}
+{\begin{itemize}
+ \setlength{\parsep}{0pt}
+ \setlength{\itemsep}{-2pt}}
+{\end{itemize}}
+
+\newenvironment{titledtightlist}[1]
+{\noindent
+ ~~\textbf{#1}
+ \begin{itemize}
+ \setlength{\parsep}{0pt}
+ \setlength{\itemsep}{-2pt}}
+{\end{itemize}}
+
+\newenvironment{commentary}
+{ \vspace{-0.2in}
+  \begin{quotation}
+  \noindent
+  \small \em
+  \rule{\linewidth}{1pt}\\
+}
+{ 
+  \end{quotation}
+  \vspace{-0.2in}
+}
+
+\newenvironment{samepage-commentary}
+{\begin{samepage} \begin{commentary}}
+{\end{commentary} \end{samepage}}
+
+\newenvironment{discussion}
+{ \vspace{-0.2in}
+  \begin{quotation}
+  \noindent
+  \small \em 
+  \rule{\linewidth}{1pt} \\
+  {\bf Discussion:}
+}
+{ 
+  \end{quotation}
+  \vspace{-0.2in}
+}
+
+% Other commands and parameters
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+
+\setlength{\parindent}{0in}
+\sloppy
+
+% Imperas centered, wrapping, filling, column type
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% single bit specifier
+\newcommand{\instbit}[1]{\mbox{\scriptsize #1}}
+
+% bit range specifier
+\newcommand{\instbitrange}[2]{~\instbit{#1} \hfill \instbit{#2}~}
+
+\newcommand{\reglabel}[1]{\hfill {\tt #1}\hfill\ }
+
+\newcommand{\wiri}{\textbf{WIRI}}
+\newcommand{\wpri}{\textbf{WPRI}}
+\newcommand{\wlrl}{\textbf{WLRL}}
+\newcommand{\warl}{\textbf{WARL}}
+

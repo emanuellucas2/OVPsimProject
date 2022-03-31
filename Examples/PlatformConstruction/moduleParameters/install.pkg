@@ -1,0 +1,4 @@
+install RUNTIME OVPsim CpuManager
+install or1k.toolchain
+install Imperas.iGen
+install Imperas.harness

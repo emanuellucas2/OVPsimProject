@@ -1,0 +1,12 @@
+lednumber 8
+led 0 0 gpio_bank2_out 2
+led 1 1 gpio_bank2_out 3
+led 2 2 gpio_bank2_out 4
+led 3 3 gpio_bank2_out 5
+led 4 4 gpio_bank2_out 6
+led 5 5 gpio_bank2_out 7
+led 6 6 gpio_bank2_out 8
+led 7 7 gpio_bank2_out 9
+swinumber 2
+swi 0 0 gpio_bank2_in 0
+swi 1 1 gpio_bank2_in 1

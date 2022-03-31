@@ -1,0 +1,163 @@
+Info Session started: Thu Mar 31 14:07:52 2022
+
+Info ------------- ENVIRONMENT -------------
+Info IMPERAS_ARCH                             = Linux32
+Info IMPERAS_HOME                             = /home/emanuel/Imperas.20211118/
+Info IMPERAS_ISS                              = iss.exe
+Info IMPERAS_M32                              = 1
+Info IMPERAS_SHRSUF                           = so
+Info IMPERAS_UNAME                            = Linux
+Info IMPERAS_VLNV                             = /home/emanuel/Imperas.20211118//lib/Linux32/ImperasLib
+Info LD_LIBRARY_PATH                          = :/home/emanuel/Imperas.20211118//bin/Linux32
+Info --------------------------------------
+Info -------- FLAGS (from iss.exe)
+Info --verbose
+Info --output  imperas.log
+Info --program  ../../../Applications/multicore2/multicore2.ARM_CORTEX_M0-O0-g.elf
+Info --processorvendor  arm.ovpworld.org
+Info --processorname  armm
+Info --variant  Cortex-M0plus
+Info --numprocessors  2
+Info --hishare  0x000fffff
+Info --loshare  0x0
+Info --parameter  UAL=1
+Info --parameter  endian=little
+Info --------------------------------------
+Platform has 2 processors with shared memory
+
+
+OVPsim (32-Bit) v20211118.0 Open Virtual Platform simulator from www.OVPworld.org.
+Copyright (c) 2005-2021 Imperas Software Ltd.  Contains Imperas Proprietary Information.
+Licensed Software, All Rights Reserved.
+Visit www.IMPERAS.com for multicore debug, verification and analysis solutions.
+
+OVPsim started: Thu Mar 31 14:07:52 2022
+
+
+Info (OR_OF) Target 'iss/cpu0' has object file read from '../../../Applications/multicore2/multicore2.ARM_CORTEX_M0-O0-g.elf'
+Info (OR_PH) Program Headers:
+Info (OR_PH) Type           Offset     VirtAddr   PhysAddr   FileSiz    MemSiz     Flags Align
+Info (OR_PD) PROC           0x00010d94 0x00010d94 0x00010d94 0x00000008 0x00000008 R--   4
+Info (OR_PD) LOAD           0x00008000 0x00008000 0x00008000 0x00008dc8 0x00008dc8 R-E   8000
+Info (OR_PD) LOAD           0x00010dc8 0x00018dc8 0x00018dc8 0x000008d4 0x00100a38 RW-   8000
+Info (OR_OF) Target 'iss/cpu1' has object file read from '../../../Applications/multicore2/multicore2.ARM_CORTEX_M0-O0-g.elf'
+Info (OR_PH) Program Headers:
+Info (OR_PH) Type           Offset     VirtAddr   PhysAddr   FileSiz    MemSiz     Flags Align
+Info (OR_PD) PROC           0x00010d94 0x00010d94 0x00010d94 0x00000008 0x00000008 R--   4
+Info (OR_PD) LOAD           0x00008000 0x00008000 0x00008000 0x00008dc8 0x00008dc8 R-E   8000
+Info (OR_PD) LOAD           0x00010dc8 0x00018dc8 0x00018dc8 0x000008d4 0x00100a38 RW-   8000
+CPU 1 starting...
+CPU 0 starting...
+CPU 0: fib(0) = 0
+CPU 1: munge(0) = 0
+CPU 0: fib(1) = 1
+CPU 1: munge(1) = 0
+CPU 0: fib(2) = 1
+CPU 1: munge(1) = 0
+CPU 0: fib(3) = 2
+CPU 1: munge(2) = 1
+CPU 0: fib(4) = 3
+CPU 1: munge(3) = 3
+CPU 0: fib(5) = 5
+CPU 1: munge(5) = 10
+CPU 0: fib(6) = 8
+CPU 1: munge(8) = 28
+CPU 0: fib(7) = 13
+CPU 1: munge(13) = 78
+CPU 0: fib(8) = 21
+CPU 1: munge(21) = 210
+CPU 0: fib(9) = 34
+CPU 1: munge(34) = 561
+CPU 0: fib(10) = 55
+CPU 1: munge(55) = 1485
+CPU 0: fib(11) = 89
+CPU 1: munge(89) = 3916
+CPU 0: fib(12) = 144
+CPU 1: munge(144) = 10296
+CPU 0: fib(13) = 233
+CPU 1: munge(233) = 27028
+CPU 0: fib(14) = 377
+CPU 1: munge(377) = 70876
+CPU 0: fib(15) = 610
+CPU 1: munge(610) = 185745
+CPU 0: fib(16) = 987
+CPU 1: munge(987) = 486591
+CPU 0: fib(17) = 1597
+CPU 1: munge(1597) = 1274406
+CPU 0: fib(18) = 2584
+CPU 1: munge(2584) = 3337236
+CPU 0: fib(19) = 4181
+CPU 1: munge(4181) = 8738290
+CPU 0: fib(20) = 6765
+CPU 1: munge(6765) = 22879230
+CPU 0: fib(21) = 10946
+CPU 1: munge(10946) = 59901985
+CPU 0: fib(22) = 17711
+CPU 1: munge(17711) = 156830905
+CPU 0: fib(23) = 28657
+CPU 1: munge(28657) = 410597496
+CPU 0: fib(24) = 46368
+CPU 1: munge(46368) = 1074972528
+CPU 0: fib(25) = 75025
+CPU 1: munge(75025) = -1480629496
+CPU 0: fib(26) = 121393
+CPU 1: munge(121393) = -1221865064
+CPU 0: fib(27) = 196418
+CPU 1: munge(196418) = 2110047969
+CPU 0: fib(28) = 317811
+CPU 1: munge(317811) = -1037850597
+CPU 0: fib(29) = 514229
+CPU 1: munge(514229) = -928511070
+CPU 0: fib(30) = 832040
+CPU 1: munge(832040) = -1747486196
+CPU 0: fib(31) = 1346269
+CPU 1: munge(1346269) = -18662410
+CPU 0: fib(32) = 2178309
+CPU 1: munge(2178309) = 1692013194
+CPU 0: fib(33) = 3524578
+CPU 1: munge(3524578) = 800566737
+CPU 0: fib(34) = 5702887
+CPU 1: munge(5702887) = 711033285
+CPU 1: finished
+Info 
+Info ---------------------------------------------------
+Info CPU 'iss/cpu1' STATISTICS
+Info   Type                  : armm (Cortex-M0plus)
+Info   Nominal MIPS          : 100
+Info   Final program counter : 0x8028
+Info   Simulated instructions: 909,847,965
+Info   Simulated MIPS        : 358.2
+Info ---------------------------------------------------
+Info 
+Info ---------------------------------------------------
+Info CPU 'iss/cpu0' STATISTICS
+Info   Type                  : armm (Cortex-M0plus)
+Info   Nominal MIPS          : 100
+Info   Final program counter : 0x8028
+Info   Simulated instructions: 909,800,340
+Info   Simulated MIPS        : 358.2
+Info ---------------------------------------------------
+Info 
+Info ---------------------------------------------------
+Info TOTAL
+Info   Simulated instructions: 1,819,648,305
+Info   Simulated MIPS        : 716.4
+Info ---------------------------------------------------
+Info 
+Info ---------------------------------------------------
+Info SIMULATION TIME STATISTICS
+Info   Simulated time        : 9.10 seconds
+Info   User time             : 2.54 seconds
+Info   System time           : 0.00 seconds
+Info   Elapsed time          : 2.54 seconds
+Info   Real time ratio       : 3.58x faster
+Info ---------------------------------------------------
+
+OVPsim finished: Thu Mar 31 14:07:54 2022
+
+
+OVPsim (32-Bit) v20211118.0 Open Virtual Platform simulator from www.OVPworld.org.
+Visit www.IMPERAS.com for multicore debug, verification and analysis solutions.
+
+Info Session ended: Thu Mar 31 14:07:55 2022
+

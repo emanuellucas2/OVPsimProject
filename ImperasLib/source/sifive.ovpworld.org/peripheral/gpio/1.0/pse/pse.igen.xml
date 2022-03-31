@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="gpio"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="sifive.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="SiFive coreip-s51-arty GPIO Registers (gpio)"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model implements only the registers for generation of input or output data values."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="SiFive Freedom E SDK coreip-s51-arty Board Support Package details."/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        dfltFuncs="T"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="REG"
+            size="0x1000"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="VALUE"
+                nbyte="F"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Pin Value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INPUT_EN"
+                nbyte="F"
+                offset="0x4"
+                width="32"
+                writefunction="wrInputEn">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Enable Input bits"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="OUTPUT_EN"
+                nbyte="F"
+                offset="0x8"
+                width="32"
+                writefunction="wrOutputEn">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Enable Output bits"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="PORT"
+                nbyte="F"
+                offset="0xc"
+                width="32"
+                writefunction="wrPort">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Output Port Value"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="PUE"
+                nbyte="F"
+                offset="0x10"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Internal pull-up enabled"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DS"
+                nbyte="F"
+                offset="0x14"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Pin Drive Strength"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="RISE_IE"
+                nbyte="F"
+                offset="0x18"
+                width="32"
+                writefunction="wrRIE">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Rising edge interupt enable"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="RISE_IP"
+                nbyte="F"
+                offset="0x1c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Rising interrupt pending"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FALL_IE"
+                nbyte="F"
+                offset="0x20"
+                width="32"
+                writefunction="wrFIE">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Falling edge interupt enable"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FALL_IP"
+                nbyte="F"
+                offset="0x24"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Falling interrupt pending"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="HIGH_IE"
+                nbyte="F"
+                offset="0x28"
+                width="32"
+                writefunction="wrHIE">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="High level edge interupt enable"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="HIGH_IP"
+                nbyte="F"
+                offset="0x2c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="High level interrupt pending"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LOW_IE"
+                nbyte="F"
+                offset="0x30"
+                width="32"
+                writefunction="wrLIE">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Low level interupt enable"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LOW_IP"
+                nbyte="F"
+                offset="0x34"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Low level interrupt pending"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="IOF_EN"
+                nbyte="F"
+                offset="0x38"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="H/W I/O Function enable"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="IOF_SEL"
+                nbyte="F"
+                offset="0x3c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="H/W I/O Function Select"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="OUT_XOR"
+                nbyte="F"
+                offset="0x40"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Output XOR (invert)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="resetNet"
+        type="input"
+        updatefunction="resetCB"/>
+    <netport name="intOut0"
+        type="output"/>
+    <netport name="intOut1"
+        type="output"/>
+    <netport name="intOut2"
+        type="output"/>
+    <netport name="intOut3"
+        type="output"/>
+    <netport name="intOut4"
+        type="output"/>
+    <netport name="intOut5"
+        type="output"/>
+    <netport name="intOut6"
+        type="output"/>
+    <netport name="intOut7"
+        type="output"/>
+    <netport name="intOut8"
+        type="output"/>
+    <netport name="intOut9"
+        type="output"/>
+    <netport name="intOut10"
+        type="output"/>
+    <netport name="intOut11"
+        type="output"/>
+    <netport name="intOut12"
+        type="output"/>
+    <netport name="intOut13"
+        type="output"/>
+    <netport name="intOut14"
+        type="output"/>
+    <netport name="intOut15"
+        type="output"/>
+    <netport name="gpios0"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="0"/>
+    <netport name="gpios1"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="1"/>
+    <netport name="gpios2"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="2"/>
+    <netport name="gpios3"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="3"/>
+    <netport name="gpios4"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="4"/>
+    <netport name="gpios5"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="5"/>
+    <netport name="gpios6"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="6"/>
+    <netport name="gpios7"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="7"/>
+    <netport name="gpios8"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="8"/>
+    <netport name="gpios9"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="9"/>
+    <netport name="gpios10"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="10"/>
+    <netport name="gpios11"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="11"/>
+    <netport name="gpios12"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="12"/>
+    <netport name="gpios13"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="13"/>
+    <netport name="gpios14"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="14"/>
+    <netport name="gpios15"
+        type="inout"
+        updatefunction="gpioInCB"
+        updatefunctionargument="15"/>
+    <formalmacro name="BHM_HTTP_FORMALS"/>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

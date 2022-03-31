@@ -1,0 +1,176 @@
+# Build the support objects needed to run TLM (new) on Ovpsim
+# Build the user's platform
+# Objects and exes are put in the cwd
+# TLM Created and Built using OP API
+
+IMPERAS_HOME := $(shell getpath.exe "$(IMPERAS_HOME)")
+ifndef IMPERAS_HOME
+    IMPERAS_ERROR := $(error "IMPERAS_HOME not defined")
+endif
+include $(IMPERAS_HOME)/bin/Makefile.include
+
+############################ YOUR SYSTEMC  ####################################
+# Set this to your SystemC and installation
+# SYSTEMC_HOME   = 
+
+## If SYSTEMC is set and SYSTEMC_HOME is not then use SYSTEMC
+ifeq ($(SYSTEMC_HOME),)
+  ifneq ($(SYSTEMC),)
+    SYSTEMC_HOME=$(SYSTEMC)
+  endif
+endif
+
+#
+# SystemC setup
+#
+ifndef SYSTEMC_HOME
+  SYSTEMC_HOME := $(error "SYSTEMC_HOME must be defined for SystemC install directory")
+endif
+
+#
+# TLM Support Archive (must be built with same toolchain as SystemC for compatability)
+#
+ifndef IMPERAS_TLM_SUPPORT_ARCHIVE
+  IMPERAS_TLM_SUPPORT_ARCHIVE=tlmSupport/tlm.a
+  ifneq ($(MAKECMDGOALS),clean)
+    ifneq ($(MAKECMDGOALS),realclean)
+      IMPERAS_TLM_SUPPORT_ARCHIVE_INFO := $(info \# INFO: Using local TLM support archive $(IMPERAS_TLM_SUPPORT_ARCHIVE); \
+                                                  Set IMPERAS_TLM_SUPPORT_ARCHIVE to specify an alternative library built \
+                                                  from source files in $(IMPERAS_HOME)/ImpPublic/source/host/tlm")
+    endif
+  endif
+endif
+
+############################# INPUT PARAMETERS ################################
+
+# default platform source name
+LINK_OBJ?=
+SRC     ?= platform.cpp
+
+########################### END INPUT PARAMETERS ##############################
+
+IMPERAS_INC  = $(IMPERAS_HOME)/ImpPublic/include/host
+
+ifeq ($(IMPERAS_ARCH),Linux32)
+    SYSTEMC_LIB_DIR = $(SYSTEMC_HOME)/lib-linux
+    EXECSTACK = execstack --clear-execstack
+endif
+ifeq ($(IMPERAS_ARCH),Linux64)
+    SYSTEMC_LIB_DIR = $(SYSTEMC_HOME)/lib-linux64
+    EXECSTACK = execstack --clear-execstack
+endif
+ifeq ($(IMPERAS_ARCH),Windows32)
+    SYSTEMC_LIB_DIR = $(SYSTEMC_HOME)/lib-mingw
+    EXECSTACK = touch
+endif
+ifeq ($(IMPERAS_ARCH),Windows64)
+    SYSTEMC_LIB_DIR = $(SYSTEMC_HOME)/lib-mingw64
+    EXECSTACK = touch
+endif
+
+TLM_CFLAGS  = -Wno-long-long \
+              -DSC_INCLUDE_DYNAMIC_PROCESSES \
+              -D_CRT_SECURE_NO_WARNINGS \
+              -D_CRT_SECURE_NO_DEPRECATE
+
+TLM_LDFLAGS = $(OTHER_ARCHIVES) \
+              $(IMPERAS_TLM_SUPPORT_ARCHIVE) \
+              $(SYSTEMC_LIB_DIR)/libsystemc.a
+              
+
+TLM_CFLAGS  += $(SIM_CFLAGS)
+TLM_LDFLAGS += $(SIM_LDFLAGS)
+
+#
+# Additional
+#
+ifneq (,$(findstring Linux,$(IMPERAS_ARCH)))
+    TLM_LDFLAGS +=  -lpthread
+endif
+
+TLM_CFLAGS += \
+	-I$(SYSTEMC_HOME)/include \
+	-I$(IMPERAS_HOME)/ImperasLib/source \
+	$(MODEL_INCLUDES)
+
+#
+# Build location for intermediate files
+#
+BUILDROOT = Build
+USR_OBJD  = $(BUILDROOT)/$(IMPERAS_ARCH)/usr
+
+#
+# User files
+#
+USR_DEP   = $(sort $(patsubst %.cpp, $(USR_OBJD)/%.d, $(SRC)))
+USR_OBJ   = $(sort $(patsubst %.cpp, $(USR_OBJD)/%.o, $(SRC)))
+
+#
+# Platform name, first stem of SRC
+#
+EXE       = $(patsubst %.cpp,%.$(IMPERAS_ARCH).exe,$(word 1, $(SRC)))
+
+################################### RULES #####################################
+
+all: $(EXE)
+
+#
+# include all the dependancy requirements
+#
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(MAKECMDGOALS),realclean)
+    $(foreach dep,$(USR_DEP),$(eval -include $(dep)))
+endif
+endif
+
+#
+# Rule for the USR files
+#
+$(USR_OBJD)/%.d: %.cpp
+	@    echo "# TLM Depending $@"
+	$(V) mkdir -p $(@D)
+	$(V) $(HOST_GXX) -MM $< $(TLM_CFLAGS) $(CFLAGS) -MT $(@D)/$*.o -MF $@
+
+$(USR_OBJD)/%.o: %.cpp
+	@    echo "# TLM Compiling $@"
+	$(V) mkdir -p $(@D)
+	$(V) $(HOST_GXX) -c -o $@ $< $(TLM_CFLAGS) $(CFLAGS)
+
+#
+# Rules for building OP C++ Archive locally
+#
+include $(IMPERAS_HOME)/ImperasLib/buildutils/Makefile.OP++
+
+#
+# Rule for the user's files
+#
+$(EXE): $(USR_OBJ) $(IMPERAS_OP_CPP_LIBRARY) $(LINK_OBJ) $(IMPERAS_TLM_SUPPORT_ARCHIVE)
+	@    echo "# TLM Linking $@"
+	$(V) mkdir -p $(@D)
+	$(V) $(HOST_GXX) -o $@ $(USR_OBJ) $(LDFLAGS) $(TLM_LDFLAGS)
+	$(V) test -f /usr/bin/execstack; \
+        if [ $$? -eq 0 ]; then \
+            $(EXECSTACK) $@; \
+        fi
+
+#
+# Rules for building TLM Support Archive locally
+#
+TLMSUPPORTFILES=$(wildcard $(IMPERAS_HOME)/ImpPublic/source/host/tlm/*.cpp) \
+                           $(IMPERAS_HOME)/ImpPublic/source/host/tlm/Makefile
+
+$(IMPERAS_TLM_SUPPORT_ARCHIVE): $(TLMSUPPORTFILES)
+	@ echo "# Copy TLM Support files from $(<D)"
+	$(V) mkdir -p $(@D)
+	$(V) cp $^ $(@D)
+	@ echo "# Build TLM Archive $@"
+	$(V) $(MAKE) -C $(@D)
+
+#
+# Rules to clean
+#
+clean::
+	$(V) - rm -f *.exe
+	$(V) - rm -rf $(USR_OBJD) tlmSupport
+realclean:: clean
+	$(V) - rm -rf $(BUILDROOT)

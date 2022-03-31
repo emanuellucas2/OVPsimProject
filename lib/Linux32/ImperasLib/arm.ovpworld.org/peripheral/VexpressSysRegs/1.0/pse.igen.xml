@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="VexpressSysRegs"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="arm.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="ARM Versatile Express System Registers"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Only select registers are modeled. See user.c for details."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="ARM Motherboard Express ATX V2M-P1 Technical Reference Manual(ARM DUI 0447G), Section 4.3 Register Summary"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ID"
+                nbyte="F"
+                readfunction="readId"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="System Identifier"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SW"
+                nbyte="F"
+                offset="0x4"
+                readfunction="readSw"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Soft user switches"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LED"
+                nbyte="F"
+                offset="0x8"
+                width="32"
+                writefunction="writeLed">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="User LEDs"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="CNT100HZ"
+                nbyte="F"
+                offset="0x24"
+                readfunction="read100Hz"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="100Hz counter"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FLAGSSET"
+                nbyte="F"
+                offset="0x30"
+                readfunction="readFlags"
+                width="32"
+                writefunction="writeFlags">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flag Set Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="FLAGSCLR"
+                nbyte="F"
+                offset="0x34"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flag Clear Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="NVFLAGSSET"
+                nbyte="F"
+                offset="0x38"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="NV Flag Set Registers"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="NVFLAGSCLR"
+                nbyte="F"
+                offset="0x3c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="NV Flag Clear Registers"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="MCI"
+                nbyte="F"
+                offset="0x48"
+                readfunction="readMci"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MCI status and control register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FLASH"
+                nbyte="F"
+                offset="0x4c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Flash write protection"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CFGSW"
+                nbyte="F"
+                offset="0x58"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Soft configuration switches"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="CNT24MHZ"
+                nbyte="F"
+                offset="0x5c"
+                readfunction="read24MHz"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="32-bit counter clocked at 24MHz"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MISC"
+                nbyte="F"
+                offset="0x60"
+                readfunction="readMisc"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Miscellaneous control flags"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DMA"
+                nbyte="F"
+                offset="0x64"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMA Channel Selection Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="PROCID0"
+                nbyte="F"
+                offset="0x84"
+                readfunction="readProcId0"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="PROCID1"
+                nbyte="F"
+                offset="0x88"
+                readfunction="readProcId1"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CFGDATA"
+                nbyte="F"
+                offset="0xa0"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="System Configuration register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CFGCTRL"
+                nbyte="F"
+                offset="0xa4"
+                readfunction="readCfgCtrl"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Configuration Control Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CFGSTAT"
+                nbyte="F"
+                offset="0xa8"
+                readfunction="readCfgStat"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Configuration Status Register"/>
+                </docsection>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="cardin"
+        type="input"/>
+    <netport name="wprot"
+        type="input"/>
+    <formalattribute name="SYS_PROCID0"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify value returned when SYS_PROCID0 register is read (default=0x0c000191)"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

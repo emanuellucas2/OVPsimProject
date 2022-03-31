@@ -1,0 +1,99 @@
+td { font: 16px monospace; }
+
+body {
+    background: #000;
+    color: c0c0c0;
+    font-family: sans-serif;
+    height: 200px;
+    width: 50%;
+ }
+th {
+    color: white;
+}
+table {
+    border-collapse: collapse;
+}
+legend {
+    color: white;
+    padding: 10px;
+}
+.ovplabel {
+    padding-left: 0.5cm;
+    font: 16px monospace;
+    color: white;
+}
+.ovptext {
+    font: 16px monospace;
+    color: white;
+}
+.ovplcd2x16{
+  height: 136px;
+  width: 400px;
+  position: relative;
+}
+.ovplcd2x16_image {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.ovplcd2x16_line1 {
+  z-index: 100;
+  position: absolute;
+  color: black;
+  font-size: 36px;
+  font-weight: bold;
+  font-family: monospace;
+  left: 25px;
+  top: -10px;
+}
+.ovplcd2x16_line2 {
+  z-index: 100;
+  position: absolute;
+  color: black;
+  font-size: 36px;
+  font-weight: bold;
+  font-family: monospace;
+  left: 25px;
+  top: 30px;
+}
+img {
+    max-width:100%;
+    max-height:100%;
+}
+.ovpswitchtoggle  {
+width: auto;
+height: 60px;
+}
+.ovpswitchdip {
+width: auto;
+height: 40px;
+}
+.ovpled {
+width: auto;
+height: 40px;
+}
+.ovpbuttonled {
+width: auto;
+height: 40px;
+}
+.ovplcd7seg {
+width: auto;
+height: 75px;
+}
+.ovppower {
+height: 40px;
+}
+.ovpreset {
+height: 40px;
+}
+.ovpbarline {
+height: 20px;
+width: 200px;
+}
+.ovpgauge {
+height: 100px;
+}
+.ovpvertbarline {
+height: 100px;
+width: 10px;
+}

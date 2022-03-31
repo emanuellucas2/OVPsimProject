@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <mmc imagefile="model"
+    library="mmc"
+    name="wb_1way_32byteline_2048tags"
+    releasestatus="4"
+    vendor="ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="This is an MMC cache model.
+	It is configured as write back, 1 way, 32 byte line length with 2048 tags."/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="sp1"/>
+    <busmasterport addresswidth="32"
+        addresswidthmax="0"
+        addresswidthmin="0"
+        mustbeconnected="T"
+        name="mp1"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </mmc>

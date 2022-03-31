@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="PLIC"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    usernetports="nextNetPortUser"
+    vendor="sifive.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="SiFive PLIC Interrupt Controller"/>
+        <doctext name="txt_1"
+            text="Use parameters to configure specific implementation."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="None"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Various SiFive Core Complex manuals, e.g. SiFive E31 Core Complex Manual 31G2.01.00 (https://sifive.cdn.prismic.io/sifive/c29f9c69-5254-4f9a-9e18-24ea73f34e81_e31_core_complex_manual_21G2.pdf)"/>
+    </docsection>
+    <formalattribute defaultvalue="1"
+        max="511"
+        min="1"
+        name="num_sources"
+        type="Uns32">
+        <docsection name="doc"
+            text="num_sources">
+            <doctext name="txt"
+                text="Number of Input Interrupt Sources"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="1"
+        max="512"
+        min="1"
+        name="num_targets"
+        type="Uns32">
+        <docsection name="doc"
+            text="num_targets">
+            <doctext name="txt"
+                text="Number of Output Interrupt Targets, Hart/Context"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="7"
+        max="7"
+        min="1"
+        name="num_priorities"
+        type="Uns32">
+        <docsection name="doc"
+            text="num_priorities">
+            <doctext name="txt"
+                text="Number of Priority levels"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="0x0"
+        name="priority_base"
+        type="Uns32">
+        <docsection name="doc"
+            text="priority_base">
+            <doctext name="txt"
+                text="Base Address offset for Priority Registers"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="0x1000"
+        name="pending_base"
+        type="Uns32">
+        <docsection name="doc"
+            text="pending_base">
+            <doctext name="txt"
+                text="Base Address offset for Pending Registers"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="0x2000"
+        name="enable_base"
+        type="Uns32">
+        <docsection name="doc"
+            text="enable_base">
+            <doctext name="txt"
+                text="Base Address offset for Enable Registers"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="0x80"
+        name="enable_stride"
+        type="Uns32">
+        <docsection name="doc"
+            text="enable_stride">
+            <doctext name="txt"
+                text="Stride size for Enable Register Block"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="0x200000"
+        name="context_base"
+        type="Uns32">
+        <docsection name="doc"
+            text="context_base">
+            <doctext name="txt"
+                text="Base Address offset for Context Registers, Threshold/Claim"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="0x1000"
+        name="context_stride"
+        type="Uns32">
+        <docsection name="doc"
+            text="context_stride">
+            <doctext name="txt"
+                text="Stride size for Context Register Block"/>
+        </docsection>
+    </formalattribute>
+    <netport name="reset"
+        type="input"
+        updatefunction="resetCB">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Reset signal"/>
+        </docsection>
+    </netport>
+    <netport name="irqS1"
+        type="input"
+        updatefunction="irqUpdate"
+        updatefunctionargument="1"/>
+    <netport name="irqT0"
+        type="output"/>
+    <busslaveport addresswidth="32"
+        name="port0"
+        size="0x400000">
+        <addressblock name="reg"
+            size="0x400000"
+            width="32">
+            <localmemory name="regMem"
+                nbyte="T"
+                readfunction="reservedRD"
+                size="0x400000"
+                writefunction="reservedWR"/>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

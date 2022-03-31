@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="MC146818"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="motorola.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="MC146818 Real:time clock."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model has sufficient functionality to allow a Linux Kernel to Boot on the MIPS:MALTA platform."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Motorola MC146818AS Datasheet"/>
+    </docsection>
+    <formalattribute name="timefromhost"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="If set, fetch the time from the host. Note that in this mode, simulation results will vary from run to run."/>
+        </docsection>
+    </formalattribute>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="busPort"
+        size="0x2"/>
+    <netport name="timerInt"
+        type="output"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

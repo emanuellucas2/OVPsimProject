@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="16550"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="national.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x8">
+        <addressblock name="ab"
+            size="0x8"
+            width="8">
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="rbr_dll"
+                nbyte="F"
+                readfunction="readRBR_DLL"
+                viewfunction="viewRBR_DLL"
+                width="8">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Receiver Buffer Register/Divisor Latch Low Read (LCR.DLAB=1)"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="thr_dll"
+                nbyte="F"
+                viewfunction="viewTHR_DLL"
+                width="8"
+                writefunction="writeTHR_DLL">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Transmitter Holding Register/Divisor Latch Low Write (LCR.DLAB=1)"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ier_dlh"
+                nbyte="F"
+                offset="0x1"
+                readfunction="readIER_DLH"
+                viewfunction="viewIER_DLH"
+                width="8"
+                writefunction="writeIER_DLH">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Interrupt Enable Register/Divisor Latch High (LCR.DLAB=1)"/>
+                </docsection>
+                <field access="rw"
+                    name="erbfi"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="etbei"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="elsi"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="edssi"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="iir"
+                nbyte="F"
+                offset="0x2"
+                readfunction="readIIR"
+                viewfunction="viewIIR"
+                width="8">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x01"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Interrupt Identity Register"/>
+                </docsection>
+                <field access="r"
+                    name="intid"
+                    width="4"/>
+                <field access="r"
+                    bitoffset="6"
+                    name="fifoen"
+                    width="2"/>
+                <field bitoffset="4"
+                    name="__pad4"
+                    width="2"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="fcr"
+                nbyte="F"
+                offset="0x2"
+                width="8"
+                writefunction="writeFCR">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART FIFO Control Register"/>
+                </docsection>
+                <field access="w"
+                    name="fifoEn"
+                    width="1"/>
+                <field access="w"
+                    bitoffset="1"
+                    name="fifoRcvrRst"
+                    width="1"/>
+                <field access="w"
+                    bitoffset="2"
+                    name="fifoXmitRst"
+                    width="1"/>
+                <field access="w"
+                    bitoffset="3"
+                    name="dmaModeSel"
+                    width="1"/>
+                <field access="w"
+                    bitoffset="4"
+                    name="fifoXmitTrig"
+                    width="2"/>
+                <field access="w"
+                    bitoffset="6"
+                    name="fifoRcvrTrig"
+                    width="2"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="lcr"
+                nbyte="F"
+                offset="0x3"
+                width="8"
+                writefunction="writeLCR">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Line Control Register"/>
+                </docsection>
+                <field access="rw"
+                    name="dls"
+                    width="2"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="stop"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="pen"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="eps"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="stick"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="brk"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="dlab"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="mcr"
+                nbyte="F"
+                offset="0x4"
+                width="8"
+                writemask="31">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART MODEM Control Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="lsr"
+                nbyte="F"
+                offset="0x5"
+                readfunction="readLSR"
+                viewfunction="viewLSR"
+                width="8">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Line Status Register"/>
+                </docsection>
+                <field access="r"
+                    name="dr"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="1"
+                    name="oe"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="2"
+                    name="pe"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="3"
+                    name="fe"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="4"
+                    name="bi"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="5"
+                    name="thre"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="6"
+                    name="temt"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="7"
+                    name="rfe"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="msr"
+                nbyte="F"
+                offset="0x6"
+                width="8">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0xb0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART MODEM Status Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="scr"
+                nbyte="F"
+                offset="0x7"
+                width="8">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Scratch Register"/>
+                </docsection>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="16550 UART model"/>
+        <doctext name="txt_1"
+            text="The serial input/output from the simulator is implemented using the Serial Device Support described in OVP BHM and PPM API Functions Reference, which describes the parameters that control how the model interacts with the host computer."/>
+        <doctext name="txt_2"
+            text="Interrupts and FIFOs are supported."/>
+        <doctext name="txt_3"
+            text="Registers are aligned on 1 byte boundaries."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Resolution of the baud rate is limited to the simulation time slice (aka quantum) size."/>
+        <doctext name="txt_1"
+            text="Values written to the MCR are ignored. Loopback mode is not supported."/>
+        <doctext name="txt_2"
+            text="The LSR is read-only. The model never sets the LSR &apos;Parity Error&apos;, &apos;Framing Error&apos;, &apos;Break Interrupt&apos; or &apos;Error in RCVR FIFO&apos; bits."/>
+        <doctext name="txt_3"
+            text="The MSR &apos;Data Set Ready&apos; and &apos;Clear To Send&apos; bits are set at reset and all other MSR bits are cleared. MSR bits will only be changed by writes to the MSR and values written to the Modem Status Register do not effect the operation of the model."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="PC16550D Universal Asynchronous Receiver/Transmitter with FIFOs datasheet (http://www.ti.com/lit/ds/symlink/pc16550d.pdf)"/>
+    </docsection>
+    <netport name="reset_uart"
+        type="input"
+        updatefunction="resetCB"/>
+    <netport name="intOut"
+        type="output"/>
+    <formalattribute name="uart16450"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Run in 16450 mode (no FIFOs)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="fifoSize"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Size of fifos"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="refClkFreq"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Frequency (in hertz) of reference clock rate used in baud rate calculation"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="simulatebaud"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set to true to simulate baud delay determined by the Divisor Latch register value and reference clock frequency."/>
+            <doctext name="txt_1"
+                text="Set to false to run without delay - next read data is made available immediately upon read of Receiver Buffer Register."/>
+            <doctext name="txt_2"
+                text="Defaults to false"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="charmode"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set to true when the port is used to connect to a Telnet program and character mode is desired rather than the default Telnet line mode."/>
+            <doctext name="txt_1"
+                text="When set to true a Telnet command sequence is sent at startup that configures the Telnet program into character mode. In addition null bytes are stripped from the data received."/>
+        </docsection>
+    </formalattribute>
+    <formalmacro name="BHM_SER_OPEN_AUTO_FORMALS"/>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

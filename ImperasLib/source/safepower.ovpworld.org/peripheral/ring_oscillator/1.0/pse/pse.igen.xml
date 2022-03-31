@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="ring_oscillator"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="safepower.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Ring Oscillator"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model is a register only model that returns the COUNT value from a memory location."/>
+        <doctext name="txt_1"
+            text="No behavior is currently included in the model, the COUNT register value is provided by a memory location, initialized to (2097152 = 25oC)."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Ikerlan"/>
+    </docsection>
+    <formalattribute defaultvalue="2097152"
+        name="countinit"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Modify the Ring Oscillator count register initialization (default 2097152 = 25oC)"/>
+        </docsection>
+    </formalattribute>
+    <busmasterport addresswidth="2"
+        addresswidthmax="0"
+        addresswidthmin="2"
+        name="rocount">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Master connection to memory holding count value (allows external update)"/>
+        </docsection>
+    </busmasterport>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="REG"
+            size="0x1000"
+            width="32">
+            <localmemory name="buffer0"
+                readfunction="regNoDefinitionRead"
+                size="0x1000"
+                writefunction="regNoDefinitionWrite"/>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="COUNT"
+                nbyte="F"
+                readfunction="ReadCOUNT"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Count Value (default 2097152 = 25oC)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="2097152"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INIT_TIME"
+                nbyte="F"
+                offset="0x4"
+                readfunction="ReadINIT_TIME"
+                width="32"
+                writefunction="WriteINIT_TIME">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Init Time and Control"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="8"
+                    name="INIT"
+                    width="24"/>
+                <field access="rw"
+                    name="CTRL"
+                    width="8"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CAPTURE_TIME"
+                nbyte="F"
+                offset="0x8"
+                readfunction="ReadCAPTURE_TIME"
+                width="32"
+                writefunction="WriteCAPTURE_TIME">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Capture Time"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0010ff00"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

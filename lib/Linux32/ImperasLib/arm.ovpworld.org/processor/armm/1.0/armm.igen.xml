@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <processor QLQualified="T"
+    defaultsemihostlibrary="semihosting"
+    defaultsemihostname="armNewlib"
+    defaultsemihostvendor="arm.ovpworld.org"
+    defaultsemihostversion="1.0"
+    elfcode="40"
+    endian="either"
+    family="ARM"
+    gdbpath="$IMPERAS_HOME/lib/$IMPERAS_ARCH/gdb/arm-none-eabi-gdb"
+    groupH="Cortex"
+    groupL="ARMv6-M"
+    imagefile="model"
+    library="processor"
+    name="armm"
+    procdoc="$IMPERAS_HOME/ImperasLib/source/arm.ovpworld.org/processor/armm/1.0/doc/OVP_Model_Specific_Information_armm_generic.pdf"
+    releasestatus="4"
+    useindefaultplatform="F"
+    vendor="arm.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="ARMM Processor Model"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Usage of binary model under license governing simulator usage. "/>
+        <doctext name="txt_1"/>
+        <doctext name="txt_2"
+            text="Note that for models of ARM CPUs the license includes the following terms:"/>
+        <doctext name="txt_3"/>
+        <doctext name="txt_4"
+            text="Licensee is granted a non-exclusive, worldwide, non-transferable, revocable licence to: "/>
+        <doctext name="txt_5"/>
+        <doctext name="txt_6"
+            text="If no source is being provided to the Licensee:  use and copy only (no modifications rights are granted) the model for the sole purpose of designing, developing, analyzing, debugging, testing, verifying, validating and optimizing software which: (a) (i) is for ARM based systems; and (ii) does not incorporate the ARM Models or any part thereof; and (b) such ARM Models may not be used to emulate an ARM based system to run application software in a production or live environment."/>
+        <doctext name="txt_7"/>
+        <doctext name="txt_8"
+            text="If source code is being provided to the Licensee:  use, copy and modify the model for the sole purpose of designing, developing, analyzing, debugging, testing, verifying, validating and optimizing software which: (a) (i) is for ARM based systems; and (ii) does not incorporate the ARM Models or any part thereof; and (b) such ARM Models may not be used to emulate an ARM based system to run application software in a production or live environment."/>
+        <doctext name="txt_9"/>
+        <doctext name="txt_10"
+            text="In the case of any Licensee who is either or both an academic or educational institution the purposes shall be limited to internal use. "/>
+        <doctext name="txt_11"/>
+        <doctext name="txt_12"
+            text="Except to the extent that such activity is permitted by applicable law, Licensee shall not reverse engineer, decompile, or disassemble this model. If this model was provided to Licensee in Europe, Licensee shall not reverse engineer, decompile or disassemble the Model for the purposes of error correction. "/>
+        <doctext name="txt_13"/>
+        <doctext name="txt_14"
+            text="The License agreement does not entitle Licensee to manufacture in silicon any product based on this model. "/>
+        <doctext name="txt_15"/>
+        <doctext name="txt_16"
+            text="The License agreement does not entitle Licensee to use this model for evaluating the validity of any ARM patent. "/>
+        <doctext name="txt_17"/>
+        <doctext name="txt_18"
+            text="The License agreement does not entitle Licensee to use the model to emulate an ARM based system to run application software in a production or live environment. "/>
+        <doctext name="txt_19"/>
+        <doctext name="txt_20"
+            text="Source of model available under separate Imperas Software License Agreement."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Performance Monitors are not implemented."/>
+        <doctext name="txt_1"
+            text="Debug Extension and related blocks are not implemented."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Verification">
+        <doctext name="txt"
+            text="Models have been extensively tested by Imperas. ARM Cortex-M models have been successfully used by customers to simulate the Micrium uC/OS-II kernel and FreeRTOS."/>
+    </docsection>
+    <docsection name="doc_4"
+        text="Features">
+        <doctext name="txt"
+            text="The model is configured with 16 interrupts and 2 priority bits (use override_numInterrupts parameter to change the number of interrupts; the number of priority bits is fixed in this profile)."/>
+        <doctext name="txt_1"
+            text="MPU is not present. Use parameter override_MPU_TYPE to enable it if required."/>
+        <doctext name="txt_2"
+            text="SysTick timer is present. Use parameter SysTickPresent to disable it if required."/>
+        <doctext name="txt_3"
+            text="Unprivileged/Privileged Extension is not present. Use parameter unprivilegedExtension to enable it if required."/>
+        <doctext name="txt_4"
+            text="VTOR register is not present. Use parameter VTORPresent to enable it if required."/>
+    </docsection>
+    <docsection name="doc_5"
+        text="Unpredictable Behavior">
+        <doctext name="txt"
+            text="Many instruction behaviors are described in the ARM ARM as CONSTRAINED UNPREDICTABLE. This section describes how such situations are handled by this model."/>
+        <docsection name="doc"
+            text="Equal Target Registers">
+            <doctext name="txt"
+                text="Some instructions allow the specification of two target registers (for example, double-width SMULL, or some VMOV variants), and such instructions are CONSTRAINED UNPREDICTABLE if the same target register is specified in both positions. In this model, such instructions are treated as UNDEFINED."/>
+        </docsection>
+        <docsection name="doc_1"
+            text="Floating Point Load/Store Multiple Lists">
+            <doctext name="txt"
+                text="Instructions that load or store a list of floating point registers (e.g. VSTM, VLDM, VPUSH, VPOP) are CONSTRAINED UNPREDICTABLE if either the uppermost register in the specified range is greater than 32 or (for 64-bit registers) if more than 16 registers are specified. In this model, such instructions are treated as UNDEFINED."/>
+        </docsection>
+        <docsection name="doc_2"
+            text="If-Then (IT) Block Constraints">
+            <doctext name="txt"
+                text="Where the behavior of an instruction in an if-then (IT) block is described as CONSTRAINED UNPREDICTABLE, this model treats that instruction as UNDEFINED."/>
+        </docsection>
+        <docsection name="doc_3"
+            text="Use of R13">
+            <doctext name="txt"
+                text="Use of R13 is described as CONSTRAINED UNPREDICTABLE in many circumstances. This model allows R13 to be used like any other GPR."/>
+        </docsection>
+        <docsection name="doc_4"
+            text="Use of R15">
+            <doctext name="txt"
+                text="Use of R15 is described as CONSTRAINED UNPREDICTABLE in many circumstances. This model allows such use to be configured using the parameter &quot;unpredictableR15&quot; as follows:"/>
+            <doctext name="txt_1"
+                text="Value &quot;undefined&quot;: any reference to R15 in such a situation is treated as UNDEFINED;"/>
+            <doctext name="txt_2"
+                text="Value &quot;nop&quot;: any reference to R15 in such a situation causes the instruction to be treated as a NOP;"/>
+            <doctext name="txt_3"
+                text="Value &quot;raz_wi&quot;: any reference to R15 in such a situation causes the instruction to be treated as a RAZ/WI (that is, R15 is read as zero and write-ignored);"/>
+            <doctext name="txt_4"
+                text="Value &quot;execute&quot;: any reference to R15 in such a situation is executed using the current value of R15 on read, and writes to R15 are allowed."/>
+            <doctext name="txt_5"
+                text="Value &quot;assert&quot;: any reference to R15 in such a situation causes the simulation to halt with an assertion message (allowing any such unpredictable uses to be easily identified)."/>
+            <doctext name="txt_6"
+                text="In this variant, the default value of &quot;unpredictableR15&quot; is &quot;execute&quot;."/>
+        </docsection>
+    </docsection>
+    <formalattribute name="variant"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Selects variant (either a generic ISA or a specific model)"/>
+        </docsection>
+        <enum name="ARMv6-M"
+            value="0"/>
+        <enum name="ARMv7-M"
+            value="1"/>
+        <enum name="Cortex-M0"
+            value="2"/>
+        <enum name="Cortex-M0plus"
+            value="3"/>
+        <enum name="Cortex-M1"
+            value="4"/>
+        <enum name="Cortex-M3"
+            value="5"/>
+        <enum name="Cortex-M4"
+            value="6"/>
+        <enum name="Cortex-M4F"
+            value="7"/>
+        <enum name="Cortex-M7"
+            value="8"/>
+        <enum name="Cortex-M7F"
+            value="9"/>
+        <enum name="Cortex-M23"
+            value="10"/>
+        <enum name="Cortex-M33"
+            value="11"/>
+        <enum name="Cortex-M33F"
+            value="12"/>
+    </formalattribute>
+    <formalattribute name="verbose"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify verbosity of output"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="showHiddenRegs"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Show hidden registers during register tracing"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UAL"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Disassemble using UAL syntax"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="compatibility"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify compatibility mode"/>
+        </docsection>
+        <enum name="ISA"
+            value="0"/>
+        <enum name="gdb"
+            value="1"/>
+        <enum name="nopBKPT"
+            value="2"/>
+    </formalattribute>
+    <formalattribute name="unpredictableR15"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify behavior for UNPREDICTABLE uses of R15"/>
+        </docsection>
+        <enum name="undefined"
+            value="0"/>
+        <enum name="nop"
+            value="1"/>
+        <enum name="raz_wi"
+            value="2"/>
+        <enum name="execute"
+            value="3"/>
+        <enum name="assert"
+            value="4"/>
+    </formalattribute>
+    <formalattribute name="override_debugMask"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specifies debug mask, enabling debug output for model components"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="instructionEndian"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The architecture specifies that instruction fetch is always little endian; this attribute allows the defined instruction endianness to be overridden if required"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="resetAtTime0"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Reset the model at time=0 (default=1)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="unprivilegedExtension"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify presence of Unprivileged/Privileged Extension"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="VTORPresent"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify presence of VTOR register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="SysTickPresent"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify number of SysTick timers present"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_CPUID"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override system CPUID register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_MPU_TYPE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override system MPU_TYPE register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_VTOR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override VTOR register reset value"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_deviceStrongAligned"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Force accesses to Device and Strongly Ordered regions to be aligned"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_STRoffsetPC12"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specifies that STR/STR of PC should do so with 12:byte offset from the current instruction (if 1), otherwise an 8:byte offset is used"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_ERG"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specifies exclusive reservation granule"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_numInterrupts"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specifies number of external interrupt lines"/>
+        </docsection>
+    </formalattribute>
+    <busmasterport addresswidth="32"
+        addresswidthmax="32"
+        addresswidthmin="32"
+        mustbeconnected="T"
+        name="INSTRUCTION"/>
+    <busmasterport addresswidth="32"
+        addresswidthmax="32"
+        addresswidthmin="32"
+        mustbeconnected="F"
+        name="DATA"/>
+    <netport mustbeconnected="F"
+        name="sysResetReq"
+        type="output"/>
+    <netport mustbeconnected="F"
+        name="intISS"
+        type="output"/>
+    <netport mustbeconnected="F"
+        name="eventOut"
+        type="output"/>
+    <netport mustbeconnected="F"
+        name="lockup"
+        type="output"/>
+    <netport mustbeconnected="F"
+        name="int"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="reset"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="nmi"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="eventIn"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int0"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int1"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int2"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int3"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int4"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int5"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int6"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int7"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int8"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int9"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int10"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int11"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int12"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int13"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int14"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int15"
+        type="input"/>
+    <command name="debugflags">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="show or modify the processor debug flags"/>
+        </docsection>
+        <commandarg name="get"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="print current processor flags value"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="mask"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="print valid debug flag bits"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="set"
+            type="Int32">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="new processor flags (only flags 0x0000008c can be modified)"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="isync">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="specify instruction address range for synchronous execution"/>
+        </docsection>
+        <commandarg name="addresshi"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="end address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="addresslo"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="start address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="itrace">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="enable or disable instruction tracing"/>
+        </docsection>
+        <commandarg name="after"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="apply after this many instructions"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="enable"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="instructioncount"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="include the instruction number in each trace"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="memory"
+            type="String">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show memory accesses by this instruction. Argument can be any combination of X (execute), L (load or store access) and S (system)"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="off"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="disable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="on"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="processorname"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Include processor name in all trace lines"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registerchange"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers changed by this instruction"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registers"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers after each trace"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <exceptions name="Exceptions">
+        <exception code="0"
+            name="None"/>
+        <exception code="1"
+            name="Reset"/>
+        <exception code="2"
+            name="NMI"/>
+        <exception code="3"
+            name="HardFault"/>
+        <exception code="11"
+            name="SVCall"/>
+        <exception code="14"
+            name="PendSV"/>
+        <exception code="15"
+            name="SysTick"/>
+        <exception code="16"
+            name="ExternalInt000"/>
+        <exception code="17"
+            name="ExternalInt001"/>
+        <exception code="18"
+            name="ExternalInt002"/>
+        <exception code="19"
+            name="ExternalInt003"/>
+        <exception code="20"
+            name="ExternalInt004"/>
+        <exception code="21"
+            name="ExternalInt005"/>
+        <exception code="22"
+            name="ExternalInt006"/>
+        <exception code="23"
+            name="ExternalInt007"/>
+        <exception code="24"
+            name="ExternalInt008"/>
+        <exception code="25"
+            name="ExternalInt009"/>
+        <exception code="26"
+            name="ExternalInt00a"/>
+        <exception code="27"
+            name="ExternalInt00b"/>
+        <exception code="28"
+            name="ExternalInt00c"/>
+        <exception code="29"
+            name="ExternalInt00d"/>
+        <exception code="30"
+            name="ExternalInt00e"/>
+        <exception code="31"
+            name="ExternalInt00f"/>
+    </exceptions>
+    <modes name="Modes">
+        <mode code="0"
+            name="Thread"/>
+        <mode code="1"
+            name="Handler"/>
+    </modes>
+    <registers name="Core">
+        <register alias="F"
+            name="r0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r4"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r5"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r7"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r8"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r9"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r10"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r11"
+            readonly="F"
+            type="3"
+            width="32"/>
+        <register alias="F"
+            name="r12"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="sp"
+            readonly="F"
+            type="2"
+            width="32"/>
+        <register alias="F"
+            name="lr"
+            readonly="F"
+            type="4"
+            width="32"/>
+        <register alias="F"
+            name="pc"
+            readonly="F"
+            type="1"
+            width="32"/>
+    </registers>
+    <registers name="Control">
+        <register alias="F"
+            name="cpsr"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="control"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="primask"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="sp_process"
+            readonly="F"
+            type="2"
+            width="32"/>
+        <register alias="F"
+            name="sp_main"
+            readonly="F"
+            type="2"
+            width="32"/>
+    </registers>
+    <registers name="System">
+        <register alias="F"
+            name="ACTLR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SYST_CSR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SYST_RVR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SYST_CVR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SYST_CALIB"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="NVIC_ISER0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="NVIC_ICER0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="NVIC_ISPR0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="NVIC_ICPR0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="NVIC_IPR0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="NVIC_IPR1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="NVIC_IPR2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="NVIC_IPR3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="CPUID"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="ICSR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="AIRCR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SCR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="CCR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SHPR2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SHPR3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SHCSR"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="Integration_support">
+        <register alias="F"
+            name="executionPri"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="stackDomain"
+            readonly="T"
+            type="0"
+            width="64"/>
+    </registers>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </processor>

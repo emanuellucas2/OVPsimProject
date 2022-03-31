@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="UART"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="sifive.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Sifive UART"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="When simulatebaud parameter is set to true baud rate delays are modeled for receive only, not transmit. Data always sent immediately."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="SiFive Freedom U540-C000 Manual FU540-C000-v1.0.pdf (https://www.sifive.com/documentation/chips/freedom-u540-c000-manual)"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1c">
+        <addressblock name="ab"
+            size="0x1c"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="txdata"
+                nbyte="F"
+                readfunction="txdataRead"
+                viewfunction="txdataView"
+                width="32"
+                writefunction="txdataWrite"
+                writemask="2147483903">
+                <field access="rw"
+                    name="DATA"
+                    width="8"/>
+                <field access="rw"
+                    bitoffset="31"
+                    name="FULL"
+                    width="1"/>
+                <field bitoffset="8"
+                    name="__pad8"
+                    width="23"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="rxdata"
+                nbyte="F"
+                offset="0x4"
+                readfunction="rxdataRead"
+                width="32">
+                <field access="r"
+                    name="DATA"
+                    width="8"/>
+                <field access="r"
+                    bitoffset="31"
+                    name="EMPTY"
+                    width="1"/>
+                <field bitoffset="8"
+                    name="__pad8"
+                    width="23"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="txctrl"
+                nbyte="F"
+                offset="0x8"
+                width="32"
+                writefunction="txctrlWrite"
+                writemask="458755">
+                <field access="rw"
+                    name="TXEN"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="NSTOP"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="TXCNT"
+                    width="3"/>
+                <field bitoffset="2"
+                    name="__pad2"
+                    width="14"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="rxctrl"
+                nbyte="F"
+                offset="0xc"
+                width="32"
+                writefunction="rxctrlWrite"
+                writemask="458753">
+                <field access="rw"
+                    name="RXEN"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="RXCNT"
+                    width="3"/>
+                <field bitoffset="1"
+                    name="__pad1"
+                    width="15"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ie"
+                nbyte="F"
+                offset="0x10"
+                width="32"
+                writefunction="ieWrite">
+                <field access="rw"
+                    name="TXWM"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="RXWM"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="ip"
+                nbyte="F"
+                offset="0x14"
+                readfunction="ipRead"
+                width="32">
+                <field access="r"
+                    name="TXWM"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="1"
+                    name="RXWM"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="div"
+                nbyte="F"
+                offset="0x18"
+                width="32"
+                writefunction="divWrite">
+                <field access="rw"
+                    bitoffset="0"
+                    name="DIV"
+                    width="20"/>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="289"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="intOut"
+        type="output"/>
+    <netport name="reset"
+        type="input"
+        updatefunction="resetCB"/>
+    <formalattribute name="simulatebaud"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set to true to simulate baud delay determined by the div register value and reference clock frequency."/>
+            <doctext name="txt_1"
+                text="Set to false to run without delay - next read data is made available immediately upon read of Receiver Buffer Register."/>
+            <doctext name="txt_2"
+                text="Defaults to false"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="charmode"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set to true when the port is used to connect to a Telnet program and character mode is desired rather than the default Telnet line mode."/>
+            <doctext name="txt_1"
+                text="When set to true a Telnet command sequence is sent at startup that configures the Telnet program into character mode. In addition null bytes are stripped from the data received."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="33333333"
+        name="refClkFreq"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Frequency (in hertz) of reference clock rate used in baud rate calculation"/>
+        </docsection>
+    </formalattribute>
+    <formalmacro name="BHM_SER_OPEN_AUTO_FORMALS"/>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

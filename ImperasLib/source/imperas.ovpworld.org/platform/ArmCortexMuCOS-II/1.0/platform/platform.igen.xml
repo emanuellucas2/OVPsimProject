@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw clp="T"
+    clpAllArgs="T"
+    clpExtArgs="T"
+    clpStdArgs="T"
+    diagnostics="F"
+    httpvis="F"
+    library="platform"
+    name="ArmCortexMuCOS-II"
+    purpose="0"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="F"
+    vendor="imperas.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Platform for Micrium uc/OS-II bring up and simple LED access"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="BareMetal platform for bring up of uc/OS-II on ARM Cortex-M3 processor"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="www.micrium.com/page/products/rtos/os-ii"/>
+    </docsection>
+    <formalarg description="the uc/OS-II image"
+        group="user platform config"
+        mustbespecified="T"
+        name="kernel"
+        type="stringvar"/>
+    <processorinstance endian="little"
+        imagefile="ucosiiDemoApplication.ARM_CORTEX_M3.elf"
+        mips="100.0"
+        name="cpu1"
+        simulateexceptions="T">
+        <vlnvreference name="armm"
+            vendor="arm.ovpworld.org"/>
+        <extlibrary directLoad="T"
+            name="armNewlib_0">
+            <vlnvreference name="armNewlib"
+                vendor="arm.ovpworld.org"/>
+        </extlibrary>
+        <attribute content="Cortex-M3"
+            name="variant"/>
+        <attribute content="gdb"
+            name="compatibility"/>
+        <busmasterportconnection connection="bus1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus1"
+            name="DATA"/>
+    </processorinstance>
+    <bus addresswidth="32"
+        name="bus1"/>
+    <memoryinstance name="memory1">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x0fffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="memory2">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0xffffffff"
+            loaddress="0x20000000"
+            name="sp1"/>
+    </memoryinstance>
+    <peripheralinstance name="led">
+        <vlnvreference name="ledRegister"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x10000007"
+            loaddress="0x10000000"
+            name="busPort"/>
+    </peripheralinstance>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

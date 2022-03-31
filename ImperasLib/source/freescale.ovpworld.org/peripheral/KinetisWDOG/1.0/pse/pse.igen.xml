@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="KinetisWDOG"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="freescale.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Model of the WDOG peripheral used on the Freescale Kinetis platform"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Provides the base behaviour for the OVP Freescale Kinetis platforms"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="www.freescale.com/Kinetis"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x18"
+            width="16">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="STCTRLH"
+                nbyte="F"
+                width="16"
+                writemask="31999">
+                <reset mask="0xffff"
+                    name="Reset"
+                    value="0x01d3"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Status and Control Register High, offset: 0x0 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="4"
+                    name="ALLOWUPDATE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="12"
+                    name="BYTESEL"
+                    width="2"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="CLKSRC"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="DBGEN"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="14"
+                    name="DISTESTWDOG"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="IRQRSTEN"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="8"
+                    name="STNDBYEN"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="STOPEN"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="11"
+                    name="TESTSEL"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="10"
+                    name="TESTWDOG"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="WAITEN"
+                    width="1"/>
+                <field access="rw"
+                    name="WDOGEN"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="WINEN"
+                    width="1"/>
+                <field bitoffset="9"
+                    name="__pad9"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="STCTRLL"
+                nbyte="F"
+                offset="0x2"
+                width="16"
+                writemask="32768">
+                <reset mask="0xffff"
+                    name="Reset"
+                    value="0x0001"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Status and Control Register Low, offset: 0x2 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="15"
+                    name="INTFLG"
+                    width="1"/>
+                <field bitoffset="0"
+                    name="__pad0"
+                    width="15"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TOVALH"
+                nbyte="F"
+                offset="0x4"
+                width="16"
+                writemask="65535">
+                <reset mask="0xffff"
+                    name="Reset"
+                    value="0x004c"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Time-out Value Register High, offset: 0x4 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="TOVALHIGH"
+                    width="16"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TOVALL"
+                nbyte="F"
+                offset="0x6"
+                width="16"
+                writemask="65535">
+                <reset mask="0xffff"
+                    name="Reset"
+                    value="0x4b4c"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Time-out Value Register Low, offset: 0x6 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="TOVALLOW"
+                    width="16"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="WINH"
+                nbyte="F"
+                offset="0x8"
+                width="16"
+                writemask="65535">
+                <reset mask="0xffff"
+                    name="Reset"
+                    value="0x0000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Window Register High, offset: 0x8 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="WINHIGH"
+                    width="16"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="WINL"
+                nbyte="F"
+                offset="0xa"
+                width="16"
+                writemask="65535">
+                <reset mask="0xffff"
+                    name="Reset"
+                    value="0x0010"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Window Register Low, offset: 0xA "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="WINLOW"
+                    width="16"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="REFRESH"
+                nbyte="F"
+                offset="0xc"
+                width="16"
+                writemask="65535">
+                <reset mask="0xffff"
+                    name="Reset"
+                    value="0xb480"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Refresh Register, offset: 0xC "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="WDOGREFRESH"
+                    width="16"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="UNLOCK"
+                nbyte="F"
+                offset="0xe"
+                width="16"
+                writemask="65535">
+                <reset mask="0xffff"
+                    name="Reset"
+                    value="0x0000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Unlock Register, offset: 0xE "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="WDOGUNLOCK"
+                    width="16"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TMROUTH"
+                nbyte="F"
+                offset="0x10"
+                width="16"
+                writemask="65535">
+                <reset mask="0xffff"
+                    name="Reset"
+                    value="0x0000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Timer Output Register High, offset: 0x10 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="TIMEROUTHIGH"
+                    width="16"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TMROUTL"
+                nbyte="F"
+                offset="0x12"
+                width="16"
+                writemask="65535">
+                <reset mask="0xffff"
+                    name="Reset"
+                    value="0x0000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Timer Output Register Low, offset: 0x12 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="TIMEROUTLOW"
+                    width="16"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="RSTCNT"
+                nbyte="F"
+                offset="0x14"
+                width="16"
+                writemask="65535">
+                <reset mask="0xffff"
+                    name="Reset"
+                    value="0x0000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Reset Count Register, offset: 0x14 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="RSTCNT"
+                    width="16"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="PRESC"
+                nbyte="F"
+                offset="0x16"
+                width="16"
+                writemask="1792">
+                <reset mask="0xffff"
+                    name="Reset"
+                    value="0x0400"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Prescaler Register, offset: 0x16 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="8"
+                    name="PRESCVAL"
+                    width="3"/>
+                <field bitoffset="0"
+                    name="__pad0"
+                    width="8"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="Reset"
+        type="input"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

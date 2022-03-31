@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <memory library="memory"
+    name="trap"
+    type="TRAP"
+    vendor="ovpworld.org"
+    version="1.0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Generic neither read or write memory. Used internally."/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="sp1"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </memory>

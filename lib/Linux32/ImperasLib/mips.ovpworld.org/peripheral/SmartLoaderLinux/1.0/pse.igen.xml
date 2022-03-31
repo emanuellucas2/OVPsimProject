@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="SmartLoaderLinux"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="mips.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Smart peripheral creates memory initialisation for a MIPS32 based Linux kernel boot.
+    Performs the generation of boot code at the reset vector (virtual address 0xbfc00000) of the MIPS32 processor. 
+    Loads both the linux kernel and initial ramdisk into memory and patches the boot code to jump to the kernel start. 
+    Initialises the MIPS32 registers and Linux command line."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="MIPS Malta User Manual. MIPS Boot code reference."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Limitations">
+        <doctext name="txt"
+            text="None"/>
+    </docsection>
+    <busmasterport addresswidth="32"
+        addresswidthmax="40"
+        addresswidthmin="32"
+        name="mport">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="This is a master port to access the memory in the system for initalisation of initrd and writing boot code to the reset vector"/>
+        </docsection>
+    </busmasterport>
+    <busslaveport addresswidth="32"
+        name="idport"
+        size="0x4">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="This is a slave port that provides the boardId for Malta (default 0x420)"/>
+        </docsection>
+        <addressblock name="ab"
+            size="0x4"
+            width="32">
+            <localmemory access="r"
+                name="id"
+                readfunction="readBoardId"
+                size="0x4"
+                writefunction="writeBoardId"/>
+        </addressblock>
+    </busslaveport>
+    <formalattribute name="kernel"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="This must specify the name of the Linux kernel that is being loaded. This must be consistent with the imagefile loaded and specified by the imagefile attribute on the processor."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="dtb"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Optionally specific the flattened device tree blob file specifying the development board details for the Linux kernel to read."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="0x80002000"
+        name="envpaddress"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The hex address in virtual memory that contains the command line. Default 0x80002000."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="initrd"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify a compressed initial ram disk file file for loading."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="root"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify the root filesystem for booting. This is a string of the form &apos;/dev/hda1&apos;."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="boardid"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Allows the boardID to be configured. Defaults to 0x420 for Malta with CoreLV."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="134217728"
+        name="memsize"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The decimal size of the available memory. For Example 128MBytes is 134217728."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="command"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="This attribute allows an additional kernal command(s) to be added."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="nonelinux"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="This attribute allows a non linux program to be loaded onto the Malta platform. 
+                                         The program elf should be passed as though it was the kernel file."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="bootimage"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="This attribute is used to pass a new boot image for the non:volatile memory 
+                                         that contains the reset vector from which the procesor starts execution."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="little"
+        name="endian"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the system endian, &quot;big&quot; or &quot;little&quot;; used for writing boot code. Default is &quot;little&quot; endian."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="goldfish"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="This attribute is used to indicate that the peripheral is being used to configure the Android Goldfish platform."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="writebootimage"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="This attribute is used to control the writing of a file of the boot code containing the reset vector from which the procesor starts execution."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="fixuplinuxstart"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="This attribute is used to set the address at which the the code should be &apos;fixed&apos; 
+                        to add the setup required for booting a linux kernel
+                        a0 = number of kernel arguments
+                        a1 = command table start
+                        a2 = command line arguments start
+                        a3 = size fo physical ram"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="disablebootgen"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Disable the generation of boot code."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="disable"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Disable this peripheral. Only provides the boardId in this case."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="PCIslot"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify the PCI slot."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="PCIfunction"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify the PCI function number."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="12"
+        name="pagebits"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify the number of bits to be used when aligning the initrd data (should match page size configured into kernel). default=12."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="initrdhigh"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Locate the initial ramdisk in top of memory. By default the ramdisk is located in the next page after the top of the kernel image."/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

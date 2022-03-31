@@ -1,0 +1,3 @@
+install RUNTIME CpuManager
+install arm.model
+install armv7.toolchain

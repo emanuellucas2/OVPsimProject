@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="usecCounter"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="imperas.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Provides a register with a Microsecond Counter"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Changes at simulator resolution"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="None"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x4">
+        <addressblock name="ab"
+            size="0x4"
+            width="32">
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="USEC"
+                nbyte="F"
+                offset="0x0"
+                readfunction="rdUSEC"
+                width="32"/>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

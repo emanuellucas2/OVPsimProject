@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="KinetisDMAMUX"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="freescale.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Model of the DMAMUX peripheral used on the Freescale Kinetis platform"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Provides the base behaviour for the OVP Freescale Kinetis platforms"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="www.freescale.com/Kinetis"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x10"
+            width="8">
+            <memorymappedregister access="rw"
+                hiarray="0xf"
+                isvolatile="T"
+                loarray="0x0"
+                name="CHCFG%u"
+                nbyte="T"
+                offset="0x0"
+                width="8"
+                writefunction="dmamuxWrite">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="ENBL"
+                    width="1"/>
+                <field access="rw"
+                    name="SOURCE"
+                    width="6"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="TRIG"
+                    width="1"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="Reset"
+        type="input"/>
+    <netport name="eDMARequest"
+        type="output"/>
+    <netport hiarray="63"
+        loarray="0"
+        name="dmaSrc%u"
+        type="input"
+        updatefunction="dmaSrcRequest"
+        updatefunctionargument="_index"/>
+    <netport hiarray="4"
+        loarray="1"
+        name="trg%u"
+        type="input"
+        updatefunction="dmaTrgRequest"
+        updatefunctionargument="_index"/>
+    <formalattribute name="startDMAChannel"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Starting channel number, 0, 16, 32.. (default 0)"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

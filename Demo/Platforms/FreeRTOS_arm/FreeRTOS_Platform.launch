@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.ui.externaltools.ProgramLaunchConfigurationType">
+<stringAttribute key="org.eclipse.debug.core.ATTR_REFRESH_SCOPE" value="${working_set:&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;resources&gt;&#10;&lt;item path=&quot;/FreeRTOS_arm&quot; type=&quot;4&quot;/&gt;&#10;&lt;/resources&gt;}"/>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.ui.externaltools.launchGroup"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE" value="${none}"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${env_var:IMPERAS_HOME}/bin/${env_var:IMPERAS_ARCH}/harness.exe"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="--modulefile module/model.${env_var:IMPERAS_ARCH}.${env_var:IMPERAS_SHRSUF}&#10;--override ArmCortexMFreeRTOS/cpu1/mips=12&#10;--program FreeRTOS/FreeRTOSDemo.ARM_CORTEX_M3.elf&#10;--enabletools --extlib ArmCortexMFreeRTOS/cpu1=freeRTOSOsHelper&#10;--port 12345"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY" value="${workspace_loc:/FreeRTOS_arm}"/>
+</launchConfiguration>

@@ -1,0 +1,35 @@
+<html lang="en">
+<link rel="icon" type="image/icon" href="/imperas.ico">
+
+<head>
+    <title>Imperas Simulation</title>
+    <meta   charset="utf-8"/>
+    <link   rel="stylesheet"        href="normal.css"   type="text/css"/>
+    <script language="JavaScript" src="canvasgauge.js"></script> <!-- needed if use guage -->
+    <script language="JavaScript"   src="runtime.js"        ></script>
+</head>
+
+<body onload="startRefresh('/', 500);">
+
+    <table>
+        <tr>
+            <td class='ovplabel'>Temperature Gauge</td>
+            <td><div>
+                <canvas class='ovpgauge' id="gauge0"> </canvas>
+                <script>
+                        var gauge0 = new Gauge("gauge0", {'mode':'needle', 'range': {'min':-40, 'max':100 } });
+                </script>
+            </div></td>
+
+        </tr>
+    </table>
+    
+    <table>
+        <br/><br/>
+        <tr><td class='ovplabel'>Power Button </td></tr>
+        <tr><td><div class='ovppower' id="power0" onmousedown="ovpswitchclicked(event)" title='click to quit simulation'>SIMULATION NOT RUNNING</div></td></tr>
+    </table>
+
+<div class='console' id='console'></div>
+</body>
+</html>

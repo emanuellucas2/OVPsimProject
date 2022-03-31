@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="zynq_7000-spi"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="xilinx.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Zynq 7000 SPI Registers"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model implements the full set of registers but no behavior."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Zynq-7000 TRM (https://www.xilinx.com/support/documentation/user_guides/ug585-Zynq-7000-TRM.pdf)"/>
+    </docsection>
+    <busmasterport addresswidth="32"
+        addresswidthmax="0"
+        addresswidthmin="32"
+        name="SPI"/>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="32">
+            <localmemory name="buffer"
+                readfunction="regNoDefinitionRead"
+                size="0x1000"
+                writefunction="regNoDefinitionWrite"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Config"
+                nbyte="F"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SPI configuration register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00020000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Intr_status"
+                nbyte="F"
+                offset="0x4"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SPI interrupt status register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000004"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Intrpt_en"
+                nbyte="F"
+                offset="0x8"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Enable register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Intrpt_dis"
+                nbyte="F"
+                offset="0xc"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt disable register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Intrpt_mask"
+                nbyte="F"
+                offset="0x10"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt mask register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="En"
+                nbyte="F"
+                offset="0x14"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SPI_Enable Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Delay"
+                nbyte="F"
+                offset="0x18"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Delay Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="Tx_data"
+                nbyte="F"
+                offset="0x1c"
+                width="32"
+                writefunction="wrData">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Transmit Data Register."/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Rx_data"
+                nbyte="F"
+                offset="0x20"
+                readfunction="rdData"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Receive Data Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Slave_Idle_count"
+                nbyte="F"
+                offset="0x24"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Slave Idle Count Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x000000FF"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TX_thres"
+                nbyte="F"
+                offset="0x28"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="TX_FIFO Threshold Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000001"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="RX_thres"
+                nbyte="F"
+                offset="0x2c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="RX FIFO Threshold Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000001"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Mod_id"
+                nbyte="F"
+                offset="0xfc"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Module ID register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00090106"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="intOut"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Interrupt signal"/>
+        </docsection>
+    </netport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

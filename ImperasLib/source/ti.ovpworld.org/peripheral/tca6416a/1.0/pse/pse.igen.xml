@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="tca6416a"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="ti.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Texas Instruments TCA6416A peripheral"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model was created to satisfy the requirement of the European SafePower Project"/>
+        <doctext name="txt_1"
+            text="This model implements a basic interface allowing XADC channel selection on the SafePower projects utilization of zc702/zc706 boards."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Device information from http://www.ti.com/lit/ds/symlink/tca6416a.pdf"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="iic"
+        size="0x1">
+        <addressblock name="reg"
+            size="0x1"
+            width="8">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="reg"
+                nbyte="F"
+                offset="0x0"
+                readfunction="readI2C"
+                width="8"
+                writefunction="writeI2C"/>
+        </addressblock>
+    </busslaveport>
+    <netport name="xadcmux"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Selects the channel for the XADC interface sample"/>
+        </docsection>
+    </netport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

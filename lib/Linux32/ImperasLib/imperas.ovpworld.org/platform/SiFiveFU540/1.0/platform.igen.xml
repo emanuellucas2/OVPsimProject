@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw clp="T"
+    clpAllArgs="F"
+    clpExtArgs="T"
+    clpStdArgs="T"
+    diagnostics="F"
+    httpvis="F"
+    library="platform"
+    name="SiFiveFU540"
+    purpose="1"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="imperas.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0"
+    wallclock="10">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="
+    SiFive FU540-C000 SoC module.
+    On start up or reset, the reset code at 0x1004 will jump to a jump table entry indexed by the MSEL register at address 0x1000 (default initial MSEL value is 0xf which will cause a jump to address 0x10000). Use the msel peripheral&apos;s MSEL parameter to change the initial value of this register. 
+    To run a bare metal application use the --program command line option to specify an elf file to be loaded. It must be linked to use addresses corresponding to the implemented memory regions. The --program option will override the initial pc with the ELF file&apos;s start address. 
+    To facilitate booting Linux an OVP SmartLoader psuedo-peripheral has been included that provides the functionality of the ZSBL/FSBL. The SmartLoader&apos;s dtb parameter should be used to specify the device tree blob file to load, and the bbl elf file should be loaded using the --objfilenoentry command line option. 
+    "/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="SiFive Freedom U540-C000 Manual FU540-C000-v1.0.pdf (https://www.sifive.com/documentation/chips/freedom-u540-c000-manual)"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Limitations">
+        <doctext name="txt"
+            text="
+    Caches and the Cache Controller are not modeled.
+    The Instruction Tightly Integrated Memory (ITIM) is implemented simply as RAM. Deallocation by writing to the byte immediately following the memory is a NOP.
+    The L2 Loosely Integrated Memory (L2-LIM) is implemented simply as RAM. It is always available, since the Cache Controller is not modeled.
+    The L2 Scratchpad memory is not modeled.
+    The Platform DMA Engine (PDMA) is not modeled.
+    The Pulse Width Modulator (PWM) is not modeled.
+    The Inter-Integrated Circuit (I2C) Master Interface is not modeled.
+    The Serial Peripheral Interface (SPI) is not modeled. Instead a Virtio Block MMIO device has been added at reserved address 0x1f000000, using interrupt 54.
+    The General Purpose Input/Output Controller (GPIO) is not modeled.
+    The One-Time Programmable Memory Interface (OTP) is not modeled.
+    DDR controller is not modeled. DDR memory is modeled as RAM.
+    The Debug Interface is not modeled."/>
+    </docsection>
+    <module name="SiFiveFU540">
+        <vlnvreference library="module"
+            name="FU540"
+            vendor="sifive.ovpworld.org"
+            version="1.0"/>
+        <paramoverride content="1"
+            name="console"
+            parent="uart0"/>
+        <paramoverride content="1"
+            name="finishOnDisconnect"
+            parent="uart0"/>
+        <paramoverride content="uart0.log"
+            name="outfile"
+            parent="uart0"/>
+    </module>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

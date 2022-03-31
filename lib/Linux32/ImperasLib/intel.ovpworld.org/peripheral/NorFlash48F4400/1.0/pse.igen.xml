@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="NorFlash48F4400"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="intel.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Intel StrataFlash P30 Memory: 64MB (512-Mbit), 2x16, Top configuration."/>
+        <doctext name="txt_1"
+            text="Organized in a 2x16 configuration (2 16 bit wide data chips, requiring commands to be repeated in data bits 0:15 and 16:31)."/>
+        <doctext name="txt_2"
+            text="Top configuration (last 4 blocks are 64KB parameter blocks)."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="No flash program timing is modeled, all operations including erase take effect immediately, and suspend commands are NOPs."/>
+        <doctext name="txt_1"
+            text="Block Locking, Lock-down and OTP (One-Time Programmable) features are not modeled (Blocks are always reported to be unlocked)."/>
+        <doctext name="txt_2"
+            text="Burst-Mode reads and the Read Configuration register are not modeled."/>
+        <doctext name="txt_3"
+            text="Buffered writes are written immediately, not held until confirm command is issued."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Intel Nor Flash Datasheet as used on Xilinx ML505 board: http://www.xilinx.com/products/boards/ml505/datasheets/30666604.pdf"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="flash"
+        size="0x4000000"/>
+    <formalattribute name="image"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Binary image file name(s) for flash memory initial value"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

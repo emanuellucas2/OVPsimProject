@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="zynq_7000-can"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="xilinx.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Zynq 7000 CAN Registers"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model implements the full set of registers but no behavior."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Zynq-7000 TRM (https://www.xilinx.com/support/documentation/user_guides/ug585-Zynq-7000-TRM.pdf)"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="32">
+            <localmemory name="buffer"
+                readfunction="regNoDefinitionRead"
+                size="0x1000"
+                writefunction="regNoDefinitionWrite"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SRR"
+                nbyte="F"
+                width="32"
+                writemask="3">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Software Reset Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MSR"
+                nbyte="F"
+                offset="0x4"
+                width="32"
+                writemask="7">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Mode Select Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="BRPR"
+                nbyte="F"
+                offset="0x8"
+                width="32"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Baud Rate Prescaler Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="BTR"
+                nbyte="F"
+                offset="0xc"
+                width="32"
+                writemask="511">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Bit Timing Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="ECR"
+                nbyte="F"
+                offset="0x10"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Error Counter Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ESR"
+                nbyte="F"
+                offset="0x14"
+                width="32"
+                writemask="31">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Error Status Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SR"
+                nbyte="F"
+                offset="0x18"
+                width="32"
+                writemask="4095">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Status Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000001"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ISR"
+                nbyte="F"
+                offset="0x1c"
+                width="32"
+                writemask="32767">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Status Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00006000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="IER"
+                nbyte="F"
+                offset="0x20"
+                width="32"
+                writemask="32767">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Enable Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ICR"
+                nbyte="F"
+                offset="0x24"
+                width="32"
+                writemask="32767">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Clear Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCR"
+                nbyte="F"
+                offset="0x28"
+                width="32"
+                writemask="1">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timestamp Control Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="WIR"
+                nbyte="F"
+                offset="0x2c"
+                width="32"
+                writemask="65535">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watermark Interrupt Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00003F3F"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="TXFIFO_ID"
+                nbyte="F"
+                offset="0x30"
+                width="32"
+                writefunction="wrFIFOId">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="transmit message fifo message identifier"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TXFIFO_DLC"
+                nbyte="F"
+                offset="0x34"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="transmit message fifo data length code"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TXFIFO_DATA1"
+                nbyte="F"
+                offset="0x38"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="transmit message fifo data word 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TXFIFO_DATA2"
+                nbyte="F"
+                offset="0x3c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="transmit message fifo data word 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="TXHPB_ID"
+                nbyte="F"
+                offset="0x40"
+                width="32"
+                writefunction="wrHPBId">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="transmit high priority buffer message identifier"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TXHPB_DLC"
+                nbyte="F"
+                offset="0x44"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="transmit high priority buffer data length code"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TXHPB_DATA1"
+                nbyte="F"
+                offset="0x48"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="transmit high priority buffer data word 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TXHPB_DATA2"
+                nbyte="F"
+                offset="0x4c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="transmit high priority buffer data word 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="RXFIFO_ID"
+                nbyte="F"
+                offset="0x50"
+                readfunction="rxFIFOId"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="receive message fifo message identifier"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="RXFIFO_DLC"
+                nbyte="F"
+                offset="0x54"
+                width="32"
+                writemask="4026597375">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="receive message fifo data length code"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="RXFIFO_DATA1"
+                nbyte="F"
+                offset="0x58"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="receive message fifo data word 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="RXFIFO_DATA2"
+                nbyte="F"
+                offset="0x5c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="receive message fifo data word 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="AFR"
+                nbyte="F"
+                offset="0x60"
+                width="32"
+                writemask="7">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Acceptance Filter Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="AFMR1"
+                nbyte="F"
+                offset="0x64"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Acceptance Filter Mask Register 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="AFIR1"
+                nbyte="F"
+                offset="0x68"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Acceptance Filter ID Register 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="AFMR2"
+                nbyte="F"
+                offset="0x6c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Acceptance Filter Mask Register 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="AFIR2"
+                nbyte="F"
+                offset="0x70"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Acceptance Filter ID Register 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="AFMR3"
+                nbyte="F"
+                offset="0x74"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Acceptance Filter Mask Register 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="AFIR3"
+                nbyte="F"
+                offset="0x78"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Acceptance Filter ID Register 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="AFMR4"
+                nbyte="F"
+                offset="0x7c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Acceptance Filter Mask Register 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="AFIR4"
+                nbyte="F"
+                offset="0x80"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Acceptance Filter ID Register 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="intOut"
+        type="output"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

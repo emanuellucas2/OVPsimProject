@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="PerformanceCounterCore"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="altera.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Altera Avalon Performance Counter Core"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="No Support for pin level transitions"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Embedded Peripherals IP User Guide, UG-01085-11.0 11.0 June 2011"/>
+    </docsection>
+    <formalattribute name="Counters"
+        type="uns64"/>
+    <busslaveport addresswidth="32"
+        name="sp1"
+        size="0x80">
+        <addressblock name="reg0"
+            size="0x80"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t0lo"
+                nbyte="F"
+                readfunction="read_lo"
+                userdata="0"
+                width="32"
+                writefunction="write_lo">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t0hi"
+                nbyte="F"
+                offset="0x4"
+                readfunction="read_hi"
+                userdata="0"
+                width="32"
+                writefunction="write_hi">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t0ev"
+                nbyte="F"
+                offset="0x8"
+                readfunction="read_ev"
+                userdata="0"
+                width="32"
+                writefunction="write_ev">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t1lo"
+                nbyte="F"
+                offset="0xc"
+                readfunction="read_lo"
+                userdata="1"
+                width="32"
+                writefunction="write_lo">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t1hi"
+                nbyte="F"
+                offset="0x10"
+                readfunction="read_hi"
+                userdata="1"
+                width="32"
+                writefunction="write_hi">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t1ev"
+                nbyte="F"
+                offset="0x14"
+                readfunction="read_ev"
+                userdata="1"
+                width="32"
+                writefunction="write_ev">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t2lo"
+                nbyte="F"
+                offset="0x18"
+                readfunction="read_lo"
+                userdata="2"
+                width="32"
+                writefunction="write_lo">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t2hi"
+                nbyte="F"
+                offset="0x1c"
+                readfunction="read_hi"
+                userdata="2"
+                width="32"
+                writefunction="write_hi">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t2ev"
+                nbyte="F"
+                offset="0x20"
+                readfunction="read_ev"
+                userdata="2"
+                width="32"
+                writefunction="write_ev">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t3lo"
+                nbyte="F"
+                offset="0x24"
+                readfunction="read_lo"
+                userdata="3"
+                width="32"
+                writefunction="write_lo">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t3hi"
+                nbyte="F"
+                offset="0x28"
+                readfunction="read_hi"
+                userdata="3"
+                width="32"
+                writefunction="write_hi">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t3ev"
+                nbyte="F"
+                offset="0x2c"
+                readfunction="read_ev"
+                userdata="3"
+                width="32"
+                writefunction="write_ev">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t4lo"
+                nbyte="F"
+                offset="0x30"
+                readfunction="read_lo"
+                userdata="4"
+                width="32"
+                writefunction="write_lo">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t4hi"
+                nbyte="F"
+                offset="0x34"
+                readfunction="read_hi"
+                userdata="4"
+                width="32"
+                writefunction="write_hi">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t4ev"
+                nbyte="F"
+                offset="0x38"
+                readfunction="read_ev"
+                userdata="4"
+                width="32"
+                writefunction="write_ev">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t5lo"
+                nbyte="F"
+                offset="0x3c"
+                readfunction="read_lo"
+                userdata="5"
+                width="32"
+                writefunction="write_lo">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t5hi"
+                nbyte="F"
+                offset="0x40"
+                readfunction="read_hi"
+                userdata="5"
+                width="32"
+                writefunction="write_hi">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="t5ev"
+                nbyte="F"
+                offset="0x44"
+                readfunction="read_ev"
+                userdata="5"
+                width="32"
+                writefunction="write_ev">
+                <reset mask="0xffffffff"
+                    name="IRESET"
+                    value="0x00000000"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

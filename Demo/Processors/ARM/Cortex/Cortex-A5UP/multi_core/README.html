@@ -1,0 +1,169 @@
+<html>
+<title>OVP Cortex-A5UP Multi Core Demo</title>
+<head><style>
+	body {
+		text-align: center;
+	}
+	#page-wrap {
+		text-align: left;
+		 width: 90%;
+		 margin: 0 auto;
+	 }
+	#checkFiles {
+		text-align: left;
+		width: 90%;
+		margin: 0 auto;
+	 }
+	 
+</style></head>
+<body><div id='page-wrap'>
+<h1>Demonstration README - Multi Core Example</h1>
+<p>Contents:</p>
+<ul>
+<li><a href=#rmWriteSectionMulti2Intro >Running a simulation with Multiple cores</a><br/></li>
+<li><a href=#rmWriteSectionRun >Running the simulation</a><br/></li>
+<li><a href=#rmWriteSectionResults >Interpreting results</a><br/></li>
+<li><a href=#rmWriteSectionBuild >Building a Test Harness and Re-Building Applications</a><br/></li>
+</ul>
+<hr>
+<a id='rmWriteSectionMulti2Intro'>
+<h1>Running a simulation with Multiple cores</h1>
+</a>
+<p>
+		This demo will show how to construct a platform containing two <a href=http://www.ovpworld.org/processor-model-variant-arm-cortex-cortex-a5up title='look at OVPWorld page on this variant'>ARM Cortex-A5UP</a>
+		processor instances, and a memory map that provides both shared and local memory.
+		All memory is shared except for a region of local memory used for the processor 
+		stack and heap, this cannot be shared.
+	</p>
+<p><img src=../../../../pictures/Multicore2_Run.jpg alt=IMG_MULTI2_RUN height=400></p>
+<p>
+		The application:
+	</p>
+<ul>
+<li><a href=../../../Applications/multicore2/multicore2_main.c title='look at application source'>multicore2_main.c</a> (<a href=../../../Applications/multicore2 title='look at application directory'>../../../Applications/multicore2/multicore2.ARM_CORTEX_A-O1-g.elf</a>)</li>
+</ul>
+<p>
+		can be executed on this platform. This pre-compiled application exchanges data 
+		between the two processors. One processor generates a fibonacci sequence into a
+		region of shared memory and the second reads the result and performs a simple 
+		algorithm on it.
+		<br/><br/>
+		The application is loaded into the shared region and is executed by both 
+		processors. The Id of each processor instance is used in the application to 
+		select either generation of data or receiver for the data.
+		<br/><br/>
+		After the application has executed, a simulation summary will be printed,
+		indicating the number of instructions executed, and the performance of the
+		simulation in terms of Millions of simulated Instructions executed Per
+		Second (MIPS).
+		<br/><br/>
+		A platform similar to the one used in this simulation, can be found in the example at <a href=../../../../../../Examples/PlatformConstruction/twoProcessorSharedMemory title='look at example platform source and Makefile'>../Examples/PlatformConstruction/twoProcessorSharedMemory directory</a>. The example can be
+		compiled using iGen and then <a href=http://www.ovpworld.org/resources/windows title='look at MinGW/MSYS download page on OVPWorld'>MinGW/MSYS</a> under Windows, and GCC under Linux.
+	</p>
+<hr>
+<a id='rmWriteSectionRun'>
+<h1>Running the simulation</h1>
+</a>
+<h2>From a Microsoft window manager or Linux / MSYS shell</h2>
+<p>
+		Launch the platform with a pre-compiled application; in Windows by double 
+		clicking one of the batch files (.bat) or in Linux / MSYS by executing one of the shell 
+		scripts (.sh).
+		<br/><br/>
+		The scripts will be available dependent upon the applications available:
+	</p>
+<ul>
+<li>Run_MultiCore2.bat (Windows)</li>
+<li>Run_MultiCore2.sh (Linux/MSYS)</li>
+</ul>
+<p>The simulation will run and print statistics upon completion.</p>
+<h2>From the command line</h2>
+<p>
+		If running a DOS command window, or a MSYS shell, or a Linux shell, simply change
+		directory to an appropriate directory, then type the name of the ISS executable, iss.exe or issdemo.exe (dependent on installation), 
+		provide the name of the variant you want after the --variant argument, and provide the
+		application after the --program argument, for example:
+		<br/><br/>
+		cmd > issdemo.exe --variant Cortex-A5UP --numprocessors 2   --program ../../../Applications/multicore2/multicore2.ARM_CORTEX_A-O1-g.elf
+		<br/><br/>
+		Note that often other options like --processorname and parameters such as --parameter endian=little, are also needed. Look at the above script files to see what is needed for a specific variant.
+		<br/><br/>
+		You can use issdemo.exe --help to see more options.
+		<br/><br/>
+		The simulation will run and print statistics upon completion.
+	</p>
+<hr>
+<a id='rmWriteSectionResults'>
+<h1>Interpreting results</h1>
+</a>
+<p>
+		At the end of simulation, a number of statistics will be printed.
+		Amongst the statistical information which is reported, are the number
+		of 'Simulated instructions' and the 'Simulated MIPS'.
+	</p>
+<p><img src=../../../../pictures/Single_Run_Output.jpg alt=IMG_RUNOUTPUT height=200></p>
+<p>
+		The 'Simulated instructions' will vary depending upon the application being
+		executed, this count indicates the number of simulated processor
+		instructions for the processors in the platform.
+		<br/><br>
+		The 'Simulated MIPS' will be a measure of the number of 'Simulated
+		instructions' over the host elapsed time.
+		The simulation must run for around 1 second of simulated time in order to print 
+		simulated MIPS statistics.
+		<br/><br>
+		If you have multiple processors in your simulation, there will be a statistics sections for
+		each processor, and then a summary for the overall simulation run.
+	</p>
+<hr>
+<a id='rmWriteSectionBuild'>
+<h1>Building a Test Harness and Re-Building Applications</h1>
+</a>
+<p>
+		In order to build a full product install must have been carried out. This may
+		be the OVP 'OVPsim' package or one of the Imperas Professional Tools
+		packages (*SDK or *DEV). 
+		<br/><br>
+		A processor cross compiler toolchain package must be installed to allow the 
+		applications to be rebuilt.
+	</p>
+<p>
+			This will be available from OVPWorld, with a package name similar to 
+			<b>armv7.toolchain.YYYYMMDD.v.OS.exe</b>. Alternatively an external 
+			toolchain to support this processor variant can be used. Please check the requirements.
+			<br/><br>
+		</p>
+<p>
+		An example of a Harness and Makefile to build it can be found in the example <a href=../../../../../../Examples/SimulationControl/simplePlatformInHarnessUsingOP/harness title='look at a Harness and a Makefile for building'>../Examples/SimulationControl/simplePlatformInHarnessUsingOP/harness</a> directory
+		<br/><br>
+		The application ELF files used can be re-built in the <a href=../../../Applications/multicore2 title='look at the Applications build directory'>applications</a> directory.
+	</p>
+<h3>Re-building Platform</h3>
+<p>
+		The platform/module can be compiled using MSYS/MinGW 
+		under Windows, and GCC under Linux.
+		<br/><br>
+		The compilation can be performed using the following command lines:
+		<br/><br>
+		<b>Windows Command shell</b><br>
+		This requires an MSYS environment setup<br>
+		>mingw32-make -f %IMPERAS_HOME%\ImperasLib\buildutils\Makefile.harness ^<br>
+				  &nbsp;&nbsp;&nbsp;&nbsp;SRC=harness.c ^<br>
+				  &nbsp;&nbsp;&nbsp;&nbsp;NOVLNV=1<br>
+		<br>
+		<b>Linux or Windows MSYS shell (if you have an MSYS environment set up)</b><br>
+		>make -f ${IMPERAS_HOME}/ImperasLib/buildutils/Makefile.harness \<br>
+				 &nbsp;&nbsp;&nbsp;&nbsp;SRC=harness.c \<br>
+				 &nbsp;&nbsp;&nbsp;&nbsp;NOVLNV=1<br>
+	</p>
+<h3>Re-building Application</h3>
+<p>
+		The applications were built using a Cross Compiler toolchain, that may be 
+		available from the OVPWorld website. An ARM_CORTEX_A.makefile.include is included
+		that is used to setup a basic build environment for that toolchain. This can 
+		be modified to use alternative compiler flags.
+	</p>
+<hr>
+<p>###</p>
+</div></body>
+</html>

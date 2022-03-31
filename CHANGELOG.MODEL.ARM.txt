@@ -1,0 +1,271 @@
+###############################################################################
+#                           CHANGELOG.MODEL.ARM.txt                           #
+#      Copyright (c) 2005-2021 Imperas Software Ltd., www.imperas.com         #
+#               Covered under your Software License Agreement                 #
+#                                                                             #
+###############################################################################
+#                                                                             #
+# This CHANGELOG contains information specific to the ARM processor models    #
+# Please also refer to the change logs below that form part of this changelog #
+#    CHANGELOG.OVP.txt                                                        #
+#                                                                             #
+###############################################################################
+    Date : 20211231                        Version : 20211118.0
+###############################################################################
+
+###############################################################################
+##                                                                           ##
+## Date 2021-December-06                                                     ##
+##                                                                           ##
+## Release 20211118.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+###############################################################################
+##                                                                           ##
+## Date 2021-April-08                                                        ##
+##                                                                           ##
+## Release 20210408.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+ARM and ARMM Processor Models
+--------------------------------------------------------------------------------
+- For variants implementing MPU structures controlled by MPU_RBAR and MPU_RASR,
+  behavior has been corrected in cases where the base address is not a multiple
+  of region size. Previously, such regions were ignored; now, the base address
+  is masked so that it is a multiple of the specified size.
+
+###############################################################################
+##                                                                           ##
+## Date 2020-June-30                                                         ##
+##                                                                           ##
+## Release 20200630.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+ARM Processor Model
+--------------------------------------------------------------------------------
+- Alignment check for floating point load/store pair instructions has been
+  corrected.
+- If the reset net was written with a value with any of bits 63-32 set and bits
+  31-0 not set e.g. 0x100000000LL, then the model will be forced into the
+  HALT state and will not recover. This has been fixed.
+- Behavior of parameter enableGICv2_64kB_Page for multicluster cores has been
+  corrected (previously, this parameter was ignored)
+- The maximum number of interrupts permitted (visible in the GICD_TYPER
+  register) has been updated for the following variants:
+  Cortex-A9:
+    maximum value 15 (512 interrupts)
+  ARMv8, Cortex-A17, Cortex-A32, Cortex-A35, Cortex-A53, Cortex-A55, Cortex-A57,
+  Cortex-A72, Cortex-A73, Cortex-A75:
+    maximum value 31 (1020 interrupts)
+- Write masks for GICD_ITARGETSR and GICD_PENDSGIR registers have been corrected
+  when the GIC is used with a multicluster processor.
+
+ARMM Processor Model
+--------------------------------------------------------------------------------
+- Cortex-M23, Cortex-M33 and Cortex-M33F variants have been added.
+
+AArch32 Load-Acquire Exclusive and Store-Release Exclusive Instructions
+--------------------------------------------------------------------------------
+- A bug has been fixed which caused AArch32 load-acquire exclusive and
+  store-release exclusive instructions to behave incorrectly.
+
+###############################################################################
+##                                                                           ##
+## Date 2019-November-06                                                     ##
+##                                                                           ##
+## Release 20191106.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+Configuration Signals
+--------------------------------------------------------------------------------
+- Per-PE AArch64 configuration signal RVBARADDRx has been added (sampled to seed
+  RVBAR_ELx at reset).
+- Per-PE AArch64 configuration signal AA64nAA32 has been added (sampled to seed
+  RMR_ELx.AA64 at reset).
+- Behavior of Per-PE configuration signals VINITHI, CFGEE, CFGIE and CFGTE
+  has been corrected for multicore processors.
+
+###############################################################################
+##                                                                           ##
+## Date 2019-October-09                                                      ##
+##                                                                           ##
+## Release 20191009.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+Slow Performance
+--------------------------------------------------------------------------------
+- The model has been enhanced to optimize performance for simulations using
+  large page sizes and 16-bit ASIDs. TLBs now hold entries for only the most
+  recently used ASIDs, with older entries being ejected and reloaded on demand.
+  The initial number of distinct ASIDs for which entries are held is controlled
+  by parameter 'ASIDCacheSize'; the default initial value of this parameter is
+  8, but the model may increase the cache size during simulation if it
+  determines that the cache is too small. A value of 0 is special and indicates
+  no limit - this enables backwards-compatible model behavior.
+
+Instruction Attributes
+--------------------------------------------------------------------------------
+- For floating point instructions using control word fields, FPSCR is now
+  reported as a source in AArch32 state and FPCR is now reported as a source in
+  AArch64 state.
+- For floating point instructions affecting exception flags, both FPSCR and
+  FPSR will now be reported as written, if they are present. Previously, only
+  FPSCR was reported as written.
+
+###############################################################################
+##                                                                           ##
+## Date 2019-June-28                                                         ##
+##                                                                           ##
+## Release 20190628.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+Cryptographic Extension
+--------------------------------------------------------------------------------
+- The ARMv8.0 Cryptographic Extension is now implemented and enabled by SHA1 and
+  SHA2 fields in ID_AA64ISAR0_EL1 and ID_ISAR5 ID registers.
+- The ARMv8.2-SHA Cryptographic Extension is now implemented and enabled by SHA2
+  and SHA3 fields in ID_AA64ISAR0_EL1.
+
+VRECPE and VRSQRTE Instructions
+--------------------------------------------------------------------------------
+- A bug has been fixed which caused incorrect behavior for VRECPE and VRSQRTE
+  instructions with quadword U32 arguments.
+
+Instruction Attributes
+--------------------------------------------------------------------------------
+- Polynomial multiplication instructions are now tagged as being of class
+  OCL_IC_MULTIPLY.
+- Quadruple-width polynomial instructions now report all registers read and
+  written; previously, registers were reported as if they were double-width
+  instructions.
+
+Thumb Branch (B) Instruction
+--------------------------------------------------------------------------------
+- A bug has been fixed in the Thumb branch (B) instruction. Branch instructions
+  encoded using the Thumb T3 encoding where the J1 and J2 bits in the opcode 
+  differ would branch to the wrong address. This can only occur for offsets 
+  greater than 256K bytes, which are very uncommon. This issue existed in both
+  the arm and armm models.
+
+Exception Behavior Corrected when HCR_EL2.{TGE,E2H}={1,1}
+--------------------------------------------------------------------------------
+- A bug has been fixed which caused ESR_EL2 to be incorrectly updated for an
+  IRQ or FIQ exception when HCR_EL2.{TGE,E2H}={1,1}. In this situation, the
+  previous value of ESR_EL2 should be preserved.
+- Hypervisor-trapped FIQ and IRQ exceptions are now routed to vector offsets
+  0x100 and 0x80, respectively. Previously, they were incorrectly routed to
+  vector offset 0x0.
+
+PTWAddressNS register added
+--------------------------------------------------------------------------------
+A new integration support register, PTWAddressNS, that indicates whether a 
+Physical Address reported in the a PTW walk is in the Non-Secure address space.
+This is a bitmask for the PTW address registers in the bank as follows:
+    PTWAddressNS xxxxxx1b: PTWAddressL0 is Non-Secure.
+    PTWAddressNS xxxxx1xb: PTWAddressL1 is Non-Secure.
+    PTWAddressNS xxxx1xxb: PTWAddressL2 is Non-Secure.
+    PTWAddressNS xxx1xxxb: PTWAddressL3 is Non-Secure.
+    PTWAddressNS xx1xxxxb: PTWBase is Non-Secure.
+    PTWAddressNS 1xxxxxxb: PTWOutput is Non-Secure.
+
+TLB Reset
+--------------------------------------------------------------------------------
+A new integration support register ResetTLBs has been added. When written, this
+resets all processor TLBs to their initial state.
+
+Names of AArch64 SYS Instruction Alias Registers
+--------------------------------------------------------------------------------
+The names of registers in the AArch64 SYS instruction registers group have been
+improved to include a prefix indicating the system operation type. The new name
+corresponds more closely to the system instruction name in the Architecture
+Reference Manual. The prefix is one of:
+
+    IC      (instruction cache operation)
+    DC      (data cache operation)
+    AT      (address translation operation)
+    TLBI    (TLB invalidation operation)
+    
+Examples in each group are:
+
+    ICIALLUIS   (was previously IALLUIS, without IC prefix)
+    DCIVAC      (was previously IVAC, without DC prefix)
+    ATS1E1R     (was previously S1E1R, without AT prefix)
+    TLBIALLE1   (was previously ALLE1, without TLBI prefix)
+
+GICv3/GICv4 Secure and Non-Secure Registers
+--------------------------------------------------------------------------------
+Pseudo-registers have been added to the debug register view for secure and non-
+secure views of GICv3/GICv4 system registers, where such registers are defined
+to have different behavior in secure and non-secure states. The registers
+follow the same naming convention as the existing registers allowing access to
+banked secure/non-secure registers (for example, the secure view of register
+ICC_PMR_EL1 can be accessed using pseudo-register ICC_PMR_EL1_S, and the non-
+secure view an be accessed using pseudo-register ICC_PMR_EL1_NS). The previously
+existing registers always access the register value in the currently-enabled
+security state.
+
+Affinity configuration
+-------------------------------------------------------------------------------
+- A new configuration signal CLUSTERIDAFF3 has been added to allow configuration
+  of MPIDR_EL1.Aff3 on processor variants supporting AArch64.
+- A new Boolean parameter override_MPIDR_Aff3 has been added to allow initial
+  specification of MPIDR_EL1.Aff3.
+- For Cortex-A55 variants, the default value of MPIDR_EL1.MT has been changed
+  to 1. The default may be set to the previous default using parameter
+  override_MPIDR_MT if required.
+
+Added new Page Table Walk integration support register PTWPgSize
+-------------------------------------------------------------------------------
+A new integration support register to return the page size of a Virtual Memory 
+page accessed in a page table walk has been added:
+  - PTWPgSize: 64-bit register holding the page size for the currently selected 
+    bank. The value in PTWPgSize is valid when a valid walk has occurred, 
+    i.e. when the PTWOutput register is valid, as indicated by Bit 6 of the 
+    PTWAddressValid register.
+
+Error in Page Table Walk Query section of ARM processor documentation fixed
+-------------------------------------------------------------------------------
+An error in the OVP_Model_Specific_Information_arm_*.pdf documentation has been
+corrected. In the Page Table Walk Query section the valid bits for the PTWBase,
+PTWInput and PTWOutput registers were described as being in the PTWValueValid 
+register when they are in fact in the PTWAddressValid register.
+
+###############################################################################
+##                                                                           ##
+## Date 2019-March-06                                                        ##
+##                                                                           ##
+## Release 20190306.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+ARM Processor Model
+-------------------------------------------------------------------------------
+- New Boolean parameter suppressCPSWarnings enables suppression of duplicate
+  ARM_CP_CPSI / ARM_CP_CPSD warning messages (which indicate the reason why
+  accesses to system registers have been disallowed).
+- Variants without a memory-mapped GICv3/GICv4 CPU interface (e.g.
+  Cortex-A55MPx1) now have all SRE and Enable fields in ICC_SRE_EL1, ICC_SRE_EL2
+  and ICC_SRE_EL3 implemented as RAO/WI, all other CPU interface registers are
+  present, and the MPCore block is implemented with distributor registers mapped
+  at the address given by parameter override_GICv3_DistributorBase. Previously,
+  it was required that the MPCore block be implemented externally and no CPU
+  interface registers or memory-mapped distributor block were implemented by the
+  model; if desired, this configuration can be re-enabled by setting parameter
+  disableGICModel to True.
+- Corrected issues with externally implemented GICv3
+  
+###############################################################################
+##                                                                           ##
+## Date 2018-November-14                                                     ##
+##                                                                           ##
+## Release 20181114.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+Please see CHANGELOG.OVP.txt for all changes prior to the above release

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="SpecialFunction"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="atmel.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="This model contains an accurate Register set interface.
+The functionality has only been implemented to sufficiently boot uClinux
+The AT91FR40162SB provides registers that implement the following special functions.
+ Chip Identification
+ RESET Status
+ Protect Mode
+for more information visit http://www.atmel.com/products/at91"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model is sufficient to boot Linux"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Rev. 1354D ARM08/02"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bp1"
+        size="0x4000">
+        <addressblock name="REG"
+            size="0x4000"
+            width="32">
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="SF_CIDR"
+                nbyte="F"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x14000040"/>
+                <field access="r"
+                    bitoffset="31"
+                    name="EXT"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="20"
+                    name="ARCH"
+                    width="8"/>
+                <field access="r"
+                    bitoffset="16"
+                    name="VDSIZ"
+                    width="4"/>
+                <field access="r"
+                    bitoffset="12"
+                    name="NVDSIZ"
+                    width="4"/>
+                <field access="r"
+                    bitoffset="8"
+                    name="NVPSIZ"
+                    width="4"/>
+                <field access="r"
+                    name="VERSION"
+                    width="5"/>
+                <field bitoffset="5"
+                    name="__pad5"
+                    width="3"/>
+                <field bitoffset="28"
+                    name="__pad28"
+                    width="3"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="SF_EXID"
+                nbyte="F"
+                offset="0x4"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+                <field access="r"
+                    bitoffset="0"
+                    name="RESET"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="SF_RSR"
+                nbyte="F"
+                offset="0x8"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SF_PMR"
+                nbyte="F"
+                offset="0x18"
+                width="32"
+                writefunction="SF_PMR_wcb">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="PMRKEY"
+                    width="16"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="AIC"
+                    width="1"/>
+                <field bitoffset="0"
+                    name="__pad0"
+                    width="5"/>
+                <field bitoffset="6"
+                    name="__pad6"
+                    width="10"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

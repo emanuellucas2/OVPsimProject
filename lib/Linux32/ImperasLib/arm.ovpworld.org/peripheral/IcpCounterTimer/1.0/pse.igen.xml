@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="IcpCounterTimer"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="arm.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="ARM Integrator Board Counter/Timer Module"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="none"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="Integrator User Guide Compact Platform Baseboard HBI-0086 (DUI 0159B)"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="load0"
+                nbyte="F"
+                readfunction="readLimit"
+                userdata="0"
+                width="32"
+                writefunction="writeLimit">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer Load"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="limit0"
+                nbyte="F"
+                offset="0x4"
+                readfunction="readValue"
+                userdata="0"
+                width="32"
+                writefunction="writeValue">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer Value"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="control0"
+                nbyte="F"
+                offset="0x8"
+                readfunction="readControl"
+                userdata="0"
+                width="32"
+                writefunction="writeControl">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer Control"/>
+                </docsection>
+                <field access="rw"
+                    name="ONESHOT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="M32BIT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="DIV"
+                    width="2"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="IE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="PERIODIC"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="ENABLE"
+                    width="1"/>
+                <field bitoffset="4"
+                    name="__pad4"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="intclr0"
+                nbyte="F"
+                offset="0xc"
+                userdata="0"
+                width="32"
+                writefunction="writeClear">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Clear"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="intlevel0"
+                nbyte="F"
+                offset="0x10"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt level"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="mis0"
+                nbyte="F"
+                offset="0x14"
+                readfunction="readMIS"
+                userdata="0"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer MIS"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="bgload0"
+                nbyte="F"
+                offset="0x18"
+                userdata="0"
+                width="32"
+                writefunction="writeBG">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer BG Load"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="load1"
+                nbyte="F"
+                offset="0x100"
+                readfunction="readLimit"
+                userdata="1"
+                width="32"
+                writefunction="writeLimit">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer Load"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="limit1"
+                nbyte="F"
+                offset="0x104"
+                readfunction="readValue"
+                userdata="1"
+                width="32"
+                writefunction="writeValue">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer Value"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="control1"
+                nbyte="F"
+                offset="0x108"
+                readfunction="readControl"
+                userdata="1"
+                width="32"
+                writefunction="writeControl">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer Control"/>
+                </docsection>
+                <field access="rw"
+                    name="ONESHOT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="M32BIT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="DIV"
+                    width="2"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="IE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="PERIODIC"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="ENABLE"
+                    width="1"/>
+                <field bitoffset="4"
+                    name="__pad4"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="intclr1"
+                nbyte="F"
+                offset="0x10c"
+                userdata="1"
+                width="32"
+                writefunction="writeClear">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Clear"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="intlevel1"
+                nbyte="F"
+                offset="0x110"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt level"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="mis1"
+                nbyte="F"
+                offset="0x114"
+                readfunction="readMIS"
+                userdata="1"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer MIS"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="bgload1"
+                nbyte="F"
+                offset="0x118"
+                userdata="1"
+                width="32"
+                writefunction="writeBG">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer BG Load"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="load2"
+                nbyte="F"
+                offset="0x200"
+                readfunction="readLimit"
+                userdata="2"
+                width="32"
+                writefunction="writeLimit">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer Load"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="limit2"
+                nbyte="F"
+                offset="0x204"
+                readfunction="readValue"
+                userdata="2"
+                width="32"
+                writefunction="writeValue">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer Value"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="control2"
+                nbyte="F"
+                offset="0x208"
+                readfunction="readControl"
+                userdata="2"
+                width="32"
+                writefunction="writeControl">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer Control"/>
+                </docsection>
+                <field access="rw"
+                    name="ONESHOT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="M32BIT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="DIV"
+                    width="2"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="IE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="PERIODIC"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="ENABLE"
+                    width="1"/>
+                <field bitoffset="4"
+                    name="__pad4"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="intclr2"
+                nbyte="F"
+                offset="0x20c"
+                userdata="2"
+                width="32"
+                writefunction="writeClear">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Clear"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="intlevel2"
+                nbyte="F"
+                offset="0x210"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt level"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="mis2"
+                nbyte="F"
+                offset="0x214"
+                readfunction="readMIS"
+                userdata="2"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer MIS"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="bgload2"
+                nbyte="F"
+                offset="0x218"
+                userdata="2"
+                width="32"
+                writefunction="writeBG">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer BG Load"/>
+                </docsection>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="irq0"
+        type="output"/>
+    <netport name="irq1"
+        type="output"/>
+    <netport name="irq2"
+        type="output"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="Zynq_PL_NoC_node"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="safepower.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="This module implements a NoC node used to implement an example NoC in the Xilinx Zynq Programmable Logic (PL).
+This PL configuration instances one Xilinx MicroBlaze processor with a local memory and a NoC interface peripheral."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This is baremetal only."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="No Reference"/>
+    </docsection>
+    <bus addresswidth="32"
+        name="pBus"/>
+    <processorinstance defaultsemihost="T"
+        name="cpu">
+        <vlnvreference name="microblaze"
+            vendor="xilinx.ovpworld.org"
+            version="1.0"/>
+        <busmasterportconnection connection="pBus"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="pBus"
+            name="DATA"/>
+    </processorinstance>
+    <formalattribute name="nocid"
+        type="uns32"/>
+    <memoryinstance name="ramS">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="pBus"
+            hiaddress="0x03ffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <peripheralinstance name="node">
+        <vlnvreference name="node"
+            vendor="safepower.ovpworld.org"/>
+        <busslaveportconnection connection="pBus"
+            hiaddress="0x040003ff"
+            loaddress="0x04000000"
+            name="hostif"/>
+        <attribute content="nocid"
+            name="id"/>
+        <attribute content="big"
+            name="endian"/>
+        <packetnetportconnection connection="networkNode"
+            name="network"/>
+    </peripheralinstance>
+    <packetnetportconnection connection="networkNode"
+        mustbeconnected="T"
+        name="networkNodePort"/>
+    <pkn name="networkNode"/>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

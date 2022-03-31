@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <semihostlibrary imagefile="model"
+    library="semihosting"
+    name="powerpc32Newlib"
+    releasestatus="0"
+    vendor="power.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Semihosting of LibC (newlib version) for powerpc processors"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <supportedprocessor name="powerpc32">
+        <vlnvreference library="processor"
+            name="powerpc32"
+            vendor="power.ovpworld.org"
+            version="1.0"/>
+    </supportedprocessor>
+    <supportedprocessor name="powerpc32_400">
+        <vlnvreference library="processor"
+            name="powerpc32_400"
+            vendor="power.ovpworld.org"
+            version="1.0"/>
+    </supportedprocessor>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </semihostlibrary>

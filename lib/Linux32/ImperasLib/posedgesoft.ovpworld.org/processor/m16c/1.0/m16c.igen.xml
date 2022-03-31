@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <processor defaultsemihostlibrary="semihosting"
+    defaultsemihostname="m16cNewlib"
+    defaultsemihostvendor="posedgesoft.ovpworld.org"
+    defaultsemihostversion="1.0"
+    elfcode="117"
+    endian="little"
+    family="Renesas"
+    gdbpath="$IMPERAS_HOME/lib/$IMPERAS_ARCH/gdb/m32c-elf-gdb"
+    imagefile="model"
+    library="processor"
+    name="m16c"
+    procdoc="$IMPERAS_HOME/ImperasLib/source/posedgesoft.ovpworld.org/processor/m16c/1.0/doc/OVP_Model_Specific_Information_m16c_generic.pdf"
+    releasestatus="4"
+    useindefaultplatform="T"
+    vendor="posedgesoft.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <elfoption code="120"
+        name="elf120"/>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="M16c Family 16Bit CISC processor model."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Copyright Posedge Software, Licensed as Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Core Instruction Set Architecture only."/>
+        <doctext name="txt_1"
+            text="Interrupt and Reset Signals are TBD."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Verification">
+        <doctext name="txt"
+            text="Model has been validated correct by running through extensive instruction level tests"/>
+    </docsection>
+    <docsection name="doc_4"
+        text="Reference">
+        <doctext name="txt"
+            text="Renesas 16-bit Single-Chip MicroComputerM16C/60, M16C/20, M16C/Tiny Series Software Manual Rev 4.00 2004.01(rej09b0137_m16csm.pdf)"/>
+    </docsection>
+    <formalattribute name="variant"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Selects variant (either a generic ISA or a specific model)"/>
+        </docsection>
+        <enum name="m16c"
+            value="0"/>
+        <enum name="r8c"
+            value="1"/>
+    </formalattribute>
+    <formalattribute name="compatibility"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify compatibility mode"/>
+        </docsection>
+        <enum name="isa"
+            value="0"/>
+        <enum name="gdb"
+            value="1"/>
+        <enum name="nopbrk"
+            value="2"/>
+    </formalattribute>
+    <formalattribute name="verbose"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify verbose output messages"/>
+        </docsection>
+    </formalattribute>
+    <busmasterport addresswidth="32"
+        addresswidthmax="32"
+        addresswidthmin="32"
+        mustbeconnected="T"
+        name="INSTRUCTION"/>
+    <busmasterport addresswidth="32"
+        addresswidthmax="32"
+        addresswidthmin="32"
+        mustbeconnected="F"
+        name="DATA"/>
+    <netport mustbeconnected="F"
+        name="reset"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="nmi"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int_per"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="int_ack"
+        type="output"/>
+    <command name="isync">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="specify instruction address range for synchronous execution"/>
+        </docsection>
+        <commandarg name="addresshi"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="end address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="addresslo"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="start address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="itrace">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="enable or disable instruction tracing"/>
+        </docsection>
+        <commandarg name="after"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="apply after this many instructions"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="enable"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="instructioncount"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="include the instruction number in each trace"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="memory"
+            type="String">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show memory accesses by this instruction. Argument can be any combination of X (execute), L (load or store access) and S (system)"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="off"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="disable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="on"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="processorname"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Include processor name in all trace lines"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registerchange"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers changed by this instruction"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registers"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers after each trace"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <exceptions name="Exceptions">
+        <exception code="0"
+            name="Undefined"/>
+        <exception code="1"
+            name="Overflow"/>
+        <exception code="2"
+            name="BRK"/>
+        <exception code="3"
+            name="AddressMatch"/>
+        <exception code="4"
+            name="SingleStep"/>
+        <exception code="5"
+            name="Watchdog"/>
+        <exception code="6"
+            name="DBC"/>
+        <exception code="7"
+            name="NMI"/>
+        <exception code="8"
+            name="Reset"/>
+        <exception code="9"
+            name="Fetch"/>
+    </exceptions>
+    <registers name="registers">
+        <register alias="F"
+            name="R0"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="R1"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="R2"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="R3"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="A0"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="A1"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="FB"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="R0B"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="R1B"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="R2B"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="R3B"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="A0B"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="A1B"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="FBB"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="SB"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="USP"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="ISP"
+            readonly="F"
+            type="0"
+            width="16"/>
+        <register alias="F"
+            name="INTB"
+            readonly="F"
+            type="0"
+            width="20"/>
+        <register alias="F"
+            name="PC"
+            readonly="F"
+            type="1"
+            width="20"/>
+        <register alias="F"
+            name="FLG"
+            readonly="F"
+            type="0"
+            width="16"/>
+    </registers>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </processor>

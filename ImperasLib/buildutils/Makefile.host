@@ -1,0 +1,110 @@
+#
+# Host gcc
+# Makefile for compiling VMI model to model.so / model.dll
+#
+
+IMPERAS_HOME := $(shell getpath.exe "$(IMPERAS_HOME)")
+include $(IMPERAS_HOME)/bin/Makefile.include
+
+ifndef IMPERAS_HOME
+	IMPERAS_ERROR := $(error "IMPERAS_HOME not defined")
+endif
+
+#
+# Work out how to get version.script / export.def
+#
+IMPERAS_UNAME_SUPPORTED=0
+ifeq ($(IMPERAS_UNAME),Linux)
+	HAVE_VERSION := $(strip $(wildcard version.script))
+	ifeq ($(HAVE_VERSION),)
+		HOST_LDFLAGS = -Wl,--version-script=$(IMPERAS_HOME)/ImperasLib/buildutils/version.script
+	else
+		HOST_LDFLAGS = -Wl,--version-script=version.script
+	endif
+	IMPERAS_UNAME_SUPPORTED=1
+endif
+ifeq ($(IMPERAS_UNAME),Windows)
+	HAVE_EXPORT := $(strip $(wildcard export.def))
+	ifeq ($(HAVE_EXPORT),)
+		HOST_LDFLAGS = $(IMPERAS_HOME)/ImperasLib/buildutils/export.def
+	else
+		HOST_LDFLAGS = export.def
+	endif
+	HOST_LDFLAGS += -Wl,--disable-auto-image-base
+	IMPERAS_UNAME_SUPPORTED=1
+endif
+ifeq ($(IMPERAS_UNAME_SUPPORTED),0)
+	IMPERAS_ERROR := $(error "IMPERAS_UNAME=$(IMPERAS_UNAME) not supported")
+endif
+
+include $(IMPERAS_HOME)/ImperasLib/buildutils/Makefile.common
+
+# Check source files are specified
+ifeq ($(strip $(OBJ))$(igen-src),)
+all:
+	@ echo "WARNING: No Source Files Found"
+else
+ALL = $(WORKDIR)/model.$(IMPERAS_SHRSUF)
+
+# Additional target
+NOFPK?=0
+ifeq ($(NOFPK),0)
+-include $(IMPERAS_HOME)/ImperasLib/buildutils/fpk/Makefile.fpk.tgt.host
+endif
+
+all: $(igen-src) $(ALL)
+endif
+
+#
+# include all the dependancy requirements
+#
+ifneq ($(MAKECMDGOALS),clean)
+# Do not insert whitespace, this will break
+$(foreach dep,$(DEP),$(eval -include $(dep)))
+endif
+
+$(WORKDIR)/model.$(IMPERAS_SHRSUF): $(OBJ)
+	$(V) mkdir -p $(@D)
+	@ echo "# Host Linking $(subst $(CURDIR)/,,$(@))"
+	$(V) $(HOST_CXX) -o $@ $^ -Wl,--no-undefined --shared $(SIM_CFLAGS) $(CFLAGS) $(HOST_LDFLAGS) $(LDFLAGS) $(IMPERAS_LDISL) $(IMPERAS_VMISTUBS)
+ifeq ($(COPYXML),1)
+	@ echo "# Copying XML $(XML) to $(@D)"
+	$(V) cp $(XML) $(@D)
+endif
+
+$(OBJDIR)/%.d: %.c       $(igen-src)
+	@    echo "# Host Depending $(subst $(CURDIR)/,,$(@))"
+	$(V) mkdir -p $(@D)
+	$(V) $(HOST_GCC) -MM $< $(SIM_CFLAGS) $(CFLAGS) -MT $(OBJDIR)/$*.o -MF $@
+
+$(OBJDIR)/%.d: %.S
+	@ echo "# Host Depending $(subst $(CURDIR)/,,$(@))"
+	$(V) mkdir -p $(@D)
+	$(V) $(HOST_GCC) -MM $< $(SIM_CFLAGS) $(CFLAGS) -MT $(OBJDIR)/$*.o -MF $@
+
+$(OBJDIR)/%.o: %.c       $(igen-src)
+	@ echo "# Host Compiling $(subst $(CURDIR)/,,$(@))"
+	$(V) mkdir -p $(@D)
+	$(V) $(HOST_GCC) -c -o $@ $< $(SIM_CFLAGS) $(CFLAGS) 
+
+$(OBJDIR)/%.o: %.cpp     $(igen-src)
+	@ echo "# Host Compiling $(subst $(CURDIR)/,,$(@))"
+	$(V) mkdir -p $(@D)
+	$(V) $(HOST_CXX) -c -o $@ $< $(SIM_CFLAGS) $(CFLAGS) 
+
+$(OBJDIR)/%.o: %.S
+	@ echo "# Host Assembling $(subst $(CURDIR)/,,$(@))"
+	$(V) mkdir -p $(@D)
+	$(V) $(HOST_GCC) -c -o $@ $< $(SIM_CFLAGS) $(CFLAGS)
+
+# Additional rules
+NOFPK?=0
+ifeq ($(NOFPK),0)
+-include $(IMPERAS_HOME)/ImperasLib/buildutils/fpk/Makefile.fpk.host
+endif
+
+clean::
+	$(V) - rm -f $(ALL)
+ifneq ($(wildcard $(OBJROOT)),)
+	$(V) - rm -rf $(OBJROOT)
+endif

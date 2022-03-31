@@ -1,0 +1,3 @@
+install RUNTIME OVPsim CpuManager
+install arm.model
+install armv8-aarch64.toolchain

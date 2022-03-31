@@ -1,0 +1,5 @@
+install RUNTIME OVPsim CpuManager
+install armv7.toolchain
+install OVPpse.toolchain
+install Imperas.harness
+install Imperas.iGen

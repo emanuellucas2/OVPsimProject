@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="MipsMalta"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="mips.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets">
+        <net name="intCtl_ir1"/>
+        <net name="intCtl_ir3"/>
+        <net name="intCtl_ir4"/>
+        <net name="intCtl_ir8"/>
+        <net name="intCtl_ir10"/>
+        <net name="intCtl_ir12"/>
+        <net name="intCtl_ir14"/>
+        <net name="intCtl_ir15"/>
+        <net name="i8259Int"/>
+        <net name="i8259Cascade"/>
+    </nets>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="This is a platform representing a MIPS Malta development board.
+    It provides the peripherals required to boot and run a Linux Operating System.
+    A single MIPS32 architecture processor is instantiated in this platform.
+    This instance could be duplicated to instantiate further processors to easily create an SMP platform.
+    Attributes are provided for configuration of the generic ISA model for a specific processor.
+    The processor model is configured to operate as a MIPS32 4KEc.
+
+    The main SDRAM and Flash memory is modeled using RAM models. Both are initialised in places by the
+    &apos;SmartLoaderLinux&apos;. The SmartLoaderLinux allows ease of use of changing kernel command lines,
+    loading an initial ram disk and creating the boot flash(s). The operation of the SmartloaderLinux is configured
+    using a number of attributes.  
+       The kernel attribute of the SmartLoaderLinux and the imagefile of the processor must be consistent.
+
+    NOTE: a non Mips Malta peripheral &apos;AlphaDisplay16x2&apos; has been defined in this platform definition
+          to be used for demo purposes. It should be removed if there is a memory error in the address space 0x18000100-0x18000103
+
+    If this platform is not part of your installation, then it is available for download from www.OVPworld.org/ip-vendor-mips."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Verification has only been carried out using Little Endian memory ordering."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="MIPS Malta User&apos;s Manual MD00048-2B-MALTA-USM-1.07.pdf
+           MIPS Malta-R Development Platform User&apos;s Manual MD00627-2B-MALTA_R-USM-01.01.pdf    
+           CoreFPGA User&apos;s Manual MD00116-2B-COREFPGA-USM-01.00.pdf
+           Linux for the MIPS Malta Development Platform User&apos;s Guide MD00646-2B-LINUXMALTA-USM-01.03.pdf"/>
+    </docsection>
+    <formalattribute defaultvalue="32"
+        max="64"
+        min="32"
+        name="addressbits"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Formal parameter addressbits allows the address bits for the main bus to be modified (default 32)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="hwint0"
+        name="processorinterrupt"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Formal parameter processorinterrupt allows the interrupt pin used on the processor to be modified to select direct interrupts or GIC interrupts (default hwint0)"/>
+        </docsection>
+    </formalattribute>
+    <bus addresswidth="addressbits"
+        name="bus1"/>
+    <bus addresswidth="32"
+        name="busPCI"/>
+    <bridge name="pciBr">
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x1bffffff"
+            loaddress="0x10000000"
+            name="sp1"/>
+        <busmasterportconnection connection="busPCI"
+            hiaddress="0x1bffffff"
+            loaddress="0x10000000"
+            name="mp1"/>
+    </bridge>
+    <bridge name="pciMBr">
+        <busslaveportconnection connection="busPCI"
+            hiaddress="0x0fffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+        <busmasterportconnection connection="bus1"
+            hiaddress="0x0fffffff"
+            loaddress="0x00000000"
+            name="mp1"/>
+    </bridge>
+    <bus addresswidth="32"
+        name="busPCIReMap"/>
+    <bus addresswidth="16"
+        name="PCIconfigBus"/>
+    <bus addresswidth="0"
+        name="PCIackBus"/>
+    <bus addresswidth="3"
+        name="cascadeBus"/>
+    <processorinstance endian="little"
+        mips="100.0"
+        name="mipsle1"
+        simulateexceptions="T">
+        <vlnvreference library="processor"
+            name="mips32_r1r5"
+            vendor="mips.ovpworld.org"/>
+        <attribute content="34Kc"
+            name="variant"/>
+        <attribute content="0"
+            name="vectoredinterrupt"/>
+        <attribute content="63"
+            name="config1MMUSizeM1"/>
+        <busmasterportconnection connection="bus1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus1"
+            name="DATA"/>
+        <netportconnection connection="i8259Int"
+            name="processorinterrupt"/>
+    </processorinstance>
+    <memoryinstance name="Core_Board_SDRAM">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x0fffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="Core_Board_SDRAM2">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x5fffffff"
+            loaddress="0x20000000"
+            name="sp1"/>
+    </memoryinstance>
+    <peripheralinstance name="Core_Board_SDRAM_promInit">
+        <vlnvreference library="peripheral"
+            name="SmartLoaderLinux"
+            vendor="mips.ovpworld.org"
+            version="1.0"/>
+        <busmasterportconnection connection="bus1"
+            hiaddress="0xffffffff"
+            loaddress="0x0"
+            name="mport"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x1fc00013"
+            loaddress="0x1fc00010"
+            name="idport"/>
+    </peripheralinstance>
+    <bus addresswidth="32"
+        name="flashBus"/>
+    <memoryinstance name="Monitor_Flash">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="flashBus"
+            hiaddress="0x1e3fffff"
+            loaddress="0x1e000000"
+            name="sp1"/>
+    </memoryinstance>
+    <bridge name="map">
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x1e3fffff"
+            loaddress="0x1e000000"
+            name="sp1"/>
+        <busmasterportconnection connection="flashBus"
+            hiaddress="0x1e3fffff"
+            loaddress="0x1e000000"
+            name="mp1"/>
+    </bridge>
+    <bridge name="remap1">
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x1fc0000F"
+            loaddress="0x1fc00000"
+            name="sp1"/>
+        <busmasterportconnection connection="flashBus"
+            hiaddress="0x1e00000f"
+            loaddress="0x1e000000"
+            name="mp1"/>
+    </bridge>
+    <bridge name="remap2">
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x1fffffff"
+            loaddress="0x1fc00014"
+            name="sp1"/>
+        <busmasterportconnection connection="flashBus"
+            hiaddress="0x1e3fffff"
+            loaddress="0x1e000014"
+            name="mp1"/>
+    </bridge>
+    <peripheralinstance name="sysControl">
+        <vlnvreference library="peripheral"
+            name="GT6412x"
+            vendor="marvell.ovpworld.org"
+            version="1.0"/>
+        <busslaveportconnection connection="busPCI"
+            name="busPort"
+            remappable="T"/>
+        <busmasterportconnection connection="PCIconfigBus"
+            name="PCIconfigM"/>
+        <busslaveportconnection connection="PCIconfigBus"
+            name="PCIconfig"
+            remappable="T"/>
+        <busmasterportconnection connection="PCIackBus"
+            name="PCIackM"/>
+    </peripheralinstance>
+    <peripheralinstance name="PIIX4">
+        <vlnvreference library="peripheral"
+            name="82371EB"
+            vendor="intel.ovpworld.org"
+            version="1.0"/>
+        <busslaveportconnection connection="PCIconfigBus"
+            name="PCIconfig"
+            remappable="T"/>
+        <attribute content="10"
+            name="PCIslot"/>
+    </peripheralinstance>
+    <peripheralinstance name="PIIX4-IDE">
+        <vlnvreference library="peripheral"
+            name="PciIDE"
+            vendor="intel.ovpworld.org"
+            version="1.0"/>
+        <attribute content="10"
+            name="PCIslot"/>
+        <attribute content="1"
+            name="PCIfunction"/>
+        <busslaveportconnection connection="PCIconfigBus"
+            name="PCIconfig"
+            remappable="T"/>
+        <busslaveportconnection connection="busPCI"
+            name="busPort"
+            remappable="T"/>
+        <busmasterportconnection connection="busPCI"
+            name="dmaPort"/>
+        <netportconnection connection="intCtl_ir14"
+            name="intOut0"/>
+        <netportconnection connection="intCtl_ir15"
+            name="intOut1"/>
+    </peripheralinstance>
+    <peripheralinstance name="PCI_PM">
+        <vlnvreference library="peripheral"
+            name="PciPM"
+            vendor="intel.ovpworld.org"
+            version="1.0"/>
+        <attribute content="10"
+            name="PCIslot"/>
+        <attribute content="3"
+            name="PCIfunction"/>
+        <busslaveportconnection connection="PCIconfigBus"
+            name="PCIconfig"
+            remappable="T"/>
+        <busslaveportconnection connection="busPCI"
+            name="busPort"
+            remappable="T"/>
+    </peripheralinstance>
+    <peripheralinstance name="PCI_NET">
+        <vlnvreference library="peripheral"
+            name="79C970"
+            vendor="amd.ovpworld.org"
+            version="1.0"/>
+        <attribute content="11"
+            name="PCIslot"/>
+        <attribute content="0"
+            name="PCIfunction"/>
+        <busslaveportconnection connection="PCIconfigBus"
+            name="PCIconfig"
+            remappable="T"/>
+        <busslaveportconnection connection="busPCI"
+            name="busPort"
+            remappable="T"/>
+        <busmasterportconnection connection="busPCI"
+            name="dmaPort"/>
+        <netportconnection connection="intCtl_ir10"
+            name="intOut0"/>
+    </peripheralinstance>
+    <peripheralinstance name="intCtrlMaster">
+        <vlnvreference library="peripheral"
+            name="8259A"
+            vendor="intel.ovpworld.org"
+            version="1.0"/>
+        <busslaveportconnection connection="busPCIReMap"
+            hiaddress="402653217"
+            loaddress="402653216"
+            name="io"/>
+        <busslaveportconnection connection="busPCIReMap"
+            hiaddress="402654416"
+            loaddress="402654416"
+            name="elcr"/>
+        <busmasterportconnection connection="cascadeBus"
+            name="cascade"/>
+        <busslaveportconnection connection="PCIackBus"
+            hiaddress="0"
+            loaddress="0"
+            name="PCIackS"/>
+        <netportconnection connection="i8259Int"
+            name="intp"/>
+        <netportconnection connection="intCtl_ir1"
+            name="ir1"/>
+        <netportconnection connection="i8259Cascade"
+            name="ir2"/>
+        <netportconnection connection="intCtl_ir3"
+            name="ir3"/>
+        <netportconnection connection="intCtl_ir4"
+            name="ir4"/>
+        <attribute content="master"
+            name="spen"/>
+    </peripheralinstance>
+    <peripheralinstance name="pciBrD_intCtrlMaster_io">
+        <vlnvreference name="DynamicBridge"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="busPCI"
+            name="sp"
+            remappable="T"/>
+        <busmasterportconnection connection="busPCIReMap"
+            name="mp"/>
+        <attribute content="402653216"
+            name="spLoAddress"/>
+        <attribute content="402653216"
+            name="mpLoAddress"/>
+        <attribute content="2"
+            name="portSize"/>
+        <attribute content="1"
+            name="enableBridge"/>
+    </peripheralinstance>
+    <peripheralinstance name="pciBrD_intCtrlMaster_elcr">
+        <vlnvreference name="DynamicBridge"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="busPCI"
+            name="sp"
+            remappable="T"/>
+        <busmasterportconnection connection="busPCIReMap"
+            name="mp"/>
+        <attribute content="402654416"
+            name="spLoAddress"/>
+        <attribute content="402654416"
+            name="mpLoAddress"/>
+        <attribute content="1"
+            name="portSize"/>
+        <attribute content="1"
+            name="enableBridge"/>
+    </peripheralinstance>
+    <peripheralinstance name="intCtrlSlave">
+        <vlnvreference library="peripheral"
+            name="8259A"
+            vendor="intel.ovpworld.org"
+            version="1.0"/>
+        <busslaveportconnection connection="busPCIReMap"
+            hiaddress="402653345"
+            loaddress="402653344"
+            name="io"/>
+        <busslaveportconnection connection="busPCIReMap"
+            hiaddress="402654417"
+            loaddress="402654417"
+            name="elcr"/>
+        <busslaveportconnection connection="cascadeBus"
+            hiaddress="2"
+            loaddress="2"
+            name="PCIackS"/>
+        <netportconnection connection="intCtl_ir8"
+            name="ir0"/>
+        <netportconnection connection="intCtl_ir10"
+            name="ir2"/>
+        <netportconnection connection="intCtl_ir12"
+            name="ir4"/>
+        <netportconnection connection="intCtl_ir14"
+            name="ir6"/>
+        <netportconnection connection="intCtl_ir15"
+            name="ir7"/>
+        <netportconnection connection="i8259Cascade"
+            name="intp"/>
+        <attribute content="slave"
+            name="spen"/>
+    </peripheralinstance>
+    <peripheralinstance name="pciBrD_intCtrlSlave_io">
+        <vlnvreference name="DynamicBridge"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="busPCI"
+            name="sp"
+            remappable="T"/>
+        <busmasterportconnection connection="busPCIReMap"
+            name="mp"/>
+        <attribute content="402653344"
+            name="spLoAddress"/>
+        <attribute content="402653344"
+            name="mpLoAddress"/>
+        <attribute content="2"
+            name="portSize"/>
+        <attribute content="1"
+            name="enableBridge"/>
+    </peripheralinstance>
+    <peripheralinstance name="pciBrD_intCtrlSlave_elcr">
+        <vlnvreference name="DynamicBridge"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="busPCI"
+            name="sp"
+            remappable="T"/>
+        <busmasterportconnection connection="busPCIReMap"
+            name="mp"/>
+        <attribute content="402654417"
+            name="spLoAddress"/>
+        <attribute content="402654417"
+            name="mpLoAddress"/>
+        <attribute content="1"
+            name="portSize"/>
+        <attribute content="1"
+            name="enableBridge"/>
+    </peripheralinstance>
+    <peripheralinstance name="_SUPERIO_REG_">
+        <vlnvreference name="SerInt"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="busPCIReMap"
+            hiaddress="402653363"
+            loaddress="402653360"
+            name="bport1"/>
+    </peripheralinstance>
+    <peripheralinstance name="pciBrD__SUPERIO_REG__bport1">
+        <vlnvreference name="DynamicBridge"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="busPCI"
+            name="sp"
+            remappable="T"/>
+        <busmasterportconnection connection="busPCIReMap"
+            name="mp"/>
+        <attribute content="402653360"
+            name="spLoAddress"/>
+        <attribute content="402653360"
+            name="mpLoAddress"/>
+        <attribute content="4"
+            name="portSize"/>
+        <attribute content="1"
+            name="enableBridge"/>
+    </peripheralinstance>
+    <peripheralinstance name="vga">
+        <vlnvreference library="peripheral"
+            name="GD5446"
+            vendor="cirrus.ovpworld.org"
+            version="1.0"/>
+        <attribute content="50000"
+            name="scanDelay"/>
+        <attribute content="18"
+            name="PCIslot"/>
+        <attribute content="Imperas MIPS32 Malta"
+            name="title"/>
+        <busslaveportconnection connection="PCIconfigBus"
+            name="PCIconfig"
+            remappable="T"/>
+        <busslaveportconnection connection="busPCIReMap"
+            hiaddress="402654175"
+            loaddress="402654128"
+            name="config"/>
+        <busslaveportconnection connection="busPCI"
+            name="memory"
+            remappable="T"/>
+    </peripheralinstance>
+    <peripheralinstance name="pciBrD_vga_config">
+        <vlnvreference name="DynamicBridge"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="busPCI"
+            name="sp"
+            remappable="T"/>
+        <busmasterportconnection connection="busPCIReMap"
+            name="mp"/>
+        <attribute content="402654128"
+            name="spLoAddress"/>
+        <attribute content="402654128"
+            name="mpLoAddress"/>
+        <attribute content="48"
+            name="portSize"/>
+        <attribute content="1"
+            name="enableBridge"/>
+    </peripheralinstance>
+    <memoryinstance name="vgaMemRegion">
+        <vlnvreference name="rom"/>
+        <busslaveportconnection connection="busPCI"
+            hiaddress="0x100bffff"
+            loaddress="0x100a0000"
+            name="sp1"/>
+    </memoryinstance>
+    <peripheralinstance name="ps2if">
+        <vlnvreference library="peripheral"
+            name="Ps2Control"
+            vendor="intel.ovpworld.org"
+            version="1.0"/>
+        <attribute content="50000"
+            name="pollPeriod"/>
+        <attribute content="1"
+            name="grabDisable"/>
+        <busslaveportconnection connection="busPCIReMap"
+            hiaddress="402653287"
+            loaddress="402653280"
+            name="config"/>
+        <netportconnection connection="intCtl_ir1"
+            name="kbdInterrupt"/>
+        <netportconnection connection="intCtl_ir12"
+            name="mouseInterrupt"/>
+    </peripheralinstance>
+    <peripheralinstance name="pciBrD_ps2if_config">
+        <vlnvreference name="DynamicBridge"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="busPCI"
+            name="sp"
+            remappable="T"/>
+        <busmasterportconnection connection="busPCIReMap"
+            name="mp"/>
+        <attribute content="402653280"
+            name="spLoAddress"/>
+        <attribute content="402653280"
+            name="mpLoAddress"/>
+        <attribute content="8"
+            name="portSize"/>
+        <attribute content="1"
+            name="enableBridge"/>
+    </peripheralinstance>
+    <peripheralinstance name="pit">
+        <vlnvreference library="peripheral"
+            name="8253"
+            vendor="intel.ovpworld.org"
+            version="1.0"/>
+        <busslaveportconnection connection="busPCIReMap"
+            hiaddress="402653251"
+            loaddress="402653248"
+            name="bport1"/>
+    </peripheralinstance>
+    <peripheralinstance name="pciBrD_pit_bport1">
+        <vlnvreference name="DynamicBridge"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="busPCI"
+            name="sp"
+            remappable="T"/>
+        <busmasterportconnection connection="busPCIReMap"
+            name="mp"/>
+        <attribute content="402653248"
+            name="spLoAddress"/>
+        <attribute content="402653248"
+            name="mpLoAddress"/>
+        <attribute content="4"
+            name="portSize"/>
+        <attribute content="1"
+            name="enableBridge"/>
+    </peripheralinstance>
+    <peripheralinstance name="rtc">
+        <vlnvreference library="peripheral"
+            name="MC146818"
+            vendor="motorola.ovpworld.org"
+            version="1.0"/>
+        <busslaveportconnection connection="busPCIReMap"
+            hiaddress="402653297"
+            loaddress="402653296"
+            name="busPort"/>
+        <netportconnection connection="intCtl_ir8"
+            name="timerInt"/>
+    </peripheralinstance>
+    <peripheralinstance name="pciBrD_rtc_busPort">
+        <vlnvreference name="DynamicBridge"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="busPCI"
+            name="sp"
+            remappable="T"/>
+        <busmasterportconnection connection="busPCIReMap"
+            name="mp"/>
+        <attribute content="402653296"
+            name="spLoAddress"/>
+        <attribute content="402653296"
+            name="mpLoAddress"/>
+        <attribute content="2"
+            name="portSize"/>
+        <attribute content="1"
+            name="enableBridge"/>
+    </peripheralinstance>
+    <peripheralinstance name="uartTTY0">
+        <vlnvreference library="peripheral"
+            name="16550"
+            vendor="national.ovpworld.org"
+            version="1.0"/>
+        <attribute content="uartTTY0.log"
+            name="outfile"/>
+        <attribute content="1"
+            name="finishOnDisconnect"/>
+        <busslaveportconnection connection="busPCIReMap"
+            hiaddress="402654207"
+            loaddress="402654200"
+            name="bport1"/>
+        <netportconnection connection="intCtl_ir4"
+            name="intOut"/>
+    </peripheralinstance>
+    <peripheralinstance name="pciBrD_uartTTY0_bport1">
+        <vlnvreference name="DynamicBridge"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="busPCI"
+            name="sp"
+            remappable="T"/>
+        <busmasterportconnection connection="busPCIReMap"
+            name="mp"/>
+        <attribute content="402654200"
+            name="spLoAddress"/>
+        <attribute content="402654200"
+            name="mpLoAddress"/>
+        <attribute content="8"
+            name="portSize"/>
+        <attribute content="1"
+            name="enableBridge"/>
+    </peripheralinstance>
+    <peripheralinstance name="uartTTY1">
+        <vlnvreference library="peripheral"
+            name="16550"
+            vendor="national.ovpworld.org"
+            version="1.0"/>
+        <attribute content="uartTTY1.log"
+            name="outfile"/>
+        <attribute content="1"
+            name="finishOnDisconnect"/>
+        <busslaveportconnection connection="busPCIReMap"
+            hiaddress="402653951"
+            loaddress="402653944"
+            name="bport1"/>
+        <netportconnection connection="intCtl_ir3"
+            name="intOut"/>
+    </peripheralinstance>
+    <peripheralinstance name="pciBrD_uartTTY1_bport1">
+        <vlnvreference name="DynamicBridge"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="busPCI"
+            name="sp"
+            remappable="T"/>
+        <busmasterportconnection connection="busPCIReMap"
+            name="mp"/>
+        <attribute content="402653944"
+            name="spLoAddress"/>
+        <attribute content="402653944"
+            name="mpLoAddress"/>
+        <attribute content="8"
+            name="portSize"/>
+        <attribute content="1"
+            name="enableBridge"/>
+    </peripheralinstance>
+    <peripheralinstance name="fd0">
+        <vlnvreference library="peripheral"
+            name="82077AA"
+            vendor="intel.ovpworld.org"
+            version="1.0"/>
+        <busslaveportconnection connection="busPCIReMap"
+            hiaddress="402654199"
+            loaddress="402654192"
+            name="bport1"/>
+    </peripheralinstance>
+    <peripheralinstance name="pciBrD_fd0_bport1">
+        <vlnvreference name="DynamicBridge"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="busPCI"
+            name="sp"
+            remappable="T"/>
+        <busmasterportconnection connection="busPCIReMap"
+            name="mp"/>
+        <attribute content="402654192"
+            name="spLoAddress"/>
+        <attribute content="402654192"
+            name="mpLoAddress"/>
+        <attribute content="8"
+            name="portSize"/>
+        <attribute content="1"
+            name="enableBridge"/>
+    </peripheralinstance>
+    <peripheralinstance name="uartCBUS">
+        <vlnvreference library="peripheral"
+            name="16450C"
+            vendor="mips.ovpworld.org"
+            version="1.0"/>
+        <attribute content="uartCBUS.log"
+            name="outfile"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x1F00093F"
+            loaddress="0x1F000900"
+            name="bport1"/>
+    </peripheralinstance>
+    <peripheralinstance name="maltaFpga">
+        <vlnvreference library="peripheral"
+            name="MaltaFPGA"
+            vendor="mips.ovpworld.org"
+            version="1.0"/>
+        <attribute content="1"
+            name="stoponsoftreset"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x1f0008ff"
+            loaddress="0x1f000000"
+            name="busPort1"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x1f000fff"
+            loaddress="0x1f000a00"
+            name="busPort2"/>
+    </peripheralinstance>
+    <bridge name="high2low">
+        <busslaveportconnection connection="bus1"
+            hiaddress="0xffffffff"
+            loaddress="0x80000000"
+            name="sp1"/>
+        <busmasterportconnection connection="bus1"
+            hiaddress="0x7fffffff"
+            loaddress="0x00000000"
+            name="mp1"/>
+    </bridge>
+    <peripheralinstance name="alphaDisplay">
+        <vlnvreference name="Alpha2x16Display"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="busPCIReMap"
+            hiaddress="402653443"
+            loaddress="402653440"
+            name="busPort"/>
+    </peripheralinstance>
+    <peripheralinstance name="pciBrD_alphaDisplay_busPort">
+        <vlnvreference name="DynamicBridge"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="busPCI"
+            name="sp"
+            remappable="T"/>
+        <busmasterportconnection connection="busPCIReMap"
+            name="mp"/>
+        <attribute content="402653440"
+            name="spLoAddress"/>
+        <attribute content="402653440"
+            name="mpLoAddress"/>
+        <attribute content="4"
+            name="portSize"/>
+        <attribute content="1"
+            name="enableBridge"/>
+    </peripheralinstance>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

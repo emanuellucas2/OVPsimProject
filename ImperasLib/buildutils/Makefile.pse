@@ -1,0 +1,144 @@
+#
+# Pse gcc
+# Makefile for compiling BHM/PPM pse to pse.pse
+#
+
+IMPERAS_HOME := $(shell getpath.exe "$(IMPERAS_HOME)")
+
+ifndef IMPERAS_HOME
+  IMPERAS_ERROR := $(error "IMPERAS_HOME not defined")
+endif
+
+#IMPERAS_PSE?=PSE_RV64
+IMPERAS_PSE?=PSE
+
+ifeq ($(IMPERAS_PSE),PSE)
+    PSE_TYPE=PSE_i386
+else
+    PSE_TYPE=$(IMPERAS_PSE)
+endif
+
+pse_check := $(sort $(wildcard $(IMPERAS_HOME)/lib/$(IMPERAS_ARCH)/CrossCompiler/$(IMPERAS_PSE).makefile.include))
+ifeq ($(strip $(pse_check)),) 
+   IMPERAS_ERROR := $(error "The $(IMPERAS_PSE) compiler is not installed")
+endif
+include $(IMPERAS_HOME)/lib/$(IMPERAS_ARCH)/CrossCompiler/$(IMPERAS_PSE).makefile.include
+include $(IMPERAS_HOME)/bin/Makefile.include
+include $(IMPERAS_HOME)/ImperasLib/buildutils/Makefile.common
+
+# Opt or Debug ?
+PSEOPT?=1
+ifeq ($(PSEOPT),1)
+    PSE_CFLAGS += -O2
+else
+    PSE_CFLAGS += -g -gdwarf-2 
+endif
+PSE_CFLAGS += -Wall -Werror -I$(PWD) -D$(PSE_TYPE)=1
+
+ALL = $(WORKDIR)/pse.pse
+
+# Additional target
+NOFPK?=0
+ifeq ($(NOFPK),0)
+-include $(IMPERAS_HOME)/ImperasLib/buildutils/fpk/Makefile.fpk.tgt.pse
+endif
+
+all: $(ALL)
+
+# include all the dependancy requirements
+ifneq ($(MAKECMDGOALS),clean)
+$(foreach dep,$(DEP),$(eval -include $(dep)))
+endif
+
+#
+# pse.tcl ->
+# pse.attrs.igen.c pse.c.igen.stubs pse.igen.c pse.igen.h pse.igen.xml pse.macros.igen.h
+#
+IGEN?= igen.exe
+IGENFLAGS?= --quiet --nobanner --excludem GPT_NH --excludem GPT_UFNR $(EXTRA_IGENFLAGS)
+
+PSE-TCL    ?= pse.tcl
+PSE-SRC-TCL = $(wildcard $(PSE-TCL))
+PSE-SRC     = $(patsubst %.tcl, %.attrs.igen.c,           $(PSE-SRC-TCL)) \
+              $(patsubst %.tcl, %.igen.c,                 $(PSE-SRC-TCL)) \
+              $(patsubst %.tcl, %.igen.h,                 $(PSE-SRC-TCL)) \
+              $(patsubst %.tcl, %.c.igen.stubs,           $(PSE-SRC-TCL)) \
+              $(patsubst %.tcl, %.igen.xml,               $(PSE-SRC-TCL)) \
+              $(patsubst %.tcl, %.macros.igen.h,          $(PSE-SRC-TCL))
+
+PSE-OBJ     = $(patsubst %.tcl, $(OBJDIR)/%.attrs.igen.o, $(PSE-SRC-TCL)) \
+              $(patsubst %.tcl, $(OBJDIR)/%.igen.o,       $(PSE-SRC-TCL))
+
+.PRECIOUS: $(PSE-SRC)
+
+$(WORKDIR)/pse.pse: $(OBJ) $(PSE-OBJ)
+	$(V) echo "# Cross Linking Peripheral $(subst $(CURDIR)/,,$(@))"
+	$(V) mkdir -p $(@D)
+	$(V) $(PSE_LINKXX) -o $@ $^ $(CFLAGS) $(PSE_LDFLAGS) $(LDFLAGS)
+ifeq ($(COPYXML),1)
+	$(V) echo "# Copying XML $(XML) to $(@D)"
+	$(V) cp $(XML) $(@D)
+endif
+
+%.attrs.igen.c %.igen.c %.igen.h %.c.igen.stubs %.igen.xml %.macros.igen.h: %.tcl
+	$(V) echo "# PreProcess $<"
+	$(V) $(IGEN) $(IGENFLAGS)			     \
+		--batch         $(<)			     \
+		--writec        $(*)                 \
+		--writexml      $(*).igen.xml        \
+		$(WRITEHEADER)            			 \
+		--overwrite                          
+
+$(OBJDIR)/%.d: %.c $(PSE-SRC)
+	$(V) echo "# Cross Depending Peripheral $(subst $(CURDIR)/,,$(@))"
+	$(V) mkdir -p $(@D)
+	$(V) $(PSE_CC) -MM $< $(CFLAGS) -MT $(OBJDIR)/$*.o -MF $@
+
+$(OBJDIR)/%.o: %.c
+	$(V) echo "# Cross Compiling Peripheral $(subst $(CURDIR)/,,$(@))"
+	$(V) mkdir -p $(@D)
+	$(V) $(PSE_CC) -g -gdwarf-2 -c -o $@ $< $(CFLAGS)
+
+CXX_SUFFIX=cpp c++ cxx
+define CXX_SUFFIX_Template
+$(OBJDIR)/%.d: %.$(1) $$(PSE-SRC)
+	@    echo "# Host Depending $$(subst $(CURDIR)/,,$$(@))"
+	$$(V) mkdir -p $$(@D)
+	$$(V) $$(PSE_CC) -MM $$< $$(CFLAGS) -MT $$(OBJDIR)/$$*.o -MF $$@
+
+$(OBJDIR)/%.o: %.$(1)
+	$$(V) mkdir -p $$(@D)
+	@    echo "# Host Compiling Peripheral $$(subst $(CURDIR)/,,$$(@))"
+	$$(V) $$(PSE_CXX) -g -gdwarf-2 -c -o $$@ $$< $$(CFLAGS)
+endef
+$(foreach X,$(CXX_SUFFIX),$(eval $(call CXX_SUFFIX_Template,$(X))))
+
+#
+# Generate OP TLM2 for PSE
+#
+$(VLNVSRC)/%/tlm/pse.igen.hpp: $(VLNVROOT)/%/pse.pse
+	@    echo "# iGen Create OP PSE/TLM2 $*"
+	$(V) mkdir -p $(@D)
+	$(V) $(IGEN) $(IGENFLAGS)               \
+        --modelfile     $(<)                \
+        --writetlm      $(@)                \
+        $(WRITEHEADER)                      \
+        --overwrite 
+
+# Additional rules
+NOFPK?=0
+ifeq ($(NOFPK),0)
+-include $(IMPERAS_HOME)/ImperasLib/buildutils/fpk/Makefile.fpk.pse
+endif
+
+clean::
+	$(V) - rm -f $(ALL)
+ifneq ($(wildcard ../tlm/pse.igen.hpp),)
+	$(V) - rm -rf ../tlm
+endif
+ifneq ($(wildcard $(OBJROOT)),)
+	$(V) - rm -rf $(OBJROOT)
+endif
+ifneq ($(subst " ",,$(PSE-SRC)),)
+	$(V) - rm -f $(PSE-SRC)
+endif

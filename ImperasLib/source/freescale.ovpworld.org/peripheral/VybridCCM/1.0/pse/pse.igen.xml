@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="VybridCCM"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="freescale.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Freescale Clock Controller Module"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Only models status register read"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Freescale Vybrid Peripheral User Guide"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x8"
+            width="32">
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="csr"
+                nbyte="F"
+                offset="0x4"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000030"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CCM Status Register"/>
+                </docsection>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="Reset"
+        type="input"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

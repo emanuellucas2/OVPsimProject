@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw clp="T"
+    clpAllArgs="T"
+    clpExtArgs="T"
+    clpStdArgs="T"
+    diagnostics="F"
+    httpvis="F"
+    library="platform"
+    name="BareMetalArm7Single"
+    purpose="0"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="arm.ovpworld.org"
+    verbose="T"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Bare Metal Platform for an ARM7 Processor.
+    The bare metal platform instantiates a single ARM7 processor instance. 
+    The processor operates using little endian data ordering.
+    It creates contiguous memory from 0x00000000 to 0xFFFFFFFF.
+    The platform can be passed any application compiled to an ARM elf format.
+    ./platform.exe application.elf"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="BareMetal platform for execution of ARM binary files compiled with Linaro 32-bit CrossCompiler toolchain."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="None, BareMetal platform definition"/>
+    </docsection>
+    <processorinstance endian="little"
+        name="cpu1">
+        <vlnvreference name="arm"
+            vendor="arm.ovpworld.org"/>
+        <extlibrary directLoad="T"
+            name="armNewlib_0">
+            <vlnvreference name="armNewlib"
+                vendor="arm.ovpworld.org"/>
+        </extlibrary>
+        <attribute content="ARM7TDMI"
+            name="variant"/>
+        <attribute content="gdb"
+            name="compatibility"/>
+        <attribute content="1"
+            name="UAL"/>
+        <busmasterportconnection connection="bus1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus1"
+            name="DATA"/>
+    </processorinstance>
+    <bus addresswidth="32"
+        name="bus1"/>
+    <memoryinstance name="memory">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0xffffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

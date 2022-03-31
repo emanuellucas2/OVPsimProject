@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="node"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="safepower.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Example Network on Chip (NoC) node peripheral for SafePower Project"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model implements a data and control interface to allow a processor to receive or transmit data across a packetnet interface. This is used to illustrate the use as part of a NoC."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="No Reference, created as an example"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="hostif"
+        size="0x400">
+        <addressblock name="reg"
+            size="0x10"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="control"
+                nbyte="F"
+                width="32"
+                writefunction="writeControl">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Control register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="status"
+                nbyte="F"
+                offset="0x4"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Transfer status register"/>
+                </docsection>
+            </memorymappedregister>
+        </addressblock>
+        <addressblock name="msgtx"
+            offset="0x100"
+            size="0x100"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="id"
+                nbyte="F"
+                width="32"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="from"
+                nbyte="F"
+                offset="0x4"
+                width="32"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="nid"
+                nbyte="F"
+                offset="0x8"
+                width="32"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="msgLen"
+                nbyte="F"
+                offset="0xc"
+                width="32"/>
+            <localmemory access="rw"
+                name="msgBuf"
+                offset="0x10"
+                size="0xf0"/>
+        </addressblock>
+        <addressblock name="msgrx"
+            offset="0x200"
+            size="0x100"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="id"
+                nbyte="F"
+                width="32"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="from"
+                nbyte="F"
+                offset="0x4"
+                width="32"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="nid"
+                nbyte="F"
+                offset="0x8"
+                width="32"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="msgLen"
+                nbyte="F"
+                offset="0xc"
+                width="32"/>
+            <localmemory access="rw"
+                name="msgBuf"
+                offset="0x10"
+                size="0xf0"/>
+        </addressblock>
+    </busslaveport>
+    <packetnetport maxbytes="240"
+        mustbeconnected="F"
+        name="network"
+        updatefunction="networkrx"
+        updatefunctionargument="0"/>
+    <formalattribute defaultvalue="1"
+        max="16"
+        min="1"
+        name="id"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Defines the id for the node (must all be unique in design)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="endian"
+        type="string"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

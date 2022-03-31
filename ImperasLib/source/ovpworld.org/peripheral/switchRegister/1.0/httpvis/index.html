@@ -1,0 +1,36 @@
+<html lang="en">
+<link rel="icon" type="image/icon" href="/imperas.ico">
+
+<head>
+    <title>Imperas Simulation</title>
+    <meta   charset="utf-8"/>
+    <link   rel="stylesheet"        href="normal.css"   type="text/css"/>
+    <script language="JavaScript"   src="runtime.js"        ></script>
+</head>
+
+<body onload="startRefresh('/', 200);">
+
+    <table>
+        <tr>
+            <th colspan="4">switches</th>
+        </tr>
+        <tr>
+            <td><div class='ovpswitchdip' id="sw3" onmousedown="ovpswitchclicked(event)" title='click to change'></div></td>
+            <td><div class='ovpswitchdip' id="sw2" onmousedown="ovpswitchclicked(event)" title='click to change'></div></td>
+            <td><div class='ovpswitchdip' id="sw1" onmousedown="ovpswitchclicked(event)" title='click to change'></div></td>
+            <td><div class='ovpswitchdip' id="sw0" onmousedown="ovpswitchclicked(event)" title='click to change'></div></td>
+        </tr>
+    </table>
+    <br/><br/>
+    <table>
+        <tr>
+            <td class='ovplabel'>Power Button </td>
+        </tr>
+        <tr>
+            <td><div class='ovppower' id="power0" onmousedown="ovpswitchclicked(event)" title='click to quit simulation'>SIMULATION NOT RUNNING</div></td>
+        </tr>
+    </table>
+
+<div class='console' id='console'></div>
+</body>
+</html>

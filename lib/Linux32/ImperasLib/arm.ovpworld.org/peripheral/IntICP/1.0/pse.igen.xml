@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="IntICP"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="arm.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="ARM Integrator Board interrupt controller"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="none"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="Integrator User Guide Compact Platform Baseboard HBI-0086 (DUI 0159B)"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="32">
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="status"
+                nbyte="F"
+                readfunction="readIRQ"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="IRQ_STATUS"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="level"
+                nbyte="F"
+                offset="0x4"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="IRQ_RAWSTAT"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="enable"
+                nbyte="F"
+                offset="0x8"
+                width="32"
+                writefunction="writeSET">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="IRQ_ENABLE_SET"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="clr"
+                nbyte="F"
+                offset="0xc"
+                width="32"
+                writefunction="writeCLR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="IRQ_ENABLE_CLR"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="softset"
+                nbyte="F"
+                offset="0x10"
+                readfunction="readLEV"
+                width="32"
+                writefunction="writeSST">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="INT_SOFTSET"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="softclr"
+                nbyte="F"
+                offset="0x14"
+                width="32"
+                writefunction="writeSCL">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="INT_SOFTCLR"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="frqstat"
+                nbyte="F"
+                offset="0x20"
+                readfunction="readFIQ"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="FRQ_STATUS"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="rawstat"
+                nbyte="F"
+                offset="0x24"
+                readfunction="readLevel"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="FRQ_RAWSTAT"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="fiqen"
+                nbyte="F"
+                offset="0x28"
+                width="32"
+                writefunction="writeFIQS">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="FIQ_ENABLESET"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="fiqenclr"
+                nbyte="F"
+                offset="0x2c"
+                width="32"
+                writefunction="writeFIQC">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="FRQ_ENABLECLR"/>
+                </docsection>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="irq"
+        type="output"/>
+    <netport name="fiq"
+        type="output"/>
+    <netport hiarray="31"
+        loarray="0"
+        name="ir%u"
+        type="input"
+        updatefunction="irqUpdate"
+        updatefunctionargument="_index"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

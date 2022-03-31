@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="zynq_7000-swdt"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="xilinx.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Zynq 7000 System Watchdog Timer Registers"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model implements the full set of registers but no behavior."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Zynq-7000 TRM (https://www.xilinx.com/support/documentation/user_guides/ug585-Zynq-7000-TRM.pdf)"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="32">
+            <localmemory name="buffer"
+                readfunction="regNoDefinitionRead"
+                size="0x1000"
+                writefunction="regNoDefinitionWrite"/>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="MODE"
+                nbyte="F"
+                width="32"
+                writefunction="wrMode"
+                writemask="503">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="WD zero mode register"/>
+                </docsection>
+                <field access="w"
+                    bitoffset="12"
+                    name="ZKEY"
+                    width="12"/>
+                <field access="w"
+                    bitoffset="7"
+                    name="IRQLN"
+                    width="2"/>
+                <field access="w"
+                    bitoffset="2"
+                    name="IRQEN"
+                    width="1"/>
+                <field access="w"
+                    bitoffset="1"
+                    name="RSTEN"
+                    width="1"/>
+                <field access="w"
+                    name="WDEN"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x000001C0"/>
+                <field bitoffset="3"
+                    name="__pad3"
+                    width="4"/>
+                <field bitoffset="9"
+                    name="__pad9"
+                    width="3"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CONTROL"
+                nbyte="F"
+                offset="0x4"
+                readfunction="rdControl"
+                width="32"
+                writefunction="wrControl"
+                writemask="33554431">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Counter Control Register"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="14"
+                    name="CKEY"
+                    width="12"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="CRV"
+                    width="12"/>
+                <field access="rw"
+                    name="CLKSEL"
+                    width="2"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00003FFC"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="RESTART"
+                nbyte="F"
+                offset="0x8"
+                width="32"
+                writefunction="wrReStart"
+                writemask="65535">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Restart key register - this not a real register as no data is stored"/>
+                </docsection>
+                <field access="w"
+                    bitoffset="0"
+                    name="RSTKEY"
+                    width="16"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="STATUS"
+                nbyte="F"
+                offset="0xc"
+                readfunction="rdStatus"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Status Register"/>
+                </docsection>
+                <field access="r"
+                    bitoffset="0"
+                    name="WDZ"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="wdo"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Watchdog interrupt output signal"/>
+        </docsection>
+    </netport>
+    <netport name="rst"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Watchdog reset output signal"/>
+        </docsection>
+    </netport>
+    <formalattribute defaultvalue="100"
+        max="1000"
+        min="1"
+        name="pclk"
+        type="double">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Watchdog PCLK Clock Rate in MHz (default 100 MHz)"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

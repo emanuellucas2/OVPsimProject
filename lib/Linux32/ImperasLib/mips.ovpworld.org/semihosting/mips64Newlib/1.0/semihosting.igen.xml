@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <semihostlibrary imagefile="model"
+    library="semihosting"
+    name="mips64Newlib"
+    releasestatus="0"
+    vendor="mips.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Semihosting MIPS64 Newlib toolchains."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <supportedprocessor name="MIPS64">
+        <vlnvreference library="processor"
+            name="mips64"
+            vendor="mips.ovpworld.org"
+            version="1.0"/>
+    </supportedprocessor>
+    <supportedprocessor name="MIPS64R1R5">
+        <vlnvreference library="processor"
+            name="mips64_r1r5"
+            vendor="mips.ovpworld.org"
+            version="1.0"/>
+    </supportedprocessor>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </semihostlibrary>

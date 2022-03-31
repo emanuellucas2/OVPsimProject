@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw clp="T"
+    clpAllArgs="T"
+    clpExtArgs="T"
+    clpStdArgs="T"
+    diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="AlteraCycloneIII_3c120"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="altera.ovpworld.org"
+    verbose="T"
+    version="1.0"
+    visibility="0">
+    <nets name="nets">
+        <net name="irq10"/>
+        <net name="irq1"/>
+        <net name="irq11"/>
+    </nets>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="This platform models the Altera Cyclone III 3c120.
+
+The processor is an Altera Nios_II procesor, Nios_II_F."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Peripherals are modeled only to the extent required to boot and run Operating Systems such as Linux."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Altera Cyclone III 3c120 Reference Guide"/>
+    </docsection>
+    <processorinstance endian="little"
+        mips="125.0"
+        name="cpu"
+        simulateexceptions="T">
+        <vlnvreference name="nios_ii"
+            vendor="altera.ovpworld.org"
+            version="1.0"/>
+        <attribute content="Nios_II_F"
+            name="variant"/>
+        <attribute content="0xc7fff820"
+            name="BREAK_VECTOR"/>
+        <attribute content="0xd0000020"
+            name="EXCEPTION_VECTOR"/>
+        <attribute content="0xc2800000"
+            name="RESET_VECTOR"/>
+        <attribute content="0xc7fff400"
+            name="FAST_TLB_MISS_EXCEPTION_VECTOR"/>
+        <attribute content="1"
+            name="HW_DIVIDE"/>
+        <attribute content="1"
+            name="HW_MULTIPLY"/>
+        <attribute content="0"
+            name="HW_MULX"/>
+        <attribute content="1"
+            name="INCLUDE_MMU"/>
+        <attribute content="16"
+            name="MMU_TLB_SET_ASSOCIATIVITY"/>
+        <attribute content="128"
+            name="MMU_TLB_ENTRIES"/>
+        <attribute content="8"
+            name="MMU_PID_BITS"/>
+        <attribute content="29"
+            name="DATA_ADDR_WIDTH"/>
+        <attribute content="29"
+            name="INST_ADDR_WIDTH"/>
+        <attribute content="1"
+            name="TEST_HALT_EXIT"/>
+        <attribute content="1"
+            name="EXCEPTION_EXTRA_INFORMATION"/>
+        <busmasterportconnection connection="ibus"
+            hiaddress="0xFFFFFFFF"
+            loaddress="0"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="dbus"
+            hiaddress="0xFFFFFFFF"
+            loaddress="0"
+            name="DATA"/>
+        <netportconnection connection="irq10"
+            name="d_irq10"/>
+        <netportconnection connection="irq1"
+            name="d_irq1"/>
+        <netportconnection connection="irq11"
+            name="d_irq11"/>
+    </processorinstance>
+    <bus addresswidth="32"
+        name="smbus"/>
+    <bus addresswidth="32"
+        name="iobus"/>
+    <bus addresswidth="32"
+        name="dbus"/>
+    <bus addresswidth="32"
+        name="ibus"/>
+    <bridge name="pb_ibus_to_smbus">
+        <busslaveportconnection connection="ibus"
+            hiaddress="0xFFFFFFFF"
+            loaddress="0x00000000"
+            name="sp1"/>
+        <busmasterportconnection connection="smbus"
+            hiaddress="0xFFFFFFFF"
+            loaddress="0x00000000"
+            name="mp1"/>
+    </bridge>
+    <bridge name="pb_dbus_to_smbus_1">
+        <busslaveportconnection connection="dbus"
+            hiaddress="0x07FFFFFF"
+            loaddress="0x00000000"
+            name="sp1"/>
+        <busmasterportconnection connection="smbus"
+            hiaddress="0x07FFFFFF"
+            loaddress="0x00000000"
+            name="mp1"/>
+    </bridge>
+    <bridge name="pb_dbus_to_smbus_2">
+        <busslaveportconnection connection="dbus"
+            hiaddress="0xFFFFFFFF"
+            loaddress="0x08800000"
+            name="sp1"/>
+        <busmasterportconnection connection="smbus"
+            hiaddress="0xFFFFFFFF"
+            loaddress="0x08800000"
+            name="mp1"/>
+    </bridge>
+    <memoryinstance name="pb_cpu_to_ddr2_bot">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="smbus"
+            hiaddress="0x17FFFFFF"
+            loaddress="0x10000000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="tlb_miss_ram_1k">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="smbus"
+            hiaddress="0x07FFF7FF"
+            loaddress="0x07FFF400"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="flash_mem_64m">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="smbus"
+            hiaddress="0x03FFFFFF"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <bridge name="pb_cpu_to_io">
+        <busslaveportconnection connection="dbus"
+            hiaddress="0x087FFFFF"
+            loaddress="0x08000000"
+            name="sp1"/>
+        <busmasterportconnection connection="iobus"
+            hiaddress="0x007FFFFF"
+            loaddress="0x00000000"
+            name="mp1"/>
+    </bridge>
+    <peripheralinstance name="uart_s1">
+        <vlnvreference name="Uart"
+            vendor="altera.ovpworld.org"/>
+        <busslaveportconnection connection="iobus"
+            hiaddress="0x00004C9F"
+            loaddress="0x00004C80"
+            name="sp1"/>
+        <netportconnection connection="irq10"
+            name="irq"/>
+    </peripheralinstance>
+    <peripheralinstance name="sysid">
+        <vlnvreference name="SystemIDCore"
+            vendor="altera.ovpworld.org"/>
+        <busslaveportconnection connection="iobus"
+            hiaddress="0x00004D47"
+            loaddress="0x00004D40"
+            name="sp1"/>
+    </peripheralinstance>
+    <peripheralinstance name="jtag_uart">
+        <vlnvreference name="JtagUart"
+            vendor="altera.ovpworld.org"/>
+        <busslaveportconnection connection="iobus"
+            hiaddress="0x00004D57"
+            loaddress="0x00004D50"
+            name="sp1"/>
+        <attribute content="8"
+            name="writeIRQThreshold"/>
+        <attribute content="8"
+            name="readIRQThreshold"/>
+        <attribute content="64"
+            name="writeBufferDepth"/>
+        <attribute content="64"
+            name="readBufferDepth"/>
+        <attribute content="1"
+            name="console"/>
+        <attribute content="1"
+            name="finishOnDisconnect"/>
+        <attribute content="jtag_uart.log"
+            name="outfile"/>
+        <netportconnection connection="irq1"
+            name="irq"/>
+    </peripheralinstance>
+    <peripheralinstance name="timer_1ms">
+        <vlnvreference name="IntervalTimer32Core"
+            vendor="altera.ovpworld.org"/>
+        <busslaveportconnection connection="iobus"
+            hiaddress="0x00400017"
+            loaddress="0x00400000"
+            name="sp1"/>
+        <netportconnection connection="irq11"
+            name="irq"/>
+    </peripheralinstance>
+    <attribute content="1"
+        name="verbose"/>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

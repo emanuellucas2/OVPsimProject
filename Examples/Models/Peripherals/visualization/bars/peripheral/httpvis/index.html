@@ -1,0 +1,43 @@
+<html lang="en">
+<link rel="icon" type="image/icon" href="/imperas.ico">
+
+<head>
+    <title>Imperas Simulation</title>
+    <meta   charset="utf-8"/>
+    <link   rel="stylesheet"        href="normal.css"   type="text/css"/>
+    <script language="JavaScript"   src="runtime.js"        ></script>
+</head>
+
+<body onload="startRefresh('/', 500);">
+
+    <table>
+        <tr>
+            <td class='ovplabel'>Text value - utilization:</td>
+            <td width='40px'><div class='ovptext' id="bar0perc" ></div></td>
+            <td class='ovplabel'>%</td>
+        </tr>
+    </table>
+    <br/><br/>
+    <table>
+        <tr>
+            <td class='ovplabel'>Horizontal Bar</td>
+            <td><div class='ovpbar' id="bar0"></div></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td class='ovplabel'>Vertical Bar</td>
+            <td><div class='ovpvertbar' id="bar1" height='100' width='20' linewidth='3' style='border: 2px solid; margin: 4px;'></div></td>
+            <td width='20'></td>
+        </tr>
+    </table>
+    
+    <table>
+        <br/><br/>
+        <tr><td class='ovplabel'>Power Button </td></tr>
+        <tr><td><div class='ovppower' id="power0" onmousedown="ovpswitchclicked(event)" title='click to quit simulation'>SIMULATION NOT RUNNING</div></td></tr>
+    </table>
+
+<div class='console' id='console'></div>
+</body>
+</html>

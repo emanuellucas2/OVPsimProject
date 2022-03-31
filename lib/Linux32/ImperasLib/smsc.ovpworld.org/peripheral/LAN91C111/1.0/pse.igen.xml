@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="LAN91C111"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="smsc.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="SMSC LAN91C111"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Not all registers and device features are implemented.  Only 16-bit bus interface currently supported."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="SMSC LAN91C111 10/100 Non-PCI Ethernet Single Chip MAC + PHY Datasheet Revision 1.91 (06-01-09)"/>
+    </docsection>
+    <netport name="irq"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="IRQ Pin"/>
+        </docsection>
+    </netport>
+    <packetnetport maxbytes="1524"
+        mustbeconnected="F"
+        name="phy"
+        updatefunctionargument="0">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The port to connect the packetnet virtual network"/>
+        </docsection>
+    </packetnetport>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="16">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="BANK_SEL"
+                nbyte="F"
+                offset="0xe"
+                readfunction="readReg16"
+                userdata="0xE"
+                width="16"
+                writefunction="writeReg16"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="REG_0"
+                nbyte="F"
+                readfunction="readReg16"
+                userdata="0"
+                width="16"
+                writefunction="writeReg16"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="REG_2"
+                nbyte="F"
+                offset="0x2"
+                readfunction="readReg16"
+                userdata="2"
+                width="16"
+                writefunction="writeReg16"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="REG_4"
+                nbyte="F"
+                offset="0x4"
+                readfunction="readReg16"
+                userdata="4"
+                width="16"
+                writefunction="writeReg16"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="REG_6"
+                nbyte="F"
+                offset="0x6"
+                readfunction="readReg16"
+                userdata="6"
+                width="16"
+                writefunction="writeReg16"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="REG_8"
+                nbyte="F"
+                offset="0x8"
+                readfunction="readReg16"
+                userdata="8"
+                width="16"
+                writefunction="writeReg16"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="REG_10"
+                nbyte="F"
+                offset="0xa"
+                readfunction="readReg16"
+                userdata="10"
+                width="16"
+                writefunction="writeReg16"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="REG_12"
+                nbyte="F"
+                offset="0xc"
+                readfunction="readReg16"
+                userdata="12"
+                width="16"
+                writefunction="writeReg16"/>
+        </addressblock>
+    </busslaveport>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <formalmacro name="BHM_ETHERNET_OPEN_AUTO_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

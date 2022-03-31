@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="zynq_7000-ocm"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="xilinx.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Zynq 7000 Platform On Chip Memory Controller Registers (OCM)"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model implements the full set of registers. There is no behavior included."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Zynq-7000 TRM (https://www.xilinx.com/support/documentation/user_guides/ug585-Zynq-7000-TRM.pdf)"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="32">
+            <localmemory name="buffer"
+                readfunction="regNoDefinitionRead"
+                size="0x1000"
+                writefunction="regNoDefinitionWrite"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="OCM_PARITY_CTRL"
+                nbyte="F"
+                width="32"
+                writemask="4194303">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Control fields for RAM parity operation"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="5"
+                    name="OP"
+                    width="15"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="LF"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="MP"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="SP"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="RR"
+                    width="1"/>
+                <field access="rw"
+                    name="PCD"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="OCM_PARITY_ERRADDRESS"
+                nbyte="F"
+                offset="0x4"
+                width="32"
+                writemask="32767">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Stores the first parity error access address. This register is sticky and will retain its value unless explicitly cleared (written with 1&apos;s) with an APB write access. The physical RAM address is logged."/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="PEA"
+                    width="14"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="OCM_IRQ_STS"
+                nbyte="F"
+                offset="0x8"
+                width="32"
+                writemask="7">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Status of OCM Interrupt"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="2"
+                    name="LF"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="MP"
+                    width="1"/>
+                <field access="rw"
+                    name="SP"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="OCM_CONTROL"
+                nbyte="F"
+                offset="0xc"
+                width="32"
+                writemask="7">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Control fields for OCM"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="2"
+                    name="ArbShare"
+                    width="1"/>
+                <field access="rw"
+                    name="ScuWrPri"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+                <field bitoffset="1"
+                    name="__pad1"
+                    width="1"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

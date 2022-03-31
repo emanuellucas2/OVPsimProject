@@ -1,0 +1,3 @@
+install RUNTIME OVPsim CpuManager
+debug armv7.toolchain
+debug OVPpse.toolchain

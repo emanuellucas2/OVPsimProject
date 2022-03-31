@@ -1,0 +1,8 @@
+install RUNTIME OVPsim CpuManager
+install arm.model
+install armv7.toolchain
+install OVPpse.toolchain
+install Imperas.iGen
+install Imperas.harness
+# native thread peripheral only supported in professional products
+thread  RUNTIME CpuManager

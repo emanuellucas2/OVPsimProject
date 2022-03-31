@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw clp="T"
+    clpAllArgs="T"
+    clpExtArgs="T"
+    clpStdArgs="T"
+    diagnostics="F"
+    httpvis="F"
+    library="platform"
+    name="BareMetalV850Single"
+    purpose="0"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="renesas.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Bare Metal Platform for an V850 Processor.
+    The bare metal platform instantiates a single V850 processor instance. 
+    The processor operate using big endian data ordering.
+    It creates contiguous memory from 0x00000000 to 0xFFFFFFFF.
+    The platform can be passed any application compiled to an V850 elf format.
+    ./platform.exe application.elf"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="BareMetal platform for execution of V850 binary files"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="R01UH0128ED0700, Rev. 7.00, Oct 06, 2010"/>
+    </docsection>
+    <processorinstance name="cpu1">
+        <vlnvreference library="processor"
+            name="v850"
+            vendor="renesas.ovpworld.org"
+            version="1.0"/>
+        <extlibrary directLoad="T"
+            name="v850Newlib_0">
+            <vlnvreference name="v850Newlib"/>
+        </extlibrary>
+        <busmasterportconnection connection="bus1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus1"
+            name="DATA"/>
+    </processorinstance>
+    <bus addresswidth="32"
+        name="bus1"/>
+    <memoryinstance name="memory">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0xffffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

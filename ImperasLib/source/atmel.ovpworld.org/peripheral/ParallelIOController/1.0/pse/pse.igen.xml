@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="ParallelIOController"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="atmel.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="PIO: Parallel I/O Controller
+This model contains an accurate Register set interface.
+The functionality has only been implemented to sufficiently boot uClinux
+The Parallel I/O Controller has 32 programmable I/O lines. Six pins are dedicated as general-purpose
+I/O pins. Other I/O lines are multiplexed with an external signal of a peripheral to optimize
+the use of available package pins. The PIO controller enables generation of an interrupt on input
+change and insertion of a simple input glitch filter on any of the PIO pins.
+for more information visit http://www.atmel.com/products/at91"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model is sufficient to boot Linux"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Rev. 1354D ARM08/02"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bp1"
+        size="0x4000">
+        <addressblock name="REG"
+            size="0x4000"
+            width="32">
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="PIO_PER"
+                nbyte="F"
+                width="32"
+                writefunction="PIO_PER_wcb">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="PIO_PDR"
+                nbyte="F"
+                offset="0x4"
+                width="32"
+                writefunction="PIO_PDR_wcb">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PIO_PSR"
+                nbyte="F"
+                offset="0x8"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x01ffffff"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="PIO_OER"
+                nbyte="F"
+                offset="0x10"
+                width="32"
+                writefunction="PIO_OER_wcb">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="PIO_ODR"
+                nbyte="F"
+                offset="0x14"
+                width="32"
+                writefunction="PIO_ODR_wcb">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PIO_OSR"
+                nbyte="F"
+                offset="0x18"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="PIO_IFER"
+                nbyte="F"
+                offset="0x20"
+                width="32"
+                writefunction="PIO_IFER_wcb">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="PIO_IFDR"
+                nbyte="F"
+                offset="0x24"
+                width="32"
+                writefunction="PIO_IFDR_wcb">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PIO_IFSR"
+                nbyte="F"
+                offset="0x28"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="PIO_SODR"
+                nbyte="F"
+                offset="0x30"
+                width="32"
+                writefunction="PIO_SODR_wcb">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="PIO_CODR"
+                nbyte="F"
+                offset="0x34"
+                width="32"
+                writefunction="PIO_CODR_wcb">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PIO_ODSR"
+                nbyte="F"
+                offset="0x38"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PIO_PDSR"
+                nbyte="F"
+                offset="0x3c"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="PIO_IER"
+                nbyte="F"
+                offset="0x40"
+                width="32"
+                writefunction="PIO_IER_wcb">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="PIO_IDR"
+                nbyte="F"
+                offset="0x44"
+                width="32"
+                writefunction="PIO_IDR_wcb">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PIO_IMR"
+                nbyte="F"
+                offset="0x48"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PIO_ISR"
+                nbyte="F"
+                offset="0x4c"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport hiarray="31"
+        loarray="0"
+        name="P%u"
+        type="inout"
+        updatefunction="P_wcb"
+        updatefunctionargument="_index"/>
+    <netport name="IRQ"
+        type="output"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

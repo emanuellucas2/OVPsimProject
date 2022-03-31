@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="axi-pcie"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="xilinx.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Xilinx AXI to PCI Express bridge."/>
+        <doctext name="txt_1"
+            text="Diagnostic levels:"/>
+        <doctext name="txt_2"
+            text="PCIE_SLAVE           0x03"/>
+        <doctext name="txt_3"
+            text="PCIE_CONFIG_MASTER   0x04"/>
+        <doctext name="txt_4"
+            text="PCIE_EMPTY           0x08"/>
+        <doctext name="txt_5"
+            text="INT_ACK             0x10"/>
+        <doctext name="txt_6"
+            text="MAIN_BUS            0x20"/>
+        <doctext name="txt_7"
+            text="INFO                0x40"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model has sufficient functionality to allow a Linux Kernel to Boot."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="LogiCORE IP AXI Bridge for PCI Express v2.3 Product Guide April 2, 2014."/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="ecam"
+        remappable="T"
+        size="0x1000"/>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="busPort"
+        remappable="T"
+        size="0x1000"/>
+    <busmasterport addresswidth="28"
+        addresswidthmax="0"
+        addresswidthmin="28"
+        mustbeconnected="T"
+        name="PCIconfigM"/>
+    <busslaveport addresswidth="16"
+        name="PCIconfig"
+        remappable="T"/>
+    <busmasterport addresswidth="0"
+        addresswidthmax="0"
+        addresswidthmin="0"
+        name="PCIackM"/>
+    <netport name="intOut"
+        type="output"/>
+    <netport name="intA"
+        type="input"/>
+    <netport name="intB"
+        type="input"/>
+    <netport name="intC"
+        type="input"/>
+    <netport name="intD"
+        type="input"/>
+    <formalattribute name="PCIbus"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify which PCI Express bus the device occupies."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="PCIslot"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify which PCI Express slot the device occupies."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="PCIfunction"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify which PCI Express function the device implements."/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

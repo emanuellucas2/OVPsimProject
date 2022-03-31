@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.imperas.egui.mpd.core.connectToOVPSimLaunch">
+<stringAttribute key="com.imperas.egui.mpd.core.mpdWorkingDir" value="${workspace_loc:FreeRTOS_arm}"/>
+<booleanAttribute key="com.imperas.egui.mpd.core.simCwd" value="true"/>
+<intAttribute key="com.imperas.egui.mpd.core.simPort" value="12345"/>
+<stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_REGISTER_GROUPS" value=""/>
+<stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_START_MODE" value="attach"/>
+<stringAttribute key="process_factory_id" value="org.eclipse.cdt.dsf.gdb.GdbProcessFactory"/>
+</launchConfiguration>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="MaltaFPGA"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="mips.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="MIPS MALTA FPGA. Drives Development board functions."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model has sufficient functionality to allow a Linux Kernel to Boot on the MIPS:MALTA platform."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="MIPS Malta User Manual."/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="busPort1"
+        size="0x900"/>
+    <busslaveport addresswidth="32"
+        name="busPort2"
+        size="0x600"/>
+    <formalattribute name="stoponsoftreset"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="If non:zero, when the software reset register is written the simulation will terminate. By Default the software reset register has no effect."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="switches"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="This value is used to initialise the set on input switches to the Malta FPGA."/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

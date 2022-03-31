@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="Zynq_PL_TTELNoC_processing_node_public_demonstrator"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="safepower.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets">
+        <net name="timer_intc"/>
+        <net name="period_intc"/>
+        <net name="core_intc"/>
+        <net name="intc_mb"/>
+    </nets>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="This module implements a Processing Node for the SafePower Public Demonstrator in the Xilinx Zynq Programmable Logic (PL).
+This PL configuration instances one Xilinx MicroBlaze processor with a local memory and a TTEL NoC interface peripheral."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Provides a baremetal implementation."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="SafePower Public Demonstrator"/>
+    </docsection>
+    <bus addresswidth="32"
+        name="pBus"/>
+    <processorinstance defaultsemihost="T"
+        name="cpu">
+        <vlnvreference name="microblaze"
+            vendor="xilinx.ovpworld.org"
+            version="1.0"/>
+        <busmasterportconnection connection="pBus"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="pBus"
+            name="DATA"/>
+        <attribute content="1"
+            name="C_ENDIANNESS"/>
+        <attribute content="1"
+            name="C_USE_INTERRUPT"/>
+        <attribute content="2"
+            name="C_INTERCONNECT"/>
+        <attribute content="1"
+            name="C_USE_FPU"/>
+        <attribute content="2"
+            name="C_USE_HW_MUL"/>
+        <attribute content="1"
+            name="C_USE_DIV"/>
+        <netportconnection connection="intc_mb"
+            name="Interrupt"/>
+    </processorinstance>
+    <formalattribute name="cluster"
+        type="uns32"/>
+    <formalattribute name="tile"
+        type="uns32"/>
+    <formalattribute name="node"
+        type="uns32"/>
+    <memoryinstance name="ramS">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="pBus"
+            hiaddress="0x03ffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <peripheralinstance name="ni">
+        <vlnvreference name="TTELNode"
+            vendor="safepower.ovpworld.org"/>
+        <busslaveportconnection connection="pBus"
+            hiaddress="0x80ffffff"
+            loaddress="0x80000000"
+            name="hostif"/>
+        <netportconnection connection="period_intc"
+            name="PeriodInterrupt"/>
+        <netportconnection connection="core_intc"
+            name="CoreInterrupt"/>
+        <attribute content="cluster"
+            name="cluster"/>
+        <attribute content="tile"
+            name="tile"/>
+        <attribute content="node"
+            name="node"/>
+        <packetnetportconnection connection="networkNode"
+            name="network"/>
+    </peripheralinstance>
+    <packetnetportconnection connection="networkNode"
+        mustbeconnected="T"
+        name="networkNodePort"/>
+    <pkn name="networkNode"/>
+    <peripheralinstance name="intc">
+        <vlnvreference name="axi-intc"
+            vendor="xilinx.ovpworld.org"
+            version="1.0"/>
+        <busslaveportconnection connection="pBus"
+            hiaddress="0x412001ff"
+            loaddress="0x41200000"
+            name="bport1"/>
+        <netportconnection connection="timer_intc"
+            name="intr3"/>
+        <netportconnection connection="core_intc"
+            name="intr2"/>
+        <netportconnection connection="period_intc"
+            name="intr0"/>
+        <netportconnection connection="intc_mb"
+            name="irq"/>
+    </peripheralinstance>
+    <peripheralinstance name="timer">
+        <vlnvreference name="axi-timer"
+            vendor="xilinx.ovpworld.org"
+            version="1.0"/>
+        <busslaveportconnection connection="pBus"
+            hiaddress="0x41c0001f"
+            loaddress="0x41c00000"
+            name="sp"/>
+        <netportconnection connection="timer_intc"
+            name="Interrupt"/>
+        <attribute content="little"
+            name="endian"/>
+        <attribute content="100.000000"
+            name="frequency"/>
+    </peripheralinstance>
+    <memoryinstance name="debug_gpio">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="pBus"
+            hiaddress="0x4000ffff"
+            loaddress="0x40000000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="axi_gpio">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="pBus"
+            hiaddress="0x4003ffff"
+            loaddress="0x40030000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="clock_control">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="pBus"
+            hiaddress="0x44A3ffff"
+            loaddress="0x44A30000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="ttel_clock">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="pBus"
+            hiaddress="0x44A4ffff"
+            loaddress="0x44A40000"
+            name="sp1"/>
+    </memoryinstance>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

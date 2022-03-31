@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="AtmelAT91SAM7"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="F"
+    vendor="atmel.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets">
+        <net name="NFIQ"/>
+        <net name="NIRQ"/>
+        <net name="US0IRQ"/>
+        <net name="US1IRQ"/>
+        <net name="TC0IRQ"/>
+        <net name="TC1IRQ"/>
+        <net name="TC2IRQ"/>
+        <net name="WDIRQ"/>
+        <net name="PIOIRQ"/>
+    </nets>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text=" Simple platform of Atmel AT91 ARM7TDMI based system
+"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="This platform is sufficient to boot Linux"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="Rev. 1354D ARM08/02"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <bus addresswidth="32"
+        name="mainbus"/>
+    <processorinstance endian="little"
+        name="ARM7TDMICore"
+        simulateexceptions="T">
+        <vlnvreference name="arm"
+            vendor="arm.ovpworld.org"/>
+        <extlibrary directLoad="T"
+            name="loader_0">
+            <vlnvreference library="intercept"
+                name="loader"
+                vendor="atmel.ovpworld.org"/>
+        </extlibrary>
+        <attribute content="ARM7TDMI"
+            name="variant"/>
+        <busmasterportconnection connection="mainbus"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="mainbus"
+            name="DATA"/>
+        <netportconnection connection="NFIQ"
+            name="fiq"/>
+        <netportconnection connection="NIRQ"
+            name="irq"/>
+    </processorinstance>
+    <memoryinstance name="extDev">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="mainbus"
+            hiaddress="0xFFBFFFFF"
+            loaddress="0x00400000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="ram0">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="mainbus"
+            hiaddress="0x000FFFFF"
+            loaddress="0x0000000"
+            name="sp1"/>
+    </memoryinstance>
+    <peripheralinstance name="AIC">
+        <vlnvreference name="AdvancedInterruptController"
+            vendor="atmel.ovpworld.org"/>
+        <busslaveportconnection connection="mainbus"
+            hiaddress="0xffffffff"
+            loaddress="0xfffff000"
+            name="bp1"/>
+        <netportconnection connection="US0IRQ"
+            name="US0IRQ"/>
+        <netportconnection connection="US1IRQ"
+            name="US1IRQ"/>
+        <netportconnection connection="TC0IRQ"
+            name="TC0IRQ"/>
+        <netportconnection connection="TC1IRQ"
+            name="TC1IRQ"/>
+        <netportconnection connection="TC2IRQ"
+            name="TC2IRQ"/>
+        <netportconnection connection="WDIRQ"
+            name="WDIRQ"/>
+        <netportconnection connection="PIOIRQ"
+            name="PIOIRQ"/>
+        <netportconnection connection="NFIQ"
+            name="NFIQ"/>
+        <netportconnection connection="NIRQ"
+            name="NIRQ"/>
+    </peripheralinstance>
+    <peripheralinstance name="WD">
+        <vlnvreference name="WatchdogTimer"
+            vendor="atmel.ovpworld.org"/>
+        <busslaveportconnection connection="mainbus"
+            hiaddress="0xffffbfff"
+            loaddress="0xffff8000"
+            name="bp1"/>
+        <netportconnection connection="WDIRQ"
+            name="IRQ"/>
+    </peripheralinstance>
+    <peripheralinstance name="PS">
+        <vlnvreference name="PowerSaving"
+            vendor="atmel.ovpworld.org"/>
+        <busslaveportconnection connection="mainbus"
+            hiaddress="0xffff7fff"
+            loaddress="0xffff4000"
+            name="bp1"/>
+    </peripheralinstance>
+    <peripheralinstance name="PIO">
+        <vlnvreference name="ParallelIOController"
+            vendor="atmel.ovpworld.org"/>
+        <busslaveportconnection connection="mainbus"
+            hiaddress="0xffff3fff"
+            loaddress="0xffff0000"
+            name="bp1"/>
+        <netportconnection connection="PIOIRQ"
+            name="IRQ"/>
+    </peripheralinstance>
+    <peripheralinstance name="TC">
+        <vlnvreference name="TimerCounter"
+            vendor="atmel.ovpworld.org"/>
+        <busslaveportconnection connection="mainbus"
+            hiaddress="0xfffe3fff"
+            loaddress="0xfffe0000"
+            name="bp1"/>
+        <netportconnection connection="TC0IRQ"
+            name="IRQ0"/>
+        <netportconnection connection="TC1IRQ"
+            name="IRQ1"/>
+        <netportconnection connection="TC2IRQ"
+            name="IRQ2"/>
+    </peripheralinstance>
+    <peripheralinstance name="USART0">
+        <vlnvreference name="UsartInterface"
+            vendor="atmel.ovpworld.org"/>
+        <busslaveportconnection connection="mainbus"
+            hiaddress="0xfffd3fff"
+            loaddress="0xfffd0000"
+            name="apb"/>
+        <busmasterportconnection connection="mainbus"
+            name="asb"/>
+        <netportconnection connection="US0IRQ"
+            name="IRQ"/>
+        <attribute content="1"
+            name="finishOnDisconnect"/>
+    </peripheralinstance>
+    <peripheralinstance name="USART1">
+        <vlnvreference name="UsartInterface"
+            vendor="atmel.ovpworld.org"/>
+        <busslaveportconnection connection="mainbus"
+            hiaddress="0xfffcffff"
+            loaddress="0xfffcc000"
+            name="apb"/>
+        <busmasterportconnection connection="mainbus"
+            name="asb"/>
+        <netportconnection connection="US1IRQ"
+            name="IRQ"/>
+    </peripheralinstance>
+    <peripheralinstance name="SF">
+        <vlnvreference name="SpecialFunction"
+            vendor="atmel.ovpworld.org"/>
+        <busslaveportconnection connection="mainbus"
+            hiaddress="0xfff03fff"
+            loaddress="0xfff00000"
+            name="bp1"/>
+    </peripheralinstance>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

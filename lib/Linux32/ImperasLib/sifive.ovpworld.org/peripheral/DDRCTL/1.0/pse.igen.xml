@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="DDRCTL"
+    nbyte="T"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="sifive.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="DDR Controller Register Block for SiFive FU540 chip"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="SiFive Freedom U540-C000 Manual FU540-C000-v1.0.pdf (https://www.sifive.com/documentation/chips/freedom-u540-c000-manual)"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Limitations">
+        <doctext name="txt"
+            text="Register only model. Register address space modeled as RAM except for registers that require write masks or reset values."/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="CONTROL"
+        size="0x4000">
+        <addressblock name="REGS"
+            size="0x4000"
+            width="32">
+            <localmemory name="ctrlRegs"
+                nbyte="T"
+                readfunction="readControlMem"
+                size="0x4000"
+                writefunction="writeControlMem"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="reg33"
+                nbyte="T"
+                offset="0x84"
+                userdata="0xfffffeff"
+                width="32"
+                writefunction="writeMaskedControlReg"/>
+        </addressblock>
+    </busslaveport>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="BLOCKER"
+        size="0x8">
+        <addressblock name="REGS"
+            size="0x8"
+            width="64">
+            <localmemory name="blkRegs"
+                nbyte="T"
+                readfunction="readBlockerMem"
+                size="0x8"
+                writefunction="writeBlockerMem"/>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

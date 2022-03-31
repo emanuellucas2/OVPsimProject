@@ -1,0 +1,3 @@
+install RUNTIME CpuManager
+install PERSONALITY CPUMAN_MULTI
+install or1k.toolchain

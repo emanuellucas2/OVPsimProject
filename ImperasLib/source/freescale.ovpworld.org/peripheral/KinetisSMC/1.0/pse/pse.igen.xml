@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="KinetisSMC"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="freescale.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Model of the SMC peripheral used on the Freescale Kinetis platform"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Provides the base behaviour for the OVP Freescale Kinetis platforms"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="www.freescale.com/Kinetis"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x4"
+            width="8">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="PMPROT"
+                nbyte="F"
+                width="8"
+                writemask="42">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Power Mode Protection Register, offset: 0x0 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="3"
+                    name="ALLS"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="AVLLS"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="AVLP"
+                    width="1"/>
+                <field bitoffset="0"
+                    name="__pad0"
+                    width="1"/>
+                <field bitoffset="2"
+                    name="__pad2"
+                    width="1"/>
+                <field bitoffset="4"
+                    name="__pad4"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="PMCTRL"
+                nbyte="F"
+                offset="0x1"
+                width="8"
+                writemask="231">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Power Mode Control Register, offset: 0x1 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="7"
+                    name="LPWUI"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="RUNM"
+                    width="2"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="STOPA"
+                    width="1"/>
+                <field access="rw"
+                    name="STOPM"
+                    width="3"/>
+                <field bitoffset="4"
+                    name="__pad4"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="VLLSCTRL"
+                nbyte="F"
+                offset="0x2"
+                width="8"
+                writemask="7">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x03"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="VLLS Control Register, offset: 0x2 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="VLLSM"
+                    width="3"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PMSTAT"
+                nbyte="F"
+                offset="0x3"
+                width="8">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x01"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Power Mode Status Register, offset: 0x3 "/>
+                </docsection>
+                <field access="r"
+                    bitoffset="0"
+                    name="PMSTAT"
+                    width="7"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="Reset"
+        type="input"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

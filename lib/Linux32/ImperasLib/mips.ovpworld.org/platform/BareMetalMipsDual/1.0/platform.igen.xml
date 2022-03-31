@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw clp="T"
+    clpAllArgs="T"
+    clpExtArgs="T"
+    clpStdArgs="T"
+    diagnostics="F"
+    httpvis="F"
+    library="platform"
+    name="BareMetalMipsDual"
+    purpose="0"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="mips.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Bare Metal Platform for a MIPS32 Processor (default 74Kc).
+    The bare metal platform instantiates two MIPS32 processor instances. 
+    The processor operates using big endian data ordering.
+    It creates contiguous memory from 0x00000000 to 0xFFFFFFFF.
+    The platform can be passed any application compiled to a MIPS elf format.
+    The same application executes on each processor. There is no sharing of data.
+    It may also be passed a new variant to be used (default 74Kc)
+    ./platform.OS.exe --program application.CROSS.elf [--variant &lt;model variant&gt;]"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="BareMetal platform for execution of MIPS MIPS32 binary files compiled with CodeSourcery CrossCompiler toolchain."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="None"/>
+    </docsection>
+    <processorinstance enableintercepts="T"
+        endian="big"
+        id="0"
+        name="cpu0">
+        <vlnvreference library="processor"
+            name="mips32_r1r5"
+            vendor="mips.ovpworld.org"/>
+        <extlibrary directLoad="T"
+            name="mips32Newlib_0">
+            <vlnvreference name="mips32Newlib"
+                vendor="mips.ovpworld.org"/>
+        </extlibrary>
+        <attribute content="74Kc"
+            name="variant"/>
+        <busmasterportconnection connection="bus0"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus0"
+            name="DATA"/>
+    </processorinstance>
+    <bus addresswidth="32"
+        name="bus0"/>
+    <memoryinstance name="memory0">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus0"
+            hiaddress="0xffffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <processorinstance enableintercepts="T"
+        endian="big"
+        id="1"
+        name="cpu1">
+        <vlnvreference library="processor"
+            name="mips32_r1r5"
+            vendor="mips.ovpworld.org"/>
+        <extlibrary directLoad="T"
+            name="mips32Newlib_1">
+            <vlnvreference name="mips32Newlib"
+                vendor="mips.ovpworld.org"/>
+        </extlibrary>
+        <attribute content="74Kc"
+            name="variant"/>
+        <busmasterportconnection connection="bus1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus1"
+            name="DATA"/>
+    </processorinstance>
+    <bus addresswidth="32"
+        name="bus1"/>
+    <memoryinstance name="memory1">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0xffffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

@@ -1,0 +1,1982 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <processor QLQualified="T"
+    defaultsemihostlibrary="semihosting"
+    defaultsemihostname="mips32Newlib"
+    defaultsemihostvendor="mips.ovpworld.org"
+    defaultsemihostversion="1.0"
+    elfcode="8"
+    endian="either"
+    family="mips32_r1r5"
+    gdbpath="$IMPERAS_HOME/lib/$IMPERAS_ARCH/gdb/mips-sde-elf-gdb"
+    imagefile="model"
+    library="processor"
+    name="mips32_r1r5"
+    procdoc="$IMPERAS_HOME/ImperasLib/source/mips.ovpworld.org/processor/mips32_r1r5/1.0/doc/OVP_Model_Specific_Information_mips32_r1r5_generic.pdf"
+    releasestatus="4"
+    useindefaultplatform="T"
+    vendor="mips.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="MIPS32 Configurable Processor Model"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Usage of binary model under license governing simulator usage. Source of model available under Imperas Software License Agreement."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="If this model is not part of your installation, then it is available for download from www.OVPworld.org/ip-vendor-mips."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Verification">
+        <doctext name="txt"
+            text="Models have been validated correct as part of the MIPS Verified program and run through the MIPS AVP test programs"/>
+    </docsection>
+    <docsection name="doc_4"
+        text="Features">
+        <doctext name="txt"
+            text="ISA model - generic instruction set, minimal COP0 implementation"/>
+        <doctext name="txt_1"
+            text="only MIPS32 Instruction set implemented"/>
+        <doctext name="txt_2"
+            text="FPU implemented"/>
+        <doctext name="txt_3"
+            text="DSP ASE Rev 2 implemented"/>
+    </docsection>
+    <formalattribute name="variant"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Processor variant"/>
+        </docsection>
+        <enum name="ISA"
+            value="0"/>
+        <enum name="M14K"
+            value="1"/>
+        <enum name="M14KcTLB"
+            value="2"/>
+        <enum name="M14KcFMM"
+            value="3"/>
+        <enum name="4KEc"
+            value="4"/>
+        <enum name="4KEm"
+            value="5"/>
+        <enum name="4KEp"
+            value="6"/>
+        <enum name="M4K"
+            value="7"/>
+        <enum name="4Kc"
+            value="8"/>
+        <enum name="4Km"
+            value="9"/>
+        <enum name="4Kp"
+            value="10"/>
+        <enum name="24Kc"
+            value="11"/>
+        <enum name="24Kf"
+            value="12"/>
+        <enum name="24KEc"
+            value="13"/>
+        <enum name="24KEf"
+            value="14"/>
+        <enum name="34Kc"
+            value="15"/>
+        <enum name="34Kf"
+            value="16"/>
+        <enum name="34Kn"
+            value="17"/>
+        <enum name="74Kc"
+            value="18"/>
+        <enum name="74Kf"
+            value="19"/>
+        <enum name="1004Kc"
+            value="20"/>
+        <enum name="1004Kf"
+            value="21"/>
+        <enum name="1074Kc"
+            value="22"/>
+        <enum name="1074Kf"
+            value="23"/>
+        <enum name="microAptivC"
+            value="24"/>
+        <enum name="microAptivP"
+            value="25"/>
+        <enum name="microAptivCF"
+            value="26"/>
+        <enum name="interAptiv"
+            value="27"/>
+        <enum name="interAptivUP"
+            value="28"/>
+        <enum name="proAptiv"
+            value="29"/>
+    </formalattribute>
+    <formalattribute name="mipsHexFile"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Load a MIPS hex file (test-mode)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="IMPERAS_MIPS_AVP_OPCODES"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable MIPS-specific magic Pass/Fail opcodes (specific for AVP test termination)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="MIPS_TRACE"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable MIPS-format trace output"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="supervisorMode"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override whether processor implements supervisor mode"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="busErrors"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override bus error exception behavior. When true, accesses of memory not defined by platform will cause bus error exceptions"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="fixedMMU"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override the MMU type to fixed mapping when true (sets Config.MT=3, Config.KU/K23=2 and Config1.MMUSizeM1=0)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="removeDSP"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override the DSP-present configuration when true (sets Config3.DSPP/DSP2P=0)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="removeCMP"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override the CMP-Present configuration when true (sets Config3.CMGCR and GCR_BASE to 0)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="removeFP"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override the FP-Present configuration when true (sets Config1.FP to 0)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="isISA"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable to specify ISA model (reset address from ELF, all coprocessors enabled)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="hiddenTLBentries"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Deprecated - Instead set config1MMUSizeM1 to maximum value to improve performance"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="ITCNumEntries"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify number of ITC cells present (MT cores only)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="ITCNumFIFO"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify number of ITC FIFO cells in reference ITC implementation (MT cores only)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="MTFPU"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable multi-threaded FPU (1:old mttc1 behavior, 2:new mttc1 behavior)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="supportDenormals"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable to specify that the FPU supports denormal operands and results"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="VPE0MaxTC"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specifies the maximum TCs initially on VPE0"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuRegions"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Number of regions for memory protection unit"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuType"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Type of MPU implementation"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuEnable"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable MPU2 segment control at reset"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment0"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 0 in MPU2 SegmentControl_0 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment1"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 1 in MPU2 SegmentControl_0 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment2"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 2 in MPU2 SegmentControl_0 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment3"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 3 in MPU2 SegmentControl_0 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment4"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 4 in MPU2 SegmentControl_1 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment5"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 5 in MPU2 SegmentControl_1 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment6"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 6 in MPU2 SegmentControl_1 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment7"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 7 in MPU2 SegmentControl_1 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment8"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 8 in MPU2 SegmentControl_2 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment9"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 9 in MPU2 SegmentControl_2 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment10"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 10 in MPU2 SegmentControl_2 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment11"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 11 in MPU2 SegmentControl_2 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment12"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 12 in MPU2 SegmentControl_3 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment13"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 13 in MPU2 SegmentControl_3 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment14"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 14 in MPU2 SegmentControl_3 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mpuSegment15"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Attributes for segment 15 in MPU2 SegmentControl_3 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mvpconf0vpe"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override MVPConf0.PVPE"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mvpconf0tc"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override MVPConf0.PTC"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mvpconf0pcp"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override MVPConf0.PCP"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mvpconf0tcp"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override MVPConf0.TCP"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="hasFDC"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify the size of Fast Debug Channel register block"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="statusFR"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override power on value in Status.FR (Floating point register mode)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="configDSP"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config.DSP (data scratchpad RAM present)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="configISP"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config.ISP (instruction scratchpad RAM present)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="configK0"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override power on value of Config.K0 (set Kseg0 cacheability)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="configKU"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override power on value of Config.KU (set Useg cacheability)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="configK23"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override power on value of Config.K23 (set Kseg23 cacheability)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="configMDU"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config.MDU (iterative multiply/divide unit)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="configMM"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config.MM (merging mode for write)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="configMT"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config.MT"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="configSB"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config.SB (simple bus transfers only)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="MIPS16eASE"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config1.CA (enables the MIPS16e ASE)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config1EP"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config1.EP (EJTag present)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config1MMUSizeM1"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config1.MMUSizeM1 (number of MMU entries-1)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config1WR"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config1.WR (watchpoint registers present)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config1FP"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config1.FP (FPU present)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3BI"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.BI"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3BP"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.BP"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3CDMM"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.CDMM"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3CTXTC"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.CTXTC"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3DSPP"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.DSPP"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3DSP2P"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.DSP2P"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3IPLW"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.IPLW"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3ISA"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.ISA"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3ISAOnExc"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.ISAOnExc"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3ITL"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.ITL"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3MCU"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.MCU"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3MMAR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.MMAR"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3RXI"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.RXI"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3SC"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.SC"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3ULRI"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.ULRI"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="externalinterrupt"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.VEIC (enables the use of an external interrupt controller)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="vectoredinterrupt"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.VInt (enables vectored interrupts)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config3VZ"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config3.VZ"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config4AE"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config4.AE"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config4IE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config4.IE"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config4MMUConfig"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config4.MMUConfig field (interpretation depends on MMUExtDef value)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config4MMUExtDef"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config4.MMUExtDef"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config4VTLBSizeExt"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config4.VTLBSizeExt"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config5EVA"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config5.EVA"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config5NFExists"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config5.NFExists"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config5MSAEn"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config5.MSAEn"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config6FTLBEn"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override power on value of Config6.FTLBEn"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config7DCIDX_MODE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config7.DCIDX_MODE"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="config7WII"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override Config7.WII (wait IE/IXMT ignore)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="fcsrABS2008"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override FCSR.ABS2008 (ABS/NEG compliant with IEEE 754-2008)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="fcsrNAN2008"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override FCSR.NAN2008 (QNaN/SNaN encodings match IEEE 754-2008 recommendation)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="firPS"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override FIR.PS (PS floating point type implemented)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="firHas2008"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override FIR.Has2008 (one or more IEEE 754-2008 features present)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="intctlIPFDC"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override IntCtl.IPFDC"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="intctlIPTI"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override IntCtl.IPTI"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="pridRevision"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override PRId.Revision"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="srsctlHSS"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override SRSCtl.HSS (number of shadow register sets)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="ExceptionBase"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify the BEV Exception Base address. (use GCR_Cx_RESET_BASE on CMP processors)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UseExceptionBase"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set to one to use ExceptionBase[29:12] as the corresponding BEV address bits"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="firstBEVExceptionBaseMaskBit"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify LSB position of GCR_Cx_RESET_EXT_BASE. BEVExceptionBaseMask field. Only used when SegCtl present"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="EVAReset"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set to one to reset into non-legacy address map and BEV location. Only used when non-CMP and SegCtl present"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="ExceptionBaseMask"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify the ExceptionBaseMask value used for bits [27:firstBEVExceptionBaseMaskBit]. Only used when non-CMP and SegCtl present"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="ExceptionBasePA"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Bits [35:29] of the physical address for the BEV overlays. Only used when non-CMP and SegCtl present"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="EIC_OPTION"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override the external interrupt controller EIC_OPTION"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="ISPRAM_SIZE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Encoded size of the ISPRAM region (log2(&lt;ISPRAM size in bytes&gt;) - 11)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="ISPRAM_BASE"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Starting physical address of the ISPRAM region"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="ISPRAM_ENABLE"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the enable bit of the ISPRAM region&apos;s tag (used to enable the ISPRAM region prior to reset)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="ISPRAM_FILE"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Load a MIPS hex file into the ISPRAM region prior to reset"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="DSPRAM_SIZE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Encoded size of the DSPRAM region (log2(&lt;DSPRAM size in bytes&gt;) - 11)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="DSPRAM_BASE"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Starting physical address of the DSPRAM region"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="DSPRAM_ENABLE"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the enable bit of the DSPRAM region&apos;s tag (used to enable the DSPRAM region prior to reset)"/>
+        </docsection>
+    </formalattribute>
+    <busmasterport addresswidth="32"
+        addresswidthmax="36"
+        addresswidthmin="12"
+        mustbeconnected="T"
+        name="INSTRUCTION"/>
+    <busmasterport addresswidth="32"
+        addresswidthmax="36"
+        addresswidthmin="12"
+        mustbeconnected="F"
+        name="DATA"/>
+    <netport mustbeconnected="F"
+        name="reset"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Core reset"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="dint"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Debug external interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="hwint0"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="hwint1"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="hwint2"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="hwint3"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="hwint4"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="hwint5"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="External interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="nmi"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Non-maskable external interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="vc_run"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set to force stop of execution on processor VPE (simulation control only)"/>
+        </docsection>
+    </netport>
+    <command name="isync">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="specify instruction address range for synchronous execution"/>
+        </docsection>
+        <commandarg name="addresshi"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="end address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="addresslo"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="start address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="itrace">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="enable or disable instruction tracing"/>
+        </docsection>
+        <commandarg name="after"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="apply after this many instructions"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="enable"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="instructioncount"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="include the instruction number in each trace"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="memory"
+            type="String">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show memory accesses by this instruction. Argument can be any combination of X (execute), L (load or store access) and S (system)"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="off"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="disable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="on"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="processorname"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Include processor name in all trace lines"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registerchange"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers changed by this instruction"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registers"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers after each trace"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="mipsCOP0">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="query a COP0 register value using &lt;register&gt; &lt;select&gt;"/>
+        </docsection>
+        <commandarg name="register"
+            type="Uns32">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="specify the COP0 register number"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="select"
+            type="Uns32">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="specify the COP0 register select"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="mipsCacheDisable">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Disables tag or full cache model"/>
+        </docsection>
+    </command>
+    <command name="mipsCacheEnable">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="enable tag or full cache model"/>
+        </docsection>
+        <commandarg name="debug"
+            type="Uns32">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="set cache model debug flags"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="full"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable full cache model"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="tag"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable cache tag line only model"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="mipsCacheRatio">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Report current hit ratio for selected cache"/>
+        </docsection>
+        <commandarg name="dcache"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="report hit ratio for dcache"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="icache"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="report hit ratio for icache"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="mipsCacheReport">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Report current cache statistics"/>
+        </docsection>
+    </command>
+    <command name="mipsCacheReset">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="reset the cache model"/>
+        </docsection>
+    </command>
+    <command name="mipsCacheTrace">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Control the tracing of cache accesses"/>
+        </docsection>
+        <commandarg name="noartifact"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="filter artifact accesses"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="nocached"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="filter cached accesses"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="nodcache"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="filter dcache accesses"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="noicache"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="filter icache accesses"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="notrue"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="filter true accesses"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="nouncached"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="filter uncached accesses"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="off"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="turn off the cache tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="on"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="turn on the cache tracing"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="mipsDebugFlags">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the processor model debug flags to &lt;value&gt;"/>
+        </docsection>
+        <commandarg name="value"
+            type="Uns32">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="specify model debug flags"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="mipsReadRegister">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Read a processor register using &lt;resource&gt; &lt;offset&gt;"/>
+        </docsection>
+        <commandarg name="offset"
+            type="Uns32">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="the processor register offset"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="resource"
+            type="Uns32">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="the processor register resource number"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="mipsWriteRegister">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Write to a processor register using &lt;resource&gt; &lt;offset&gt; &lt;value&gt;"/>
+        </docsection>
+        <commandarg name="offset"
+            type="Uns32">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="the register offset number"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="resource"
+            type="Uns32">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="the register resource number"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="value"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="the register value to be written"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <exceptions name="Exceptions">
+        <exception code="0"
+            name="Int"/>
+        <exception code="1"
+            name="Mod"/>
+        <exception code="2"
+            name="TLBL"/>
+        <exception code="3"
+            name="TLBS"/>
+        <exception code="4"
+            name="AdEL"/>
+        <exception code="5"
+            name="AdES"/>
+        <exception code="6"
+            name="IBE"/>
+        <exception code="7"
+            name="DBE"/>
+        <exception code="8"
+            name="Sys"/>
+        <exception code="9"
+            name="Bp"/>
+        <exception code="10"
+            name="RI"/>
+        <exception code="11"
+            name="CpU"/>
+        <exception code="12"
+            name="Ov"/>
+        <exception code="13"
+            name="Tr"/>
+        <exception code="15"
+            name="FPE"/>
+        <exception code="16"
+            name="Impl1"/>
+        <exception code="17"
+            name="Impl2"/>
+        <exception code="18"
+            name="C2E"/>
+        <exception code="19"
+            name="TLBRI"/>
+        <exception code="20"
+            name="TLBXI"/>
+        <exception code="22"
+            name="MDMX"/>
+        <exception code="23"
+            name="WATCH"/>
+        <exception code="24"
+            name="MCheck"/>
+        <exception code="25"
+            name="Thread"/>
+        <exception code="26"
+            name="DSPDis"/>
+        <exception code="29"
+            name="Prot"/>
+        <exception code="30"
+            name="CacheErr"/>
+    </exceptions>
+    <modes name="Modes">
+        <mode code="0"
+            name="KERNEL"/>
+        <mode code="1"
+            name="DEBUG"/>
+        <mode code="2"
+            name="SUPERVISOR"/>
+        <mode code="3"
+            name="USER"/>
+    </modes>
+    <registers name="Core">
+        <register alias="F"
+            name="zero"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="at"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="v0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="v1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="a0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="a1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="a2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="a3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t4"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t5"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t7"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s4"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s5"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s7"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t8"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t9"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="k0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="k1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="gp"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="sp"
+            readonly="F"
+            type="2"
+            width="32"/>
+        <register alias="F"
+            name="s8"
+            readonly="F"
+            type="3"
+            width="32"/>
+        <register alias="F"
+            name="ra"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pc"
+            readonly="F"
+            type="1"
+            width="32"/>
+    </registers>
+    <registers name="FPU">
+        <register alias="F"
+            name="f0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f4"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f5"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f7"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f8"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f9"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f10"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f11"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f12"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f13"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f14"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f15"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f16"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f17"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f18"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f19"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f20"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f21"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f22"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f23"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f24"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f25"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f26"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f27"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f28"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f29"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f30"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="f31"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="fsr"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="fir"
+            readonly="T"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="DSP">
+        <register alias="F"
+            name="lo"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hi"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="lo1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hi1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="lo2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hi2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="lo3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hi3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="dspctl"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="COP0">
+        <register alias="F"
+            name="sr"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="bad"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="cause"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hwrena"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="badvaddr"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="count"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="compare"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="status"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="intctl"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="srsctl"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="srsmap"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="epc"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="prid"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="ebase"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="config"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="config1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="config2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="config3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="debug"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="depc"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="errorepc"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="desave"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="Integration_support">
+        <register alias="F"
+            name="stop"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </processor>

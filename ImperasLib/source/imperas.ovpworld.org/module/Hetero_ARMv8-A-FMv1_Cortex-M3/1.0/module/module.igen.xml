@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="Hetero_ARMv8-A-FMv1_Cortex-M3"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="imperas.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="This module implements a system containing two sub-systems  
+1) ARM FMv1 Cortex-A53MPx5 running Linux, and  2) Cortex-M3 running FreeRTOS.  The two sub-systems are connected by a shared memory."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="None"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="ARM DUI 0677C and www.freertos.org"/>
+    </docsection>
+    <module name="ARMv8-A-FMv1">
+        <vlnvreference library="module"
+            name="ARMv8-A-FMv1"
+            vendor="arm.ovpworld.org"
+            version="1.0"/>
+        <busportconnection connection="sharedBus"
+            name="pBusP"/>
+    </module>
+    <module name="ArmCortexMFreeRTOS">
+        <vlnvreference library="module"
+            name="ArmCortexMFreeRTOS"
+            vendor="imperas.ovpworld.org"
+            version="1.0"/>
+        <busportconnection connection="sharedBus"
+            name="pBusP"/>
+    </module>
+    <bus addresswidth="32"
+        name="sharedBus"/>
+    <memoryinstance name="sharedMemory">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="sharedBus"
+            hiaddress="0x0000fffb"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

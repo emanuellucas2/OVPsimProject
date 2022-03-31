@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="TTELNode"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="safepower.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="The TTEL Network on Chip (NoC) node peripheral for SafePower Project"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model implements the TTEL NoC node processor interface. It does not model any timing in the transfer of messages between nodes."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Generated using document TTEL Software Extensions ver 1.0 and D1.2.1 architectural style of dreams r1-0."/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="hostif"
+        size="0x1000000">
+        <addressblock name="rec"
+            size="0x10000"
+            width="32">
+            <localmemory access="rw"
+                name="port"
+                nbyte="T"
+                readfunction="readData"
+                size="0x10000"
+                userdata="0"
+                writefunction="writeData"/>
+            <localmemory access="w"
+                name="term"
+                nbyte="T"
+                offset="0x8000"
+                size="0x1fff"
+                userdata="0"
+                writefunction="writePortTerminate"/>
+        </addressblock>
+        <addressblock hiarray="0xfd"
+            loarray="0x1"
+            name="port%u"
+            offset="0x10000"
+            size="0x10000"
+            width="32">
+            <localmemory access="rw"
+                name="data"
+                nbyte="T"
+                readfunction="readData"
+                size="0x1fff"
+                userdata="_index"
+                writefunction="writeData"/>
+            <localmemory access="r"
+                name="length"
+                nbyte="T"
+                offset="0x4000"
+                readfunction="readPortLength"
+                size="0x1fff"
+                userdata="_index"/>
+            <localmemory access="w"
+                name="term"
+                nbyte="T"
+                offset="0x8000"
+                size="0x1fff"
+                userdata="_index"
+                writefunction="writePortTerminate"/>
+        </addressblock>
+        <addressblock name="err"
+            offset="0xfe0000"
+            size="0x10000"
+            width="32">
+            <localmemory access="rw"
+                name="err"
+                size="0x10000"/>
+        </addressblock>
+        <addressblock name="mon"
+            offset="0xff0000"
+            size="0x10000"
+            width="32">
+            <localmemory access="r"
+                name="empty"
+                size="0x20"/>
+            <localmemory access="r"
+                name="full"
+                offset="0x20"
+                size="0x20"/>
+            <localmemory access="r"
+                name="status"
+                offset="0x40"
+                size="0x400"/>
+            <localmemory access="r"
+                name="gbltim0"
+                offset="0x440"
+                readfunction="readGlobalTime"
+                size="0x4"
+                userdata="0"/>
+            <localmemory access="r"
+                name="gbltim1"
+                offset="0x444"
+                readfunction="readGlobalTime"
+                size="0x4"
+                userdata="1"/>
+        </addressblock>
+    </busslaveport>
+    <formalattribute defaultvalue="0"
+        max="255"
+        min="0"
+        name="cluster"
+        type="uns32"/>
+    <formalattribute defaultvalue="0"
+        max="255"
+        min="0"
+        name="node"
+        type="uns32"/>
+    <formalattribute defaultvalue="1"
+        max="255"
+        min="0"
+        name="tile"
+        type="uns32"/>
+    <formalattribute name="configfile"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Configure the TTEL Node ports and NoC connections"/>
+        </docsection>
+    </formalattribute>
+    <packetnetport maxbytes="598"
+        mustbeconnected="F"
+        name="network"
+        updatefunction="networkReceiveMsg"
+        updatefunctionargument="0"/>
+    <netport name="PeriodInterrupt"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Fixed rate periodic interrupt. Interrupts are configured per period"/>
+        </docsection>
+    </netport>
+    <formalattribute defaultvalue="10"
+        max="10000"
+        min="10"
+        name="scheduledperiod"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Configuration period for the PeriodInterrupt generation (allowed range 10uS to 10000uS)"/>
+        </docsection>
+    </formalattribute>
+    <netport name="CoreInterrupt"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Scheduled interrupt. A schedule for interupts to be sent per period (defined by scheduleperiod that generates PeriodInterrupt)"/>
+        </docsection>
+    </netport>
+    <formalattribute name="coreintconfigfile"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Configure the CoreInterrupt generation schedule"/>
+        </docsection>
+    </formalattribute>
+    <netport name="pIntToCore"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Interrupt indicates that a message has been received in a port"/>
+        </docsection>
+    </netport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="79C970"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="amd.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Implements part of the AMD AM79C97xx series Ethernet devices."/>
+        <doctext name="txt_1"
+            text="diagnosticlevel:
+    bits 0:1 give levels for the network hardware.
+    bits 2:3 give levels for the user:mode SLIRP interface."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Sufficient is implemented to Boot MIPS Linux and support ethernet TCP/IP services."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="AMD Am79C973/Am79C975 PCnet-FAST III Single-Chip 10/100 Mbps PCI Ethernet Controller with Integrated PHY Datasheet"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="busPort"
+        remappable="T"
+        size="0x8">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="PCI main bus connection for register access."/>
+        </docsection>
+    </busslaveport>
+    <busslaveport addresswidth="32"
+        name="PCIconfig"
+        remappable="T"
+        size="0x800">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="PCI configuration bus connection."/>
+        </docsection>
+    </busslaveport>
+    <busmasterport addresswidth="32"
+        addresswidthmax="40"
+        addresswidthmin="32"
+        name="dmaPort">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="PCI DMA bus connection."/>
+        </docsection>
+    </busmasterport>
+    <netport name="intOut0"
+        type="output"/>
+    <formalattribute name="PCIslot"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the PCI slot at which the Ethernet card is installed"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="PCIfunction"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the PCI function of the device. The default of 0 is correct for this device."/>
+        </docsection>
+    </formalattribute>
+    <packetnetport maxbytes="1524"
+        mustbeconnected="F"
+        name="phy"
+        updatefunctionargument="0">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The port to connect the packetnet virtual network"/>
+        </docsection>
+    </packetnetport>
+    <formalmacro name="BHM_ETHERNET_OPEN_AUTO_FORMALS"/>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

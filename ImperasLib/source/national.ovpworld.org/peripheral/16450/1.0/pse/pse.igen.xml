@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="16450"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="national.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Model of 16550/16450 UART."/>
+        <doctext name="txt_1"
+            text="Connects to a bus by a slave port and optionally to a processor by an interrupt signal."/>
+        <doctext name="txt_2"
+            text="The serial input/output ports are modelled by socket connection which must be attached to a
+           process outside the simulation environment. Note that on start:up, the UART model will block
+           the simulator, pending a connection to the socket."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Simplified baud:rate."/>
+        <doctext name="txt_1"
+            text="No modem support (DTR etc)."/>
+        <doctext name="txt_2"
+            text="No support for parity."/>
+        <doctext name="txt_3"
+            text="No means to simulate errors."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Based upon 16450 features of http://www.ti.com/lit/ds/symlink/pc16550d.pdf"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x8">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Byte:wide access to control and status registers."/>
+        </docsection>
+    </busslaveport>
+    <netport name="intOut"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Interrupt output."/>
+        </docsection>
+    </netport>
+    <formalattribute name="simulatebaud"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="If non:zero, transmit at the programmed baud rate Default is to transmit without any delay."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="9"
+        name="defaultbaud"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the baud rate multiplier. Default is 9."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="charmode"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Puts the telnet server into char mode. Default is line mode"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="uart16550"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable 16550 mode (with FIFOS)"/>
+        </docsection>
+    </formalattribute>
+    <formalmacro name="BHM_SER_OPEN_AUTO_FORMALS"/>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

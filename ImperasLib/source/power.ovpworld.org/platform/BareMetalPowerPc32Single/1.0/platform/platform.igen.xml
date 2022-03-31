@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw clp="T"
+    clpAllArgs="T"
+    clpExtArgs="T"
+    clpStdArgs="T"
+    diagnostics="F"
+    httpvis="F"
+    library="platform"
+    name="BareMetalPowerPc32Single"
+    purpose="0"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="F"
+    vendor="power.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Bare Metal Platform for an PowerPc32 Processor.
+    The bare metal platform instantiates a single PowerPc32 processor instance. 
+    The processor operates using big and little endian data ordering.
+    It creates contiguous memory from 0x00000000 to 0xFFFFFFFF.
+    The platform can be passed any application compiled to an PowerPc32 elf format.
+    ./platform.&lt;OS&gt;exe --program application.elf"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="BareMetal platform for execution of PowerPc32 binary files."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="None, baremetal platform definition"/>
+    </docsection>
+    <processorinstance endian="big"
+        name="cpu1">
+        <vlnvreference name="powerpc32"
+            vendor="power.ovpworld.org"/>
+        <extlibrary directLoad="T"
+            name="powerpc32Newlib_0">
+            <vlnvreference name="powerpc32Newlib"/>
+        </extlibrary>
+        <busmasterportconnection connection="bus1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus1"
+            name="DATA"/>
+    </processorinstance>
+    <bus addresswidth="32"
+        name="bus1"/>
+    <memoryinstance name="memory">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0xffffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

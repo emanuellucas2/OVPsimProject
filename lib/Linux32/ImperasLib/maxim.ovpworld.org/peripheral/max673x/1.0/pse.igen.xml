@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="max673x"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="maxim.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Maxim Watchdog Timer"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model implements a watchdog period, it does not implement initial reset."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="MAX6730-MAX6735 uP Supervisory Circuit with Independent Watchdog Output"/>
+    </docsection>
+    <netport name="wdi"
+        type="input"
+        updatefunction="wdReset">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Watchdog input signal"/>
+        </docsection>
+    </netport>
+    <netport name="wdo"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Watchdog output signal"/>
+        </docsection>
+    </netport>
+    <formalattribute defaultvalue="140"
+        max="2240"
+        min="1.1"
+        name="TimeoutPeriod"
+        type="double">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Watchdog Timeout Period (milliSeconds)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="35"
+        max="55"
+        min="35"
+        name="InitialPeriod"
+        type="double">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Initial Watchdog Timeout Period (Seconds)"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

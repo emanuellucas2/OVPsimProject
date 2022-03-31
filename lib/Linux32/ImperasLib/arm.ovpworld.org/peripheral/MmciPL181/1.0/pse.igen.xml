@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    extensionfile="model"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="MmciPL181"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="arm.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="ARM PrimeCell Multimedia Card Interface (MMCI)"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="None"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="ARM PrimeCell Multimedia Card Interface (Pl180) Technical Reference Manual (ARM DDI 0172)"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="power"
+                nbyte="F"
+                width="32"
+                writefunction="write8">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Power Control"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="clock"
+                nbyte="F"
+                offset="0x4"
+                width="32"
+                writefunction="writeClock">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Clock Control"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="cmdarg"
+                nbyte="F"
+                offset="0x8"
+                width="32"
+                writefunction="writeArg">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Command Arguments"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="cmd"
+                nbyte="F"
+                offset="0xc"
+                width="32"
+                writefunction="writeCmd">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Command"/>
+                </docsection>
+                <field access="rw"
+                    name="C_INDEX"
+                    width="6"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="C_RESPONSE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="C_LONGRESP"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="8"
+                    name="C_INTERRUPT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="9"
+                    name="C_PENDING"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="10"
+                    name="C_ENABLE"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="respcmd"
+                nbyte="F"
+                offset="0x10"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="RESP Command"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="response0"
+                nbyte="F"
+                offset="0x14"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Response 0"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="response1"
+                nbyte="F"
+                offset="0x18"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Response 1"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="response2"
+                nbyte="F"
+                offset="0x1c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Response 2"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="response3"
+                nbyte="F"
+                offset="0x20"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Response 3"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="datatimer"
+                nbyte="F"
+                offset="0x24"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Data Timer"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="datalength"
+                nbyte="F"
+                offset="0x28"
+                width="32"
+                writefunction="writeDL">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Data Length"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="datactrl"
+                nbyte="F"
+                offset="0x2c"
+                width="32"
+                writefunction="writeDC">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Data Control"/>
+                </docsection>
+                <field access="rw"
+                    name="D_ENABLE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="D_DIRECTION"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="D_MODE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="D_DMAENABLE"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="datacnt"
+                nbyte="F"
+                offset="0x30"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Data Count"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="status"
+                nbyte="F"
+                offset="0x34"
+                readfunction="readStatus"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Data Count"/>
+                </docsection>
+                <field access="r"
+                    name="S_CMDCRCFAIL"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="1"
+                    name="S_DATACRCFAIL"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="2"
+                    name="S_CMDTIMEOUT"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="3"
+                    name="S_DATATIMEOUT"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="4"
+                    name="S_TXUNDERRUN"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="5"
+                    name="S_RXOVERRUN"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="6"
+                    name="S_CMDRESPEND"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="7"
+                    name="S_CMDSENT"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="8"
+                    name="S_DATAEND"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="10"
+                    name="S_DATABLOCKEND"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="11"
+                    name="S_CMDACTIVE"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="12"
+                    name="S_TXACTIVE"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="13"
+                    name="S_RXACTIVE"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="14"
+                    name="S_TXFIFOHALFEMPTY"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="15"
+                    name="S_RXFIFOHALFFULL"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="16"
+                    name="S_TXFIFOFULL"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="17"
+                    name="S_RXFIFOFULL"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="18"
+                    name="S_TXFIFOEMPTY"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="19"
+                    name="S_RXFIFOEMPTY"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="20"
+                    name="S_TXDATAAVLBL"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="21"
+                    name="S_RXDATAAVLBL"
+                    width="1"/>
+                <field bitoffset="9"
+                    name="__pad9"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="clear"
+                nbyte="F"
+                offset="0x38"
+                width="32"
+                writefunction="writeClear">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Clear"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="mask0"
+                nbyte="F"
+                offset="0x3c"
+                width="32"
+                writefunction="writeMask0">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Mask 0"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="mask1"
+                nbyte="F"
+                offset="0x40"
+                width="32"
+                writefunction="writeMask1">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Mask 1"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="fifoCnt"
+                nbyte="F"
+                offset="0x48"
+                readfunction="readFifoCnt"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="FIFO Count"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="periphID0"
+                nbyte="F"
+                offset="0xfe0"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="ID Register 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x81"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="periphID1"
+                nbyte="F"
+                offset="0xfe4"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="ID Register 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x11"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="periphID2"
+                nbyte="F"
+                offset="0xfe8"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="ID Register 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x04"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="periphID3"
+                nbyte="F"
+                offset="0xfec"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="ID Register 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x00"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="pCellID0"
+                nbyte="F"
+                offset="0xff0"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Cell ID 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x0d"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="pCellID1"
+                nbyte="F"
+                offset="0xff4"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Cell ID 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0xf0"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="pCellID2"
+                nbyte="F"
+                offset="0xff8"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Cell ID 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x05"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="pCellID3"
+                nbyte="F"
+                offset="0xffc"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Cell ID 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0xb1"/>
+            </memorymappedregister>
+            <localmemory name="RESERVED1"
+                offset="0x4c"
+                readfunction="reservedRead"
+                size="0x34"
+                writefunction="reservedWrite"/>
+            <localmemory name="RESERVED2"
+                offset="0xc0"
+                readfunction="reservedRead"
+                size="0xf20"
+                writefunction="reservedWrite"/>
+            <localmemory name="FIFO"
+                offset="0x80"
+                size="0x40"/>
+        </addressblock>
+    </busslaveport>
+    <formalattribute name="SD_DRIVE"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The name of the Image file used for the SD Drive"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="SD_DRIVE_DELTA"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="If present the SD Drive uses delta writes"/>
+        </docsection>
+    </formalattribute>
+    <netport name="irq0"
+        type="output"/>
+    <netport name="irq1"
+        type="output"/>
+    <netport name="cardin"
+        type="output"/>
+    <netport name="wprot"
+        type="output"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

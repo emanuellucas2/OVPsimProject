@@ -1,0 +1,57 @@
+# Build the support objects needed to run TLM2.0 on Ovpsim
+# Build the user's platform
+# Objects and exes are put in the cwd
+
+############################# INPUT PARAMETERS ################################
+
+ifeq ($(VERBOSE),1)
+  V=
+else
+  V=@
+endif
+
+########################### END INPUT PARAMETERS ##############################
+
+########################### IGEN TLM TCL INPUT ##############################
+
+IGEN?= igen.exe
+IGENFLAGS?= --quiet --nobanner --excludem GPT_NH --excludem GPT_UFNR $(EXTRA_IGENFLAGS)
+
+# Default header to be used
+USERHEADER?=$(IMPERAS_HOME)/ImperasLib/fileheaders/refApache.txt
+
+ifeq ($(wildcard $(USERHEADER)),)
+    WRITEHEADER=
+else
+    WRITEHEADER=--userheader $(USERHEADER)
+endif
+
+PLATFORM-TLM-TCL  ?= $(wildcard platform.tlm.tcl)
+PLATFORM-TLM-SRC  ?= $(patsubst %.tlm.tcl,%.cpp,                   $(PLATFORM-TLM-TCL))
+PLATFORM-TLM-INC   = $(patsubst %.tlm.tcl,%.sc_clp.igen.h,         $(PLATFORM-TLM-TCL)) \
+                     $(patsubst %.tlm.tcl,%.sc_options.igen.h,     $(PLATFORM-TLM-TCL)) \
+                     $(patsubst %.tlm.tcl,%.sc_constructor.igen.h, $(PLATFORM-TLM-TCL))
+
+########################### END IGEN TLM TCL INPUT ##############################
+
+igen: $(PLATFORM-TLM-SRC) $(PLATFORM-TLM-INC)
+
+$(PLATFORM-TLM-SRC) $(PLATFORM-TLM-INC): $(PLATFORM-TLM-TCL)
+	@ echo "# iGen Create OP TLM2.0 EXAMPLE PLATFORM $(PLATFORM-TLM-SRC)"
+	$(V) $(IGEN) $(IGENFLAGS) \
+        --op \
+        --batch    $(<) \
+        --writetlm $(@) \
+        $(WRITEHEADER) \
+        --overwrite
+
+
+clean::
+ifneq ($(strip $(PLATFORM-TLM-INC)),)
+	$(V) - rm -f $(PLATFORM-TLM-INC) 
+endif
+realclean:: clean
+ifneq ($(PLATFORM-TLM-SRC),)
+	$(V) - rm -f $(PLATFORM-TLM-SRC) 
+endif
+	

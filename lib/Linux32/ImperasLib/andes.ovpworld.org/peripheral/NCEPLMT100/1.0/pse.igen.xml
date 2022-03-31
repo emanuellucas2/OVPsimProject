@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="NCEPLMT100"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="andes.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="NCEPLMT100 Platform-Level Machine Timer"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="A max of 31 timers, rather then the hardware max of 32 is supported by the model. This has not been changed in order to preserve backward compatability of the model&apos;s port size, but may be changed locally if needed."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="AndeStar_V5_Timer_UM167_v1.1.pdf 2018-03-07"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        dfltFuncs="T"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x100">
+        <addressblock name="ab"
+            size="0x100"
+            width="64">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="mtime"
+                nbyte="T"
+                readfunction="rdMTIME"
+                viewfunction="viewMTIME"
+                width="64"
+                writefunction="wrMTIME">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Constant frequency real-time counter"/>
+                </docsection>
+                <reset mask="0xffffffffffffffffLL"
+                    name="reset"/>
+                <field access="rw"
+                    bitoffset="0"
+                    name="d"
+                    reset="0x0LL"
+                    width="64"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                hiarray="0x1e"
+                isvolatile="T"
+                loarray="0x0"
+                name="mtimecmp%u"
+                nbyte="T"
+                offset="0x8"
+                readfunction="rdMTIMECMP"
+                userdata="_index"
+                width="64"
+                writefunction="wrMTIMECMP">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Compare Register MTIMECMP"/>
+                </docsection>
+                <reset mask="0xffffffffffffffffLL"
+                    name="reset"/>
+                <field access="rw"
+                    bitoffset="0"
+                    name="d"
+                    reset="0xFFFFFFFFFFFFFFFFLL"
+                    width="64"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <formalattribute defaultvalue="1.0"
+        name="clockMHz"
+        type="double">
+        <docsection name="doc"
+            text="clockMHz">
+            <doctext name="txt"
+                text="Clock rate used in timer calculations (in MHz)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="4"
+        max="31"
+        min="1"
+        name="numharts"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Number of harts supported (1-31)"/>
+        </docsection>
+    </formalattribute>
+    <netport name="reset"
+        type="input"
+        updatefunction="resetCB">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Reset signal"/>
+        </docsection>
+    </netport>
+    <netport hiarray="30"
+        loarray="0"
+        name="intOut_%u"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Interupt Outputs"/>
+        </docsection>
+    </netport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

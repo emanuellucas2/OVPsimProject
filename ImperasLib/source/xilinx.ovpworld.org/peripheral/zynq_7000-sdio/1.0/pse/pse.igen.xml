@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="zynq_7000-sdio"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="xilinx.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Zynq 7000 SD/SDIO Registers"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model implements the full set of registers but no behavior."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Zynq-7000 TRM (https://www.xilinx.com/support/documentation/user_guides/ug585-Zynq-7000-TRM.pdf)"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="32">
+            <localmemory name="buffer"
+                readfunction="regNoDefinitionRead"
+                size="0x1000"
+                writefunction="regNoDefinitionWrite"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SDMA_system_address_register"
+                nbyte="F"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="System DMA Address Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Block_Size_Block_Count"
+                nbyte="F"
+                offset="0x4"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Block size register / Block count register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Argument"
+                nbyte="F"
+                offset="0x8"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Argument register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Transfer_Mode_Command"
+                nbyte="F"
+                offset="0xc"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Transfer mode register / Command register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Response0"
+                nbyte="F"
+                offset="0x10"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Response register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Response1"
+                nbyte="F"
+                offset="0x14"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Response register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Response2"
+                nbyte="F"
+                offset="0x18"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Response register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Response3"
+                nbyte="F"
+                offset="0x1c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Response register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Buffer_Data_Port"
+                nbyte="F"
+                offset="0x20"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Buffer data port register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Present_State"
+                nbyte="F"
+                offset="0x24"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Present State register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x01F20000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Host_Power_Block_Gap_Wakeup_control"
+                nbyte="F"
+                offset="0x28"
+                width="32"
+                writefunction="wrPwrCtrl"
+                writemask="118427631">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="(Host_control_Power_control_Block_Gap_Control_Wakeup_control) Host control register / Power control register / Block gap control register / Wake-up control register"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="LED"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Clock_Timeout_control_Software_reset"
+                nbyte="F"
+                offset="0x2c"
+                width="32"
+                writefunction="wrClkCtrl"
+                writemask="118488839">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="(Clock_Control_Timeout_control_Software_reset) Clock Control register / Timeout control register / Software reset register"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="26"
+                    name="SWRST_DAT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="25"
+                    name="SWRST_CMD"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="24"
+                    name="SWRST_ALL"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="ICLKST"
+                    width="1"/>
+                <field access="rw"
+                    name="ICLKEN"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+                <field bitoffset="2"
+                    name="__pad2"
+                    width="22"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Interrupt_status"
+                nbyte="F"
+                offset="0x30"
+                width="32"
+                writemask="1073741823">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="(Normal_interrupt_status_Error_interrupt_status) Normal interrupt status register / Error interrupt status register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Interrupt_status_enable"
+                nbyte="F"
+                offset="0x34"
+                width="32"
+                writemask="1073741823">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="(Normal_interrupt_status_enable_Error_interrupt_status_enable) Normal interrupt status enable register / Error interrupt status enable register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Interrupt_signal_enable"
+                nbyte="F"
+                offset="0x38"
+                width="32"
+                writemask="1073741823">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="(Normal_interrupt_signal_enable_Error_interrupt_signal_enable) Normal interrupt signal enable   register / Error interrupt signal enable register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Auto_CMD12_error_status"
+                nbyte="F"
+                offset="0x3c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Auto CMD12 error status register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Capabilities"
+                nbyte="F"
+                offset="0x40"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Capabilities register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x69EC0080"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Maximum_current_capabilities"
+                nbyte="F"
+                offset="0x48"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Maximum current capabilities register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000001"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Force_event"
+                nbyte="F"
+                offset="0x50"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="(Force_event_for_AutoCmd12_Error_Status_Force_event_register_for_error_interrupt_status) Force event register for Auto CMD12 error status register / Force event register for error interrupt status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ADMA_error_status"
+                nbyte="F"
+                offset="0x54"
+                width="32"
+                writemask="7">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="ADMA error status register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ADMA_system_address"
+                nbyte="F"
+                offset="0x58"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="ADMA system address register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Boot_Timeout_control"
+                nbyte="F"
+                offset="0x60"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Boot Timeout control register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="Debug_Selection"
+                nbyte="F"
+                offset="0x64"
+                width="32"
+                writefunction="wrDebugSel"
+                writemask="1">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Debug Selection Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SPI_interrupt_support"
+                nbyte="F"
+                offset="0xf0"
+                width="32"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SPI interrupt support register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Slot_status_Host_version"
+                nbyte="F"
+                offset="0xfc"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="(Slot_interrupt_status_Host_controller_version) Slot interrupt status register and Host controller version register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x89010000"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="intOut"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Interrupt signal"/>
+        </docsection>
+    </netport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

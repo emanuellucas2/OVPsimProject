@@ -1,0 +1,1141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <processor QLQualified="T"
+    defaultsemihostlibrary="semihosting"
+    defaultsemihostname="armNewlib"
+    defaultsemihostvendor="arm.ovpworld.org"
+    defaultsemihostversion="1.0"
+    elfcode="40"
+    endian="either"
+    family="ARM"
+    gdbpath="$IMPERAS_HOME/lib/$IMPERAS_ARCH/gdb/arm-none-eabi-gdb"
+    groupH="Classic"
+    groupL="ARMv4"
+    imagefile="model"
+    library="processor"
+    name="arm"
+    procdoc="$IMPERAS_HOME/ImperasLib/source/arm.ovpworld.org/processor/arm/1.0/doc/OVP_Model_Specific_Information_arm_ARMv4T.pdf"
+    releasestatus="4"
+    useindefaultplatform="T"
+    vendor="arm.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="ARM Processor Model"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Usage of binary model under license governing simulator usage. "/>
+        <doctext name="txt_1"/>
+        <doctext name="txt_2"
+            text="Note that for models of ARM CPUs the license includes the following terms:"/>
+        <doctext name="txt_3"/>
+        <doctext name="txt_4"
+            text="Licensee is granted a non-exclusive, worldwide, non-transferable, revocable licence to:"/>
+        <doctext name="txt_5"/>
+        <doctext name="txt_6"
+            text="If no source is being provided to the Licensee:  use and copy only (no modifications rights are granted) the model for the sole purpose of designing, developing, analyzing, debugging, testing, verifying, validating and optimizing software which: (a) (i) is for ARM based systems; and (ii) does not incorporate the ARM Models or any part thereof; and (b) such ARM Models may not be used to emulate an ARM based system to run application software in a production or live environment."/>
+        <doctext name="txt_7"/>
+        <doctext name="txt_8"
+            text="If source code is being provided to the Licensee:  use, copy and modify the model for the sole purpose of designing, developing, analyzing, debugging, testing, verifying, validating and optimizing software which: (a) (i) is for ARM based systems; and (ii) does not incorporate the ARM Models or any part thereof; and (b) such ARM Models may not be used to emulate an ARM based system to run application software in a production or live environment."/>
+        <doctext name="txt_9"/>
+        <doctext name="txt_10"
+            text="In the case of any Licensee who is either or both an academic or educational institution the purposes shall be limited to internal use. "/>
+        <doctext name="txt_11"/>
+        <doctext name="txt_12"
+            text="Except to the extent that such activity is permitted by applicable law, Licensee shall not reverse engineer, decompile, or disassemble this model. If this model was provided to Licensee in Europe, Licensee shall not reverse engineer, decompile or disassemble the Model for the purposes of error correction. "/>
+        <doctext name="txt_13"/>
+        <doctext name="txt_14"
+            text="The License agreement does not entitle Licensee to manufacture in silicon any product based on this model. "/>
+        <doctext name="txt_15"/>
+        <doctext name="txt_16"
+            text="The License agreement does not entitle Licensee to use this model for evaluating the validity of any ARM patent. "/>
+        <doctext name="txt_17"/>
+        <doctext name="txt_18"
+            text="Source of model available under separate Imperas Software License Agreement."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Instruction pipelines are not modeled in any way. All instructions are assumed to complete immediately. This means that instruction barrier instructions (e.g. ISB, CP15ISB) are treated as NOPs, with the exception of any undefined instruction behavior, which is modeled. The model does not implement speculative fetch behavior. The branch cache is not modeled."/>
+        <doctext name="txt_1"
+            text="Caches and write buffers are not modeled in any way. All loads, fetches and stores complete immediately and in order, and are fully synchronous (as if the memory was of Strongly Ordered or Device-nGnRnE type). Data barrier instructions (e.g. DSB, CP15DSB) are treated as NOPs, with the exception of any undefined instruction behavior, which is modeled. Cache manipulation instructions are implemented as NOPs, with the exception of any undefined instruction behavior, which is modeled."/>
+        <doctext name="txt_2"
+            text="Real-world timing effects are not modeled: all instructions are assumed to complete in a single cycle."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Verification">
+        <doctext name="txt"
+            text="Models have been extensively tested by Imperas."/>
+    </docsection>
+    <docsection name="doc_4"
+        text="Core Features">
+        <doctext name="txt"
+            text="Thumb instructions are supported."/>
+    </docsection>
+    <docsection name="doc_5"
+        text="Debug Mask">
+        <doctext name="txt"
+            text="It is possible to enable model debug features in various categories. This can be done statically using the &quot;override_debugMask&quot; parameter, or dynamically using the &quot;debugflags&quot; command. Enabled debug features are specified using a bitmask value, as follows:"/>
+        <doctext name="txt_1"
+            text="Value 0x080: enable debugging of all system register accesses."/>
+        <doctext name="txt_2"
+            text="Value 0x100: enable debugging of all traps of system register accesses."/>
+        <doctext name="txt_3"
+            text="Value 0x200: enable verbose debugging of other miscellaneous behavior (for example, the reason why a particular instruction is undefined)."/>
+        <doctext name="txt_4"
+            text="All other bits in the debug bitmask are reserved and must not be set to non-zero values."/>
+    </docsection>
+    <docsection name="doc_6"
+        text="AArch32 Unpredictable Behavior">
+        <doctext name="txt"
+            text="Many AArch32 instruction behaviors are described in the ARM ARM as CONSTRAINED UNPREDICTABLE. This section describes how such situations are handled by this model."/>
+        <docsection name="doc"
+            text="Equal Target Registers">
+            <doctext name="txt"
+                text="Some instructions allow the specification of two target registers (for example, double-width SMULL, or some VMOV variants), and such instructions are CONSTRAINED UNPREDICTABLE if the same target register is specified in both positions. In this model, such instructions are treated as UNDEFINED."/>
+        </docsection>
+        <docsection name="doc_1"
+            text="Floating Point Load/Store Multiple Lists">
+            <doctext name="txt"
+                text="Instructions that load or store a list of floating point registers (e.g. VSTM, VLDM, VPUSH, VPOP) are CONSTRAINED UNPREDICTABLE if either the uppermost register in the specified range is greater than 32 or (for 64-bit registers) if more than 16 registers are specified. In this model, such instructions are treated as UNDEFINED."/>
+        </docsection>
+        <docsection name="doc_2"
+            text="Floating Point VLD[2-4]/VST[2-4] Range Overflow">
+            <doctext name="txt"
+                text="Instructions that load or store a fixed number of floating point registers (e.g. VST2, VLD2) are CONSTRAINED UNPREDICTABLE if the upper register bound exceeds the number of implemented floating point registers. In this model, these instructions load and store using modulo 32 indexing (consistent with AArch64 instructions with similar behavior)."/>
+        </docsection>
+        <docsection name="doc_3"
+            text="If-Then (IT) Block Constraints">
+            <doctext name="txt"
+                text="Where the behavior of an instruction in an if-then (IT) block is described as CONSTRAINED UNPREDICTABLE, this model treats that instruction as UNDEFINED."/>
+        </docsection>
+        <docsection name="doc_4"
+            text="Use of R13">
+            <doctext name="txt"
+                text="In architecture variants before ARMv8, use of R13 was described as CONSTRAINED UNPREDICTABLE in many circumstances. From ARMv8, most of these situations are no longer considered unpredictable. This model allows R13 to be used like any other GPR, consistent with the ARMv8 specification."/>
+        </docsection>
+        <docsection name="doc_5"
+            text="Use of R15">
+            <doctext name="txt"
+                text="Use of R15 is described as CONSTRAINED UNPREDICTABLE in many circumstances. This model allows such use to be configured using the parameter &quot;unpredictableR15&quot; as follows:"/>
+            <doctext name="txt_1"
+                text="Value &quot;undefined&quot;: any reference to R15 in such a situation is treated as UNDEFINED;"/>
+            <doctext name="txt_2"
+                text="Value &quot;nop&quot;: any reference to R15 in such a situation causes the instruction to be treated as a NOP;"/>
+            <doctext name="txt_3"
+                text="Value &quot;raz_wi&quot;: any reference to R15 in such a situation causes the instruction to be treated as a RAZ/WI (that is, R15 is read as zero and write-ignored);"/>
+            <doctext name="txt_4"
+                text="Value &quot;execute&quot;: any reference to R15 in such a situation is executed using the current value of R15 on read, and writes to R15 are allowed (but are not interworking)."/>
+            <doctext name="txt_5"
+                text="Value &quot;assert&quot;: any reference to R15 in such a situation causes the simulation to halt with an assertion message (allowing any such unpredictable uses to be easily identified)."/>
+            <doctext name="txt_6"
+                text="In this variant, the default value of &quot;unpredictableR15&quot; is &quot;execute&quot;."/>
+        </docsection>
+        <docsection name="doc_6"
+            text="Unpredictable Instructions in Some Modes">
+            <doctext name="txt"
+                text="Some instructions are described as CONSTRAINED UNPREDICTABLE in some modes only (for example, MSR accessing SPSR is CONSTRAINED UNPREDICTABLE in User and System modes). This model allows such use to be configured using the parameter &quot;unpredictableModal&quot;, which can have values &quot;undefined&quot; or &quot;nop&quot;. See the previous section for more information about the meaning of these values."/>
+            <doctext name="txt_1"
+                text="In this variant, the default value of &quot;unpredictableModal&quot; is &quot;nop&quot;."/>
+        </docsection>
+    </docsection>
+    <docsection name="doc_7"
+        text="Integration Support">
+        <doctext name="txt"
+            text="This model implements a number of non-architectural pseudo-registers and other features to facilitate integration."/>
+        <docsection name="doc"
+            text="Halt Reason Introspection">
+            <doctext name="txt"
+                text="An artifact register HaltReason can be read to determine the reason or reasons that a processor is halted. This register is a bitfield, with the following encoding: bit 0 indicates the processor has executed a wait-for-event (WFE) instruction; bit 1 indicates the processor has executed a wait-for-interrupt (WFI) instruction; and bit 2 indicates the processor is held in reset."/>
+        </docsection>
+        <docsection name="doc_1"
+            text="System Register Access Monitor">
+            <doctext name="txt"
+                text="If parameter &quot;enableSystemMonitorBus&quot; is True, an artifact 32-bit bus &quot;SystemMonitor&quot; is enabled for each PE. Every system register read or write by that PE is then visible as a read or write on this artifact bus, and can therefore be monitored using callbacks installed in the client environment (use opBusReadMonitorAdd/opBusWriteMonitorAdd or icmAddBusReadCallback/icmAddBusWriteCallback, depending on the client API). The format of the address on the bus is as follows:"/>
+            <doctext name="txt_1"
+                text="bits 31:26 - zero"/>
+            <doctext name="txt_2"
+                text="bit 25 - 1 if AArch64 access, 0 if AArch32 access"/>
+            <doctext name="txt_3"
+                text="bit 24 - 1 if non-secure access, 0 if secure access"/>
+            <doctext name="txt_4"
+                text="bits 23:20 - CRm value"/>
+            <doctext name="txt_5"
+                text="bits 19:16 - CRn value"/>
+            <doctext name="txt_6"
+                text="bits 15:12 - op2 value"/>
+            <doctext name="txt_7"
+                text="bits 11:8 - op1 value"/>
+            <doctext name="txt_8"
+                text="bits 7:4 - op0 value (AArch64) or coprocessor number (AArch32)"/>
+            <doctext name="txt_9"
+                text="bits 3:0 - zero"/>
+            <doctext name="txt_10"
+                text="As an example, to view non-secure writes to writes to CNTFRQ_EL0 in AArch64 state, install a write monitor on address range 0x020e0330:0x020e0333."/>
+        </docsection>
+        <docsection name="doc_2"
+            text="System Register Implementation">
+            <doctext name="txt"
+                text="If parameter &quot;enableSystemBus&quot; is True, an artifact 32-bit bus &quot;System&quot; is enabled for each PE. Slave callbacks installed on this bus can be used to implement modified system register behavior (use opBusSlaveNew or icmMapExternalMemory, depending on the client API). The format of the address on the bus is the same as for the system monitor bus, described above."/>
+        </docsection>
+    </docsection>
+    <formalattribute name="variant"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Selects variant (either a generic ISA or a specific model)"/>
+        </docsection>
+        <enum name="ARMv4T"
+            value="0"/>
+        <enum name="ARMv4xM"
+            value="1"/>
+        <enum name="ARMv4"
+            value="2"/>
+        <enum name="ARMv4TxM"
+            value="3"/>
+        <enum name="ARMv5xM"
+            value="4"/>
+        <enum name="ARMv5"
+            value="5"/>
+        <enum name="ARMv5TxM"
+            value="6"/>
+        <enum name="ARMv5T"
+            value="7"/>
+        <enum name="ARMv5TExP"
+            value="8"/>
+        <enum name="ARMv5TE"
+            value="9"/>
+        <enum name="ARMv5TEJ"
+            value="10"/>
+        <enum name="ARMv6"
+            value="11"/>
+        <enum name="ARMv6K"
+            value="12"/>
+        <enum name="ARMv6T2"
+            value="13"/>
+        <enum name="ARMv6KZ"
+            value="14"/>
+        <enum name="ARMv7"
+            value="15"/>
+        <enum name="ARM7TDMI"
+            value="16"/>
+        <enum name="ARM7EJ-S"
+            value="17"/>
+        <enum name="ARM720T"
+            value="18"/>
+        <enum name="ARM920T"
+            value="19"/>
+        <enum name="ARM922T"
+            value="20"/>
+        <enum name="ARM926EJ-S"
+            value="21"/>
+        <enum name="ARM940T"
+            value="22"/>
+        <enum name="ARM946E"
+            value="23"/>
+        <enum name="ARM966E"
+            value="24"/>
+        <enum name="ARM968E-S"
+            value="25"/>
+        <enum name="ARM1020E"
+            value="26"/>
+        <enum name="ARM1022E"
+            value="27"/>
+        <enum name="ARM1026EJ-S"
+            value="28"/>
+        <enum name="ARM1136J-S"
+            value="29"/>
+        <enum name="ARM1156T2-S"
+            value="30"/>
+        <enum name="ARM1176JZ-S"
+            value="31"/>
+        <enum name="Cortex-R4"
+            value="32"/>
+        <enum name="Cortex-R4F"
+            value="33"/>
+        <enum name="Cortex-A5UP"
+            value="34"/>
+        <enum name="Cortex-A5MPx1"
+            value="35"/>
+        <enum name="Cortex-A5MPx2"
+            value="36"/>
+        <enum name="Cortex-A5MPx3"
+            value="37"/>
+        <enum name="Cortex-A5MPx4"
+            value="38"/>
+        <enum name="Cortex-A8"
+            value="39"/>
+        <enum name="Cortex-A9UP"
+            value="40"/>
+        <enum name="Cortex-A9MPx1"
+            value="41"/>
+        <enum name="Cortex-A9MPx2"
+            value="42"/>
+        <enum name="Cortex-A9MPx3"
+            value="43"/>
+        <enum name="Cortex-A9MPx4"
+            value="44"/>
+        <enum name="Cortex-A7UP"
+            value="45"/>
+        <enum name="Cortex-A7MPx1"
+            value="46"/>
+        <enum name="Cortex-A7MPx2"
+            value="47"/>
+        <enum name="Cortex-A7MPx3"
+            value="48"/>
+        <enum name="Cortex-A7MPx4"
+            value="49"/>
+        <enum name="Cortex-A15UP"
+            value="50"/>
+        <enum name="Cortex-A15MPx1"
+            value="51"/>
+        <enum name="Cortex-A15MPx2"
+            value="52"/>
+        <enum name="Cortex-A15MPx3"
+            value="53"/>
+        <enum name="Cortex-A15MPx4"
+            value="54"/>
+        <enum name="Cortex-A17MPx1"
+            value="55"/>
+        <enum name="Cortex-A17MPx2"
+            value="56"/>
+        <enum name="Cortex-A17MPx3"
+            value="57"/>
+        <enum name="Cortex-A17MPx4"
+            value="58"/>
+        <enum name="AArch32"
+            value="59"/>
+        <enum name="AArch64"
+            value="60"/>
+        <enum name="Cortex-A32MPx1"
+            value="61"/>
+        <enum name="Cortex-A32MPx2"
+            value="62"/>
+        <enum name="Cortex-A32MPx3"
+            value="63"/>
+        <enum name="Cortex-A32MPx4"
+            value="64"/>
+        <enum name="Cortex-A35MPx1"
+            value="65"/>
+        <enum name="Cortex-A35MPx2"
+            value="66"/>
+        <enum name="Cortex-A35MPx3"
+            value="67"/>
+        <enum name="Cortex-A35MPx4"
+            value="68"/>
+        <enum name="Cortex-A53MPx1"
+            value="69"/>
+        <enum name="Cortex-A53MPx2"
+            value="70"/>
+        <enum name="Cortex-A53MPx3"
+            value="71"/>
+        <enum name="Cortex-A53MPx4"
+            value="72"/>
+        <enum name="Cortex-A55MPx1"
+            value="73"/>
+        <enum name="Cortex-A55MPx2"
+            value="74"/>
+        <enum name="Cortex-A55MPx3"
+            value="75"/>
+        <enum name="Cortex-A55MPx4"
+            value="76"/>
+        <enum name="Cortex-A57MPx1"
+            value="77"/>
+        <enum name="Cortex-A57MPx2"
+            value="78"/>
+        <enum name="Cortex-A57MPx3"
+            value="79"/>
+        <enum name="Cortex-A57MPx4"
+            value="80"/>
+        <enum name="Cortex-A72MPx1"
+            value="81"/>
+        <enum name="Cortex-A72MPx2"
+            value="82"/>
+        <enum name="Cortex-A72MPx3"
+            value="83"/>
+        <enum name="Cortex-A72MPx4"
+            value="84"/>
+        <enum name="Cortex-A73MPx1"
+            value="85"/>
+        <enum name="Cortex-A73MPx2"
+            value="86"/>
+        <enum name="Cortex-A73MPx3"
+            value="87"/>
+        <enum name="Cortex-A73MPx4"
+            value="88"/>
+        <enum name="Cortex-A75MPx1"
+            value="89"/>
+        <enum name="Cortex-A75MPx2"
+            value="90"/>
+        <enum name="Cortex-A75MPx3"
+            value="91"/>
+        <enum name="Cortex-A75MPx4"
+            value="92"/>
+        <enum name="MultiCluster"
+            value="93"/>
+    </formalattribute>
+    <formalattribute name="verbose"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify verbosity of output"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="suppressCPSWarnings"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Suppress duplicate warnings generated using ARM_CP_CPSI or ARM_CP_CPSD message identifiers"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="showHiddenRegs"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Show hidden registers during register tracing"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UAL"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Disassemble using UAL syntax"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="enableSystemBus"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Add 32-bit artifact System bus port, allowing system registers to be externally implemented"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="enableSystemMonitorBus"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Add 32-bit artifact SystemMonitor bus port, allowing system register accesses to be externally monitored"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="compatibility"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify compatibility mode"/>
+        </docsection>
+        <enum name="ISA"
+            value="0"/>
+        <enum name="gdb"
+            value="1"/>
+        <enum name="nopSVC"
+            value="2"/>
+    </formalattribute>
+    <formalattribute name="unpredictableR15"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify behavior for UNPREDICTABLE uses of AArch32 R15 register"/>
+        </docsection>
+        <enum name="undefined"
+            value="0"/>
+        <enum name="nop"
+            value="1"/>
+        <enum name="raz_wi"
+            value="2"/>
+        <enum name="execute"
+            value="3"/>
+        <enum name="assert"
+            value="4"/>
+    </formalattribute>
+    <formalattribute name="unpredictableModal"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify behavior for UNPREDICTABLE instructions in certain AArch32 modes (for example, MRS using SPSR in System mode)"/>
+        </docsection>
+        <enum name="undefined"
+            value="0"/>
+        <enum name="nop"
+            value="1"/>
+        <enum name="assert"
+            value="4"/>
+    </formalattribute>
+    <formalattribute name="maxSIMDUnroll"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="If SIMD operations are supported, specify the maximum number of parallel SIMD operations to unroll (unrolled operations can be faster, but produce more verbose JIT code)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_debugMask"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specifies debug mask, enabling debug output for model components"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_fcsePresent"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specifies that FCSE is present (if true)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_SCTLR_V"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override SCTLR.V with the passed value (enables high vectors; also configurable using VINITHI pin)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_SCTLR_IE"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override SCTLR.IE with the passed value (configures instruction endianness; also configurable using CFGIE pin)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_SCTLR_EE"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override SCTLR.EE with the passed value (configures exception data endianness; also configurable using CFGEE pin)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_SCTLR_TE"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override SCTLR.TE with the passed value (configures Thumb state for exception handling; also configurable using TEINIT pin)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_SCTLR_NMFI"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override SCTLR.NMFI with the passed value (configures NMFI state for exception handling; also configurable using CFGNMFI pin)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_SCTLR_CP15BEN_Present"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable ARMv7 SCTLR.CP15BEN bit (CP15 barrier enable)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_MIDR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override MIDR/MIDR_EL1 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_CTR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override CTR/CTR_EL0 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_CLIDR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override CLIDR/CLIDR_EL1 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_AIDR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override AIDR/AIDR_EL1 register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_ERG"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specifies exclusive reservation granule"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_STRoffsetPC12"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specifies that STR/STR of PC should do so with 12:byte offset from the current instruction (if true), otherwise an 8:byte offset is used"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_ignoreBadCp15"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specifies whether invalid coprocessor 15 access should be ignored (if true) or cause Invalid Instruction exceptions (if false)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_SGIDisable"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override whether GIC SGIs may be disabled (if true) or are permanently enabled (if false)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_condUndefined"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Force undefined instructions to take Undefined Instruction exception even if they are conditional"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_deviceStrongAligned"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Force accesses to Device and Strongly Ordered regions to be aligned"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_Control_V"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override SCTLR.V with the passed value (deprecated, use override_SCTLR_V)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_MainId"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override MIDR register (deprecated, use override_MIDR)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="override_CacheType"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override CTR register (deprecated, use override_CTR)"/>
+        </docsection>
+    </formalattribute>
+    <busmasterport addresswidth="32"
+        addresswidthmax="32"
+        addresswidthmin="32"
+        mustbeconnected="T"
+        name="INSTRUCTION"/>
+    <busmasterport addresswidth="32"
+        addresswidthmax="32"
+        addresswidthmin="32"
+        mustbeconnected="F"
+        name="DATA"/>
+    <netport mustbeconnected="F"
+        name="reset"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Processor reset, active high"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="fiq"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="FIQ interrupt, active high (negation of nFIQ)"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="irq"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="IRQ interrupt, active high (negation of nIRQ)"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="sei"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="System error interrupt, active on rising edge (negation of nSEI)"/>
+        </docsection>
+    </netport>
+    <command name="debugflags">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="show or modify the processor debug flags"/>
+        </docsection>
+        <commandarg name="get"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="print current processor flags value"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="mask"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="print valid debug flag bits"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="set"
+            type="Int32">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="new processor flags (only flags 0x000003e4 can be modified)"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="isync">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="specify instruction address range for synchronous execution"/>
+        </docsection>
+        <commandarg name="addresshi"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="end address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="addresslo"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="start address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="itrace">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="enable or disable instruction tracing"/>
+        </docsection>
+        <commandarg name="after"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="apply after this many instructions"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="enable"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="instructioncount"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="include the instruction number in each trace"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="memory"
+            type="String">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show memory accesses by this instruction. Argument can be any combination of X (execute), L (load or store access) and S (system)"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="off"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="disable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="on"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="processorname"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Include processor name in all trace lines"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registerchange"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers changed by this instruction"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registers"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers after each trace"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <exceptions name="Exceptions">
+        <exception code="0"
+            name="Reset"/>
+        <exception code="1"
+            name="Undefined"/>
+        <exception code="2"
+            name="SupervisorCall"/>
+        <exception code="5"
+            name="PrefetchAbort"/>
+        <exception code="6"
+            name="DataAbort"/>
+        <exception code="8"
+            name="IRQ"/>
+        <exception code="9"
+            name="FIQ"/>
+    </exceptions>
+    <modes name="Modes">
+        <mode code="16"
+            name="User"/>
+        <mode code="17"
+            name="FIQ"/>
+        <mode code="18"
+            name="IRQ"/>
+        <mode code="19"
+            name="Supervisor"/>
+        <mode code="23"
+            name="Abort"/>
+        <mode code="27"
+            name="Undefined"/>
+        <mode code="31"
+            name="System"/>
+    </modes>
+    <registers name="Core">
+        <register alias="F"
+            name="r0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r4"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r5"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r7"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r8"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r9"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r10"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r11"
+            readonly="F"
+            type="3"
+            width="32"/>
+        <register alias="F"
+            name="r12"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="sp"
+            readonly="F"
+            type="2"
+            width="32"/>
+        <register alias="F"
+            name="lr"
+            readonly="F"
+            type="4"
+            width="32"/>
+        <register alias="F"
+            name="pc"
+            readonly="F"
+            type="1"
+            width="32"/>
+    </registers>
+    <registers name="Control">
+        <register alias="F"
+            name="fps"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="cpsr"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="spsr"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="User">
+        <register alias="F"
+            name="r8_usr"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r9_usr"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r10_usr"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r11_usr"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r12_usr"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="sp_usr"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="lr_usr"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="FIQ">
+        <register alias="F"
+            name="r8_fiq"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r9_fiq"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r10_fiq"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r11_fiq"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r12_fiq"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="sp_fiq"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="lr_fiq"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="spsr_fiq"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="IRQ">
+        <register alias="F"
+            name="sp_irq"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="lr_irq"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="spsr_irq"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="Supervisor">
+        <register alias="F"
+            name="sp_svc"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="lr_svc"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="spsr_svc"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="Undefined">
+        <register alias="F"
+            name="sp_undef"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="lr_undef"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="spsr_undef"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="Abort">
+        <register alias="F"
+            name="sp_abt"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="lr_abt"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="spsr_abt"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="Coprocessor_32_bit">
+        <register alias="F"
+            name="MIDR"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="SCTLR"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="Integration_support">
+        <register alias="F"
+            name="transactPL"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="transactAT"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="HaltReason"
+            readonly="T"
+            type="0"
+            width="8"/>
+    </registers>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </processor>

@@ -1,0 +1,191 @@
+#
+# Host gcc
+# Makefile for compiling OP harness to harness.exe
+#
+
+IMPERAS_HOME := $(shell getpath.exe "$(IMPERAS_HOME)")
+include $(IMPERAS_HOME)/bin/Makefile.include
+
+ifndef IMPERAS_HOME
+	IMPERAS_ERROR := $(error "IMPERAS_HOME not defined")
+endif
+
+include $(IMPERAS_HOME)/ImperasLib/buildutils/Makefile.common
+
+LINK_OBJ?=
+SRC?=harness.c
+SUFFIX=$(suffix $(SRC))
+
+ifeq ($(SUFFIX),)
+	IMPERAS_ERROR:=$(error Please specify full harness source file name. File suffix could not be determined!)
+endif
+
+CC=
+ifeq ($(SUFFIX),.c)
+	CC=$(HOST_GCC)
+endif
+ifeq ($(SUFFIX),.cpp)
+	CC=$(HOST_GXX)
+    SIM_LDFLAGS += $(SIM_LDXXFLAGS)
+	SIM_CFLAGS  += $(SIM_CXXFLAGS)
+endif
+ifeq (,$(CC))
+	IMPERAS_ERROR:=$(error Unsupported suffix for SRC=$(SRC). Must be .c or .cpp)
+endif
+
+#
+# Additional dependency
+#
+PDEP = $(patsubst %$(SUFFIX), $(OBJDIR)/%.d, $(SRC))
+
+# Executable
+EXECUTABLE?=$(SRC:$(SUFFIX)=.$(IMPERAS_ARCH).exe)
+# Library
+LIBSHRDOBJ?=lib$(SRC:$(SUFFIX)=.$(IMPERAS_ARCH).$(IMPERAS_SHRSUF))
+
+# object
+HARNOBJ?=$(OBJDIR)/$(SRC:$(SUFFIX)=.o)
+
+#
+# harness.tcl ->
+# harness.igen.stubs
+#
+IGEN?= igen.exe
+IGENFLAGS?= --quiet --nobanner --excludem GPT_NH --excludem GPT_UFNR $(EXTRA_IGENFLAGS)
+
+
+HARNESS-TCL     ?= $(wildcard harness.tcl)
+HARNESS-SRC     ?= $(patsubst %.tcl, %.igen.stubs, $(HARNESS-TCL))
+HARNESS-INC      = $(patsubst %.tcl, %.clp.igen.h, $(HARNESS-TCL)) \
+                   $(patsubst %.tcl, %.constructor.igen.h, $(HARNESS-TCL)) \
+                   $(patsubst %.tcl, %.handles.igen.h, $(HARNESS-TCL)) \
+                   $(patsubst %.tcl, %.options.igen.h, $(HARNESS-TCL))
+
+HARNESS-OP-TCL  ?= $(wildcard harness.op.tcl)
+HARNESS-OP-SRC  ?= $(patsubst %.op.tcl, %.igen.stubs, $(HARNESS-OP-TCL))
+HARNESS-OP-INC   = $(patsubst %.op.tcl, %.clp.igen.h, $(HARNESS-OP-TCL)) \
+                   $(patsubst %.op.tcl, %.constructor.igen.h, $(HARNESS-OP-TCL)) \
+                   $(patsubst %.op.tcl, %.attr.igen.h, $(HARNESS-OP-TCL)) \
+                   $(patsubst %.op.tcl, %.options.igen.h, $(HARNESS-OP-TCL))
+
+#
+# Does the SRC exist ?
+#
+COPYSTUBS = 0
+ifeq ($(wildcard $(SRC)),)
+    COPYSTUBS = 1
+endif
+
+# Default build harness executable, if HARNESSLIB=1 build shared object
+ifneq ($(HARNESSLIB),1)
+ALL = $(WORKDIR)/$(EXECUTABLE)
+else
+ALL = $(WORKDIR)/$(LIBSHRDOBJ)
+endif
+all: $(ALL)
+
+ifeq ($(SUFFIX),.cpp)
+    # Rules for building OP C++ Archive locally
+    # - Use IMPERAS_OP_CPP_LIBRARY as a dependency on harness executables
+    include $(IMPERAS_HOME)/ImperasLib/buildutils/Makefile.OP++
+else
+    # No OP C++ archive required
+    IMPERAS_OP_CPP_LIBRARY=
+endif
+
+# include all the dependancy requirements
+ifneq ($(MAKECMDGOALS),clean)
+    $(foreach dep,$(PDEP),$(eval -include $(dep)))
+endif
+
+# Only one HARNESS SRC can ever exist
+$(SRC): $(HARNESS-SRC) $(HARNESS-OP-SRC)
+ifeq ($(COPYSTUBS),1)
+ifneq ($(strip $(HARNESS-SRC) $(HARNESS-OP-SRC)),)
+	@ echo "# Copying STUBS $(^) to $(@)"
+	$(V) cp $(^) $(@)
+endif
+endif
+
+#
+# OP Harness
+#
+$(HARNESS-OP-SRC) $(HARNESS-OP-INC): $(HARNESS-OP-TCL)
+	@ echo "# iGen Create OP HARNESS $(HARNESS-OP-SRC)"
+	$(V) $(IGEN) $(IGENFLAGS) \
+		--op \
+		--batch  $(<) \
+		--writec $(HARNESS-OP-SRC) \
+		$(WRITEHEADER) \
+		--overwrite
+
+$(HARNESS-SRC) $(HARNESS-INC): $(HARNESS-TCL)
+	@ echo "# iGen Create OP HARNESS $(HARNESS-SRC)"
+	$(V) $(IGEN) $(IGENFLAGS) \
+        --op \
+        --batch  $(<) \
+        --writec $(HARNESS-SRC) \
+        $(WRITEHEADER) \
+        --overwrite
+
+
+$(WORKDIR)/$(EXECUTABLE): $(HARNOBJ) $(LINK_OBJ) $(IMPERAS_OP_CPP_LIBRARY)
+	$(V) mkdir -p $(@D)
+	@ echo "# Host Linking Harness $(subst $(CURDIR)/,,$(@))"
+	$(V) $(CC) -o $@ $^ $(SIM_LDFLAGS) $(LDFLAGS)
+ifeq ($(COPYXML),1)
+	@ echo "# Copying XML $(XML) to $(@D)"
+	$(V) cp $(XML) $(@D)
+endif
+
+$(WORKDIR)/$(LIBSHRDOBJ): $(HARNOBJ) $(LINK_OBJ) $(IMPERAS_OP_CPP_LIBRARY)
+	$(V) mkdir -p $(@D)
+	@ echo "# Host Linking Harness $(subst $(CURDIR)/,,$(@))"
+	$(V) $(CC) -shared -o $@ $^ $(SIM_LDFLAGS) $(LDFLAGS)
+ifeq ($(COPYXML),1)
+	@ echo "# Copying XML $(XML) to $(@D)"
+	$(V) cp $(XML) $(@D)
+endif
+
+
+$(WORKDIR)/$(SHAREDOBJ): $(HARNOBJ) $(LINK_OBJ) $(IMPERAS_OP_CPP_LIBRARY)
+	$(V) mkdir -p $(@D)
+	@ echo "# Host Linking Harness object $(subst $(CURDIR)/,,$(@))"
+	$(V) $(CC) -shared -o $@ $^ $(SIM_LDFLAGS) $(LDFLAGS)
+
+# Allowed suffixes
+SRC_SUFFIX = c cpp c++ cxx
+
+define SRC_SUFFIX_Template
+$(OBJDIR)/%.d: %.$(1)
+	@ echo "# Host Depending $$(subst $(CURDIR)/,,$$(@))"
+	$$(V) mkdir -p $$(@D)
+	$$(V) $$(CC) -MM $$< $$(SIM_CFLAGS) $$(CFLAGS) $$(LDFLAGS) -MT $$(OBJDIR)/$$*.o -MF $$@
+
+$(OBJDIR)/%.o: %.$(1)
+	$$(V) mkdir -p $$(@D)
+	@ echo "# Host Compiling Harness $$(subst $(CURDIR)/,,$$(@))"
+	$$(V) $$(CC) -c -o $$@ $$< $$(SIM_CFLAGS) $$(CFLAGS)
+endef
+$(foreach X,$(SRC_SUFFIX),$(eval $(call SRC_SUFFIX_Template,$(X))))
+
+clean::
+	$(V) - rm -f $(ALL)
+ifneq ($(wildcard $(OBJROOT)),)
+	$(V) - rm -rf $(OBJROOT)
+endif
+ifneq ($(wildcard $(HARNESS-SRC)),)
+	$(V) - rm -f $(HARNESS-SRC) 
+endif
+ifneq ($(wildcard $(HARNESS-INC)),)
+	$(V) - rm -f $(HARNESS-INC)
+endif
+ifneq ($(wildcard $(HARNESS-XML)),)
+	$(V) - rm -f $(HARNESS-XML)
+endif
+ifneq ($(wildcard $(HARNESS-OP-SRC)),)
+	$(V) - rm -f $(HARNESS-OP-SRC) 
+endif
+ifneq ($(wildcard $(HARNESS-OP-INC)),)
+	$(V) - rm -f $(HARNESS-OP-INC)
+endif

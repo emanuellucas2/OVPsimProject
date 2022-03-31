@@ -1,0 +1,214 @@
+body {
+	margin: auto;
+	padding: 0px;
+	text-align: center;
+
+	background-color: #a6a6a6;
+	background-image: url(../img/background.gif);
+	background-repeat: repeat-x;
+}
+
+div {
+	position: relative; 
+	display: block; 
+	margin: 0px;
+	padding: 0px;
+}
+
+td {
+	font-family: Tahoma, Arial, Verdana, sans-serif;
+	font-size: 12px;
+	color: #808080;
+}
+
+td.left {
+	text-align: left; 
+	width: 420px; 
+	height: 500px; 
+	padding: 40px;
+	background-color: #FFFFFF;
+}
+
+td.index {
+	text-align: left; 
+	width: 600px; 
+	height: 500px; 
+	padding: 40px;
+	background-color: #FFFFFF;
+}
+	
+td.presentation {
+	text-align: left; 
+	width: 1700px; 
+	height: 500px; 
+	padding: 40px;
+	background-color: #FFFFFF;
+}
+		
+	
+td.right {
+	text-align: left; 
+	width: 190px; 	
+	height: 500px; 
+	padding: 20px; 
+	padding-top: 40px;
+	padding-bottom: 40px;
+	font-size: 11px;
+	background-color: #dbdbdb;
+	background-image: url(../img/bg_right.gif); 
+	background-repeat: repeat-x;
+}		
+
+span.small {
+	font-size: 11px;
+}
+
+h1 {
+	font-family: Tahoma, Arial, Verdana, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #0055a0;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+h2 {
+	font-family: Tahoma, Arial, Verdana, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #0055a0;
+	margin-top: 0px;
+	margin-bottom: 5px;
+}		
+
+a:link {
+    color: #f39912;
+    text-decoration: none;
+}
+
+
+a:visited {
+    color: #f39912;
+    text-decoration: none;
+}
+
+a:active {
+    color: #f39912;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #f39912;
+    text-decoration: none;
+}		
+
+/* CSS for ticker*/
+
+#ticker {
+	font-size: 11px;
+	text-align: left; 	
+	width: 190px;
+	height: 100px;
+}
+
+/* IE6 bugfix when text is bold and fade effect (alpha filter) is enabled. Style inner DIV with same color as outer DIV */
+#ticker div { 
+	width: 190px; 
+	height: 100px;	
+}
+
+/* FORM ELEMENTS */
+
+input, textarea, select {
+	font-family: verdana, tahoma, arial, sans-serif;
+	font-size: 10px;
+	line-height: 120%; 
+	
+	border-left: 1px solid #666666; /* BMH */
+	border-right: 1px solid #666666; /* BMH */
+	border-top: 1px solid #666666; /* BMH */
+	border-bottom: 1px solid #666666; /* BMH */
+}
+
+input, select {
+    margin-bottom: 4px;
+
+    padding: 2px; /* BMH */
+    height: 18px; /* EIGENER BMH */
+}
+
+select {
+	font-size: 11.5px;
+	vertical-align: middle;
+}
+
+input.text {
+	width: 214px;
+}
+
+input:focus, input:hover {
+	background-color: #F4F4F4;
+	font-weight: bold;
+}
+
+input.radio {
+	border: 0px;
+	width: 20px;
+	vertical-align: -4px;
+}
+
+input.button {
+    margin-bottom: 4px;
+
+    padding: 2px; /* BMH */
+
+	width: 214px;
+
+
+    height: 18px; /* EIGENER BMH */
+}
+
+textarea {
+    margin-bottom: 4px;
+
+    padding: 2px; /* BMH */
+
+	width: 214px;
+
+}
+
+label {
+    float: left;
+    clear: left;
+
+    text-align: left;
+    line-height: 160%;
+
+    margin-right: 20px;
+    width: 100px;
+}
+
+label.must {
+    font-weight: bold;
+}
+
+label.error {
+    color: #F00000;
+    font-weight: bold;
+    margin-top: -3px;
+}
+
+/* sjd for faq */
+dt {
+     font-weight: bold; 
+     margin: 15px 0;
+}
+dd {
+    margin: 10px 0 30px;
+}
+dt:before {
+     content: "Q ";
+}
+dd:before {
+     content: "A ";
+}

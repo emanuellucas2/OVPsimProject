@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="coreip-s51-rtl"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="sifive.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="SiFive coreip-s51-rtl module."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="SiFive Freedom E SDK coreip-s51-rtl Board Support Package details."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Limitations">
+        <doctext name="txt"
+            text="The IO peripherals are provided as register only models."/>
+    </docsection>
+    <bus addresswidth="40"
+        name="bus"/>
+    <module name="S51CC">
+        <vlnvreference library="module"
+            name="S51CC"
+            vendor="sifive.ovpworld.org"
+            version="1.0"/>
+        <busportconnection connection="bus"
+            name="systemPort"/>
+    </module>
+    <memoryinstance name="mem">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus"
+            hiaddress="0x23ffffff"
+            loaddress="0x20000000"
+            name="sp1"/>
+    </memoryinstance>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

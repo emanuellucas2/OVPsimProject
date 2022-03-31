@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="Dual_ARMv8-A-FMv1_VLAN"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="imperas.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="This module implements a platform containing dual ARMv8-A-FMv1 modules connected using a Virtual LAN."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="none known"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="none"/>
+    </docsection>
+    <pkn name="phyEthernet"/>
+    <module name="Sys1">
+        <vlnvreference library="module"
+            name="ARMv8-A-FMv1"
+            vendor="arm.ovpworld.org"
+            version="1.0"/>
+        <packetnetportconnection connection="phyEthernet"
+            name="phyEthernetPort"/>
+    </module>
+    <module name="Sys2">
+        <vlnvreference library="module"
+            name="ARMv8-A-FMv1"
+            vendor="arm.ovpworld.org"
+            version="1.0"/>
+        <packetnetportconnection connection="phyEthernet"
+            name="phyEthernetPort"/>
+    </module>
+    <peripheralinstance name="lanBridge">
+        <vlnvreference library="peripheral"
+            name="vEthernet_Bridge"
+            vendor="ovpworld.org"
+            version="1.0"/>
+        <packetnetportconnection connection="phyEthernet"
+            name="phyBridge"/>
+    </peripheralinstance>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

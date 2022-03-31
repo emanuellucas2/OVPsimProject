@@ -1,0 +1,2558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <processor QLQualified="T"
+    defaultsemihostlibrary="semihosting"
+    defaultsemihostname="pk"
+    defaultsemihostvendor="riscv.ovpworld.org"
+    defaultsemihostversion="1.0"
+    elfcode="243"
+    endian="either"
+    family="Microsemi"
+    gdbpath="$IMPERAS_HOME/lib/$IMPERAS_ARCH/gdb/riscv-none-embed-gdb"
+    imagefile="model"
+    library="processor"
+    name="riscv"
+    procdoc="$IMPERAS_HOME/ImperasLib/source/microsemi.ovpworld.org/processor/riscv/1.0/doc/OVP_Model_Specific_Information_riscv_generic.pdf"
+    releasestatus="4"
+    useindefaultplatform="F"
+    vendor="microsemi.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="RISC-V CoreRISCV 32-bit processor model"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="This Model is released under the Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Extensions Enabled by Default">
+        <doctext name="txt"
+            text="The model has the following architectural extensions enabled, and the corresponding bits in the misa CSR Extensions field will be set upon reset:"/>
+        <doctext name="txt_1"
+            text="misa bit 8: RV32I/RV64I/RV128I base integer instruction set"/>
+        <doctext name="txt_2"
+            text="misa bit 12: extension M (integer multiply/divide instructions)"/>
+        <doctext name="txt_3"
+            text="To specify features that can be dynamically enabled or disabled by writes to the misa register in addition to those listed above, use parameter &quot;add_Extensions_mask&quot;. This is a string parameter containing the feature letters to add; for example, value &quot;DV&quot; indicates that double-precision floating point and the Vector Extension can be enabled or disabled by writes to the misa register, if supported on this variant. Parameter &quot;sub_Extensions_mask&quot; can be used to disable dynamic update of features in the same way."/>
+        <doctext name="txt_4"
+            text="Legacy parameter &quot;misa_Extensions_mask&quot; can also be used. This Uns32-valued parameter specifies all writable bits in the misa Extensions field, replacing any permitted bits defined in the base variant."/>
+        <doctext name="txt_5"
+            text="Note that any features that are indicated as present in the misa mask but absent in the misa will be ignored. See the next section."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Enabling Other Extensions">
+        <doctext name="txt"
+            text="The following extensions are supported by the model, but not enabled by default in this variant:"/>
+        <doctext name="txt_1"
+            text="misa bit 0: extension A (atomic instructions)"/>
+        <doctext name="txt_2"
+            text="misa bit 1: extension B (bit manipulation extension)"/>
+        <doctext name="txt_3"
+            text="misa bit 2: extension C (compressed instructions)"/>
+        <doctext name="txt_4"
+            text="misa bit 3: extension D (double-precision floating point)"/>
+        <doctext name="txt_5"
+            text="misa bit 4: RV32E base integer instruction set (embedded)"/>
+        <doctext name="txt_6"
+            text="misa bit 5: extension F (single-precision floating point)"/>
+        <doctext name="txt_7"
+            text="misa bit 7: extension H (hypervisor)"/>
+        <doctext name="txt_8"
+            text="misa bit 10: extension K (cryptographic)"/>
+        <doctext name="txt_9"
+            text="misa bit 13: extension N (user-level interrupts)"/>
+        <doctext name="txt_10"
+            text="misa bit 15: extension P (DSP instructions)"/>
+        <doctext name="txt_11"
+            text="misa bit 18: extension S (Supervisor mode)"/>
+        <doctext name="txt_12"
+            text="misa bit 20: extension U (User mode)"/>
+        <doctext name="txt_13"
+            text="misa bit 21: extension V (vector extension)"/>
+        <doctext name="txt_14"
+            text="misa bit 23: extension X (non-standard extensions present)"/>
+        <doctext name="txt_15"
+            text="To add features from this list to the visible set in the misa register, use parameter &quot;add_Extensions&quot;. This is a string containing identification letters of features to enable; for example, value &quot;DV&quot; indicates that double-precision floating point and the Vector Extension should be enabled, if they are currently absent and are available on this variant."/>
+        <doctext name="txt_16"
+            text="Legacy parameter &quot;misa_Extensions&quot; can also be used. This Uns32-valued parameter specifies the reset value for the misa CSR Extensions field, replacing any permitted bits defined in the base variant."/>
+        <doctext name="txt_17"
+            text="To add features from this list to the implicitly-enabled set (not visible in the misa register), use parameter &quot;add_implicit_Extensions&quot;. This is a string parameter in the same format as the &quot;add_Extensions&quot; parameter described above."/>
+    </docsection>
+    <docsection name="doc_4"
+        text="Disabling Extensions">
+        <doctext name="txt"
+            text="The following extensions are enabled by default in the model and can be disabled:"/>
+        <doctext name="txt_1"
+            text="misa bit 12: extension M (integer multiply/divide instructions)"/>
+        <doctext name="txt_2"
+            text="To disable features that are enabled by default, use parameter &quot;sub_Extensions&quot;. This is a string containing identification letters of features to disable; for example, value &quot;DF&quot; indicates that double-precision and single-precision floating point extensions should be disabled, if they are enabled by default on this variant."/>
+        <doctext name="txt_3"
+            text="To remove features from this list from the implicitly-enabled set (not visible in the misa register), use parameter &quot;sub_implicit_Extensions&quot;. This is a string parameter in the same format as the &quot;sub_Extensions&quot; parameter described above."/>
+    </docsection>
+    <docsection name="doc_5"
+        text="mtvec CSR">
+        <doctext name="txt"
+            text="On this variant, the Machine trap-vector base-address register (mtvec) is writable. It can instead be configured as read-only using parameter &quot;mtvec_is_ro&quot;."/>
+        <doctext name="txt_1"
+            text="Values written to &quot;mtvec&quot; are masked using the value 0xfffffffd. A different mask of writable bits may be specified using parameter &quot;mtvec_mask&quot; if required. In addition, when Vectored interrupt mode is enabled, parameter &quot;tvec_align&quot; may be used to specify additional hardware-enforced base address alignment. In this variant, &quot;tvec_align&quot; defaults to 0, implying no alignment constraint."/>
+        <doctext name="txt_2"
+            text="If parameter &quot;mtvec_sext&quot; is True, values written to &quot;mtvec&quot; are sign-extended from the most-significant writable bit. In this variant, &quot;mtvec_sext&quot; is False, indicating that &quot;mtvec&quot; is not sign-extended."/>
+        <doctext name="txt_3"
+            text="The initial value of &quot;mtvec&quot; is 0x0. A different value may be specified using parameter &quot;mtvec&quot; if required."/>
+    </docsection>
+    <docsection name="doc_6"
+        text="Reset">
+        <doctext name="txt"
+            text="On reset, the model will restart at address 0x0. A different reset address may be specified using parameter &quot;reset_address&quot; or applied using optional input port &quot;reset_addr&quot; if required."/>
+    </docsection>
+    <docsection name="doc_7"
+        text="NMI">
+        <doctext name="txt"
+            text="On an NMI, the model will restart at address 0x0; a different NMI address may be specified using parameter &quot;nmi_address&quot; or applied using optional input port &quot;nmi_addr&quot; if required. The cause reported on an NMI is 0x0 by default; a different cause may be specified using parameter &quot;ecode_nmi&quot; or applied using optional input port &quot;nmi_cause&quot; if required."/>
+        <doctext name="txt_1"
+            text="If parameter &quot;rnmi_version&quot; is not &quot;none&quot;, resumable NMIs are supported, managed by additional CSRs &quot;mnscratch&quot;, &quot;mnepc&quot;, &quot;mncause&quot; and &quot;mnstatus&quot;, following the indicated version of the Resumable NMI extension proposal. In this variant, &quot;rnmi_version&quot; is &quot;none&quot;."/>
+    </docsection>
+    <docsection name="doc_8"
+        text="WFI">
+        <doctext name="txt"
+            text="WFI will halt the processor until an interrupt occurs. It can instead be configured as a NOP using parameter &quot;wfi_is_nop&quot;. WFI timeout wait is implemented with a time limit of 0 (i.e. WFI causes an Illegal Instruction trap in Supervisor mode when mstatus.TW=1)."/>
+    </docsection>
+    <docsection name="doc_9"
+        text="cycle CSR">
+        <doctext name="txt"
+            text="The &quot;cycle&quot; CSR is implemented in this variant. Set parameter &quot;cycle_undefined&quot; to True to instead specify that &quot;cycle&quot; is unimplemented and reads of it should cause Illegal Instruction traps."/>
+    </docsection>
+    <docsection name="doc_10"
+        text="time CSR">
+        <doctext name="txt"
+            text="The &quot;time&quot; CSR is implemented in this variant. Set parameter &quot;time_undefined&quot; to True to instead specify that &quot;time&quot; is unimplemented and reads of it should cause Illegal Instruction traps. Usually, the value of the &quot;time&quot; CSR should be provided by the platform - see notes below about the artifact &quot;CSR&quot; bus for information about how this is done."/>
+    </docsection>
+    <docsection name="doc_11"
+        text="instret CSR">
+        <doctext name="txt"
+            text="The &quot;instret&quot; CSR is implemented in this variant. Set parameter &quot;instret_undefined&quot; to True to instead specify that &quot;instret&quot; is unimplemented and reads of it should cause Illegal Instruction traps."/>
+    </docsection>
+    <docsection name="doc_12"
+        text="hpmcounter CSRs">
+        <doctext name="txt"
+            text="&quot;hpmcounter&quot; CSRs are implemented in this variant. Set parameter &quot;hpmcounter_undefined&quot; to True to instead specify that &quot;hpmcounter&quot; CSRs are unimplemented and reads of them should cause Illegal Instruction traps."/>
+    </docsection>
+    <docsection name="doc_13"
+        text="Unaligned Accesses">
+        <doctext name="txt"
+            text="Unaligned memory accesses are not supported by this variant. Set parameter &quot;unaligned&quot; to &quot;T&quot; to enable such accesses."/>
+    </docsection>
+    <docsection name="doc_14"
+        text="PMP">
+        <doctext name="txt"
+            text="A PMP unit is not implemented by this variant. Set parameter &quot;PMP_registers&quot; to indicate that the unit should be implemented with that number of PMP entries."/>
+    </docsection>
+    <docsection name="doc_15"
+        text="Privileged Architecture">
+        <doctext name="txt"
+            text="This variant implements the Privileged Architecture with version specified in the References section of this document. Note that parameter &quot;priv_version&quot; can be used to select the required architecture version; see the following sections for detailed information about differences between each supported version."/>
+        <docsection name="doc"
+            text="Legacy Version 1.10">
+            <doctext name="txt"
+                text="1.10 version of May 7 2017."/>
+        </docsection>
+        <docsection name="doc_1"
+            text="Version 20190608">
+            <doctext name="txt"
+                text="Stable 1.11 version of June 8 2019, with these changes compared to version 1.10:"/>
+            <doctext name="txt_1"
+                text="- mcountinhibit CSR defined;"/>
+            <doctext name="txt_2"
+                text="- pages are never executable in Supervisor mode if page table entry U bit is 1;"/>
+            <doctext name="txt_3"
+                text="- mstatus.TW is writable if any lower-level privilege mode is implemented (previously, it was just if Supervisor mode was implemented);"/>
+        </docsection>
+        <docsection name="doc_2"
+            text="Version master">
+            <doctext name="txt"
+                text="Unstable master version corresponding to evolving 1.12 specification, with these changes compared to version 20190608:"/>
+            <doctext name="txt_1"
+                text="- mstatush, mseccfg, mseccfgh, menvcfg, menvcfgh, senvcfg, henvcfg, henvcfgh and mconfigptr CSRs defined;"/>
+            <doctext name="txt_2"
+                text="- xret instructions clear mstatus.MPRV when leaving Machine mode if new mode is less privileged than M-mode;"/>
+            <doctext name="txt_3"
+                text="- maximum number of PMP registers increased to 64;"/>
+            <doctext name="txt_4"
+                text="- data endian is now configurable."/>
+        </docsection>
+    </docsection>
+    <docsection name="doc_16"
+        text="Unprivileged Architecture">
+        <doctext name="txt"
+            text="This variant implements the Unprivileged Architecture with version specified in the References section of this document. Note that parameter &quot;user_version&quot; can be used to select the required architecture version; see the following sections for detailed information about differences between each supported version."/>
+        <docsection name="doc"
+            text="Legacy Version 2.2">
+            <doctext name="txt"
+                text="2.2 version of May 7 2017."/>
+        </docsection>
+        <docsection name="doc_1"
+            text="Version 20191213">
+            <doctext name="txt"
+                text="Stable 20191213-Base-Ratified version of December 13 2019, with these changes compared to version 2.2:"/>
+            <doctext name="txt_1"
+                text="- floating point fmin/fmax instruction behavior modified to comply with IEEE 754-201x."/>
+            <doctext name="txt_2"
+                text="- numerous other optional behaviors can be separately enabled using Z-prefixed parameters."/>
+        </docsection>
+    </docsection>
+    <docsection name="doc_17"
+        text="Other Extensions">
+        <doctext name="txt"
+            text="Other extensions that can be configured are described in this section."/>
+        <docsection name="doc"
+            text="Zmmul">
+            <doctext name="txt"
+                text="Parameter &quot;Zmmul&quot; is 0 on this variant, meaning that all multiply and divide instructions are implemented. if &quot;Zmmul&quot; is set to 1 then multiply instructions are implemented but divide and remainder instructions are not implemented."/>
+        </docsection>
+        <docsection name="doc_1"
+            text="Zicsr">
+            <doctext name="txt"
+                text="Parameter &quot;Zicsr&quot; is 1 on this variant, meaning that standard CSRs and CSR access instructions are implemented. if &quot;Zicsr&quot; is set to 0 then standard CSRs and CSR access instructions are not implemented and an alternative scheme must be provided as a processor extension."/>
+        </docsection>
+        <docsection name="doc_2"
+            text="Zifencei">
+            <doctext name="txt"
+                text="Parameter &quot;Zifencei&quot; is 1 on this variant, meaning that the fence.i instruction is implemented (but treated as a NOP by the model). if &quot;Zifencei&quot; is set to 0 then the fence.i instruction is not implemented."/>
+        </docsection>
+        <docsection name="doc_3"
+            text="Zicbom">
+            <doctext name="txt"
+                text="Parameter &quot;Zicbom&quot; is 0 on this variant, meaning that code block management instructions are undefined. if &quot;Zicbom&quot; is set to 1 then code block management instructions cbo.clean, cbo.flush and cbo.inval are defined."/>
+            <doctext name="txt_1"
+                text="If Zicbom is present, the cache block size is given by parameter &quot;cmomp_bytes&quot;. The instructions may cause traps if used illegally but otherwise are NOPs in this model."/>
+        </docsection>
+        <docsection name="doc_4"
+            text="Zicbop">
+            <doctext name="txt"
+                text="Parameter &quot;Zicbop&quot; is 0 on this variant, meaning that prefetch instructions are undefined. if &quot;Zicbop&quot; is set to 1 then prefetch instructions prefetch.i, prefetch.r and prefetch.w are defined (but behave as NOPs in this model)."/>
+        </docsection>
+        <docsection name="doc_5"
+            text="Zicboz">
+            <doctext name="txt"
+                text="Parameter &quot;Zicboz&quot; is 0 on this variant, meaning that the cbo.zero instruction is undefined. if &quot;Zicboz&quot; is set to 1 then the cbo.zero instruction is defined."/>
+            <doctext name="txt_1"
+                text="If Zicboz is present, the cache block size is given by parameter &quot;cmoz_bytes&quot;."/>
+        </docsection>
+    </docsection>
+    <docsection name="doc_18"
+        text="CLIC">
+        <doctext name="txt"
+            text="The model can be configured to implement a Core Local Interrupt Controller (CLIC) using parameter &quot;CLICLEVELS&quot;; when non-zero, the CLIC is present with the specified number of interrupt levels (2-256), as described in the RISC-V Core-Local Interrupt Controller specification, and further parameters are made available to configure other aspects of the CLIC. &quot;CLICLEVELS&quot; is zero in this variant, indicating that a CLIC is not implemented."/>
+    </docsection>
+    <docsection name="doc_19"
+        text="Interrupts">
+        <doctext name="txt"
+            text="The &quot;reset&quot; port is an active-high reset input. The processor is halted when &quot;reset&quot; goes high and resumes execution from the reset address specified using the &quot;reset_address&quot; parameter or &quot;reset_addr&quot; port when the signal goes low. The &quot;mcause&quot; register is cleared to zero."/>
+        <doctext name="txt_1"
+            text="The &quot;nmi&quot; port is an active-high NMI input. The processor resumes execution from the address specified using the &quot;nmi_address&quot; parameter or &quot;nmi_addr&quot; port when the NMI signal goes high. The &quot;mcause&quot; register is cleared to zero."/>
+        <doctext name="txt_2"
+            text="All other interrupt ports are active high. For each implemented privileged execution level, there are by default input ports for software interrupt, timer interrupt and external interrupt; for example, for Machine mode, these are called &quot;MSWInterrupt&quot;, &quot;MTimerInterrupt&quot; and &quot;MExternalInterrupt&quot;, respectively. When the N extension is implemented, ports are also present for User mode. Parameter &quot;unimp_int_mask&quot; allows the default behavior to be changed to exclude certain interrupt ports. The parameter value is a mask in the same format as the &quot;mip&quot; CSR; any interrupt corresponding to a non-zero bit in this mask will be removed from the processor and read as zero in &quot;mip&quot;, &quot;mie&quot; and &quot;mideleg&quot; CSRs (and Supervisor and User mode equivalents if implemented)."/>
+        <doctext name="txt_3"
+            text="Parameter &quot;external_int_id&quot; can be used to enable extra interrupt ID input ports on each hart. If the parameter is True then when an external interrupt is applied the value on the ID port is sampled and used to fill the Exception Code field in the &quot;mcause&quot; CSR (or the equivalent CSR for other execution levels). For Machine mode, the extra interrupt ID port is called &quot;MExternalInterruptID&quot;."/>
+        <doctext name="txt_4"
+            text="The &quot;deferint&quot; port is an active-high artifact input that, when written to 1, prevents any pending-and-enabled interrupt being taken (normally, such an interrupt would be taken on the next instruction after it becomes pending-and-enabled). The purpose of this signal is to enable alignment with hardware models in step-and-compare usage."/>
+    </docsection>
+    <docsection name="doc_20"
+        text="Debug Mode">
+        <doctext name="txt"
+            text="The model can be configured to implement Debug mode using parameter &quot;debug_mode&quot;. This implements features described in Chapter 4 of the RISC-V External Debug Support specification with version specified by parameter &quot;debug_version&quot; (see References). Some aspects of this mode are not defined in the specification because they are implementation-specific; the model provides infrastructure to allow implementation of a Debug Module using a custom harness. Features added are described below."/>
+        <doctext name="txt_1"
+            text="Parameter &quot;debug_mode&quot; can be used to specify three different behaviors, as follows:"/>
+        <doctext name="txt_2"
+            text="1. If set to value &quot;vector&quot;, then operations that would cause entry to Debug mode result in the processor jumping to the address specified by the &quot;debug_address&quot; parameter. It will execute at this address, in Debug mode, until a &quot;dret&quot; instruction causes return to non-Debug mode. Any exception generated during this execution will cause a jump to the address specified by the &quot;dexc_address&quot; parameter."/>
+        <doctext name="txt_3"
+            text="2. If set to value &quot;interrupt&quot;, then operations that would cause entry to Debug mode result in the processor simulation call (e.g. opProcessorSimulate) returning, with a stop reason of OP_SR_INTERRUPT. In this usage scenario, the Debug Module is implemented in the simulation harness."/>
+        <doctext name="txt_4"
+            text="3. If set to value &quot;halt&quot;, then operations that would cause entry to Debug mode result in the processor halting. Depending on the simulation environment, this might cause a return from the simulation call with a stop reason of OP_SR_HALT, or debug mode might be implemented by another platform component which then restarts the debugged processor again."/>
+        <docsection name="doc"
+            text="Debug State Entry">
+            <doctext name="txt"
+                text="The specification does not define how Debug mode is implemented. In this model, Debug mode is enabled by a Boolean pseudo-register, &quot;DM&quot;. When &quot;DM&quot; is True, the processor is in Debug mode. When &quot;DM&quot; is False, mode is defined by &quot;mstatus&quot; in the usual way."/>
+            <doctext name="txt_1"
+                text="Entry to Debug mode can be performed in any of these ways:"/>
+            <doctext name="txt_2"
+                text="1. By writing True to register &quot;DM&quot; (e.g. using opProcessorRegWrite) followed by simulation of at least one cycle (e.g. using opProcessorSimulate), dcsr cause will be reported as trigger;"/>
+            <doctext name="txt_3"
+                text="2. By writing a 1 then 0 to net &quot;haltreq&quot; (using opNetWrite) followed by simulation of at least one  cycle (e.g. using opProcessorSimulate);"/>
+            <doctext name="txt_4"
+                text="3. By writing a 1 to net &quot;resethaltreq&quot; (using opNetWrite) while the &quot;reset&quot; signal undergoes a negedge transition, followed by simulation of at least one cycle (e.g. using opProcessorSimulate);"/>
+            <doctext name="txt_5"
+                text="4. By executing an &quot;ebreak&quot; instruction when Debug mode entry for the current processor mode is enabled by dcsr.ebreakm, dcsr.ebreaks or dcsr.ebreaku."/>
+            <doctext name="txt_6"
+                text="In all cases, the processor will save required state in &quot;dpc&quot; and &quot;dcsr&quot; and then perform actions described above, depending in the value of the &quot;debug_mode&quot; parameter."/>
+        </docsection>
+        <docsection name="doc_1"
+            text="Debug State Exit">
+            <doctext name="txt"
+                text="Exit from Debug mode can be performed in any of these ways:"/>
+            <doctext name="txt_1"
+                text="1. By writing False to register &quot;DM&quot; (e.g. using opProcessorRegWrite) followed by simulation of at least one cycle (e.g. using opProcessorSimulate);"/>
+            <doctext name="txt_2"
+                text="2. By executing an &quot;dret&quot; instruction when Debug mode."/>
+            <doctext name="txt_3"
+                text="In both cases, the processor will perform the steps described in section 4.6 (Resume) of the Debug specification."/>
+        </docsection>
+        <docsection name="doc_2"
+            text="Debug Registers">
+            <doctext name="txt"
+                text="When Debug mode is enabled, registers &quot;dcsr&quot;, &quot;dpc&quot;, &quot;dscratch0&quot; and &quot;dscratch1&quot; are implemented as described in the specification. These may be manipulated externally by a Debug Module using opProcessorRegRead or opProcessorRegWrite; for example, the Debug Module could write &quot;dcsr&quot; to enable &quot;ebreak&quot; instruction behavior as described above, or read and write &quot;dpc&quot; to emulate stepping over an &quot;ebreak&quot; instruction prior to resumption from Debug mode."/>
+        </docsection>
+        <docsection name="doc_3"
+            text="Debug Mode Execution">
+            <doctext name="txt"
+                text="The specification allows execution of code fragments in Debug mode. A Debug Module implementation can cause execution in Debug mode by the following steps:"/>
+            <doctext name="txt_1"
+                text="1. Write the address of a Program Buffer to the program counter using opProcessorPCSet;"/>
+            <doctext name="txt_2"
+                text="2. If &quot;debug_mode&quot; is set to &quot;halt&quot;, write 0 to pseudo-register &quot;DMStall&quot; (to leave halted state);"/>
+            <doctext name="txt_3"
+                text="3. If entry to Debug mode was handled by exiting the simulation callback, call opProcessorSimulate or opRootModuleSimulate to resume simulation."/>
+            <doctext name="txt_4"
+                text="Debug mode will be re-entered in these cases:"/>
+            <doctext name="txt_5"
+                text="1. By execution of an &quot;ebreak&quot; instruction; or:"/>
+            <doctext name="txt_6"
+                text="2. By execution of an instruction that causes an exception."/>
+            <doctext name="txt_7"
+                text="In both cases, the processor will either jump to the debug exception address, or return control immediately to the harness, with stopReason of OP_SR_INTERRUPT, or perform a halt, depending on the value of the &quot;debug_mode&quot; parameter."/>
+        </docsection>
+        <docsection name="doc_4"
+            text="Debug Single Step">
+            <doctext name="txt"
+                text="When in Debug mode, the processor or harness can cause a single instruction to be executed on return from that mode by setting dcsr.step. After one non-Debug-mode instruction has been executed, control will be returned to the harness. The processor will remain in single-step mode until dcsr.step is cleared."/>
+        </docsection>
+        <docsection name="doc_5"
+            text="Debug Ports">
+            <doctext name="txt"
+                text="Port &quot;DM&quot; is an output signal that indicates whether the processor is in Debug mode"/>
+            <doctext name="txt_1"
+                text="Port &quot;haltreq&quot; is a rising-edge-triggered signal that triggers entry to Debug mode (see above)."/>
+            <doctext name="txt_2"
+                text="Port &quot;resethaltreq&quot; is a level-sensitive signal that triggers entry to Debug mode after reset (see above)."/>
+        </docsection>
+    </docsection>
+    <docsection name="doc_21"
+        text="Debug Mask">
+        <doctext name="txt"
+            text="It is possible to enable model debug messages in various categories. This can be done statically using the &quot;override_debugMask&quot; parameter, or dynamically using the &quot;debugflags&quot; command. Enabled messages are specified using a bitmask value, as follows:"/>
+        <doctext name="txt_1"
+            text="Value 0x002: enable debugging of PMP and virtual memory state;"/>
+        <doctext name="txt_2"
+            text="Value 0x004: enable debugging of interrupt state."/>
+        <doctext name="txt_3"
+            text="All other bits in the debug bitmask are reserved and must not be set to non-zero values."/>
+    </docsection>
+    <docsection name="doc_22"
+        text="Integration Support">
+        <doctext name="txt"
+            text="This model implements a number of non-architectural pseudo-registers and other features to facilitate integration."/>
+        <docsection name="doc"
+            text="CSR Register External Implementation">
+            <doctext name="txt"
+                text="If parameter &quot;enable_CSR_bus&quot; is True, an artifact 16-bit bus &quot;CSR&quot; is enabled. Slave callbacks installed on this bus can be used to implement modified CSR behavior (use opBusSlaveNew or icmMapExternalMemory, depending on the client API). A CSR with index 0xABC is mapped on the bus at address 0xABC0; as a concrete example, implementing CSR &quot;time&quot; (number 0xC01) externally requires installation of callbacks at address 0xC010 on the CSR bus."/>
+        </docsection>
+    </docsection>
+    <docsection name="doc_23"
+        text="Limitations">
+        <doctext name="txt"
+            text="Instruction pipelines are not modeled in any way. All instructions are assumed to complete immediately. This means that instruction barrier instructions (e.g. fence.i) are treated as NOPs, with the exception of any Illegal Instruction behavior, which is modeled."/>
+        <doctext name="txt_1"
+            text="Caches and write buffers are not modeled in any way. All loads, fetches and stores complete immediately and in order, and are fully synchronous. Data barrier instructions (e.g. fence) are treated as NOPs, with the exception of any Illegal Instruction behavior, which is modeled."/>
+        <doctext name="txt_2"
+            text="Real-world timing effects are not modeled: all instructions are assumed to complete in a single cycle."/>
+        <doctext name="txt_3"
+            text="Hardware Performance Monitor registers are not implemented and hardwired to zero."/>
+    </docsection>
+    <docsection name="doc_24"
+        text="Verification">
+        <doctext name="txt"
+            text="All instructions have been extensively tested by Imperas, using tests generated specifically for this model and also reference tests from https://github.com/riscv/riscv-tests."/>
+        <doctext name="txt_1"
+            text="Also reference tests have been used from various sources including:"/>
+        <doctext name="txt_2"
+            text="https://github.com/riscv/riscv-tests"/>
+        <doctext name="txt_3"
+            text="https://github.com/ucb-bar/riscv-torture"/>
+        <doctext name="txt_4"
+            text="The Imperas OVPsim RISC-V models are used in the RISC-V Foundation Compliance Framework as a functional Golden Reference:"/>
+        <doctext name="txt_5"
+            text="https://github.com/riscv/riscv-compliance"/>
+        <doctext name="txt_6"
+            text="where the simulated model is used to provide the reference signatures for compliance testing.  The Imperas OVPsim RISC-V models are used as reference in both open source and commercial instruction stream test generators for hardware design verification, for example:"/>
+        <doctext name="txt_7"
+            text="http://valtrix.in/sting from Valtrix"/>
+        <doctext name="txt_8"
+            text="https://github.com/google/riscv-dv from Google"/>
+        <doctext name="txt_9"
+            text="The Imperas OVPsim RISC-V models are also used by commercial and open source RISC-V Core RTL developers as a reference to ensure correct functionality of their IP."/>
+    </docsection>
+    <docsection name="doc_25"
+        text="References">
+        <doctext name="txt"
+            text="The Model details are based upon the following specifications:"/>
+        <doctext name="txt_1"
+            text="RISC-V Instruction Set Manual, Volume I: User-Level ISA (User Architecture Version 2.2)"/>
+        <doctext name="txt_2"
+            text="RISC-V Instruction Set Manual, Volume II: Privileged Architecture (Privileged Architecture Version 1.10)"/>
+        <doctext name="txt_3"
+            text="---- HB0761 CoreRISCV_AXI4 v2.0 HandbookCore"/>
+    </docsection>
+    <formalattribute name="variant"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Selects variant (either a generic UISA or a specific model)"/>
+        </docsection>
+        <enum name="CoreRISCV"
+            value="0"/>
+        <enum name="MiV_RV32IMA"
+            value="1"/>
+    </formalattribute>
+    <formalattribute name="user_version"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify required User Architecture version"/>
+        </docsection>
+        <enum name="2.2"
+            value="0">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="User Architecture Version 2.2"/>
+            </docsection>
+        </enum>
+        <enum name="2.3"
+            value="3">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Deprecated and equivalent to 20191213"/>
+            </docsection>
+        </enum>
+        <enum name="20190305"
+            value="3">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Deprecated and equivalent to 20191213"/>
+            </docsection>
+        </enum>
+        <enum name="20191213"
+            value="3">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="User Architecture Version 20191213"/>
+            </docsection>
+        </enum>
+    </formalattribute>
+    <formalattribute name="priv_version"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify required Privileged Architecture version"/>
+        </docsection>
+        <enum name="1.10"
+            value="0">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Privileged Architecture Version 1.10"/>
+            </docsection>
+        </enum>
+        <enum name="1.11"
+            value="3">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Deprecated and equivalent to 20190608"/>
+            </docsection>
+        </enum>
+        <enum name="20190405"
+            value="3">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Deprecated and equivalent to 20190608"/>
+            </docsection>
+        </enum>
+        <enum name="20190608"
+            value="3">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Privileged Architecture Version Ratified-IMFDQC-and-Priv-v1.11"/>
+            </docsection>
+        </enum>
+        <enum name="master"
+            value="4">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Privileged Architecture Master Branch (1.12 draft)"/>
+            </docsection>
+        </enum>
+    </formalattribute>
+    <formalattribute name="rnmi_version"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify required RNMI Architecture version"/>
+        </docsection>
+        <enum name="none"
+            value="0">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="RNMI not implemented"/>
+            </docsection>
+        </enum>
+        <enum name="0.2.1"
+            value="1">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="RNMI version 0.2.1"/>
+            </docsection>
+        </enum>
+    </formalattribute>
+    <formalattribute name="debug_mode"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify how Debug mode is implemented"/>
+        </docsection>
+        <enum name="none"
+            value="0">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Debug mode not implemented"/>
+            </docsection>
+        </enum>
+        <enum name="vector"
+            value="1">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Debug mode implemented by execution at vector"/>
+            </docsection>
+        </enum>
+        <enum name="interrupt"
+            value="2">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Debug mode implemented by interrupt"/>
+            </docsection>
+        </enum>
+        <enum name="halt"
+            value="3">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Debug mode implemented by halt"/>
+            </docsection>
+        </enum>
+    </formalattribute>
+    <formalattribute name="use_hw_reg_names"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify whether to use hardware register names x0-x31 and f0-f31 instead of ABI register names"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="verbose"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify verbose output messages"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="traceVolatile"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify whether volatile registers (e.g. minstret) should be shown in change trace"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="unaligned"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify whether the processor supports unaligned memory accesses"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="wfi_is_nop"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify whether WFI should be treated as a NOP (if not, halt while waiting for interrupts)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mtvec_is_ro"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify whether mtvec CSR is read-only"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="tvec_align"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify hardware-enforced alignment of mtvec/stvec/utvec when Vectored interrupt mode enabled"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="counteren_mask"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify hardware-enforced mask of writable bits in mcounteren/scounteren registers"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="noinhibit_mask"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify hardware-enforced mask of always-zero bits in mcountinhibit register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mtvec_mask"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify hardware-enforced mask of writable bits in mtvec register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mip_mask"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify hardware-enforced mask of writable bits in mip register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mtvec_sext"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify whether mtvec is sign-extended from most-significant bit"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="ecode_mask"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify hardware-enforced mask of writable bits in xcause.ExceptionCode"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="ecode_nmi"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify xcause.ExceptionCode for NMI"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="tval_zero"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify whether mtval/stval/utval are hard wired to zero"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="tval_zero_ebreak"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify whether mtval/stval/utval are set to zero by an ebreak"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="tval_ii_code"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify whether mtval/stval contain faulting instruction bits on illegal instruction exception"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="cycle_undefined"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify that the cycle CSR is undefined"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="time_undefined"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify that the time CSR is undefined"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="instret_undefined"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify that the instret CSR is undefined"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="hpmcounter_undefined"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify that the hpmcounter CSRs are undefined"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="enable_CSR_bus"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Add artifact CSR bus port, allowing CSR registers to be externally implemented"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="CSR_remap"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Comma-separated list of CSR number mappings, each of the form &lt;csrName&gt;=&lt;number&gt;"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="trigger_num"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify the number of implemented hardware triggers"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="reset_address"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override reset vector address"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="nmi_address"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override NMI vector address"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="CLINT_address"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify base address of internal CLINT model (or 0 for no CLINT)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="PMP_grain"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify PMP region granularity, G (0 =&gt; 4 bytes, 1 =&gt; 8 bytes, etc)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="PMP_registers"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify the number of implemented PMP address registers"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="PMP_max_page"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify the maximum size of PMP region to map if non-zero (may improve performance; constrained to a power of two)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="PMP_decompose"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Whether unaligned PMP accesses are decomposed into separate aligned accesses"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="local_int_num"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify number of supplemental local interrupts"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="unimp_int_mask"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify mask of unimplemented interrupts (e.g. 1&lt;&lt;9 indicates Supervisor external interrupt unimplemented)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="force_mideleg"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify mask of interrupts always delegated to lower-priority execution level from Machine execution level"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="no_ideleg"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify mask of interrupts that cannot be delegated to lower-priority execution levels"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="no_edeleg"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify mask of exceptions that cannot be delegated to lower-priority execution levels"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="external_int_id"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Whether to add nets allowing External Interrupt ID codes to be forced"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="enable_expanded"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify that 48-bit and 64-bit expanded instructions are supported"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="endianFixed"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify that data endianness is fixed (mstatus.{MBE,SBE,UBE} fields are read-only)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="misa_MXL"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override default value of misa.MXL"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="misa_Extensions"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override default value of misa.Extensions"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="add_Extensions"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Add extensions specified by letters to misa.Extensions (for example, specify &quot;VD&quot; to add V and D features)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="sub_Extensions"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Remove extensions specified by letters from misa.Extensions (for example, specify &quot;VD&quot; to remove V and D features)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="misa_Extensions_mask"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override mask of writable bits in misa.Extensions"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="add_Extensions_mask"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Add extensions specified by letters to mask of writable bits in misa.Extensions (for example, specify &quot;VD&quot; to add V and D features)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="sub_Extensions_mask"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Remove extensions specified by letters from mask of writable bits in misa.Extensions (for example, specify &quot;VD&quot; to remove V and D features)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="add_implicit_Extensions"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Add extensions specified by letters to implicitly-present extensions not visible in misa.Extensions"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="sub_implicit_Extensions"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Remove extensions specified by letters from implicitly-present extensions not visible in misa.Extensions"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="Zicsr"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify that Zicsr is implemented"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="Zifencei"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify that Zifencei is implemented"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="Zicbom"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify that Zicbom is implemented"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="Zicbop"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify that Zicbop is implemented"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="Zicboz"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify that Zicboz is implemented"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="Zmmul"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify that Zmmul is implemented"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mvendorid"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override mvendorid register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="marchid"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override marchid register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mimpid"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override mimpid register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mhartid"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override mhartid register (or first mhartid of an incrementing sequence if this is an SMP variant)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="mtvec"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Override mtvec register"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="CLICLEVELS"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify number of interrupt levels implemented by CLIC, or 0 if CLIC absent"/>
+        </docsection>
+    </formalattribute>
+    <busmasterport addresswidth="34"
+        addresswidthmax="34"
+        addresswidthmin="32"
+        mustbeconnected="T"
+        name="INSTRUCTION">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction bus"/>
+        </docsection>
+    </busmasterport>
+    <busmasterport addresswidth="34"
+        addresswidthmax="34"
+        addresswidthmin="32"
+        mustbeconnected="F"
+        name="DATA">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data bus"/>
+        </docsection>
+    </busmasterport>
+    <netport mustbeconnected="F"
+        name="reset"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Reset"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="reset_addr"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="externally-applied reset address"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="nmi"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="NMI"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="nmi_cause"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="externally-applied NMI cause"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="nmi_addr"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="externally-applied NMI address"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="MSWInterrupt"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Machine software interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="MTimerInterrupt"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Machine timer interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="MExternalInterrupt"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Machine external interrupt"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="irq_ack_o"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="interrupt acknowledge (pulse)"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="irq_id_o"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="acknowledged interrupt id (valid during irq_ack_o pulse)"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="sec_lvl_o"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="current privilege level"/>
+        </docsection>
+    </netport>
+    <netport mustbeconnected="F"
+        name="deferint"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Artifact signal causing interrupts to be held off when high"/>
+        </docsection>
+    </netport>
+    <command name="getCSRIndex">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Return index for a named CSR (or -1 if no matching CSR)"/>
+        </docsection>
+        <commandarg name="name"
+            type="String">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="CSR name"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="isync">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="specify instruction address range for synchronous execution"/>
+        </docsection>
+        <commandarg name="addresshi"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="end address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="addresslo"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="start address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="itrace">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="enable or disable instruction tracing"/>
+        </docsection>
+        <commandarg name="after"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="apply after this many instructions"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="enable"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="instructioncount"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="include the instruction number in each trace"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="memory"
+            type="String">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show memory accesses by this instruction. Argument can be any combination of X (execute), L (load or store access) and S (system)"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="off"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="disable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="on"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="processorname"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Include processor name in all trace lines"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registerchange"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers changed by this instruction"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registers"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers after each trace"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="listCSRs">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="List all CSRs in index order"/>
+        </docsection>
+    </command>
+    <exceptions name="Exceptions">
+        <exception code="0"
+            name="InstructionAddressMisaligned">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Fetch from unaligned address"/>
+            </docsection>
+        </exception>
+        <exception code="1"
+            name="InstructionAccessFault">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="No access permission for fetch"/>
+            </docsection>
+        </exception>
+        <exception code="2"
+            name="IllegalInstruction">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Undecoded, unimplemented or disabled instruction"/>
+            </docsection>
+        </exception>
+        <exception code="3"
+            name="Breakpoint">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="EBREAK instruction executed"/>
+            </docsection>
+        </exception>
+        <exception code="4"
+            name="LoadAddressMisaligned">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Load from unaligned address"/>
+            </docsection>
+        </exception>
+        <exception code="5"
+            name="LoadAccessFault">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="No access permission for load"/>
+            </docsection>
+        </exception>
+        <exception code="6"
+            name="StoreAMOAddressMisaligned">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Store/atomic memory operation at unaligned address"/>
+            </docsection>
+        </exception>
+        <exception code="7"
+            name="StoreAMOAccessFault">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="No access permission for store/atomic memory operation"/>
+            </docsection>
+        </exception>
+        <exception code="11"
+            name="EnvironmentCallFromMMode">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="ECALL instruction executed in Machine mode"/>
+            </docsection>
+        </exception>
+        <exception code="12"
+            name="InstructionPageFault">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Page fault at fetch address"/>
+            </docsection>
+        </exception>
+        <exception code="13"
+            name="LoadPageFault">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Page fault at load address"/>
+            </docsection>
+        </exception>
+        <exception code="15"
+            name="StoreAMOPageFault">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Page fault at store/atomic memory operation address"/>
+            </docsection>
+        </exception>
+        <exception code="67"
+            name="MSWInterrupt">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Machine software interrupt"/>
+            </docsection>
+        </exception>
+        <exception code="71"
+            name="MTimerInterrupt">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Machine timer interrupt"/>
+            </docsection>
+        </exception>
+        <exception code="75"
+            name="MExternalInterrupt">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Machine external interrupt"/>
+            </docsection>
+        </exception>
+    </exceptions>
+    <modes name="Modes">
+        <mode code="3"
+            name="Machine">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Machine mode"/>
+            </docsection>
+        </mode>
+    </modes>
+    <registers name="Core">
+        <register alias="F"
+            name="zero"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="ra"
+            readonly="F"
+            type="4"
+            width="32"/>
+        <register alias="F"
+            name="sp"
+            readonly="F"
+            type="2"
+            width="32"/>
+        <register alias="F"
+            name="gp"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="tp"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="a0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="a1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="a2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="a3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="a4"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="a5"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="a6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="a7"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s4"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s5"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s7"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s8"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s9"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s10"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="s11"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t4"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t5"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="t6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pc"
+            readonly="F"
+            type="1"
+            width="32"/>
+    </registers>
+    <registers name="Machine_Control_and_Status">
+        <register alias="F"
+            name="mstatus"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="misa"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mie"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mtvec"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent4"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent5"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent7"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent8"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent9"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent10"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent11"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent12"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent13"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent14"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent15"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent16"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent17"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent18"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent19"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent20"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent21"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent22"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent23"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent24"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent25"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent26"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent27"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent28"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent29"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent30"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmevent31"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mscratch"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mepc"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mcause"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mtval"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mip"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpcfg0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpcfg1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpcfg2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpcfg3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr4"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr5"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr7"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr8"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr9"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr10"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr11"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr12"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr13"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr14"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pmpaddr15"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mcycle"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="minstret"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter4"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter5"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter7"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter8"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter9"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter10"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter11"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter12"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter13"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter14"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter15"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter16"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter17"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter18"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter19"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter20"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter21"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter22"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter23"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter24"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter25"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter26"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter27"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter28"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter29"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter30"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounter31"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mcycleh"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="minstreth"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh4"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh5"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh7"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh8"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh9"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh10"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh11"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh12"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh13"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh14"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh15"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh16"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh17"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh18"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh19"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh20"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh21"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh22"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh23"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh24"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh25"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh26"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh27"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh28"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh29"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh30"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhpmcounterh31"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="cycle"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="time"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="instret"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter3"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter4"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter5"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter6"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter7"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter8"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter9"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter10"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter11"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter12"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter13"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter14"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter15"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter16"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter17"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter18"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter19"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter20"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter21"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter22"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter23"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter24"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter25"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter26"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter27"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter28"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter29"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter30"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounter31"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="cycleh"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="timeh"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="instreth"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh3"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh4"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh5"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh6"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh7"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh8"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh9"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh10"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh11"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh12"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh13"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh14"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh15"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh16"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh17"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh18"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh19"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh20"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh21"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh22"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh23"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh24"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh25"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh26"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh27"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh28"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh29"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh30"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="hpmcounterh31"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mvendorid"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="marchid"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mimpid"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mhartid"
+            readonly="T"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="Integration_support">
+        <register alias="F"
+            name="commercial"
+            readonly="T"
+            type="0"
+            width="8"/>
+    </registers>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </processor>

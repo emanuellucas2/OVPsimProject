@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="rng"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="renesas.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Random Number Generator (RNG)"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Register View Model Only"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="R01UH0128ED0700, Rev. 7.00, Oct 06, 2010"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="RNGP0"
+        size="0x2">
+        <addressblock name="reg0"
+            size="0x2"
+            width="16">
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="RNG"
+                nbyte="F"
+                offset="0x0"
+                readfunction="readRNG"
+                width="16">
+                <reset mask="0xffff"
+                    name="IRESET"
+                    value="0x0001"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

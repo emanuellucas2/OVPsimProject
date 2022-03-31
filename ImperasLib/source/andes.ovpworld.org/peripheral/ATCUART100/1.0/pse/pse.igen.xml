@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="ATCUART100"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="andes.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Andes UART"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="DMA not supported"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Andes AE350 Platform User Manual"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        dfltFuncs="T"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x40">
+        <addressblock name="ab"
+            size="0x40"
+            width="32">
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="IDREV"
+                nbyte="F"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="ID and Revision Register"/>
+                </docsection>
+                <field access="r"
+                    bitoffset="16"
+                    name="ID"
+                    width="16">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="ID Number of ACTUART100"/>
+                    </docsection>
+                </field>
+                <field access="r"
+                    bitoffset="4"
+                    name="MAJOR"
+                    width="12">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Major Revision Number"/>
+                    </docsection>
+                </field>
+                <field access="r"
+                    name="MINOR"
+                    width="4">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Minor Revision Number"/>
+                    </docsection>
+                </field>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x02010000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="CFG"
+                nbyte="F"
+                offset="0x10"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Hardware Configure Register"/>
+                </docsection>
+                <field access="r"
+                    bitoffset="0"
+                    name="FIFO_DEPTH"
+                    width="2">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Depth of Rx and Tx FIFO"/>
+                    </docsection>
+                </field>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="OSCR"
+                nbyte="F"
+                offset="0x14"
+                width="32"
+                writemask="31">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Over Sample Control Register"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="OSC"
+                    width="5">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Over-sample Control"/>
+                    </docsection>
+                </field>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="RBR_DLL"
+                nbyte="F"
+                offset="0x20"
+                readfunction="rdRBR_DLL"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Receiver Buffer Register / Divisor Latch LSB"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="THR_DLL"
+                nbyte="F"
+                offset="0x20"
+                width="32"
+                writefunction="wrTHR_DLL">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Transmitter Holding Register / Divisor Latch LSB"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="IER_DLM"
+                nbyte="F"
+                offset="0x24"
+                readfunction="rdIER_DLM"
+                width="32"
+                writefunction="wrIER_DLM">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Enable Register / Divisor Latch MSB"/>
+                </docsection>
+                <field access="rw"
+                    name="ERBI"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Receive Data Ready Interrupt Enable"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    bitoffset="1"
+                    name="ETHEI"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Transmitter Holding Register Interrupt Enable"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    bitoffset="2"
+                    name="ELSI"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Receive Line Status Interrupt Enable"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    bitoffset="3"
+                    name="EMSI"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Modem Status Interrupt Enable"/>
+                    </docsection>
+                </field>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x00000001"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="IIR"
+                nbyte="F"
+                offset="0x28"
+                readfunction="rdIIR"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Identification Register"/>
+                </docsection>
+                <field access="r"
+                    bitoffset="6"
+                    name="FIFOED"
+                    width="2">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="FIFOs Enabled"/>
+                    </docsection>
+                </field>
+                <field access="r"
+                    name="INTRID"
+                    width="4">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Interrupt ID"/>
+                    </docsection>
+                </field>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x00000000"/>
+                <field bitoffset="4"
+                    name="__pad4"
+                    width="2"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="FCR"
+                nbyte="F"
+                offset="0x28"
+                width="32"
+                writefunction="wrFCR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="FIFO ControlRegister"/>
+                </docsection>
+                <field access="w"
+                    bitoffset="6"
+                    name="RFIFOT"
+                    width="2">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Receiver FIFO Trigger Level"/>
+                    </docsection>
+                </field>
+                <field access="w"
+                    bitoffset="4"
+                    name="TFIFOT"
+                    width="2">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Transmitter FIFO Trigger Level"/>
+                    </docsection>
+                </field>
+                <field access="w"
+                    bitoffset="3"
+                    name="DMAE"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="DMA Enable"/>
+                    </docsection>
+                </field>
+                <field access="w"
+                    bitoffset="2"
+                    name="TFIFORST"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Transmitter FIFO Reset"/>
+                    </docsection>
+                </field>
+                <field access="w"
+                    bitoffset="1"
+                    name="RFIFORST"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Receiver FIFO Reset"/>
+                    </docsection>
+                </field>
+                <field access="w"
+                    name="FIFOE"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="FIFO Enable"/>
+                    </docsection>
+                </field>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LCR"
+                nbyte="F"
+                offset="0x2c"
+                width="32"
+                writefunction="wrLCR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Line Control Register"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="7"
+                    name="DLAB"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Divisor Latch Access Bit"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    bitoffset="6"
+                    name="BC"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Break Control"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    bitoffset="5"
+                    name="SPS"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Stick Parity"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    bitoffset="4"
+                    name="EPS"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Even Parity Select"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    bitoffset="3"
+                    name="PEN"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Parity Enable"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    bitoffset="2"
+                    name="STB"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Number of STOP bits"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    name="WLS"
+                    width="2">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Word Length Setting"/>
+                    </docsection>
+                </field>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MCR"
+                nbyte="F"
+                offset="0x30"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Modem Control Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LSR"
+                nbyte="F"
+                offset="0x34"
+                readfunction="rdLSR"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Line Status Register"/>
+                </docsection>
+                <field access="rw"
+                    name="RDR"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Data Ready"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    bitoffset="1"
+                    name="OE"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Overrun Error"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    bitoffset="2"
+                    name="PE"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Parity Error"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    bitoffset="3"
+                    name="FE"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Framing Error"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    bitoffset="4"
+                    name="LBreak"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Line Break"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    bitoffset="5"
+                    name="THRE"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="THR/FIFO Empty"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    bitoffset="6"
+                    name="TEMT"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="THR/FIFO and TFR Empty"/>
+                    </docsection>
+                </field>
+                <field access="rw"
+                    bitoffset="7"
+                    name="ERRF"
+                    width="1">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Receive FIFO Data Error"/>
+                    </docsection>
+                </field>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x00000060"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="MSR"
+                nbyte="F"
+                offset="0x38"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Modem Status Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SCR"
+                nbyte="F"
+                offset="0x3c"
+                width="32"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Scratch Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0x00000000"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="reset"
+        type="input"
+        updatefunction="resetCB">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Reset signal"/>
+        </docsection>
+    </netport>
+    <netport name="intOut"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Interrupt signal"/>
+        </docsection>
+    </netport>
+    <formalattribute name="uart16450"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Run in 16450 mode (no FIFOs)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="fifoSize"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Size of fifos"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="refClkFreq"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Frequency (in hertz) of reference clock rate used in baud rate calculation"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="simulatebaud"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set to true to simulate baud delay determined by the Divisor Latch register value and reference clock frequency."/>
+            <doctext name="txt_1"
+                text="Set to false to run without delay - next read data is made available immediately upon read of Receiver Buffer Register."/>
+            <doctext name="txt_2"
+                text="Defaults to false"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="charmode"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set to true when the port is used to connect to a Telnet program and character mode is desired rather than the default Telnet line mode."/>
+            <doctext name="txt_1"
+                text="When set to true a Telnet command sequence is sent at startup that configures the Telnet program into character mode. In addition null bytes are stripped from the data received."/>
+        </docsection>
+    </formalattribute>
+    <formalmacro name="BHM_SER_OPEN_AUTO_FORMALS"/>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

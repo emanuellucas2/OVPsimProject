@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="iMX6_WDOG"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="nxp.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="iMX6 WDOG"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This is an incomplete model of the WDOG."/>
+        <doctext name="txt_1"
+            text="It has basic functionality to support the iMX6 platform."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="i.MX 6Solo/6DualLite Applications Processor Reference Manual (IMX6SDLRM_Ref_Manual.pdf"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x4000">
+        <addressblock name="ab"
+            size="0x4000"
+            width="16">
+            <localmemory name="buffer"
+                readfunction="regNoDefinitionWrite"
+                size="0x4000"
+                writefunction="regNoDefinitionRead"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="WDOG_WCR"
+                nbyte="F"
+                width="16"
+                writefunction="WriteWDOG_WCR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Control Register"/>
+                    <doctext name="txt_1"
+                        text="Watchdog Time-out Field (0.5 to 128 seconds)"/>
+                    <doctext name="txt_2"
+                        text="Watchdog Disable for Wait"/>
+                    <doctext name="txt_3"
+                        text="Software reset extension, an option way to generate software reset"/>
+                    <doctext name="txt_4"
+                        text="WDOG_B assertion. Controls the software assertion of the WDOG_B signal"/>
+                    <doctext name="txt_5"
+                        text="Software Reset Signal. Controls the software assertion of the WDOG-generated reset signal WDOG_RESET_B_DEB"/>
+                    <doctext name="txt_6"
+                        text="WDOG_B Time-out assertion. Determines if the WDOG_B gets asserted upon a Watchdog Time-out Event"/>
+                    <doctext name="txt_7"
+                        text="Watchdog Enable. Enables or disables the WDOG block"/>
+                    <doctext name="txt_8"
+                        text="Watchdog DEBUG Enable. Determines the operation of the WDOG during DEBUG mode"/>
+                    <doctext name="txt_9"
+                        text="Watchdog Low Power. Determines the operation of the WDOG during low-power modes"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="8"
+                    name="WT"
+                    width="8"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="WDW"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="SRE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="WDA"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="SRS"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="WDT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="WDE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="WDBG"
+                    width="1"/>
+                <field access="rw"
+                    name="WDZST"
+                    width="1"/>
+                <reset mask="0xffff"
+                    name="resetNet"
+                    value="0x0030"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="WDOG_WSR"
+                nbyte="F"
+                offset="0x2"
+                width="16"
+                writefunction="WriteWDOG_WSR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Service Register"/>
+                </docsection>
+                <reset mask="0xffff"
+                    name="resetNet"
+                    value="0x0000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="WDOG_WRSR"
+                nbyte="F"
+                offset="0x4"
+                width="16">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Reset Status Register"/>
+                    <doctext name="txt_1"
+                        text="Power On Reset. Indicates whether the reset is the result of a power on reset"/>
+                    <doctext name="txt_2"
+                        text="Timeout. Indicates whether the reset is the result of a WDOG timeout"/>
+                    <doctext name="txt_3"
+                        text="Software Reset. Indicates whether the reset is the result of a WDOG software reset by asserting SRS bit"/>
+                </docsection>
+                <field access="r"
+                    bitoffset="4"
+                    name="POR"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="1"
+                    name="TOUT"
+                    width="1"/>
+                <field access="r"
+                    name="SFTW"
+                    width="1"/>
+                <reset mask="0xffff"
+                    name="resetNet"
+                    value="0x0000"/>
+                <field bitoffset="2"
+                    name="__pad2"
+                    width="2"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="WDOG_WICR"
+                nbyte="F"
+                offset="0x6"
+                width="16"
+                writefunction="WriteWDOG_WICR"
+                writemask="33023">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Interrupt Control Register"/>
+                    <doctext name="txt_1"
+                        text="Watchdog Timer Interrupt enable bit"/>
+                    <doctext name="txt_2"
+                        text="Watchdog TImer Interrupt Status bit will reflect the timer interrupt status"/>
+                    <doctext name="txt_3"
+                        text="Watchdog Interrupt Count Time-out (WICT) field determines, how long before the counter time-out must the interrupt occur"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="15"
+                    name="WIE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="14"
+                    name="WTIS"
+                    width="1"/>
+                <field access="rw"
+                    name="WICT"
+                    width="8"/>
+                <reset mask="0xffff"
+                    name="resetNet"
+                    value="0x0004"/>
+                <field bitoffset="8"
+                    name="__pad8"
+                    width="6"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="WDOG_WMCR"
+                nbyte="F"
+                offset="0x8"
+                width="16"
+                writefunction="WriteWDOG_WMCR"
+                writemask="1">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Miscellaneous Control Register"/>
+                    <doctext name="txt_1"
+                        text="Power Down Enable bit"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="PDE"
+                    width="1"/>
+                <reset mask="0xffff"
+                    name="resetNet"
+                    value="0x0001"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="WDOG"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="WDOG failure"/>
+        </docsection>
+    </netport>
+    <netport name="interrupt"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Interrupt line."/>
+        </docsection>
+    </netport>
+    <netport name="wdog_rst"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="WDOG Reset"/>
+        </docsection>
+    </netport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw clp="T"
+    clpAllArgs="T"
+    clpExtArgs="T"
+    clpStdArgs="T"
+    diagnostics="F"
+    httpvis="F"
+    library="platform"
+    name="BareMetalMips64Single"
+    purpose="0"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="F"
+    vendor="mips.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Bare Metal Platform for an MIPS64 Processor.
+    The bare metal platform instantiates a single MIPS64 processor instance. 
+    The processor operate using big endian data ordering.
+    It creates contiguous memory from 0x00000000 to 0xFFFFFFFF.
+    The platform can be passed any application compiled to an MIPS64 elf format.
+    ./platform.OS.exe --program application.CROSS.elf
+    
+    If this platform is not part of your installation, then it is available for download from www.OVPworld.org."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="BareMetal platform for execution of MIPS MIPS64 binary files compiled with MIPS SDK CrossCompiler toolchain."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="None"/>
+    </docsection>
+    <processorinstance endian="big"
+        name="cpu0">
+        <vlnvreference library="processor"
+            name="mips64_r1r5"
+            vendor="mips.ovpworld.org"/>
+        <extlibrary directLoad="T"
+            name="mips64Newlib_0">
+            <vlnvreference library="semihosting"
+                name="mips64Newlib"
+                vendor="mips.ovpworld.org"
+                version="1.0"/>
+        </extlibrary>
+        <busmasterportconnection connection="bus1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus1"
+            name="DATA"/>
+    </processorinstance>
+    <bus addresswidth="36"
+        name="bus1"/>
+    <memoryinstance name="memory">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0xffffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

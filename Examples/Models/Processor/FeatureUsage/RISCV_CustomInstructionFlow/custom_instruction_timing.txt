@@ -1,0 +1,6 @@
+# Custom instruction additional delays
+# arbitrary choice for delays
+chacha20qr1  2
+chacha20qr2  2
+chacha20qr3  4
+chacha20qr4  4

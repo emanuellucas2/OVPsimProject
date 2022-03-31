@@ -1,0 +1,3 @@
+install RUNTIME OVPsim CpuManager
+install SYSTEMC_HOME
+install or1k.toolchain

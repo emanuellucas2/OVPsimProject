@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="brg"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="renesas.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Renesas BRG Baud Rate Generator"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Fully Supported"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="R01UH0128ED0700, Rev. 7.00, Oct 06, 2010"/>
+    </docsection>
+    <formalattribute name="PCLK"
+        type="uns32"/>
+    <netport name="BRGOUT"
+        type="output"/>
+    <netport name="INTBRG"
+        type="output"/>
+    <busslaveport addresswidth="32"
+        name="BRGP0"
+        size="0x2">
+        <addressblock name="reg0"
+            size="0x2"
+            width="8">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="PRSM"
+                nbyte="F"
+                width="8"
+                writefunction="writePRSM"
+                writemask="23">
+                <reset mask="0xff"
+                    name="IRESET"
+                    value="0x00"/>
+                <field access="rw"
+                    name="BGCS"
+                    width="2"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="TODIS"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="BGCE"
+                    width="1"/>
+                <field bitoffset="3"
+                    name="__pad3"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="PRSCM"
+                nbyte="F"
+                offset="0x1"
+                width="8"
+                writefunction="writePRSCM"
+                writemask="255">
+                <reset mask="0xff"
+                    name="IRESET"
+                    value="0x00"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

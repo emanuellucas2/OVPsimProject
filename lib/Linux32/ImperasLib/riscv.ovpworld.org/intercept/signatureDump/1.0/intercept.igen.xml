@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <semihostlibrary imagefile="model"
+    library="intercept"
+    name="signatureDump"
+    releasestatus="0"
+    vendor="riscv.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Generate a signature file from memory contents and control test termination"/>
+    </docsection>
+    <formalattribute name="ResultReg"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Result Register for RISCV.org Conformance Test. 3=GP, 10=A0 or 28=T3 (default)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="SignatureFile"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Name of the signature file"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="SignatureAtEnd"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Generate a Signature file at the end of simulation (default to generate on detection of call to write_tohost())"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="SignatureGranularity"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Granularity of signature file (supports default 16 or 4 bytes)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="StartAddress"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Address of the Start Symbol"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="StartSymbol"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="begin_signature, Name of the Start Symbol"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="EndAddress"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Address of the End Symbol"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="EndSymbol"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="end_signature,  Name of the End Symbol"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="ByteCount"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Size of region in bytes (must be granularity sizebyte blocks)"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </semihostlibrary>

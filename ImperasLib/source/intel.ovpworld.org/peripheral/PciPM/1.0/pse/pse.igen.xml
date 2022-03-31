@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="PciPM"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="intel.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="PCI Power Manager."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model has sufficient functionality to allow a Linux Kernel to Boot on the MIPS:MALTA platform."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Intel 82371EB South Bridge Chipset Datasheet"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="PCIconfig"
+        remappable="T"
+        size="0x800"/>
+    <busslaveport addresswidth="32"
+        name="busPort"
+        remappable="T"
+        size="0x8"/>
+    <formalattribute name="PCIslot"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify which PCI slot the device occupies."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="PCIfunction"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify which PCI function:code the device implements."/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

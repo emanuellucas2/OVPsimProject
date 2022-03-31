@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="dw-apb-uart"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="altera.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Model of dw-apb-uart UART for CycloneV platform."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="No modeling of baudrate."/>
+        <doctext name="txt_1"
+            text="No modem support (DTR etc)."/>
+        <doctext name="txt_2"
+            text="No support for parity."/>
+        <doctext name="txt_3"
+            text="No means to simulate errors."/>
+        <doctext name="txt_4"
+            text="Derived from national.ovpworld.org 16450 model. Just enough to do basic tty capabilities."/>
+        <doctext name="txt_5"
+            text="Only first 8 registers implemented."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Cyclone V Device Handbook Volume 3: Hard Processor System Technical Reference Manual cv_5v4 2013.12.30"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x1000">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Byte:wide access to control and status registers."/>
+        </docsection>
+    </busslaveport>
+    <netport name="intOut"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Interrupt output."/>
+        </docsection>
+    </netport>
+    <formalmacro name="BHM_SER_OPEN_AUTO_FORMALS"/>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <formalattribute name="uart16550"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable 16550 mode (with FIFOS) - not implemented yet."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="simulatebaud"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="If true, transmit at the programmed baud rate (the default is to transmit without any delay)."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="9"
+        name="defaultbaud"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the default baud rate multiplier. Default is 9."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="charmode"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Puts the telnet server into char mode Default is line mode"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

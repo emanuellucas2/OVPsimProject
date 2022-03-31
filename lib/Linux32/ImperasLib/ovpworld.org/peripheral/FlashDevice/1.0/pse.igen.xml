@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    extensionfile="model"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="FlashDevice"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Model of AMD Am29 Flash memory device."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Only basic erase and programming commands are supported."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="AMD Am29 datasheet"/>
+    </docsection>
+    <formalattribute defaultvalue="little"
+        name="endian"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the endian of the peripheral (default little endian)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="init"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify an initialisation file for the Flash Memory (Intel Hex Format)"/>
+        </docsection>
+    </formalattribute>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="flash"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

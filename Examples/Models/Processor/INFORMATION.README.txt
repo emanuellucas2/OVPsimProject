@@ -1,0 +1,98 @@
+ 
+  Copyright (c) 2005-2021 Imperas Software Ltd. All Rights Reserved.
+
+  The contents of this file are provided under the Software License
+  Agreement that you accepted before downloading this file.
+
+  This source forms part of the Software and can be used for educational,
+  training, and demonstration purposes but cannot be used for derivative
+  works except in cases where the derivative works require OVP technology
+  to run.
+
+  For open source models released under licenses that you can use for
+  derivative works, please visit www.ovpworld.org or www.imperas.com
+  for the location of the open source models.
+
+
+FILE:Imperas/Examples/Models/Processor/README.txt
+
+
+--------------------------------------------------------------------------------
+INTRODUCTION
+--------------------------------------------------------------------------------
+
+The examples in the directories contained here should be used in conjunction
+with the OVP Processor Modeling User Guide. They walk through the development
+of a processor model for the Imperas and OVP simulation environment.
+ 
+The processor used is the freely-available or1k processor 
+(see http://www.opencores.org/projects.cgi/web/or1k/architecture). 
+
+--------------------------------------------------------------------------------
+FILES
+--------------------------------------------------------------------------------
+
+or1k*
+   These are the files that constitute the stage of processor model development.
+
+platform/harness.c
+   This is the test harness for the processor model using the current OP API.
+
+platform/platform.c
+   This is the test harness for the processor model using the legacy ICM API.
+   This is used only if build flag BUILD_ICM_LEGACY=1 is specified
+
+application/application.c
+application/asmtest.S
+   These files are application test files used for verification of the current
+   part of the model.
+
+Makefile
+   This allows the building of the model verification platform, the test
+   application and the model files into a shared object.
+
+--------------------------------------------------------------------------------
+BUILDING EXAMPLES
+--------------------------------------------------------------------------------
+
+The processor model, harness executable and the assembler and/or application
+source files for each example are built using the Makefile:
+   
+   > make
+   
+The current OP API is used for the harness by default. To use the legacy ICM
+API instead, specify BUILD_ICM_LEGACY=1 on the make line, for example:
+   
+   > make BUILD_ICM_LEGACY=1
+   
+--------------------------------------------------------------------------------
+RUNNING EXAMPLES (OP API)
+--------------------------------------------------------------------------------
+
+The example is executed by running the harness executable and passing the
+elf file as the first argument:
+    
+    > ./platform/harness.${IMPERAS_ARCH}.exe --program application/asmtest.OR1K.elf
+
+or:
+
+    > ./platform/harness.${IMPERAS_ARCH}.exe --program application/application.OR1K.elf
+    
+NOTE: Each example may have either an assembler or C based application file, or
+both of these.
+
+--------------------------------------------------------------------------------
+RUNNING EXAMPLES (LEGACY ICM API)
+--------------------------------------------------------------------------------
+
+This is exactly the same as for the current OP API, except that the harness
+executable is named differently:
+
+    > ./platform/platform.${IMPERAS_ARCH}.exe --program application/asmtest.OR1K.elf
+
+or:
+
+    > ./platform/platform.${IMPERAS_ARCH}.exe --program application/application.OR1K.elf
+    
+
+

@@ -1,0 +1,35 @@
+<html lang="en">
+<link rel="icon" type="image/icon" href="/imperas.ico">
+
+<head>
+    <title>Imperas Simulation</title>
+    <meta   charset="utf-8"/>
+    <link   rel="stylesheet"        href="normal.css"   type="text/css"/>
+    <script language="JavaScript"   src="runtime.js"        ></script>
+</head>
+
+<body onload="startRefresh('/', 500);">
+
+    <fieldset><legend>Module processorExternalInterrupt</legend>
+        <table>
+            <tr>
+                <td class='ovplabel'>Module:</td>
+                <td class='ovptext' id="moduleInstName0" ></td>
+                <td class='ovplabel'>: Time :</td>
+                <td class='ovptext' id="moduleSimTime0" ></td>
+            </tr>
+            <tr>
+                <td class='ovplabel'>Interrupt net:</td>
+                <td class='ovptext' id="netName0" ></td>
+                <td class='ovpled' id="led0" ></td>
+                <td class='ovptext' id="netValue0" ></td>
+            </tr>
+            <tr><td><hr></td></tr>
+            <tr><td class='ovplabel'>Power Button </td></tr>
+            <tr><td><div class='ovppower' id="power0" onmousedown="ovpswitchclicked(event)" title='click to quit simulation'>SIMULATION NOT RUNNING</div></td></tr>
+        </table>
+    </fieldset>
+    
+<div class='console' id='console'></div>
+</body>
+</html>

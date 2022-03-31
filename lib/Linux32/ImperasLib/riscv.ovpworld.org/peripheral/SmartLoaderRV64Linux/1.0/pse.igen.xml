@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="SmartLoaderRV64Linux"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="riscv.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Psuedo-peripheral to insert boot code for a Riscv 64-bit Linux kernel boot.
+ Loads simulated memory with a device tree blob file and boot code to set regs and jump to a Risc-v Linux Kernel."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Only supports little endian"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="RISC-V Linux Kernel development"/>
+    </docsection>
+    <busmasterport addresswidth="32"
+        addresswidthmax="48"
+        addresswidthmin="32"
+        mustbeconnected="T"
+        name="mport">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Master port - connect this to the same bus connected to the Linux processor&apos;s data port."/>
+        </docsection>
+    </busmasterport>
+    <formalattribute name="dtb"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Name of the device tree blob file. (required when Smart Loader is not disabled)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="command"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set command line passed to kernel. Will override a command line defined in the dtb. (optional)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="append"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Append to the kernel command line defined in the dtb. (optional)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="membase"
+        type="address">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Base of main memory region (overrides device tree memory node when membase and memsize both set)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="memsize"
+        type="address">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Size of main memory region (overrides device tree memory node  when membase and memsize both set)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="slbootaddr"
+        type="address">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Address where SmartLoader generated boot code and dtb will be loaded. Jump to this address to start boot process. (default: 0x1000)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="bootimage"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Name of boot image file to load at bootaddr, e.g. bbl.bin (optional - may instead load boot elf file with standard --objfilenoentry option)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="bootaddr"
+        type="address">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Address to call from SmartLoader&apos;s generated boot code. (default 0x80000000)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="bbl"
+        name="bootconvention"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Boot convention to use in call from SmartLoader generated boot code (bbl=Berkeley Boot Loader, fsbl=SiFive FSBL). (default: bbl)"/>
+        </docsection>
+        <enum name="bbl"
+            value="0"/>
+        <enum name="fsbl"
+            value="1"/>
+    </formalattribute>
+    <formalattribute name="disable"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set to True to disable the SmartLoader. (all other parameters are ignored when this is set to True)"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

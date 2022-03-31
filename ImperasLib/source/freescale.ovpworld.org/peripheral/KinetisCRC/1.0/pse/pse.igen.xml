@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="KinetisCRC"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="freescale.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Model of the CRC peripheral used on the Freescale Kinetis platform"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Provides the base behaviour for the OVP Freescale Kinetis platforms"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="www.freescale.com/Kinetis"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0xc"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CRC"
+                nbyte="F"
+                width="32"
+                writemask="4294967295">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0xffffffff"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CRC Data Register, offset: 0x0 "/>
+                </docsection>
+                <field access="rw"
+                    name="LL"
+                    width="8"/>
+                <field access="rw"
+                    bitoffset="8"
+                    name="LU"
+                    width="8"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="HL"
+                    width="8"/>
+                <field access="rw"
+                    bitoffset="24"
+                    name="HU"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="GPOLY"
+                nbyte="F"
+                offset="0x4"
+                width="32"
+                writemask="4294967295">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00001021"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CRC Polynomial Register, offset: 0x4 "/>
+                </docsection>
+                <field access="rw"
+                    name="LOW"
+                    width="16"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="HIGH"
+                    width="16"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CTRL"
+                nbyte="F"
+                offset="0x8"
+                width="32"
+                writemask="4143972352">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000000"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CRC Control Register, offset: 0x8 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="24"
+                    name="TCRC"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="25"
+                    name="WAS"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="26"
+                    name="FXOR"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="28"
+                    name="TOTR"
+                    width="2"/>
+                <field access="rw"
+                    bitoffset="30"
+                    name="TOT"
+                    width="2"/>
+                <field bitoffset="0"
+                    name="__pad0"
+                    width="24"/>
+                <field bitoffset="27"
+                    name="__pad27"
+                    width="1"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="Reset"
+        type="input"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

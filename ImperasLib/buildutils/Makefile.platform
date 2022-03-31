@@ -1,0 +1,223 @@
+#
+# Host gcc
+# Makefile for compiling OP or ICM platform to platform.so / platform.dll & platform.<ARCH>.exe
+#
+
+IMPERAS_HOME := $(shell getpath.exe "$(IMPERAS_HOME)")
+include $(IMPERAS_HOME)/bin/Makefile.include
+
+ifndef IMPERAS_HOME
+	IMPERAS_ERROR := $(error "IMPERAS_HOME not defined")
+endif
+
+include $(IMPERAS_HOME)/ImperasLib/buildutils/Makefile.common
+
+LINK_OBJ?=
+SRC?=platform.c
+SUFFIX=$(suffix $(SRC))
+
+ifeq ($(SUFFIX),)
+	IMPERAS_ERROR:=$(error Please specify full platform source file name. File suffix could not be determined!)
+endif
+
+CC=
+ifeq ($(SUFFIX),.c)
+	CC=$(HOST_GCC)
+endif
+ifeq ($(SUFFIX),.cpp)
+	CC=$(HOST_GXX)
+    SIM_LDFLAGS += $(SIM_LDXXFLAGS)
+	SIM_CFLAGS  += $(SIM_CXXFLAGS)
+endif
+ifeq (,$(CC))
+	IMPERAS_ERROR:=$(error Unsupported suffix for SRC=$(SRC). Must be .c or .cpp)
+endif
+
+#
+# Additional dependency
+#
+PDEP = $(patsubst %$(SUFFIX), $(OBJDIR)/%.d, $(SRC))
+
+# Executable
+EXECUTABLE?=$(SRC:$(SUFFIX)=.$(IMPERAS_ARCH).exe)
+# Shared object
+SHAREDOBJ?=model.$(IMPERAS_SHRSUF)
+# object
+PLATOBJ?=$(OBJDIR)/$(SRC:$(SUFFIX)=.o)
+
+#
+# platform.tcl or platform.op.tcl ->
+# platform.c.igen.stubs
+#
+IGEN?= igen.exe
+IGENFLAGS?= --quiet --nobanner --excludem GPT_NH --excludem GPT_UFNR $(EXTRA_IGENFLAGS)
+
+
+PLATFORM-TCL     ?= $(wildcard platform.tcl)
+PLATFORM-SRC     ?= $(patsubst %.tcl, %.c.igen.stubs, $(PLATFORM-TCL))
+PLATFORM-INC      = $(patsubst %.tcl, %.igen.h, $(PLATFORM-TCL))
+
+PLATFORM-XML-TCL ?= $(wildcard platform.xml.tcl)
+PLATFORM-XML      = $(patsubst %.xml.tcl, %.igen.xml, $(PLATFORM-XML-TCL))
+
+PLATFORM-ICM-TCL ?= $(wildcard platform.icm.tcl)
+PLATFORM-ICM-SRC ?= $(patsubst %.icm.tcl, %.c.igen.stubs, $(PLATFORM-ICM-TCL))
+PLATFORM-ICM-INC  = $(patsubst %.icm.tcl, %.clp.igen.h, $(PLATFORM-ICM-TCL)) \
+                    $(patsubst %.icm.tcl, %.constructor.igen.h, $(PLATFORM-ICM-TCL)) \
+                    $(patsubst %.icm.tcl, %.handles.igen.h, $(PLATFORM-ICM-TCL)) \
+                    $(patsubst %.icm.tcl, %.attr.igen.h, $(PLATFORM-ICM-TCL)) \
+                    $(patsubst %.icm.tcl, %.options.igen.h, $(PLATFORM-ICM-TCL))
+PLATFORM-ICM-XML  = $(patsubst %.icm.tcl, %.igen.xml, $(PLATFORM-ICM-TCL))
+
+PLATFORM-OP-TCL  ?= $(wildcard platform.op.tcl)
+PLATFORM-OP-SRC  ?= $(patsubst %.op.tcl, %.c.igen.stubs, $(PLATFORM-OP-TCL))
+PLATFORM-OP-INC   = $(patsubst %.op.tcl, %.igen.h, $(PLATFORM-OP-TCL))
+
+#
+# Does the SRC exist ?
+#
+COPYSTUBS = 0
+ifeq ($(wildcard $(SRC)),)
+    ifneq ($(PLATFORM-XML-TCL),)
+        IMPERAS_ERROR:=$(error No Platform source file ($(SRC)) found and $(PLATFORM-XML-TCL) only generates XML)
+    else
+        COPYSTUBS = 1
+    endif
+endif
+
+ALL = $(WORKDIR)/$(EXECUTABLE) $(WORKDIR)/$(SHAREDOBJ)
+ifneq ($(PLATFORM-XML),)
+    ALL += $(PLATFORM-XML)
+endif
+
+all: $(ALL)
+
+ifeq ($(SUFFIX),.cpp)
+    # Rules for building OP C++ Archive locally
+    # - Use IMPERAS_OP_CPP_LIBRARY as a dependency on platform executable
+    include $(IMPERAS_HOME)/ImperasLib/buildutils/Makefile.OP++
+else
+    # No OP C++ archive required
+    IMPERAS_OP_CPP_LIBRARY=
+endif
+
+# include all the dependancy requirements
+ifneq ($(MAKECMDGOALS),clean)
+    $(foreach dep,$(PDEP),$(eval -include $(dep)))
+endif
+
+# Only one PLATFORM SRC can ever exist and MUST exist if copying
+$(SRC): $(PLATFORM-SRC) $(PLATFORM-OP-SRC) $(PLATFORM-ICM-SRC)
+ifeq ($(COPYSTUBS),1)
+    ifneq ($(strip $(PLATFORM-SRC) $(PLATFORM-OP-SRC) $(PLATFORM-ICM-SRC)),)
+	    @ echo "# Copying STUBS $(^) to $(@)"
+	    $(V) cp $(^) $(@)
+    endif
+endif
+
+#
+# OP Platform
+#
+$(PLATFORM-OP-SRC) $(PLATFORM-OP-INC): $(PLATFORM-OP-TCL)
+	@ echo "# iGen Create OP PLATFORM $(PLATFORM-OP-SRC)"
+	$(V) $(IGEN) $(IGENFLAGS) \
+		--op \
+		--batch  $(<) \
+		--writec $(@) \
+		$(WRITEHEADER) \
+		--overwrite
+
+$(PLATFORM-SRC) $(PLATFORM-INC): $(PLATFORM-TCL)
+	@ echo "# iGen Create OP PLATFORM $(PLATFORM-SRC)"
+	$(V) $(IGEN) $(IGENFLAGS) \
+		--op \
+		--batch  $(<) \
+		--writec $(@) \
+		$(WRITEHEADER) \
+		--overwrite
+
+#
+# ICM Platform
+#
+$(PLATFORM-ICM-SRC) $(PLATFORM-ICM-INC) $(PLATFORM-ICM-XML): $(PLATFORM-ICM-TCL)
+	@ echo "# iGen Create ICM PLATFORM $(PLATFORM-ICM-SRC)"
+	$(V) $(IGEN) $(IGENFLAGS) \
+		--batch  $(<) \
+		--writec $(@) \
+		--icm \
+		--writexml $(PLATFORM-ICM-XML) \
+		$(WRITEHEADER) \
+		--overwrite
+
+#
+# XML Platform
+#
+$(PLATFORM-XML): $(PLATFORM-XML-TCL)
+	@ echo "# iGen Create XML PLATFORM $(PLATFORM-XML)"
+	$(V) $(IGEN) $(IGENFLAGS) \
+        --batch    $(<) \
+        --icm           \
+        --writexml $(PLATFORM-XML) \
+        --overwrite
+
+$(WORKDIR)/$(EXECUTABLE): $(PLATOBJ) $(LINK_OBJ) $(IMPERAS_OP_CPP_LIBRARY)
+	$(V) mkdir -p $(@D)
+	@ echo "# Host Linking Platform $(subst $(CURDIR)/,,$(@))"
+	$(V) $(CC) -o $@ $^ $(SIM_LDFLAGS) $(LDFLAGS)
+ifeq ($(COPYXML),1)
+	@ echo "# Copying XML $(XML) to $(@D)"
+	$(V) cp $(XML) $(@D)
+endif
+
+
+$(WORKDIR)/$(SHAREDOBJ): $(PLATOBJ) $(LINK_OBJ) $(IMPERAS_OP_CPP_LIBRARY)
+	$(V) mkdir -p $(@D)
+	@ echo "# Host Linking Platform object $@"
+	$(V) $(CC) -shared -o $@ $^ $(SIM_LDFLAGS) $(LDFLAGS)
+
+# Allowed suffixes
+SRC_SUFFIX = c cpp c++ cxx
+
+define SRC_SUFFIX_Template
+$(OBJDIR)/%.d: %.$(1)
+	@ echo "# Host Depending $$(subst $(CURDIR)/,,$$(@))"
+	$$(V) mkdir -p $$(@D)
+	$$(V) $$(CC) -MM $$< $$(SIM_CFLAGS) $$(CFLAGS) $$(LDFLAGS) -MT $$(OBJDIR)/$$*.o -MF $$@
+
+$(OBJDIR)/%.o: %.$(1)
+	$$(V) mkdir -p $$(@D)
+	@ echo "# Host Compiling Platform $$(subst $(CURDIR)/,,$$(@))"
+	$$(V) $$(CC) -c -o $$@ $$< $$(SIM_CFLAGS) $$(CFLAGS)
+endef
+$(foreach X,$(SRC_SUFFIX),$(eval $(call SRC_SUFFIX_Template,$(X))))
+
+clean::
+	$(V) - rm -f $(ALL)
+ifneq ($(wildcard $(OBJROOT)),)
+	$(V) - rm -rf $(OBJROOT)
+endif
+ifneq ($(PLATFORM-XML),)
+	$(V) - rm -f $(PLATFORM-XML)
+endif
+ifneq ($(strip $(PLATFORM-INC)),)
+	$(V) - rm -f $(PLATFORM-INC)
+endif
+ifneq ($(strip $(PLATFORM-OP-INC)),)
+	$(V) - rm -f $(PLATFORM-OP-INC)
+endif
+ifneq ($(strip $(PLATFORM-ICM-INC)),)
+	$(V) - rm -f $(PLATFORM-ICM-INC) 
+endif
+ifneq ($(strip $(PLATFORM-ICM-XML)),)
+	$(V) - rm -f $(PLATFORM-ICM-XML) 
+endif
+
+ifneq ($(PLATFORM-SRC),)
+	$(V) - rm -f $(PLATFORM-SRC) 
+endif
+ifneq ($(PLATFORM-OP-SRC),)
+	$(V) - rm -f $(PLATFORM-OP-SRC) 
+endif
+ifneq ($(PLATFORM-ICM-SRC),)
+	$(V) - rm -f $(PLATFORM-ICM-SRC) 
+endif

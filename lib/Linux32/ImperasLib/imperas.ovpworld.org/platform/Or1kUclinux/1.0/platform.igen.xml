@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw clp="T"
+    clpAllArgs="T"
+    clpExtArgs="T"
+    clpStdArgs="T"
+    diagnostics="F"
+    httpvis="F"
+    library="platform"
+    name="Or1kUclinux"
+    purpose="0"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="imperas.ovpworld.org"
+    verbose="T"
+    version="1.0"
+    visibility="0">
+    <nets name="nets">
+        <net name="int1"/>
+    </nets>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Platform for an Or1k Processor to execute uCLinux."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Provides sufficient functionality to execute uCLinux operating system and OR1K elf files"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="none"/>
+    </docsection>
+    <processorinstance name="cpu1">
+        <vlnvreference name="or1k"
+            vendor="ovpworld.org"/>
+        <busmasterportconnection connection="bus1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus1"
+            name="DATA"/>
+        <netportconnection connection="int1"
+            name="intr2"/>
+    </processorinstance>
+    <bus addresswidth="32"
+        name="bus1"/>
+    <memoryinstance name="mem1">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x8FFFFFFF"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="mem2">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0xFFFFFFFF"
+            loaddress="0x90000008"
+            name="sp1"/>
+    </memoryinstance>
+    <peripheralinstance name="uart1">
+        <vlnvreference name="16550"
+            vendor="national.ovpworld.org"/>
+        <attribute content="1"
+            name="finishOnDisconnect"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x90000007"
+            loaddress="0x90000000"
+            name="bport1"/>
+        <netportconnection connection="int1"
+            name="intOut"/>
+    </peripheralinstance>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

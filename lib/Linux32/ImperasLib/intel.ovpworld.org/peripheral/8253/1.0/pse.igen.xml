@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="8253"
+    nbyte="T"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="intel.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Intel 8253 Programmable Interval Timer (PIT)"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model has sufficient functionality to allow a Linux Kernel to Boot on the MIPS:MALTA platform.
+           Not all modes are supported."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Intel 8253 Datasheet. MIPS Malta Platform Reference Guide."/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x4">
+        <addressblock name="reg"
+            size="0x4"
+            width="8">
+            <memorymappedregister access="rw"
+                hiarray="0x2"
+                isvolatile="T"
+                loarray="0x0"
+                name="CTR%u"
+                nbyte="T"
+                readfunction="readCTR"
+                width="8"
+                writefunction="writeCTR"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CNTL"
+                nbyte="T"
+                offset="0x3"
+                readfunction="readCNTL"
+                width="8"
+                writefunction="writeCNTL">
+                <field access="rw"
+                    name="BCD"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="M"
+                    width="3"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="RW"
+                    width="2"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="SC"
+                    width="2"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport hiarray="2"
+        loarray="0"
+        name="clk%u"
+        type="input"/>
+    <netport hiarray="2"
+        loarray="0"
+        name="gate%u"
+        type="input"/>
+    <netport hiarray="2"
+        loarray="0"
+        name="out%u"
+        type="output"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

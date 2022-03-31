@@ -1,0 +1,24 @@
+<script src= './inc/data.js'      type='text/javascript'></script> 
+<script src= '../inc/page.js'      type='text/javascript'></script> 
+<script src= '../datasheets/inc/existenceProof.js'      type='text/javascript'></script> 
+<script src= '../appnotes/inc/existenceProof.js'      type='text/javascript'></script> 
+
+<script language="JavaScript">
+
+function loadPage() {
+	if(typeof pageExists == "undefined") {
+		var line ="";
+		line += "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>";
+		line += "<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>";
+		line += "<body>";
+		line += "Error - problem with Imperas documentation system, page.js not found!";
+		line += "</body>";
+		document.write(line);
+	} else {
+		screenDraw();
+	}
+}
+
+</script>
+
+<body onload="loadPage(); ">

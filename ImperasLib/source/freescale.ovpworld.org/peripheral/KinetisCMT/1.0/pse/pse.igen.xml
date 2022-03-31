@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="KinetisCMT"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="freescale.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Model of the CMT peripheral used on the Freescale Kinetis platform"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Provides the base behaviour for the OVP Freescale Kinetis platforms"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="www.freescale.com/Kinetis"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0xc"
+            width="8">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CGH1"
+                nbyte="F"
+                width="8"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CMT Carrier Generator High Data Register 1, offset: 0x0 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="PH"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CGL1"
+                nbyte="F"
+                offset="0x1"
+                width="8"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CMT Carrier Generator Low Data Register 1, offset: 0x1 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="PL"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CGH2"
+                nbyte="F"
+                offset="0x2"
+                width="8"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CMT Carrier Generator High Data Register 2, offset: 0x2 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="SH"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CGL2"
+                nbyte="F"
+                offset="0x3"
+                width="8"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CMT Carrier Generator Low Data Register 2, offset: 0x3 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="SL"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="OC"
+                nbyte="F"
+                offset="0x4"
+                width="8"
+                writemask="224">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CMT Output Control Register, offset: 0x4 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="6"
+                    name="CMTPOL"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="IROL"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="IROPEN"
+                    width="1"/>
+                <field bitoffset="0"
+                    name="__pad0"
+                    width="5"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MSC"
+                nbyte="F"
+                offset="0x5"
+                width="8"
+                writemask="127">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CMT Modulator Status and Control Register, offset: 0x5 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="3"
+                    name="BASE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="CMTDIV"
+                    width="2"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="EOCF"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="EOCIE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="EXSPC"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="FSK"
+                    width="1"/>
+                <field access="rw"
+                    name="MCGEN"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CMD1"
+                nbyte="F"
+                offset="0x6"
+                width="8"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CMT Modulator Data Register Mark High, offset: 0x6 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="MB"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CMD2"
+                nbyte="F"
+                offset="0x7"
+                width="8"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CMT Modulator Data Register Mark Low, offset: 0x7 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="MB"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CMD3"
+                nbyte="F"
+                offset="0x8"
+                width="8"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CMT Modulator Data Register Space High, offset: 0x8 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="SB"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CMD4"
+                nbyte="F"
+                offset="0x9"
+                width="8"
+                writemask="255">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CMT Modulator Data Register Space Low, offset: 0x9 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="SB"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="PPS"
+                nbyte="F"
+                offset="0xa"
+                width="8"
+                writemask="15">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CMT Primary Prescaler Register, offset: 0xA "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="PPSDIV"
+                    width="4"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DMA"
+                nbyte="F"
+                offset="0xb"
+                width="8"
+                writemask="1">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CMT Direct Memory Access, offset: 0xB "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="DMA"
+                    width="1"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="Reset"
+        type="input"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

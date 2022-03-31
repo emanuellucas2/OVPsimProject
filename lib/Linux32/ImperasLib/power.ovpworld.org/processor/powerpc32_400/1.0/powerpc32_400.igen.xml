@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <processor QLQualified="T"
+    defaultsemihostlibrary="semihosting"
+    defaultsemihostname="powerpc32Newlib"
+    defaultsemihostvendor="power.ovpworld.org"
+    defaultsemihostversion="1.0"
+    elfcode="20"
+    endian="either"
+    family="powerpc"
+    gdbpath="$IMPERAS_HOME/lib/$IMPERAS_ARCH/gdb/powerpc-elf-gdb"
+    imagefile="model"
+    library="processor"
+    name="powerpc32_400"
+    procdoc="$IMPERAS_HOME/ImperasLib/source/power.ovpworld.org/processor/powerpc32_400/1.0/doc/OVP_Model_Specific_Information_powerpc32_400_generic.pdf"
+    releasestatus="4"
+    useindefaultplatform="T"
+    vendor="power.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="PPC32 Family Processor Model. Providing PPC 400 family variants."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model is currently under development"/>
+        <doctext name="txt_1"
+            text="The FPU is incomplete"/>
+        <doctext name="txt_2"
+            text="FPU exceptions are not implemented"/>
+        <doctext name="txt_3"
+            text="Some Single Floating Point FPU instructions are not implemented"/>
+        <doctext name="txt_4"
+            text="The MMU is not implemented"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Verification">
+        <doctext name="txt"
+            text="Basic verification of ISA against golden reference has been performed"/>
+    </docsection>
+    <docsection name="doc_4"
+        text="Features">
+        <doctext name="txt"/>
+    </docsection>
+    <formalattribute name="variant"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Selects variant (either a generic UISA or a specific model)"/>
+        </docsection>
+        <enum name="m476"
+            value="0"/>
+        <enum name="m470"
+            value="1"/>
+        <enum name="m460"
+            value="2"/>
+        <enum name="m440"
+            value="3"/>
+    </formalattribute>
+    <formalattribute name="verbose"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify verbose output messages"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UISA_I_B"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="UISA Feature UISA_I_B"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UISA_I_BCDA"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="UISA Feature UISA_I_BCDA"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UISA_I_S"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="UISA Feature UISA_I_S"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UISA_I_E"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="UISA Feature UISA_I_E"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UISA_I_E_PC"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="UISA Feature UISA_I_E_PC"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UISA_I_E_PD"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="UISA Feature UISA_I_E_PD"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UISA_I_EC"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="UISA Feature UISA_I_EC"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UISA_I_FP"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="UISA Feature UISA_I_FP"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UISA_I_DFP"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="UISA Feature UISA_I_DFP"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UISA_I_MA"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="UISA Feature UISA_I_MA"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UISA_I_SP"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="UISA Feature UISA_I_SP"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UISA_I_V"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="UISA Feature UISA_I_V"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UISA_I_LMA"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="UISA Feature UISA_I_LMA"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UISA_I_WT"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="UISA Feature UISA_I_WT"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UISA_I_VLE"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="UISA Feature UISA_I_VLE"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="ENABLE_FPU"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable FPU At Startup"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="UNIMP_TO_NOP"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Map Unimplemented Instructions to NOP"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="WARN_NOP"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Warn when executing nop-mapped instructions"/>
+        </docsection>
+    </formalattribute>
+    <busmasterport addresswidth="32"
+        addresswidthmax="32"
+        addresswidthmin="32"
+        mustbeconnected="T"
+        name="INSTRUCTION"/>
+    <busmasterport addresswidth="32"
+        addresswidthmax="32"
+        addresswidthmin="32"
+        mustbeconnected="F"
+        name="DATA"/>
+    <netport mustbeconnected="F"
+        name="reset"
+        type="input"/>
+    <command name="isync">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="specify instruction address range for synchronous execution"/>
+        </docsection>
+        <commandarg name="addresshi"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="end address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="addresslo"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="start address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="itrace">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="enable or disable instruction tracing"/>
+        </docsection>
+        <commandarg name="after"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="apply after this many instructions"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="enable"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="instructioncount"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="include the instruction number in each trace"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="memory"
+            type="String">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show memory accesses by this instruction. Argument can be any combination of X (execute), L (load or store access) and S (system)"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="off"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="disable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="on"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="processorname"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Include processor name in all trace lines"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registerchange"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers changed by this instruction"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registers"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers after each trace"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <exceptions name="Exceptions">
+        <exception code="0"
+            name="Reset"/>
+        <exception code="1"
+            name="Undefined"/>
+        <exception code="2"
+            name="Arith"/>
+        <exception code="3"
+            name="RdAlign"/>
+        <exception code="4"
+            name="WrAlign"/>
+        <exception code="5"
+            name="RdAbort"/>
+        <exception code="6"
+            name="WrAbort"/>
+        <exception code="7"
+            name="RdPriv"/>
+        <exception code="8"
+            name="WrPriv"/>
+        <exception code="9"
+            name="Fetch"/>
+    </exceptions>
+    <registers name="User">
+        <register alias="F"
+            name="GPR0"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR1"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR4"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR5"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR7"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR8"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR9"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR10"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR11"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR12"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR13"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR14"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR15"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR16"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR17"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR18"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR19"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR20"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR21"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR22"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR23"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR24"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR25"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR26"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR27"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR28"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR29"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR30"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="GPR31"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="FloatingPoint">
+        <register alias="F"
+            name="FPR0"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR1"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR2"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR3"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR4"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR5"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR6"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR7"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR8"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR9"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR10"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR11"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR12"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR13"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR14"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR15"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR16"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR17"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR18"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR19"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR20"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR21"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR22"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR23"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR24"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR25"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR26"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR27"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR28"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR29"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR30"
+            readonly="F"
+            type="0"
+            width="64"/>
+        <register alias="F"
+            name="FPR31"
+            readonly="F"
+            type="0"
+            width="64"/>
+    </registers>
+    <registers name="System">
+        <register alias="F"
+            name="PC"
+            readonly="F"
+            type="1"
+            width="32"/>
+        <register alias="F"
+            name="MSR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="CR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="LR"
+            readonly="F"
+            type="4"
+            width="32"/>
+        <register alias="F"
+            name="CTR"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="XER"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="FPSCR"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </processor>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="Hetero_ArmVersatileExpress_XilinxMicroBlaze"
+    purpose="4"
+    releasestatus="3"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="imperas.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="This platform instances an ARM VersatileExpress with a Xilinx Microblaze based sub-system"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Peripherals are modeled to the extent required to boot and run Operating Systems such as Linux."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="ARM Development Boards VersatileExpress"/>
+    </docsection>
+    <module name="versatileexpress">
+        <vlnvreference library="module"
+            name="ArmVersatileExpress-CA15"
+            vendor="arm.ovpworld.org"
+            version="1.0"/>
+    </module>
+    <bus addresswidth="32"
+        name="busX1"/>
+    <processorinstance name="xilinx1">
+        <vlnvreference name="microblaze"
+            vendor="xilinx.ovpworld.org"
+            version="1.0"/>
+        <busmasterportconnection connection="busX1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="busX1"
+            name="DATA"/>
+    </processorinstance>
+    <memoryinstance name="ramX1">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="busX1"
+            hiaddress="0x2fffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <peripheralinstance name="uartX">
+        <vlnvreference name="16550"
+            vendor="national.ovpworld.org"/>
+        <busslaveportconnection connection="busX1"
+            hiaddress="0x40000007"
+            loaddress="0x40000000"
+            name="bport1"/>
+        <attribute content="uartX.log"
+            name="outfile"/>
+    </peripheralinstance>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

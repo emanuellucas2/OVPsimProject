@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <mmc imagefile="model"
+    library="mmc"
+    name="endianSwap"
+    releasestatus="4"
+    vendor="ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="MMC endian swapper model. Swaps a 4 byte access from aabbccdd to ddccbbaa."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="No other access size supported."/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="sp1"/>
+    <busmasterport addresswidth="32"
+        addresswidthmax="0"
+        addresswidthmin="0"
+        mustbeconnected="T"
+        name="mp1"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </mmc>

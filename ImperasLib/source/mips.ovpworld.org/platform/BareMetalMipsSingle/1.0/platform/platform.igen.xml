@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw clp="T"
+    clpAllArgs="T"
+    clpExtArgs="T"
+    clpStdArgs="T"
+    diagnostics="F"
+    httpvis="F"
+    library="platform"
+    name="BareMetalMipsSingle"
+    purpose="0"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="F"
+    vendor="mips.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Bare Metal Platform for a MIPS Processor.
+                The bare metal platform instantiates a single MIPS processor instance, using big endian data ordering.
+                It creates memory across the full address space 0x00000000 to 0xffffffff.
+                        
+                The platform can be passed any application compiled to a MIPS elf format as the argument, select the 
+                variant of processor that should be used
+                
+                platform.OS.exe --program application.CROSS.elf [--port &lt;port number for connecting GDB&gt;]
+                
+                Where OS is Linux or Windows and CROSS is the CrossCompiler toolchain used
+                
+                A further option may be added to the command line to specify the port to attach the debugger."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="BareMetal platform for execution of MIPS MIPS32 binary files compiled with CodeSourcery CrossCompiler toolchain."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="None"/>
+    </docsection>
+    <processorinstance endian="big"
+        name="cpu0">
+        <vlnvreference library="processor"
+            name="mips32_r1r5"
+            vendor="mips.ovpworld.org"
+            version="1.0"/>
+        <extlibrary directLoad="T"
+            name="mips32Newlib_0">
+            <vlnvreference library="semihosting"
+                name="mips32Newlib"
+                vendor="mips.ovpworld.org"
+                version="1.0"/>
+        </extlibrary>
+        <busmasterportconnection connection="bus1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus1"
+            name="DATA"/>
+    </processorinstance>
+    <bus addresswidth="32"
+        name="bus1"/>
+    <memoryinstance name="memory">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0xffffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

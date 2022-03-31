@@ -1,0 +1,1065 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="zynq_7000-gpio"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="xilinx.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Zynq 7000 Platform GPIO Registers (gpio)"/>
+        <doctext name="txt_1"
+            text="Included is the visualization of LED and SW connectivity for the ZC702/ZC706 devices."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model implements only the registers for generation of input or output data values."/>
+        <doctext name="txt_1"
+            text="No interrupt generation is currently included in the model."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Zynq-7000 TRM (https://www.xilinx.com/support/documentation/user_guides/ug585-Zynq-7000-TRM.pdf)"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="REG"
+            size="0x1000"
+            width="32">
+            <localmemory name="buffer0"
+                readfunction="regNoDefinitionRead"
+                size="0x3c"
+                writefunction="regNoDefinitionWrite"/>
+            <localmemory name="buffer1"
+                offset="0x70"
+                readfunction="regNoDefinitionRead"
+                size="0xf90"
+                writefunction="regNoDefinitionWrite"/>
+            <localmemory name="DATA_0_RO"
+                offset="0x60"
+                size="0x4"/>
+            <localmemory name="DATA_1_RO"
+                offset="0x64"
+                size="0x4"/>
+            <localmemory name="DATA_2_RO"
+                offset="0x68"
+                size="0x4"/>
+            <localmemory name="DATA_3_RO"
+                offset="0x6c"
+                size="0x4"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MASK_DATA_0_LSW"
+                nbyte="F"
+                readfunction="rMASK"
+                userdata="0"
+                width="32"
+                writefunction="wMASK">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Maskable Output Data (GPIO Bank0, MIO, Lower 16bits)"/>
+                </docsection>
+                <field access="rw"
+                    name="DATA"
+                    width="16"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="MASK"
+                    width="16"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MASK_DATA_0_MSW"
+                nbyte="F"
+                offset="0x4"
+                readfunction="rMASK"
+                userdata="1"
+                width="32"
+                writefunction="wMASK">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Maskable Output Data (GPIO Bank0, MIO, Upper 16bits)"/>
+                </docsection>
+                <field access="rw"
+                    name="DATA"
+                    width="16"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="MASK"
+                    width="16"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MASK_DATA_1_LSW"
+                nbyte="F"
+                offset="0x8"
+                readfunction="rMASK"
+                userdata="2"
+                width="32"
+                writefunction="wMASK">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Maskable Output Data (GPIO Bank1, MIO, Lower 16bits)"/>
+                </docsection>
+                <field access="rw"
+                    name="DATA"
+                    width="16"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="MASK"
+                    width="16"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MASK_DATA_1_MSW"
+                nbyte="F"
+                offset="0xc"
+                readfunction="rMASK"
+                userdata="3"
+                width="32"
+                writefunction="wMASK">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Maskable Output Data (GPIO Bank1, MIO, Upper 6bits)"/>
+                </docsection>
+                <field access="rw"
+                    name="DATA"
+                    width="16"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="MASK"
+                    width="16"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MASK_DATA_2_LSW"
+                nbyte="F"
+                offset="0x10"
+                readfunction="rMASK"
+                userdata="4"
+                width="32"
+                writefunction="wMASK">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Maskable Output Data (GPIO Bank2, EMIO, Lower 16bits)"/>
+                </docsection>
+                <field access="rw"
+                    name="DATA"
+                    width="16"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="MASK"
+                    width="16"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MASK_DATA_2_MSW"
+                nbyte="F"
+                offset="0x14"
+                readfunction="rMASK"
+                userdata="5"
+                width="32"
+                writefunction="wMASK">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Maskable Output Data (GPIO Bank2, EMIO, Upper 16bits)"/>
+                </docsection>
+                <field access="rw"
+                    name="DATA"
+                    width="16"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="MASK"
+                    width="16"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MASK_DATA_3_LSW"
+                nbyte="F"
+                offset="0x18"
+                readfunction="rMASK"
+                userdata="6"
+                width="32"
+                writefunction="wMASK">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Maskable Output Data (GPIO Bank3, EMIO, Lower 16bits)"/>
+                </docsection>
+                <field access="rw"
+                    name="DATA"
+                    width="16"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="MASK"
+                    width="16"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MASK_DATA_3_MSW"
+                nbyte="F"
+                offset="0x1c"
+                readfunction="rMASK"
+                userdata="7"
+                width="32"
+                writefunction="wMASK">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Maskable Output Data (GPIO Bank3, EMIO, Upper 16bits)"/>
+                </docsection>
+                <field access="rw"
+                    name="DATA"
+                    width="16"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="MASK"
+                    width="16"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DATA_0"
+                nbyte="F"
+                offset="0x40"
+                readfunction="rDATA"
+                userdata="0"
+                width="32"
+                writefunction="wDATA">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Output Data (GPIO Bank0, MIO)"/>
+                </docsection>
+                <field access="rw"
+                    name="LOW"
+                    width="16"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="HIGH"
+                    width="16"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DATA_1"
+                nbyte="F"
+                offset="0x44"
+                readfunction="rDATA"
+                userdata="1"
+                width="32"
+                writefunction="wDATA">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Output Data (GPIO Bank1, MIO)"/>
+                </docsection>
+                <field access="rw"
+                    name="LOW"
+                    width="16"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="HIGH"
+                    width="16"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DATA_2"
+                nbyte="F"
+                offset="0x48"
+                readfunction="rDATA"
+                userdata="2"
+                width="32"
+                writefunction="wDATA">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Output Data (GPIO Bank2, EMIO)"/>
+                </docsection>
+                <field access="rw"
+                    name="LOW"
+                    width="16"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="HIGH"
+                    width="16"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DATA_3"
+                nbyte="F"
+                offset="0x4c"
+                readfunction="rDATA"
+                userdata="3"
+                width="32"
+                writefunction="wDATA">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Output Data (GPIO Bank3, EMIO)"/>
+                </docsection>
+                <field access="rw"
+                    name="LOW"
+                    width="16"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="HIGH"
+                    width="16"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DIRM_0"
+                nbyte="F"
+                offset="0x204"
+                readfunction="rDIRM"
+                userdata="0"
+                width="32"
+                writefunction="wDIRM">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Direction mode (GPIO Bank0,MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="OEN_0"
+                nbyte="F"
+                offset="0x208"
+                readfunction="rOEN"
+                userdata="0"
+                width="32"
+                writefunction="wOEN">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Output enable (GPIO Bank0,MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="INT_MASK_0"
+                nbyte="F"
+                offset="0x20c"
+                readfunction="rINT_MASK"
+                userdata="0"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Mask Status (GPIO Bank0, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="INT_EN_0"
+                nbyte="F"
+                offset="0x210"
+                userdata="0"
+                width="32"
+                writefunction="wINT_EN">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Enable/Unmask (GPIO Bank0, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="INT_DIS_0"
+                nbyte="F"
+                offset="0x214"
+                userdata="0"
+                width="32"
+                writefunction="wINT_DIS">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Disable/Mask (GPIO Bank0, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="INT_STAT_0"
+                nbyte="F"
+                offset="0x218"
+                userdata="0"
+                width="32"
+                writefunction="wINT_STAT">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Status (GPIO Bank0, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INT_TYPE_0"
+                nbyte="F"
+                offset="0x21c"
+                readfunction="rINT_TYPE"
+                userdata="0"
+                width="32"
+                writefunction="wINT_TYPE">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Type (GPIO Bank0, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0xFFFFFFFF"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INT_POLARITY_0"
+                nbyte="F"
+                offset="0x220"
+                readfunction="rINT_POLARITY"
+                userdata="0"
+                width="32"
+                writefunction="wINT_POLARITY">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Polarity (GPIO Bank0, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INT_ANY_0"
+                nbyte="F"
+                offset="0x224"
+                readfunction="rINT_ANY"
+                userdata="0"
+                width="32"
+                writefunction="wINT_ANY">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Any Edge Sensitive (GPIO Bank0, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DIRM_1"
+                nbyte="F"
+                offset="0x244"
+                readfunction="rDIRM"
+                userdata="1"
+                width="32"
+                writefunction="wDIRM">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Direction mode (GPIO Bank1, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="OEN_1"
+                nbyte="F"
+                offset="0x248"
+                readfunction="rOEN"
+                userdata="1"
+                width="32"
+                writefunction="wOEN">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Output enable (GPIO Bank1, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="INT_MASK_1"
+                nbyte="F"
+                offset="0x24c"
+                readfunction="rINT_MASK"
+                userdata="1"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Mask Status (GPIO Bank1, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="INT_EN_1"
+                nbyte="F"
+                offset="0x250"
+                userdata="1"
+                width="32"
+                writefunction="wINT_EN">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Enable/Unmask (GPIO Bank1, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="INT_DIS_1"
+                nbyte="F"
+                offset="0x254"
+                userdata="1"
+                width="32"
+                writefunction="wINT_DIS">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Disable/Mask (GPIO Bank1, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="INT_STAT_1"
+                nbyte="F"
+                offset="0x258"
+                userdata="1"
+                width="32"
+                writefunction="wINT_STAT">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Status (GPIO Bank1, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INT_TYPE_1"
+                nbyte="F"
+                offset="0x25c"
+                readfunction="rINT_TYPE"
+                userdata="1"
+                width="32"
+                writefunction="wINT_TYPE">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Type (GPIO Bank1, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x003FFFFF"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INT_POLARITY_1"
+                nbyte="F"
+                offset="0x260"
+                readfunction="rINT_POLARITY"
+                userdata="1"
+                width="32"
+                writefunction="wINT_POLARITY">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Polarity (GPIO Bank1, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INT_ANY_1"
+                nbyte="F"
+                offset="0x264"
+                readfunction="rINT_ANY"
+                userdata="1"
+                width="32"
+                writefunction="wINT_ANY">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Any Edge Sensitive (GPIO Bank1, MIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DIRM_2"
+                nbyte="F"
+                offset="0x284"
+                readfunction="rDIRM"
+                userdata="2"
+                width="32"
+                writefunction="wDIRM">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Direction mode (GPIO Bank2, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="OEN_2"
+                nbyte="F"
+                offset="0x288"
+                readfunction="rOEN"
+                userdata="2"
+                width="32"
+                writefunction="wOEN">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Output enable (GPIO Bank2, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="INT_MASK_2"
+                nbyte="F"
+                offset="0x28c"
+                readfunction="rINT_MASK"
+                userdata="2"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Mask Status (GPIO Bank2, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="INT_EN_2"
+                nbyte="F"
+                offset="0x290"
+                userdata="2"
+                width="32"
+                writefunction="wINT_EN">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Enable/Unmask (GPIO Bank2, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="INT_DIS_2"
+                nbyte="F"
+                offset="0x294"
+                userdata="2"
+                width="32"
+                writefunction="wINT_DIS">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Disable/Mask (GPIO Bank2, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="INT_STAT_2"
+                nbyte="F"
+                offset="0x298"
+                userdata="2"
+                width="32"
+                writefunction="wINT_STAT">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Status (GPIO Bank2, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INT_TYPE_2"
+                nbyte="F"
+                offset="0x29c"
+                readfunction="rINT_TYPE"
+                userdata="2"
+                width="32"
+                writefunction="wINT_TYPE">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Type (GPIO Bank2, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0xFFFFFFFF"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INT_POLARITY_2"
+                nbyte="F"
+                offset="0x2a0"
+                readfunction="rINT_POLARITY"
+                userdata="2"
+                width="32"
+                writefunction="wINT_POLARITY">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Polarity (GPIO Bank2, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INT_ANY_2"
+                nbyte="F"
+                offset="0x2a4"
+                readfunction="rINT_ANY"
+                userdata="2"
+                width="32"
+                writefunction="wINT_ANY">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Any Edge Sensitive (GPIO Bank2, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DIRM_3"
+                nbyte="F"
+                offset="0x2c4"
+                readfunction="rDIRM"
+                userdata="3"
+                width="32"
+                writefunction="wDIRM">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Direction mode (GPIO Bank3, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="OEN_3"
+                nbyte="F"
+                offset="0x2c8"
+                readfunction="rOEN"
+                userdata="3"
+                width="32"
+                writefunction="wOEN">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Output enable (GPIO Bank3, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="INT_MASK_3"
+                nbyte="F"
+                offset="0x2cc"
+                readfunction="rINT_MASK"
+                userdata="3"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Mask Status (GPIO Bank3, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="INT_EN_3"
+                nbyte="F"
+                offset="0x2d0"
+                userdata="3"
+                width="32"
+                writefunction="wINT_EN">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Enable/Unmask (GPIO Bank3, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="INT_DIS_3"
+                nbyte="F"
+                offset="0x2d4"
+                userdata="3"
+                width="32"
+                writefunction="wINT_DIS">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Disable/Mask (GPIO Bank3, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="INT_STAT_3"
+                nbyte="F"
+                offset="0x2d8"
+                userdata="3"
+                width="32"
+                writefunction="wINT_STAT">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Status (GPIO Bank3, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INT_TYPE_3"
+                nbyte="F"
+                offset="0x2dc"
+                readfunction="rINT_TYPE"
+                userdata="3"
+                width="32"
+                writefunction="wINT_TYPE">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Type (GPIO Bank3, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0xFFFFFFFF"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INT_POLARITY_3"
+                nbyte="F"
+                offset="0x2e0"
+                readfunction="rINT_POLARITY"
+                userdata="3"
+                width="32"
+                writefunction="wINT_POLARITY">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Polarity (GPIO Bank3, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INT_ANY_3"
+                nbyte="F"
+                offset="0x2e4"
+                readfunction="rINT_ANY"
+                userdata="3"
+                width="32"
+                writefunction="wINT_ANY">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Any Edge Sensitive (GPIO Bank3, EMIO)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="interrupt"
+        type="output"/>
+    <netport name="gpio_bank0_in"
+        type="input"
+        updatefunction="gpio_in_change"
+        updatefunctionargument="0"/>
+    <netport name="gpio_bank0_out"
+        type="output"/>
+    <netport name="gpio_bank1_in"
+        type="input"
+        updatefunction="gpio_in_change"
+        updatefunctionargument="1"/>
+    <netport name="gpio_bank1_out"
+        type="output"/>
+    <netport name="gpio_bank2_in"
+        type="input"
+        updatefunction="gpio_in_change"
+        updatefunctionargument="2"/>
+    <netport name="gpio_bank2_out"
+        type="output"/>
+    <netport name="gpio_bank2_oen_out"
+        type="output"/>
+    <netport name="gpio_bank3_in"
+        type="input"
+        updatefunction="gpio_in_change"
+        updatefunctionargument="3"/>
+    <netport name="gpio_bank3_out"
+        type="output"/>
+    <netport name="gpio_bank3_oen_out"
+        type="output"/>
+    <formalattribute defaultvalue="zc702"
+        name="config"
+        type="enum">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="LED/Switch Board Configuration (zc702/zc706)"/>
+        </docsection>
+        <enum name="zc702"
+            value="0"/>
+        <enum name="zc706"
+            value="1"/>
+    </formalattribute>
+    <formalattribute defaultvalue="0"
+        name="swtest"
+        type="Bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable Switch and LED Test pattern generation"/>
+        </docsection>
+    </formalattribute>
+    <netport name="intOut"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Interrupt signal"/>
+        </docsection>
+    </netport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

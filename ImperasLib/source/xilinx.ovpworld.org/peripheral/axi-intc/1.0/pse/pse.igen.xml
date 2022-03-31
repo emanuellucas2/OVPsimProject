@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="axi-intc"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="xilinx.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Microblaze LogiCORE IP AXI Interrupt Controller"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Implements the basic interrupt processing behavior"/>
+        <doctext name="txt_1"
+            text="Does not implement interrupt cascade"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="PG099 October 4, 2017 v4.1"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x200">
+        <addressblock name="ab"
+            size="0x200"
+            width="32">
+            <localmemory name="buffer"
+                readfunction="regNoDefinitionRead"
+                size="0x200"
+                writefunction="regNoDefinitionWrite"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ISR"
+                nbyte="F"
+                width="32"
+                writefunction="WriteISR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Status Register (ISR)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="IPR"
+                nbyte="F"
+                offset="0x4"
+                readfunction="ReadIPR"
+                width="32"
+                writefunction="WriteIPR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Pending Register (IPR)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="IER"
+                nbyte="F"
+                offset="0x8"
+                width="32"
+                writefunction="WriteIER">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Enable Register (IER)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="IAR"
+                nbyte="F"
+                offset="0xc"
+                width="32"
+                writefunction="WriteIAR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Acknowledge Register (IAR)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SIE"
+                nbyte="F"
+                offset="0x10"
+                width="32"
+                writefunction="WriteSIE">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Set Interrupt Enables (SIE)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CIE"
+                nbyte="F"
+                offset="0x14"
+                width="32"
+                writefunction="WriteCIE">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Clear Interrupt Enables (CIE)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="IVR"
+                nbyte="F"
+                offset="0x18"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Vector Register (IVR)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MER"
+                nbyte="F"
+                offset="0x1c"
+                width="32"
+                writefunction="WriteMER"
+                writemask="3">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Master Enable Register (MER)"/>
+                    <doctext name="txt_1"/>
+                    <doctext name="txt_2"/>
+                </docsection>
+                <field access="rw"
+                    name="ME"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="HIE"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="IMR"
+                nbyte="F"
+                offset="0x20"
+                width="32"
+                writefunction="WriteIMR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Mode Register (IMR)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ILR"
+                nbyte="F"
+                offset="0x24"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Level Register (ILR)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0xffffffff"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                hiarray="0x1f"
+                isvolatile="T"
+                loarray="0x0"
+                name="IVAR%u"
+                nbyte="T"
+                offset="0x100"
+                readfunction="ReadIVAR"
+                userdata="_index"
+                width="32"
+                writefunction="WriteIVAR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="IVAR Interrupt Vector Address Register (IVAR)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport hiarray="31"
+        loarray="0"
+        name="intr%u"
+        type="input"
+        updatefunction="intrInput"
+        updatefunctionargument="_index"/>
+    <netport name="irq_in"
+        type="input"
+        updatefunction="intrInput"
+        updatefunctionargument="256"/>
+    <netport name="irq_addr_in"
+        type="input"/>
+    <netport name="irq_ack_out"
+        type="output"/>
+    <netport name="irq"
+        type="output"/>
+    <netport name="irq_ack"
+        type="input"
+        updatefunction="ackInput"/>
+    <netport name="irq_addr_out"
+        type="output"/>
+    <formalattribute defaultvalue="1"
+        name="C_HAS_IPR"
+        type="boolean">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The Interrupt Pending Register exists"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="1"
+        name="C_HAS_SIE"
+        type="boolean">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The Set Interrupt Enables Register exists"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="1"
+        name="C_HAS_CIE"
+        type="boolean">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The Clear Interrupt Enables Register exists"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="1"
+        name="C_HAS_IMR"
+        type="boolean">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The Interrupt Mode Register exists"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="1"
+        name="C_HAS_FAST"
+        type="boolean">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The Fast Interrupt Logic is enabled"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_EN_CASCADE_MODE"
+        type="boolean">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set to enable the cascading of interrupts"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="C_CASCADE_MASTER"
+        type="boolean">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set when the cascade master"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="16"
+        max="32"
+        min="1"
+        name="C_NUM_INTR_INPUTS"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the number of active hardware interrupt inputs (default 16)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="4"
+        max="32"
+        min="0"
+        name="C_NUM_SW_INTR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the number of software interrupts (default 4)"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

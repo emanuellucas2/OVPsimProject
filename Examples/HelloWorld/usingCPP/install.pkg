@@ -1,0 +1,5 @@
+install RUNTIME OVPsim CpuManager
+install Imperas.iGen
+install riscv.toolchain
+install riscv.model
+install Imperas.harness

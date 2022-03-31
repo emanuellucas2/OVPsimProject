@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="artyIO"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="sifive.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="SiFive coreip-s51-arty IO"/>
+        <doctext name="txt_1"
+            text="Visualization of LED, Switch and Button connectivity."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model implements only the SIFive ARTY Platform Switches and LEDs."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="SiFive Freedom E SDK coreip-s51-arty Board Support Package details."/>
+    </docsection>
+    <netport name="SW0"
+        type="output"/>
+    <netport name="SW1"
+        type="output"/>
+    <netport name="SW2"
+        type="output"/>
+    <netport name="SW3"
+        type="output"/>
+    <netport name="BTN0"
+        type="output"/>
+    <netport name="BTN1"
+        type="output"/>
+    <netport name="BTN2"
+        type="output"/>
+    <netport name="BTN3"
+        type="output"/>
+    <netport name="LD0red"
+        type="input"
+        updatefunction="ledCB"
+        updatefunctionargument="0"/>
+    <netport name="LD0green"
+        type="input"
+        updatefunction="ledCB"
+        updatefunctionargument="1"/>
+    <netport name="LD0blue"
+        type="input"
+        updatefunction="ledCB"
+        updatefunctionargument="2"/>
+    <netport name="reset"
+        type="input"
+        updatefunction="resetCB"/>
+    <formalmacro name="BHM_HTTP_FORMALS"/>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

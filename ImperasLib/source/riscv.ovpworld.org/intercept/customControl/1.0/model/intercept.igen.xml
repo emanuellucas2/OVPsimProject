@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <semihostlibrary imagefile="model"
+    library="intercept"
+    name="customControl"
+    releasestatus="0"
+    vendor="riscv.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Interception of custom0 instruction for character output and simulation termination"/>
+        <doctext name="txt_1"
+            text="Interception of _test_stdout for character output and simulation termination"/>
+        <doctext name="txt_2"
+            text="Pseudo UART at address range 0x10010000 to 0x1001000f (default, relocate using uartbase) "/>
+    </docsection>
+    <formalattribute name="logfile"
+        type="String">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Logfile for custom0 character stream"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="nouart"
+        type="String">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Remove instance of UART between 0x10010000 and 0x1001000f (default)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="uartbase"
+        type="String">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Change the UART base address from 0x10010000 (default)"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </semihostlibrary>

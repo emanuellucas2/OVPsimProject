@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="SimpleDma"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Basic DMA Controller."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model is a basic DMA engine example implementation, it does not conform to an actual device."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="This is not based upon a real device"/>
+    </docsection>
+    <busmasterport addresswidth="32"
+        addresswidthmax="0"
+        addresswidthmin="32"
+        name="MREAD">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="DMA Registers Master Port - Read"/>
+        </docsection>
+    </busmasterport>
+    <busmasterport addresswidth="32"
+        addresswidthmax="0"
+        addresswidthmin="32"
+        name="MWRITE">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="DMA Registers Master Port - Write"/>
+        </docsection>
+    </busmasterport>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="DMACSP"
+        size="0x140">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="DMA Registers Slave Port"/>
+        </docsection>
+        <addressblock name="ab8"
+            size="0x40"
+            width="8">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="intTCstatus"
+                nbyte="F"
+                offset="0x4"
+                width="8"
+                writefunction="TCclearWr">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="internal TC status"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="rawTCstatus"
+                nbyte="F"
+                offset="0x14"
+                width="8">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="raw TC status"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="config"
+                nbyte="F"
+                offset="0x30"
+                width="8"
+                writefunction="configWr">
+                <field access="rw"
+                    bitoffset="0"
+                    name="burstSize"
+                    width="2"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="configuration"/>
+                </docsection>
+            </memorymappedregister>
+        </addressblock>
+        <addressblock name="ab32ch0"
+            offset="0x100"
+            size="0x20"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="srcAddr"
+                nbyte="F"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="channel 0 source address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="dstAddr"
+                nbyte="F"
+                offset="0x4"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="channel 0 dest address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="control"
+                nbyte="F"
+                offset="0xc"
+                width="32">
+                <field access="rw"
+                    bitoffset="0"
+                    name="transferSize"
+                    width="12"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="channel 0 control"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="config"
+                nbyte="F"
+                offset="0x10"
+                userdata="0"
+                width="32"
+                writefunction="configChWr">
+                <field access="rw"
+                    name="enable"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="15"
+                    name="inten"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="18"
+                    name="halt"
+                    width="1"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="channel 0 configuration"/>
+                </docsection>
+                <field bitoffset="1"
+                    name="__pad1"
+                    width="14"/>
+                <field bitoffset="16"
+                    name="__pad16"
+                    width="2"/>
+            </memorymappedregister>
+        </addressblock>
+        <addressblock name="ab32ch1"
+            offset="0x120"
+            size="0x20"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="srcAddr"
+                nbyte="F"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="channel 1 source address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="dstAddr"
+                nbyte="F"
+                offset="0x4"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="channel 1 dest address"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="control"
+                nbyte="F"
+                offset="0xc"
+                width="32">
+                <field access="rw"
+                    bitoffset="0"
+                    name="transferSize"
+                    width="12"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="channel 1 control"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="config"
+                nbyte="F"
+                offset="0x10"
+                userdata="1"
+                width="32"
+                writefunction="configChWr">
+                <field access="rw"
+                    name="enable"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="15"
+                    name="inten"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="18"
+                    name="halt"
+                    width="1"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="channel 1 configuration"/>
+                </docsection>
+                <field bitoffset="1"
+                    name="__pad1"
+                    width="14"/>
+                <field bitoffset="16"
+                    name="__pad16"
+                    width="2"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="INTTC"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Interrupt Request when DMA operation is complete"/>
+        </docsection>
+    </netport>
+    <netport name="RESET"
+        type="input"
+        updatefunction="uReset">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Peripheral Reset"/>
+        </docsection>
+    </netport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

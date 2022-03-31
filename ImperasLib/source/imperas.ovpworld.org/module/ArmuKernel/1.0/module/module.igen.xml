@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="ArmuKernel"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="imperas.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets">
+        <net name="irq"/>
+    </nets>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="
+    Bare Metal Platform for an ARM Cortex-A9MPx4 to execute the SMP UKernel.
+    This platform  executes the ARM MPCore Boot and Synchronization Example Code"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="BareMetal platform for execution of ARM binary uKernel file"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="http://www.arm.com/products/processors/cortex-a/arm-mpcore-sample-code.php"/>
+    </docsection>
+    <formalmacro name="OP_HTTP_VIS_PORT_FORMALS"/>
+    <processorinstance endian="little"
+        imagefile="cli.axf"
+        mips="100.0"
+        name="cpu1"
+        simulateexceptions="T"
+        useobjectentry="T">
+        <vlnvreference name="arm"
+            vendor="arm.ovpworld.org"
+            version="1.0"/>
+        <extlibrary directLoad="T"
+            name="armNewlib_0">
+            <vlnvreference name="armNewlib"
+                vendor="arm.ovpworld.org"/>
+        </extlibrary>
+        <attribute content="Cortex-A9MPx4"
+            name="variant"/>
+        <attribute content="1"
+            name="UAL"/>
+        <attribute content="0x1f000000"
+            name="override_CBAR"/>
+        <busmasterportconnection connection="bus1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus1"
+            name="DATA"/>
+        <netportconnection connection="irq"
+            name="SPI36"/>
+    </processorinstance>
+    <bus addresswidth="32"
+        name="bus1"/>
+    <memoryinstance name="memory1">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x0fffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="deviceDummy1">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x10008fff"
+            loaddress="0x10000000"
+            name="sp1"/>
+    </memoryinstance>
+    <formalattribute defaultvalue="uart1.log"
+        name="uart1logname"
+        type="string"/>
+    <peripheralinstance name="uart1">
+        <vlnvreference name="UartPL011"
+            vendor="arm.ovpworld.org"/>
+        <attribute content="ARM"
+            name="variant"/>
+        <attribute content="uart1logname"
+            expression="T"
+            name="outfile"/>
+        <attribute name="portnum"/>
+        <attribute content="1"
+            name="console"/>
+        <attribute content="1"
+            name="finishOnDisconnect"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="268476415"
+            loaddress="0x10009000"
+            name="bport1"/>
+        <netportconnection connection="irq"
+            name="irq"/>
+    </peripheralinstance>
+    <memoryinstance name="deviceDummy2">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0xffffffff"
+            loaddress="0x1000a000"
+            name="sp1"/>
+    </memoryinstance>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

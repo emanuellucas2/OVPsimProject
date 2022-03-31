@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="T"
+    httpvis="F"
+    library="module"
+    name="PublicDemonstrator"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="safepower.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="This module implements the Safepower Public Demonstrator.
+          This is very close to teh Xilinx zc702 board defintion. It adds some additional I/O devices.
+          This module provides the board level definition and the instantiation of a Zynq and memory."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Currently this module is not used. It instances the Zynq module only."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="SafePower project Public Demonstrator"/>
+    </docsection>
+    <module name="Zynq">
+        <vlnvreference library="module"
+            name="Zynq"
+            vendor="xilinx.ovpworld.org"
+            version="1.0"/>
+        <attribute content="33"
+            name="psclock"/>
+        <attribute content="500"
+            name="armmips"/>
+        <attribute content="PublicDemonstrator"
+            name="board"/>
+        <busportconnection connection="i2cBus"
+            name="extPortI2C"/>
+    </module>
+    <bus addresswidth="16"
+        name="i2cBus"/>
+    <peripheralinstance name="pmbus1">
+        <vlnvreference name="ucd9248"
+            vendor="ti.ovpworld.org"/>
+        <busslaveportconnection connection="i2cBus"
+            hiaddress="1844"
+            loaddress="1844"
+            name="iic"/>
+    </peripheralinstance>
+    <peripheralinstance name="pmbus2">
+        <vlnvreference name="ucd9248"
+            vendor="ti.ovpworld.org"/>
+        <busslaveportconnection connection="i2cBus"
+            hiaddress="1845"
+            loaddress="1845"
+            name="iic"/>
+    </peripheralinstance>
+    <peripheralinstance name="pmbus3">
+        <vlnvreference name="ucd9248"
+            vendor="ti.ovpworld.org"/>
+        <busslaveportconnection connection="i2cBus"
+            hiaddress="1846"
+            loaddress="1846"
+            name="iic"/>
+    </peripheralinstance>
+    <formalattribute name="configfile"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Formal parameter configfile provides the configuration file for LED and Switch usage"/>
+        </docsection>
+    </formalattribute>
+    <formalmacro name="OP_HTTP_VIS_PORT_FORMALS"/>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

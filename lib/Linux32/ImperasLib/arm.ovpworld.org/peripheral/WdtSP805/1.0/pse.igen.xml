@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="WdtSP805"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="arm.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="ARM SP805 Watchdog Registers."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Does NOT model watchdog functionality, just provides registers to allow code to run."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="ARM Watchdog Module (SP805) Technical Reference Manual (ARM DDI 0270)"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="WdogLoad"
+                nbyte="F"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="                 "/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="WdogValue"
+                nbyte="F"
+                offset="0x4"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="                 "/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="WdogControl"
+                nbyte="F"
+                offset="0x8"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="                 "/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="WdogIntClr"
+                nbyte="F"
+                offset="0xc"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="                 "/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="WdogRIS"
+                nbyte="F"
+                offset="0x10"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="                 "/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="WdogMIS"
+                nbyte="F"
+                offset="0x14"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="                 "/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="WdogLock"
+                nbyte="F"
+                offset="0xc00"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="                 "/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="WdogITCR"
+                nbyte="F"
+                offset="0xf00"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="                 "/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="WdogITOP"
+                nbyte="F"
+                offset="0xf04"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="                 "/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PeriphID0"
+                nbyte="F"
+                offset="0xfe0"
+                readfunction="readPeriphID0"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PeriphID1"
+                nbyte="F"
+                offset="0xfe4"
+                readfunction="readPeriphID1"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PeriphID2"
+                nbyte="F"
+                offset="0xfe8"
+                readfunction="readPeriphID2"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PeriphID3"
+                nbyte="F"
+                offset="0xfec"
+                readfunction="readPeriphID3"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PCellID0"
+                nbyte="F"
+                offset="0xff0"
+                readfunction="readPCellID0"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PCellID1"
+                nbyte="F"
+                offset="0xff4"
+                readfunction="readPCellID1"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PCellID2"
+                nbyte="F"
+                offset="0xff8"
+                readfunction="readPCellID2"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PCellID3"
+                nbyte="F"
+                offset="0xffc"
+                readfunction="readPCellID3"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"/>
+                </docsection>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

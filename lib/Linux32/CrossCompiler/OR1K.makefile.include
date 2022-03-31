@@ -1,0 +1,121 @@
+################################################################################
+# OR1k.makefile.include
+################################################################################
+#/*
+# * Copyright (c) 2005-2021 Imperas Software Ltd., www.imperas.com
+# *
+# * Licensed under the Apache License, Version 2.0 (the "License");
+# * you may not use this file except in compliance with the License.
+# * You may obtain a copy of the License at
+# *
+# *   http://www.apache.org/licenses/LICENSE-2.0
+# *
+# * Unless required by applicable law or agreed to in writing, software
+# * distributed under the License is distributed on an "AS IS" BASIS,
+# * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# * either express or implied.
+# *
+# * See the License for the specific language governing permissions and
+# * limitations under the License.
+# *
+# */
+################################################################################
+#
+# Include this file from Makefiles which build code for the OR1K processor.
+# It defines variables for compiling and linking using the OR1K cross-compiler. 
+#
+# For example:
+#
+# +-----------------------------------------------------------------------+
+# |                                                                       | 
+# | CROSS_COMPILERS = $(IMPERAS_HOME)/lib/$(IMPERAS_ARCH)/CrossCompiler   |
+# |                                                                       |
+# | include $(CROSS_COMPILERS)/OR1K.makefile.include                      |
+# |                                                                       |
+# | app.elf: main.o support.o                                             | 
+# |     $(IMPERAS_LINK)  -o $@  $^  $(IMPERAS_LDFLAGS)                    |
+# |                                                                       |
+# | main.o: main.c support.h                                              |
+# |     $(IMPERAS_CC)  -c  -o $@  $<                                      |
+# |                                                                       |
+# |                                                                       |
+# | # etc...                                                              |
+# |                                                                       |
+# +-----------------------------------------------------------------------+
+#
+# Note:
+#  - Imperas-specific CFLAGS and include paths are already included in the
+#    $(IMPERAS_CC) and $(IMPERAS_CXX) commands
+#  - The $(IMPERAS_LDFLAGS) variable must be specified at the end of a link
+#    command
+#
+
+ifndef IMPERAS_HOME
+  IMPERAS_ERROR := $(error "IMPERAS_HOME not defined")
+endif
+ifndef IMPERAS_ARCH
+  IMPERAS_ERROR := $(error "IMPERAS_ARCH not defined")
+endif
+
+OR1K_CROSSCOMPILER   = $(IMPERAS_HOME)/lib/$(IMPERAS_ARCH)/CrossCompiler/or32-elf
+ifeq ($(IMPERAS_UNAME),Windows)
+  OR1K_CROSSCOMPILER:= $(shell getpath.exe $(OR1K_CROSSCOMPILER))
+endif
+OR1K_TARGETLIBRARIES = $(IMPERAS_HOME)/lib/$(IMPERAS_ARCH)/TargetLibraries
+OR1K_IMPPUBLIC       = $(IMPERAS_HOME)/ImpPublic
+
+include $(IMPERAS_HOME)/lib/$(IMPERAS_ARCH)/CrossCompiler/Makefile.common.include
+
+OR1K_INCLUDES = \
+    -I$(OR1K_IMPPUBLIC)/include/common \
+    -I$(OR1K_IMPPUBLIC)/include/target/common \
+    -I$(OR1K_IMPPUBLIC)/include/target/application \
+    -I$(OR1K_TARGETLIBRARIES)/include/or32
+
+OR1K_CFLAGS   =
+
+OR1K_LDFLAGS0 = \
+    -nostartfiles \
+    -T$(OR1K_TARGETLIBRARIES)/or32-elf/or32-elf-lib.ld \
+    -L$(OR1K_TARGETLIBRARIES)/or32-elf \
+    $(OR1K_TARGETLIBRARIES)/or32-elf/crt0.o
+
+OR1K_LDFLAGS  = -limperas
+
+OR1K_CC       = $(OR1K_CROSSCOMPILER)/bin/or32-elf-gcc $(OR1K_CFLAGS) $(OR1K_INCLUDES)
+OR1K_CXX      = $(OR1K_CROSSCOMPILER)/bin/or32-elf-g++ $(OR1K_CFLAGS) $(OR1K_INCLUDES)
+OR1K_LINK     = $(OR1K_CROSSCOMPILER)/bin/or32-elf-gcc $(OR1K_CFLAGS) $(OR1K_INCLUDES) $(OR1K_LDFLAGS0)
+OR1K_LINKXX   = $(OR1K_CROSSCOMPILER)/bin/or32-elf-g++ $(OR1K_CFLAGS) $(OR1K_INCLUDES) $(OR1K_LDFLAGS0)
+OR1K_AS       = $(OR1K_CROSSCOMPILER)/bin/or32-elf-as  $(OR1K_CFLAGS)
+OR1K_LD       = $(OR1K_CROSSCOMPILER)/bin/or32-elf-ld
+OR1K_AR       = $(OR1K_CROSSCOMPILER)/bin/or32-elf-ar
+OR1K_NM       = $(OR1K_CROSSCOMPILER)/bin/or32-elf-nm
+OR1K_RANLIB   = $(OR1K_CROSSCOMPILER)/bin/or32-elf-ranlib
+OR1K_STRIP    = $(OR1K_CROSSCOMPILER)/bin/or32-elf-strip
+OR1K_READELF  = $(OR1K_CROSSCOMPILER)/bin/or32-elf-readelf
+OR1K_OBJDUMP  = $(OR1K_CROSSCOMPILER)/bin/or32-elf-objdump
+OR1K_OBJCOPY  = $(OR1K_CROSSCOMPILER)/bin/or32-elf-objcopy
+OR1K_GDB      = $(OR1K_CROSSCOMPILER)/bin/or32-elf-gdb
+
+# Copy out to IMPERAS_
+IMPERAS_CROSSCOMPILER = $(OR1K_CROSSCOMPILER)
+IMPERAS_TARGETLIBRARIES = $(OR1K_TARGETLIBRARIES)
+IMPERAS_IMPPUBLIC = $(OR1K_IMPPUBLIC)
+IMPERAS_INCLUDES = $(OR1K_INCLUDES)
+IMPERAS_CFLAGS = $(OR1K_CFLAGS)
+IMPERAS_LDFLAGS0 = $(OR1K_LDFLAGS0)
+IMPERAS_LDFLAGS = $(OR1K_LDFLAGS)
+IMPERAS_CC = $(OR1K_CC)
+IMPERAS_CXX = $(OR1K_CXX)
+IMPERAS_LINK = $(OR1K_LINK)
+IMPERAS_LINKXX = $(OR1K_LINKXX)
+IMPERAS_AS = $(OR1K_AS)
+IMPERAS_LD = $(OR1K_LD)
+IMPERAS_AR = $(OR1K_AR)
+IMPERAS_NM = $(OR1K_NM)
+IMPERAS_RANLIB = $(OR1K_RANLIB)
+IMPERAS_STRIP = $(OR1K_STRIP)
+IMPERAS_READELF = $(OR1K_READELF)
+IMPERAS_OBJDUMP = $(OR1K_OBJDUMP)
+IMPERAS_OBJCOPY = $(OR1K_OBJCOPY)
+IMPERAS_GDB = $(OR1K_GDB)

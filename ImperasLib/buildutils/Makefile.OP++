@@ -1,0 +1,81 @@
+#
+# Set linker options for the selected OP C++ interface library
+#
+# - By default, when IMPERAS_OP_CPP_LIBRARY has not been set,
+#   builds a local archive in ./opLib/libOP++.a
+#
+# - Alternatively, set IMPERAS_OP_CPP_LIBRARY to the full path of the
+#   archive or shared object to be used. This should be in the form of: 
+#      <path>/lib<name>.a 
+#      or <path>/lib<name>.so (Linux shared object) 
+#      or <path>/lib<name>.dll (Windows dynamically loaded library)
+#   The directory and/or library will be created if it does not already exist.
+#
+# - To use the Imperas provided libRuntimeLoader++ shared library set:
+#    IMPERAS_OP_CPP_LIBRARY=$(IMPERAS_HOME)/bin/$(IMPERAS_ARCH)/libRuntimeLoader++.$(IMPERAS_SHRSUF)
+#
+# - IMPERAS_OP_CPP_LIBRARY must specify either an archive (.a) to be 
+#   statically linked, or a shared library (.so/.dll) to be dynamically linked.
+#   NOTE: If a shared library is used then its directory must be 
+#         included on LD_LIBRARY_PATH (Linux) or PATH (Windows) 
+#
+# - A locally built library is required when the user's host compiler version is
+#   incompatible with the compiler used to build the Imperas distribution
+#
+# - The required linker options are also added to the SIM_LDFLAGS to use the 
+#   selected library when this file is included in a standard Imperas Makefile
+#
+
+ifeq (, $(IMPERAS_OP_CPP_LIBRARY))
+  # If IMPERAS_OP_CPP_LIBRARY is not specified, default to building a local archive library
+  IMPERAS_OP_CPP_LIBRARY?=opLib/libOP++.a
+
+  # clean library only if it is the default locally built version
+  clean::
+	  rm -rf opLib
+endif
+
+# Validate it is a valid library <dir>/lib<name>.a or lib<name>.$(IMPERS_SHRSUF)
+IMPERAS_OP_CPP_LIBRARY_DIR  = $(dir $(IMPERAS_OP_CPP_LIBRARY))
+IMPERAS_OP_CPP_LIBRARY_NAME = $(subst lib,,$(basename $(notdir $(IMPERAS_OP_CPP_LIBRARY))))
+IMPERAS_OP_CPP_LIBRARY_SUF  = $(suffix $(IMPERAS_OP_CPP_LIBRARY))
+  
+ifneq (lib$(IMPERAS_OP_CPP_LIBRARY_NAME), $(basename $(notdir $(IMPERAS_OP_CPP_LIBRARY))))
+  $(error, "OP++: Invalid IMPERAS_OP_CPP_LIBRARY='$(IMPERAS_OP_CPP_LIBRARY)'. Basename must be of form 'lib<name>'")
+endif
+  
+ifneq ($(suffix $(IMPERAS_OP_CPP_LIBRARY)), ".a")
+  ifneq ($(suffix $(IMPERAS_OP_CPP_LIBRARY)), $(IMPERAS_SHRSUF))
+    $(error, "OP++: Invalid IMPERAS_OP_CPP_LIBRARY='$(IMPERAS_OP_CPP_LIBRARY)'. Suffix must be '.a' or '$(IMPERAS_SHRSUF)'")
+  endif
+endif
+
+ifneq ($(IMPERAS_OP_CPP_LIBRARY_DIR), $(IMPERAS_HOME)/bin/$(IMPERAS_ARCH))
+  # If target library is not in the installation directory:
+  
+  # Add library directory to the linker options
+  SIM_LDFLAGS += -L$(IMPERAS_OP_CPP_LIBRARY_DIR)
+
+  # Add rules for copying and building the OP++ library
+  OPCPPSRCDIR=$(IMPERAS_HOME)/ImpPublic/source/host/op
+  OPCPPSRCS=$(wildcard $(OPCPPSRCDIR)/*.cpp) \
+                       $(OPCPPSRCDIR)/Makefile
+  OPCPPFILES=$(foreach p,$(OPCPPSRCS),$(IMPERAS_OP_CPP_LIBRARY_DIR)/$(notdir $(p)))
+                        
+  $(IMPERAS_OP_CPP_LIBRARY_DIR):
+	  @ echo "# OP++: Create local OP CPP library directory $@"
+	  $(V) mkdir -p $@
+	  
+  $(IMPERAS_OP_CPP_LIBRARY_DIR)/% : $(OPCPPSRCDIR)/% | $(IMPERAS_OP_CPP_LIBRARY_DIR)
+	  @ echo "# OP++: Copy OP CPP file $(@F) from $(<D)"
+	  $(V) mkdir -p $(@D)
+	  $(V) cp $^ $(@D)
+  
+  $(IMPERAS_OP_CPP_LIBRARY): $(OPCPPFILES)
+	  @ echo "# OP++: Build OP CPP Library $@"
+	  $(V) $(MAKE) -C $(@D) $(@F)
+endif
+
+# Add library to the linker options
+SIM_LDFLAGS += -l$(IMPERAS_OP_CPP_LIBRARY_NAME)
+

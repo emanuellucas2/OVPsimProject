@@ -1,0 +1,3 @@
+install RUNTIME CpuManager
+install riscv.model andes_riscv.model microsemi_riscv.model sifive_riscv.model
+install riscv.toolchain

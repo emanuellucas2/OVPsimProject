@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="Zynq_PL_NostrumNoC_node"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="safepower.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets">
+        <net name="gpio_out"/>
+        <net name="gpio2_out"/>
+        <net name="gpio_in"/>
+        <net name="gpio2_in"/>
+        <net name="syncIn"/>
+        <net name="syncOut"/>
+    </nets>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="This module implements a NoC node used to implement an example NoC in the Xilinx Zynq Programmable Logic (PL).
+This PL configuration instances one Xilinx MicroBlaze processor with a local memory and a NoC interface peripheral."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This is baremetal only."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="No Reference"/>
+    </docsection>
+    <bus addresswidth="32"
+        name="pBus"/>
+    <processorinstance defaultsemihost="T"
+        name="cpu">
+        <vlnvreference name="microblaze"
+            vendor="xilinx.ovpworld.org"
+            version="1.0"/>
+        <busmasterportconnection connection="pBus"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="pBus"
+            name="DATA"/>
+    </processorinstance>
+    <formalattribute name="nocid"
+        type="uns32"/>
+    <formalattribute name="generateSync"
+        type="bool"/>
+    <formalattribute name="sendChannelSize"
+        type="uns32"/>
+    <formalattribute name="mboxSize"
+        type="uns32"/>
+    <memoryinstance name="ramS">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="pBus"
+            hiaddress="0x03ffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <peripheralinstance name="gpio">
+        <vlnvreference name="axi-gpio"
+            vendor="xilinx.ovpworld.org"/>
+        <busslaveportconnection connection="pBus"
+            hiaddress="0x400001ff"
+            loaddress="0x40000000"
+            name="sp1"/>
+        <netportconnection connection="gpio_out"
+            name="gpio_out"/>
+        <netportconnection connection="gpio2_out"
+            name="gpio2_out"/>
+        <netportconnection connection="gpio_in"
+            name="gpio_in"/>
+        <netportconnection connection="gpio2_in"
+            name="gpio2_in"/>
+    </peripheralinstance>
+    <bus addresswidth="32"
+        name="gpiodprBus"/>
+    <bridge name="gpiodprBridge">
+        <busslaveportconnection connection="pBus"
+            hiaddress="0x410001ff"
+            loaddress="0x41000000"
+            name="sp1"/>
+        <busmasterportconnection connection="gpiodprBus"
+            hiaddress="0x410001ff"
+            loaddress="0x41000000"
+            name="mp1"/>
+    </bridge>
+    <busportconnection connection="gpiodprBus"
+        mustbeconnected="F"
+        name="gpiodprPort"/>
+    <peripheralinstance name="node">
+        <vlnvreference name="NostrumNode"
+            vendor="safepower.ovpworld.org"/>
+        <busslaveportconnection connection="pBus"
+            hiaddress="0x7003ffff"
+            loaddress="0x70020000"
+            name="hostif"/>
+        <attribute content="nocid"
+            name="id"/>
+        <attribute content="generateSync"
+            expression="T"
+            name="generateSync"/>
+        <attribute content="sendChannelSize"
+            expression="T"
+            name="sendChannelSize"/>
+        <attribute content="mboxSize"
+            expression="T"
+            name="mboxSize"/>
+        <packetnetportconnection connection="networkNode"
+            name="network"/>
+        <netportconnection connection="syncIn"
+            name="syncIn"/>
+        <netportconnection connection="syncOut"
+            name="syncOut"/>
+    </peripheralinstance>
+    <packetnetportconnection connection="networkNode"
+        mustbeconnected="T"
+        name="networkNodePort"/>
+    <pkn name="networkNode"/>
+    <netportconnection connection="syncIn"
+        mustbeconnected="F"
+        name="syncInPort"/>
+    <netportconnection connection="syncOut"
+        mustbeconnected="F"
+        name="syncOutPort"/>
+    <netportconnection connection="gpio_out"
+        mustbeconnected="F"
+        name="gpio_outP"/>
+    <netportconnection connection="gpio2_out"
+        mustbeconnected="F"
+        name="gpio2_outP"/>
+    <netportconnection connection="gpio_in"
+        mustbeconnected="F"
+        name="gpio_inP"/>
+    <netportconnection connection="gpio2_in"
+        mustbeconnected="F"
+        name="gpio2_inP"/>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

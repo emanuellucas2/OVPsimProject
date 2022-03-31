@@ -1,0 +1,39 @@
+<html lang="en">
+<link rel="icon" type="image/icon" href="/imperas.ico">
+
+<head>
+    <title>Imperas Simulation</title>
+    <meta   charset="utf-8"/>
+    <link   rel="stylesheet"        href="normal.css"   type="text/css"/>
+    <script language="JavaScript"   src="runtime.js"        ></script>
+</head>
+
+<body onload="startRefresh('/', 400);">
+
+    <fieldset><legend>Module processorResetControl</legend>
+        <table>
+            <tr>
+                <td class='ovplabel'>Module:</td>
+                <td class='ovptext' id="moduleInstName0" ></td>
+                <td class='ovplabel'>: Time :</td>
+                <td class='ovptext' id="moduleSimTime0" ></td>
+            </tr>
+            <tr>
+                <td class='ovplabel'>Reset Processor 1:</td>
+                <td><div class='ovpreset' id="reset1" onmousedown="ovpswitchclicked(event)" title='click to reset 1'></div></td>
+                <td class='ovptext' id="cpu1icount" ></td>
+            </tr>
+                <tr>
+                <td class='ovplabel'>Reset Processor 2:</td>
+                <td><div class='ovpreset' id="reset2" onmousedown="ovpswitchclicked(event)" title='click to reset 2'></div></td>
+                <td class='ovptext' id="cpu2icount" ></td>
+            </tr>
+            <tr><td><hr></td></tr>
+            <tr><td class='ovplabel'>Power Button </td></tr>
+            <tr><td><div class='ovppower' id="power0" onmousedown="ovpswitchclicked(event)" title='click to quit simulation'>SIMULATION NOT RUNNING</div></td></tr>
+        </table>
+    </fieldset>
+    
+<div class='console' id='console'></div>
+</body>
+</html>

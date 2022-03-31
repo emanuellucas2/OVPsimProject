@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    extensionfile="model"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="ucd9248"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="ti.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Texas Instruments UCD9248 peripheral"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model was created to satisfy the requirement of the European SafePower Project"/>
+        <doctext name="txt_1"
+            text="This model implements a basic interface allowing temperature monitor values on the SafePower projects utilization of zc706 boards."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Device information from http://www.ti.com/lit/ds/symlink/ucd9248.pdf with PMBUS Command Information from http://www.ti.com/lit/ug/sluu337/sluu337.pdf"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="iic"
+        size="0x1">
+        <addressblock name="reg"
+            size="0x1"
+            width="8">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="reg"
+                nbyte="F"
+                offset="0x0"
+                readfunction="readI2C"
+                width="8"
+                writefunction="writeI2C"/>
+        </addressblock>
+    </busslaveport>
+    <formalattribute name="config"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The configuration file defining default values and Voltage Monitor names"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="-12"
+        name="voutmode"
+        type="int32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the value to read for VOUT_MODE (default -12)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="0"
+        name="statusmfrspecific"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the value to read for STATUS_MFR_SPECIFIC (default 0)"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

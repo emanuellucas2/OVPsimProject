@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <semihostlibrary imagefile="model"
+    library="intercept"
+    name="functions"
+    releasestatus="0"
+    vendor="xilinx.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Xilinx library utility function overrides, e.g. myusleep"/>
+    </docsection>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </semihostlibrary>

@@ -1,0 +1,16 @@
+install Imperas.iGen
+install eGui_Eclipse
+# Building OVP modules, peripherals, processors
+build Imperas.iGen
+build OVPpse.toolchain
+# Building Imperas interception library
+buildimp Imperas_SDK
+# Running with Imperas interception library
+runimp RUNTIME CpuManager
+runimp Imperas_SDK
+# execute Imperas debugger
+debug RUNTIME CpuManager
+debug Imperas_SDK
+debug Imperas.RemoteDebugger
+debug OVPpse.toolchain
+debug or1k.toolchain

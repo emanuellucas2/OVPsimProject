@@ -1,0 +1,116 @@
+/*
+ *
+ * Copyright (c) 2005-2021 Imperas Software Ltd., www.imperas.com
+ *
+ * The contents of this file are provided under the Software License
+ * Agreement that you accepted before downloading this file.
+ *
+ * This source forms part of the Software and can be used for educational,
+ * training, and demonstration purposes but cannot be used for derivative
+ * works except in cases where the derivative works require OVP technology
+ * to run.
+ *
+ * For open source models released under licenses that you can use for
+ * derivative works, please visit www.OVPworld.org or www.imperas.com
+ * for the location of the open source models.
+ *
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// UART Peripheral Base Address
+#define UART0_BASE ((unsigned char *) 0x100003f8)
+
+// Peripheral Register Macros Definition
+#define BPORT1 UART0_BASE
+#include "freescale.ovpworld.org/peripheral/KinetisUART/1.0/pse/pse.macros.igen.h"
+
+volatile unsigned char *ab_BDH    = BPORT1_AB_BDH;
+volatile unsigned char *ab_BDL    = BPORT1_AB_BDL;
+volatile unsigned char *ab_C1     = BPORT1_AB_C1;
+volatile unsigned char *ab_C2     = BPORT1_AB_C2;
+volatile unsigned char *ab_S1     = BPORT1_AB_S1;
+volatile unsigned char *ab_C3     = BPORT1_AB_C3;
+volatile unsigned char *ab_D      = BPORT1_AB_D;
+volatile unsigned char *ab_MA1    = BPORT1_AB_MA1;
+volatile unsigned char *ab_MA2    = BPORT1_AB_MA2;
+volatile unsigned char *ab_C4     = BPORT1_AB_C4;
+volatile unsigned char *ab_MODEM  = BPORT1_AB_MODEM;
+volatile unsigned char *ab_PFIFO  = BPORT1_AB_PFIFO;
+volatile unsigned char *ab_CFIFO  = BPORT1_AB_CFIFO;
+volatile unsigned char *ab_TWFIFO = BPORT1_AB_TWFIFO;
+volatile unsigned char *ab_RWFIFO = BPORT1_AB_RWFIFO;
+
+static void initFreeScaleKinetisUart () {
+
+    // programmers guide at https://www.element14.com/community/servlet/JiveServlet/previewBody/39326-102-1-223995/freescale.User_Guide_3.pdf
+    //     page 103
+    // defines found at www.keil.com/dd/docs/arm/freescale/kinetis/mkl34z4.h
+
+    printf ("applicationSend: Initializing KinetisUART\n");
+
+    // Initialization sequence from MQX configuration of the UART
+    *ab_BDH    = 0x00;
+    *ab_BDL    = 0x20;
+    *ab_C4     = 0x12;
+    *ab_C1     = 0x00;
+    *ab_C2     = 0x00;
+    *ab_C4     = 0x12;
+    *ab_MA1    = 0x00;
+    *ab_MA2    = 0x00;
+    *ab_C3     = 0x00;
+    *ab_TWFIFO = 0x00;
+    *ab_RWFIFO = 0x01;
+    *ab_C2     = 0x00;
+    *ab_PFIFO  = 0x88;
+    *ab_CFIFO  = 0xc0;
+    *ab_C2     = 0x0c;
+    *ab_MODEM  = 0x00;
+    *ab_S1     = 0xd0;
+    *ab_D      = 0x0d;
+}
+
+static void putChar(char c) {
+    while ((*ab_S1 & BPORT1_AB_S1_TDRE) == 0) { }
+    *ab_D = c;
+}
+
+static void putString (const char *myString) {
+
+    char c;
+    while((c = *myString++)) {
+        putChar(c);
+    }
+}
+
+static void sleep(int s) {
+
+    while(s--) {
+        int t;
+        for(t = 0; t < 10000000; t++) {
+            int y = t;
+            t = y;
+        }
+    }
+}
+
+int main(int argc, char **argv) {
+
+    initFreeScaleKinetisUart();
+
+    const char *message = "Hello UART0 world";
+
+    printf ("applicationSend: Writing to uart [%s]\n\n", message);
+
+    while(1) {
+        putString(message);
+        sleep(1);
+    }
+
+    return 0;
+}
+
+
+

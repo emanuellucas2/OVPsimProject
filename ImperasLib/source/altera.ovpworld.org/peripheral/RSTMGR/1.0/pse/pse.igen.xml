@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="RSTMGR"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="altera.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Altera Cyclone V Reset Manager"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Only register mpumodrst cpu0 and cpu1 reset functionality is implemented"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Cyclone V Device Handbook Volume 3: Hard Processor System Technical Reference Manual cv_5v4 2013.12.30"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="REGS"
+            size="0x24"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="stat"
+                nbyte="F"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ctrl"
+                nbyte="F"
+                offset="0x4"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00100000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="counts"
+                nbyte="F"
+                offset="0x8"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00080080"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="mpumodrst"
+                nbyte="F"
+                offset="0x10"
+                width="32"
+                writefunction="Writempumodrst">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000002"/>
+                <field access="rw"
+                    name="cpu0"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="cpu1"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="permodrst"
+                nbyte="F"
+                offset="0x14"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x3fffffff"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="per2modrst"
+                nbyte="F"
+                offset="0x18"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x000000ff"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="brgmodrst"
+                nbyte="F"
+                offset="0x1c"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000007"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="miscmodrst"
+                nbyte="F"
+                offset="0x20"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="cpu0Reset"
+        type="output"/>
+    <netport name="cpu1Reset"
+        type="output"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

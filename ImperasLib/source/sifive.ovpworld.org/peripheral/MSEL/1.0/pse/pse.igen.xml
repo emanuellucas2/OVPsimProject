@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="MSEL"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="sifive.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Mode Select reset module. Entered on reset and calls boot code based on MSEL pin state. 
+Override the MSEL parameter to specify the initial value for the MSEL pin state (default 0xf). 
+From application code or debugger write to the MSEL register at offset 0 to change the MSEL pin state."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="None"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="SiFive Freedom U540-C000 Manual FU540-C000-v1.0.pdf (https://www.sifive.com/documentation/chips/freedom-u540-c000-manual)"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="REG"
+            size="0x4"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MSEL"
+                nbyte="F"
+                offset="0x0"
+                width="32"
+                writemask="15"/>
+        </addressblock>
+        <addressblock name="CODE"
+            offset="0x4"
+            size="0x20"
+            width="32">
+            <localmemory access="r"
+                name="RESET"
+                size="0x20"/>
+        </addressblock>
+        <addressblock name="TABLE"
+            offset="0x100"
+            size="0x80"
+            width="32">
+            <localmemory access="r"
+                name="JUMPADDR"
+                size="0x80"/>
+        </addressblock>
+    </busslaveport>
+    <formalattribute defaultvalue="0xf"
+        max="0xf"
+        min="0"
+        name="MSEL"
+        type="uns32"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

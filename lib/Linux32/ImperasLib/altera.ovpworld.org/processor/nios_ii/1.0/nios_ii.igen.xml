@@ -1,0 +1,970 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <processor QLQualified="T"
+    defaultsemihostlibrary="semihosting"
+    defaultsemihostname="nios_iiNewlib"
+    defaultsemihostvendor="altera.ovpworld.org"
+    defaultsemihostversion="1.0"
+    elfcode="113"
+    endian="either"
+    family="ALTERA"
+    gdbpath="$IMPERAS_HOME/lib/$IMPERAS_ARCH/gdb/nios2-elf-gdb"
+    imagefile="model"
+    library="processor"
+    name="nios_ii"
+    procdoc="$IMPERAS_HOME/ImperasLib/source/altera.ovpworld.org/processor/nios_ii/1.0/doc/OVP_Model_Specific_Information_nios_ii_generic.pdf"
+    releasestatus="4"
+    useindefaultplatform="F"
+    vendor="altera.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Nios_II Family Processor Model."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="No Custom instructions."/>
+        <doctext name="txt_1"
+            text="No Cache model."/>
+        <doctext name="txt_2"
+            text="No JTAG."/>
+        <doctext name="txt_3"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Verification">
+        <doctext name="txt"
+            text="Models have been extensively tested by Imperas, and validated against tests from Altera."/>
+    </docsection>
+    <docsection name="doc_4"
+        text="Features">
+        <doctext name="txt"
+            text="Barrel Shifter."/>
+        <doctext name="txt_1"
+            text="Configurable MPU."/>
+        <doctext name="txt_2"
+            text="Configurable MMU."/>
+        <doctext name="txt_3"
+            text="Shadow Register Sets."/>
+        <doctext name="txt_4"
+            text="Hardware Multiply."/>
+        <doctext name="txt_5"
+            text="Hardware Divide."/>
+        <doctext name="txt_6"
+            text="Hardware Extended Multiply."/>
+    </docsection>
+    <formalattribute name="variant"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Selects variant (either a generic UISA or a specific model)"/>
+        </docsection>
+        <enum name="Nios_II_F"
+            value="0"/>
+        <enum name="Nios_II_S"
+            value="1"/>
+        <enum name="Nios_II_E"
+            value="2"/>
+    </formalattribute>
+    <formalattribute name="verbose"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify verbose output messages"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="TEST_MODE_EXIT"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable Test mode exit for instruction, cmpltui r0, r0, (0xabc1||0xabc2)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="TEST_HALT_EXIT"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable a Halt on &quot;br 0&quot;, branch to self"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="INST_ADDR_WIDTH"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Instruction bus Width"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="DATA_ADDR_WIDTH"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Data bus Width"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="HW_MULTIPLY"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Hardware Multiply"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="HW_MULX"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Hardware Extended Multiply"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="HW_DIVIDE"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Hardware Divide"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="RESET_VECTOR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Reset Vector Address"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="EXCEPTION_VECTOR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Exception Vector Address"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="BREAK_VECTOR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Break Vector Address"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="INCLUDE_MMU"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="MMU Available"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="FAST_TLB_MISS_EXCEPTION_VECTOR"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Fast TLB Exception Vector Address"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="INCLUDE_MPU"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="MPU Available"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="INCLUDE_CPURESETREQUEST"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="CPU Reset Request Signal"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="INCLUDE_CPURESETTAKEN"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="CPU Reset Taken Signal"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="CPUID_CONTROL_VALUE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="CPUID Control Register Value"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="EXCEPTION_ILLEGAL_INSTRUCTION"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Generate Illegal Instruction Exception"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="EXCEPTION_DIVISION_ERROR"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Generate Division Error Exception"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="EXCEPTION_MISALIGNED_MEMORY_ACCESS"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Generate Misaligned Memory Access Exception"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="EXCEPTION_EXTRA_INFORMATION"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Generate Extra Exception information"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="INTERRUPT_CONTROLLER_INTERFACE"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Interrupt Controller Interface"/>
+        </docsection>
+        <enum name="Internal"
+            value="0"/>
+        <enum name="External"
+            value="1"/>
+    </formalattribute>
+    <formalattribute name="NUMBER_SHADOW_REGISTER_SETS"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Number of Shadow Register Sets"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="HARDCOPY_COMPATIBILITY"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Hardcopy Compatibility"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="MMU_PID_BITS"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="MMU Process ID (PID) Bits"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="MMU_OPTIMIZE_NUMBER_OF_TLB_ENTRIES"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="MMU Optimize Number of TLB Entries based on device family"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="MMU_TLB_ENTRIES"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="MMU TLB Entries"/>
+        </docsection>
+        <enum name="128"
+            value="0"/>
+        <enum name="256"
+            value="1"/>
+        <enum name="512"
+            value="2"/>
+        <enum name="1024"
+            value="3"/>
+    </formalattribute>
+    <formalattribute name="MMU_TLB_SET_ASSOCIATIVITY"
+        type="enumeration">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="MMU TLB Entries"/>
+        </docsection>
+        <enum name="8"
+            value="0"/>
+        <enum name="16"
+            value="1"/>
+    </formalattribute>
+    <formalattribute name="MMU_MICRO_DTLB_ENTRIES"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="MMU Micro data TLB Entries"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="MMU_MICRO_ITLB_ENTRIES"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="MMU Micro instruction TLB Entries"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="MPU_USE_LIMIT_FOR_REGION_RANGE"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Controls Memory"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="MPU_NUMBER_DATA_REGIONS"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Number of Data Regions to Allocate"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="MPU_MINIMUM_DATA_REGION_SIZE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Minimum Data Region Size 64Bytes to 1MBytes (power of 2)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="MPU_NUMBER_INSTRUCTION_REGIONS"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Number of Instruction Regions to Allocate"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="MPU_MINIMUM_INSTRUCTION_REGION_SIZE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Minimum Instruction Region Size 64Bytes to 1MBytes (power of 2)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="CUSTOM_FP_DIVISION"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable Custom Hardware for FP Division Instruction"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="CUSTOM_BITSWAP"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable Custom Hardware for Bit Swap Instruction"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="CUSTOM_ENDIAN_CONVERT"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable Custom Hardware for Endian Conversion Instruction"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="CUSTOM_INTERRUPT_VECTOR"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable Custom Interrupt Vector Instruction"/>
+        </docsection>
+    </formalattribute>
+    <busmasterport addresswidth="32"
+        addresswidthmax="32"
+        addresswidthmin="32"
+        mustbeconnected="T"
+        name="INSTRUCTION"/>
+    <busmasterport addresswidth="32"
+        addresswidthmax="32"
+        addresswidthmin="32"
+        mustbeconnected="F"
+        name="DATA"/>
+    <netport mustbeconnected="F"
+        name="reset_n"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq0"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq1"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq2"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq3"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq4"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq5"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq6"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq7"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq8"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq9"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq10"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq11"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq12"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq13"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq14"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq15"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq16"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq17"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq18"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq19"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq20"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq21"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq22"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq23"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq24"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq25"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq26"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq27"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq28"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq29"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq30"
+        type="input"/>
+    <netport mustbeconnected="F"
+        name="d_irq31"
+        type="input"/>
+    <command name="dumpTLB">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Display the current contents of the TLB"/>
+        </docsection>
+    </command>
+    <command name="isync">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="specify instruction address range for synchronous execution"/>
+        </docsection>
+        <commandarg name="addresshi"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="end address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="addresslo"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="start address of synchronous execution range"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <command name="itrace">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="enable or disable instruction tracing"/>
+        </docsection>
+        <commandarg name="after"
+            type="Uns64">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="apply after this many instructions"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="enable"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="instructioncount"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="include the instruction number in each trace"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="memory"
+            type="String">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show memory accesses by this instruction. Argument can be any combination of X (execute), L (load or store access) and S (system)"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="off"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="disable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="on"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="enable instruction tracing"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="processorname"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Include processor name in all trace lines"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registerchange"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers changed by this instruction"/>
+            </docsection>
+        </commandarg>
+        <commandarg name="registers"
+            type="Boolean">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="show registers after each trace"/>
+            </docsection>
+        </commandarg>
+    </command>
+    <exceptions name="Exceptions">
+        <exception code="0"
+            name="NONE"/>
+        <exception code="1"
+            name="RESET"/>
+        <exception code="2"
+            name="HARDWARE_BREAK"/>
+        <exception code="4"
+            name="PROCESSOR_ONLY_RESET_REQUEST"/>
+        <exception code="8"
+            name="INTERNAL_INTERRUPT"/>
+        <exception code="16"
+            name="EXTERNAL_NONMASKABLE_INTERRUPT"/>
+        <exception code="32"
+            name="EXTERNAL_MASKABLE_INTERRUPT"/>
+        <exception code="64"
+            name="SUPERVISOR_ONLY_INSTRUCTION_ADDRESS"/>
+        <exception code="128"
+            name="FAST_TLB_MISS_INSTRUCTION"/>
+        <exception code="256"
+            name="DOUBLE_TLB_MISS_INSTRUCTION"/>
+        <exception code="512"
+            name="TLB_PERMISSION_VIOLATION_EXECUTE"/>
+        <exception code="1024"
+            name="MPU_REGION_VIOLATION_INSTRUCTION"/>
+        <exception code="2048"
+            name="SUPERVISOR_ONLY_INSTRUCTION"/>
+        <exception code="4096"
+            name="TRAP_INSTRUCTION"/>
+        <exception code="8192"
+            name="ILLEGAL_INSTRUCTION"/>
+        <exception code="16384"
+            name="UNIMPLEMENTED_INSTRUCTION"/>
+        <exception code="32768"
+            name="BREAK_INSTRUCTION"/>
+        <exception code="65536"
+            name="SUPERVISOR_ONLY_DATA_ADDRESS"/>
+        <exception code="131072"
+            name="MISALIGNED_DATA_ADDRESS"/>
+        <exception code="262144"
+            name="MISALIGNED_DESTINATION_ADDRESS"/>
+        <exception code="524288"
+            name="DIVISION_ERROR"/>
+        <exception code="1048576"
+            name="FAST_TLB_MISS_DATA"/>
+        <exception code="2097152"
+            name="DOUBLE_TLB_MISS_DATA"/>
+        <exception code="4194304"
+            name="TLB_PERMISSION_VIOLATION_READ"/>
+        <exception code="8388608"
+            name="TLB_PERMISSION_VIOLATION_WRITE"/>
+        <exception code="16777216"
+            name="MPU_REGION_VIOLATION_DATA"/>
+    </exceptions>
+    <modes name="Modes">
+        <mode code="0"
+            name="VM_MODE_KERNEL">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Supervisor Mode"/>
+            </docsection>
+        </mode>
+        <mode code="1"
+            name="VM_MODE_USER">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="User Mode"/>
+            </docsection>
+        </mode>
+        <mode code="2"
+            name="VM_MODE_KERNEL_MPU">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="Supervisor Mode MPU"/>
+            </docsection>
+        </mode>
+        <mode code="3"
+            name="VM_MODE_USER_MPU">
+            <docsection name="doc"
+                text="Description">
+                <doctext name="txt"
+                    text="User Mode MPU"/>
+            </docsection>
+        </mode>
+    </modes>
+    <registers name="User">
+        <register alias="F"
+            name="zero"
+            readonly="T"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="at"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r2"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r3"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r4"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r5"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r7"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r8"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r9"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r10"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r11"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r12"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r13"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r14"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r15"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r16"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r17"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r18"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r19"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r20"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r21"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r22"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="r23"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="et"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="bt"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="gp"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="sp"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="fp"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="ea"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="ba"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="ra"
+            readonly="F"
+            type="4"
+            width="32"/>
+    </registers>
+    <registers name="System">
+        <register alias="F"
+            name="PC"
+            readonly="F"
+            type="1"
+            width="32"/>
+        <register alias="F"
+            name="status"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="estatus"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="bstatus"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="ienable"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="ipending"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="cpuid"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="ctl6"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="except"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="pteaddr"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="tlbacc"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="tlbmisc"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="eccinj"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="badaddr"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="config"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mpubase"
+            readonly="F"
+            type="0"
+            width="32"/>
+        <register alias="F"
+            name="mpuacc"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <registers name="Integration_support">
+        <register alias="F"
+            name="stop"
+            readonly="F"
+            type="0"
+            width="32"/>
+    </registers>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </processor>

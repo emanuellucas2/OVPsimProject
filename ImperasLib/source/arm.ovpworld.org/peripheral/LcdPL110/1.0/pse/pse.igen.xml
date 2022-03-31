@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    extensionfile="model"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="LcdPL110"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="arm.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="ARM PL110 LCD Controller"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="The VGA display refresh is not optimised resulting in the VGA peripheral causing a limit on the maximum performance of a platform it contains to be around 300 MIPS (actual dependent upon refresh rate of LCD)."/>
+        <doctext name="txt_1"
+            text="The LCD peripheral utilises memory watchpoints to optimise display refresh. This requires the use of ICM memory for the frame buffers, which currently may stop its use in SystemC TLM2 platforms."/>
+        <doctext name="txt_2"
+            text="Interrupts are not supported"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="ARM PrimeCell Color LCD Controller (PL111) Technical Reference Manual (ARM DDI 0293)"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <formalattribute name="busOffset"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set an offset for the display memory window"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="20000"
+        name="scanDelay"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the rate of the display refresh (default 20000)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="noGraphics"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Disable the graphics output"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="vga"
+        name="resolution"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the resolution of the display. VGA (default), SVGA, XVGA/XGA."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="pixelChecksum"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Write a checksum of each screen contents"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="packedPixels"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Only valid when 24BPP used. Set to enable pixel packing in data buffer. Default 24 bit pixel stored in 32-bit data word."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="PL110 LCD"
+        name="title"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the title of the display window"/>
+        </docsection>
+    </formalattribute>
+    <busslaveport addresswidth="32"
+        name="memory"
+        remappable="T"/>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="timing0"
+                nbyte="F"
+                readfunction="readTiming"
+                userdata="0"
+                width="32"
+                writefunction="writeTiming">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="LCD Timing 0"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="timing1"
+                nbyte="F"
+                offset="0x4"
+                readfunction="readTiming"
+                userdata="1"
+                width="32"
+                writefunction="writeTiming">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="LCD Timing 1"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="timing2"
+                nbyte="F"
+                offset="0x8"
+                readfunction="readTiming"
+                userdata="2"
+                width="32"
+                writefunction="writeTiming">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="LCD Timing 2"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="timing3"
+                nbyte="F"
+                offset="0xc"
+                readfunction="readTiming"
+                userdata="3"
+                width="32"
+                writefunction="writeTiming">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="LCD Timing 3"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="upbase"
+                nbyte="F"
+                offset="0x10"
+                width="32"
+                writefunction="writeUP">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="LCD UP Base"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="lpbase"
+                nbyte="F"
+                offset="0x14"
+                width="32"
+                writefunction="writeLP">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="LCD LP Base"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="imsc"
+                nbyte="F"
+                offset="0x18"
+                readfunction="readIMSC"
+                width="32"
+                writefunction="writeIMSC">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="LCD IMSC"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="control"
+                nbyte="F"
+                offset="0x1c"
+                readfunction="readControl"
+                width="32"
+                writefunction="writeControl">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="LCD Control"/>
+                </docsection>
+                <field access="rw"
+                    name="EN"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="8"
+                    name="BGR"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="9"
+                    name="BEBO"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="10"
+                    name="BEPO"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="11"
+                    name="PWR"
+                    width="1"/>
+                <field bitoffset="1"
+                    name="__pad1"
+                    width="7"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="int_status"
+                nbyte="F"
+                offset="0x20"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="LCD RIS"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="int_mis"
+                nbyte="F"
+                offset="0x24"
+                readfunction="readMIS"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="LCD MIS"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="int_clr"
+                nbyte="F"
+                offset="0x28"
+                width="32"
+                writefunction="writeICR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="LCD ICR"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="upbase2"
+                nbyte="F"
+                offset="0x2c"
+                readfunction="readUP"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="LCD UP current"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="lpbase2"
+                nbyte="F"
+                offset="0x30"
+                readfunction="readLP"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="LCD LP current"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                hiarray="0x7"
+                isvolatile="T"
+                loarray="0x0"
+                name="id%u"
+                nbyte="T"
+                offset="0xfe0"
+                readfunction="readID"
+                userdata="_index"
+                width="32"/>
+        </addressblock>
+    </busslaveport>
+    <netport name="irq"
+        type="output"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

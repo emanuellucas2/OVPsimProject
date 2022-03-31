@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    extensionfile="model"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="frameBuffer"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="imperas.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Provides Frame Buffer output."/>
+        <doctext name="txt_1"
+            text="Supports frame buffer formats used in Neural Network demo application i.e. RGB565 16-bit float for Alexnet application."/>
+    </docsection>
+    <netport name="reset"
+        type="input"/>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="mp"
+        remappable="T"/>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="sp"
+        size="0x1000">
+        <addressblock name="A"
+            size="0x1000"
+            width="32">
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="FB_SET_BASE"
+                nbyte="F"
+                width="32"
+                writefunction="writeBASE">
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="FB_SET_BLANK"
+                nbyte="F"
+                offset="0x10"
+                width="32"
+                writefunction="writeBLANK">
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="FB_SET_TITLE"
+                nbyte="F"
+                offset="0x20"
+                width="32"
+                writefunction="writeTITLE">
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <formalattribute name="noGraphics"
+        type="bool"/>
+    <formalattribute name="pixelChecksum"
+        type="bool"/>
+    <formalattribute defaultvalue="20000"
+        name="period"
+        type="uns32"/>
+    <formalattribute name="title"
+        type="string"/>
+    <formalattribute name="statsOutput"
+        type="uns32"/>
+    <formalattribute name="frameType"
+        type="uns32"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

@@ -1,0 +1,3 @@
+install RUNTIME OVPsim CpuManager
+# We make use of this demo so it must be installed
+install Demo_Linux_ARMv8-A-FMv1

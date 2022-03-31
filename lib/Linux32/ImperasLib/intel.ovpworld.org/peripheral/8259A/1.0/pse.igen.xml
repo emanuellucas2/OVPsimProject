@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="8259A"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="intel.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Intel 8259A Programmable Interrupt Controller (PIT)."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model has sufficient functionality to allow a Linux Kernel to Boot on the MIPS:MALTA platform."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Intel 8259A Datasheet. MIPS Malta Platform Reference Guide."/>
+    </docsection>
+    <busmasterport addresswidth="3"
+        addresswidthmax="0"
+        addresswidthmin="3"
+        name="cascade"/>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="io"
+        size="0x2">
+        <addressblock name="reg"
+            size="0x2"
+            width="8">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="io0"
+                nbyte="F"
+                readfunction="CB_ior0"
+                width="8"
+                writefunction="CB_iow0"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="io1"
+                nbyte="F"
+                offset="0x1"
+                readfunction="CB_ior1"
+                width="8"
+                writefunction="CB_iow1"/>
+        </addressblock>
+    </busslaveport>
+    <busslaveport addresswidth="32"
+        name="PCIackS"
+        size="0x1"/>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="elcr"
+        size="0x1"/>
+    <netport name="ir0"
+        type="input"/>
+    <netport name="ir1"
+        type="input"/>
+    <netport name="ir2"
+        type="input"/>
+    <netport name="ir3"
+        type="input"/>
+    <netport name="ir4"
+        type="input"/>
+    <netport name="ir5"
+        type="input"/>
+    <netport name="ir6"
+        type="input"/>
+    <netport name="ir7"
+        type="input"/>
+    <netport name="cas"
+        type="inout"/>
+    <netport mustbeconnected="T"
+        name="intp"
+        type="output"/>
+    <formalattribute name="spen"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Configure the PIC as a &quot;master&quot; or &quot;slave&quot;"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

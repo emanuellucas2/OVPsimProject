@@ -1,0 +1,4 @@
+install RUNTIME CpuManager
+install Imperas.harness
+# Professional products needed for install of performance monitor extension library
+install Imperas_DEV Imperas_SDK

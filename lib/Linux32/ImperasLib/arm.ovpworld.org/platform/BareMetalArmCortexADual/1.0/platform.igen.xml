@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw clp="T"
+    clpAllArgs="T"
+    clpExtArgs="T"
+    clpStdArgs="T"
+    diagnostics="F"
+    httpvis="F"
+    library="platform"
+    name="BareMetalArmCortexADual"
+    purpose="0"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="arm.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Bare Metal Platform for an ARM Cortex-A series Processor (default Cortex-A9UP).
+    The bare metal platform instantiates two ARM Cortex-A series processor instances. 
+    The processor operates using little endian data ordering.
+    It creates contiguous memory from 0x00000000 to 0xFFFFFFFF.
+    The platform can be passed any application compiled to an ARM elf format. The
+    same application executes on each processor. There is no sharing of data.
+    It may also be passed a new variant to be used (default Cortex-A9UP)
+    ./platform.OS.exe application.CROSS.elf [model variant]"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="BareMetal platform for execution of ARM binary files compiled with Linaro 32-bit CrossCompiler toolchain for Cortex-A."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="None"/>
+    </docsection>
+    <processorinstance enableintercepts="T"
+        endian="little"
+        id="0"
+        name="cpu0">
+        <vlnvreference name="arm"
+            vendor="arm.ovpworld.org"/>
+        <extlibrary directLoad="T"
+            name="armNewlib_0">
+            <vlnvreference name="armNewlib"
+                vendor="arm.ovpworld.org"/>
+        </extlibrary>
+        <attribute content="Cortex-A9UP"
+            name="variant"/>
+        <attribute content="nopSVC"
+            name="compatibility"/>
+        <attribute content="1"
+            name="UAL"/>
+        <busmasterportconnection connection="bus0"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus0"
+            name="DATA"/>
+    </processorinstance>
+    <bus addresswidth="32"
+        name="bus0"/>
+    <memoryinstance name="memory0">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus0"
+            hiaddress="0xffffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <processorinstance enableintercepts="T"
+        endian="little"
+        id="1"
+        name="cpu1">
+        <vlnvreference name="arm"
+            vendor="arm.ovpworld.org"/>
+        <extlibrary directLoad="T"
+            name="armNewlib_1">
+            <vlnvreference name="armNewlib"
+                vendor="arm.ovpworld.org"/>
+        </extlibrary>
+        <attribute content="Cortex-A9UP"
+            name="variant"/>
+        <attribute content="nopSVC"
+            name="compatibility"/>
+        <attribute content="1"
+            name="UAL"/>
+        <busmasterportconnection connection="bus1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus1"
+            name="DATA"/>
+    </processorinstance>
+    <bus addresswidth="32"
+        name="bus1"/>
+    <memoryinstance name="memory1">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0xffffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

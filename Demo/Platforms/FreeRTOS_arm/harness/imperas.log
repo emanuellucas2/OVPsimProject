@@ -1,0 +1,77 @@
+Info Session started: Thu Mar 31 15:06:00 2022
+
+Info ------------- ENVIRONMENT -------------
+Info IMPERAS_ARCH                             = Linux32
+Info IMPERAS_HOME                             = /home/emanuel/Imperas.20211118/
+Info IMPERAS_ISS                              = iss.exe
+Info IMPERAS_M32                              = 1
+Info IMPERAS_SHRSUF                           = so
+Info IMPERAS_UNAME                            = Linux
+Info IMPERAS_VLNV                             = /home/emanuel/Imperas.20211118//lib/Linux32/ImperasLib
+Info LD_LIBRARY_PATH                          = :/home/emanuel/Imperas.20211118//bin/Linux32
+Info --------------------------------------
+Info -------- FLAGS (from harness.exe)
+Info --verbose
+Info --output  imperas.log
+Info --modulefile  ../module/model.Linux32.so
+Info --override  ArmCortexMFreeRTOS/cpu1/mips=12
+Info --program  ../FreeRTOS/FreeRTOSDemo.ARM_CORTEX_M3.elf
+Info --httpvis
+Info --override  ArmCortexMFreeRTOS/led/httpvisportnum=8000
+Info --override  ArmCortexMFreeRTOS/sw/httpvisportnum=8001
+Info --wallclock
+Info --------------------------------------
+
+
+OVPsim (32-Bit) v20211118.0 Open Virtual Platform simulator from www.OVPworld.org.
+Copyright (c) 2005-2021 Imperas Software Ltd.  Contains Imperas Proprietary Information.
+Licensed Software, All Rights Reserved.
+Visit www.IMPERAS.com for multicore debug, verification and analysis solutions.
+
+OVPsim started: Thu Mar 31 15:06:00 2022
+
+
+Info (HTTP_PORT) 'ArmCortexMFreeRTOS/led' listening on port 8000
+Info (HTTP_PORT) 'ArmCortexMFreeRTOS/sw' listening on port 8001
+Info (PSE_SER) 'ArmCortexMFreeRTOS/UART0' Server connected to 44075
+Info (UART) ArmCortexMFreeRTOS/UART0: Loopback mode enabled
+Info (OR_OF) Target 'ArmCortexMFreeRTOS/cpu1' has object file read from '../FreeRTOS/FreeRTOSDemo.ARM_CORTEX_M3.elf'
+Info (OR_PH) Program Headers:
+Info (OR_PH) Type           Offset     VirtAddr   PhysAddr   FileSiz    MemSiz     Flags Align
+Info (OR_PD) LOAD           0x00008000 0x00000000 0x00000000 0x00002268 0x00002c5c RWE   8000
+Info (PSE_SER) 'ArmCortexMFreeRTOS/UART0' Socket disconnected - terminating simulation
+Info (PSE_SER) 'ArmCortexMFreeRTOS/UART0' Disconnected from port 44075
+Info 
+Info ---------------------------------------------------
+Info PSE SIMULATION TIME STATISTICS
+Info    0.09 seconds: PSE 'ArmCortexMFreeRTOS/UART0' (and 1 terminated thread, 286 terminated callbacks)
+Info    0.00 seconds: PSE 'ArmCortexMFreeRTOS/sw' (and 14 terminated callbacks)
+Info    0.02 seconds: PSE 'ArmCortexMFreeRTOS/led' (and 170 terminated callbacks)
+Info ---------------------------------------------------
+Info 
+Info ---------------------------------------------------
+Info CPU 'ArmCortexMFreeRTOS/cpu1' STATISTICS
+Info   Type                  : armm (Cortex-M3)
+Info   Nominal MIPS          : 12
+Info   Final program counter : 0x1ec8
+Info   Simulated instructions: 85,963,681
+Info   Simulated MIPS        : 134.3
+Info ---------------------------------------------------
+Info 
+Info ---------------------------------------------------
+Info SIMULATION TIME STATISTICS
+Info   Simulated time        : 7.16 seconds
+Info   User time             : 0.58 seconds
+Info   System time           : 0.06 seconds
+Info   Elapsed time          : 7.21 seconds
+Info   Host utilization      : 8.9% (wallclock enabled)
+Info ---------------------------------------------------
+
+OVPsim finished: Thu Mar 31 15:06:07 2022
+
+
+OVPsim (32-Bit) v20211118.0 Open Virtual Platform simulator from www.OVPworld.org.
+Visit www.IMPERAS.com for multicore debug, verification and analysis solutions.
+
+Info Session ended: Thu Mar 31 15:06:07 2022
+

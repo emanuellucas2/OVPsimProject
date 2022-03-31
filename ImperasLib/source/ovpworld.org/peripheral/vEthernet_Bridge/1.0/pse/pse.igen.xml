@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="vEthernet_Bridge"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Bridges between a packetnet and the host&apos;s network"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="None."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="This is not based upon the operation of a real device but is used in a virtual platform to connect the internal virtual Ethernet bus to the host network."/>
+    </docsection>
+    <packetnetport maxbytes="1524"
+        mustbeconnected="F"
+        name="phyBridge"
+        updatefunction="pktTrigger"
+        updatefunctionargument="0">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The port to connect the packetnet virtual network"/>
+        </docsection>
+    </packetnetport>
+    <formalmacro name="BHM_ETHERNET_OPEN_AUTO_FORMALS"/>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

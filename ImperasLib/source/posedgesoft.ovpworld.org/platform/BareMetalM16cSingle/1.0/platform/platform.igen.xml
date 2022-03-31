@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw clp="T"
+    clpAllArgs="T"
+    clpExtArgs="T"
+    clpStdArgs="T"
+    diagnostics="F"
+    httpvis="F"
+    library="platform"
+    name="BareMetalM16cSingle"
+    purpose="0"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="posedgesoft.ovpworld.org"
+    verbose="T"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Bare Metal Platform for an M16C Processor.
+    The bare metal platform instantiates a single M16C processor instance. 
+    The processor operate using big endian data ordering.
+    It creates contiguous memory from 0x00000000 to 0xFFFFFFFF.
+    The platform can be passed any application compiled to an M16C elf format.
+    ./platform.&lt;OS&gt;.exe --program application.elf"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="BareMetal platform for execution of M16C binary files compiled with M16C CrossCompiler toolchain."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="None, baremetal platform definition"/>
+    </docsection>
+    <processorinstance mips="20.0"
+        name="cpu1">
+        <vlnvreference library="processor"
+            name="m16c"
+            vendor="posedgesoft.ovpworld.org"
+            version="1.0"/>
+        <extlibrary directLoad="T"
+            name="m16cNewlib_0">
+            <vlnvreference name="m16cNewlib"
+                vendor="posedgesoft.ovpworld.org"/>
+        </extlibrary>
+        <busmasterportconnection connection="bus1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus1"
+            name="DATA"/>
+    </processorinstance>
+    <bus addresswidth="32"
+        name="bus1"/>
+    <memoryinstance name="memory">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0xffffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

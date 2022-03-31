@@ -1,0 +1,27 @@
+var ocliaTyperefs_8h =
+[
+    [ "octiaAttrP", "ocliaTyperefs_8h.html#a9fd0b51669f4808a66916e3e9e543f49", null ],
+    [ "octiaAttrPP", "ocliaTyperefs_8h.html#ac1682a2e7789f3709084d2013c24bb5d", null ],
+    [ "octiaFetchRecordP", "ocliaTyperefs_8h.html#a5e4ddb9db21b99b1061c7a225c0202b3", null ],
+    [ "octiaFetchRecordPP", "ocliaTyperefs_8h.html#a1c0c9439c40218c0f79476cca9623096", null ],
+    [ "octiaRawRangeP", "ocliaTyperefs_8h.html#a49b6dd0364694b78714736fefba0fff9", null ],
+    [ "octiaRawRangePP", "ocliaTyperefs_8h.html#ae9626ce60ad9396d3e188487c02c3d9e", null ],
+    [ "octiaRegListP", "ocliaTyperefs_8h.html#a49eaf615d2d590ff0c6efe88b36f33b2", null ],
+    [ "octiaRegListPP", "ocliaTyperefs_8h.html#afede25d2334352e2cbb8cf7bb5ee035e", null ],
+    [ "octiaNextPCP", "ocliaTyperefs_8h.html#a64ed4523d2a372230420c4e77166f873", null ],
+    [ "octiaNextPCPP", "ocliaTyperefs_8h.html#ab1ef02ed57f6457c3cff1494013957dc", null ],
+    [ "octiaMemAccessP", "ocliaTyperefs_8h.html#a1cb2d332330de51267332a0bc44bed1c", null ],
+    [ "octiaMemAccessPP", "ocliaTyperefs_8h.html#acc5a826a08084d81f15e7a9c170e8fc5", null ],
+    [ "octiaRegInfoP", "ocliaTyperefs_8h.html#a0ecc00f0b5312bc14ae187445b14de2b", null ],
+    [ "octiaRegInfoPP", "ocliaTyperefs_8h.html#afdbb8b8a0d3be0dbefeccb31c433173b", null ],
+    [ "octiaAddrExpExtendP", "ocliaTyperefs_8h.html#ada30d06bfbbdcf191f6d2cb8d454ea27", null ],
+    [ "octiaAddrExpExtendPP", "ocliaTyperefs_8h.html#aa14a9e9524a98198622d1513a87b04e2", null ],
+    [ "octiaAddrExpUnaryP", "ocliaTyperefs_8h.html#a7030d70ac47c76d79f000612a8943109", null ],
+    [ "octiaAddrExpUnaryPP", "ocliaTyperefs_8h.html#ada10630392454b88ba2a889cdc3b335c", null ],
+    [ "octiaAddrExpBinaryP", "ocliaTyperefs_8h.html#a9dcf669f4bdd480bddc3298cdeed9f09", null ],
+    [ "octiaAddrExpBinaryPP", "ocliaTyperefs_8h.html#a5868e752001c265b6bda930b005911f5", null ],
+    [ "octiaAddrExpLoadP", "ocliaTyperefs_8h.html#aaec6fc3873392a113de4256ddfd05fc7", null ],
+    [ "octiaAddrExpLoadPP", "ocliaTyperefs_8h.html#a5e64b0c798cc4b0cbc41011e94c29af5", null ],
+    [ "octiaAddrExpP", "ocliaTyperefs_8h.html#ab9aad7950d4f53cd384110554dc0d31c", null ],
+    [ "octiaAddrExpPP", "ocliaTyperefs_8h.html#abaa1ccd388cc1e5dffd250ba5b2d9327", null ]
+];

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="zynq_7000-tz_GPVsecurity"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="xilinx.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Zynq 7000 Trust Zone GPV Security Registers"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model implements the set of registers but no behavior."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Zynq-7000 TRM (https://www.xilinx.com/support/documentation/user_guides/ug585-Zynq-7000-TRM.pdf) and ug1019-zynq-trustzone"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x40">
+        <addressblock name="ab"
+            size="0x40"
+            width="32">
+            <localmemory name="buffer"
+                readfunction="regNoDefinitionRead"
+                size="0x40"
+                writefunction="regNoDefinitionWrite"/>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="security_gp0_axi"
+                nbyte="F"
+                offset="0x1c"
+                width="32"
+                writemask="1">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="M_AXI_GP0 security setting"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="security_gp1_axi"
+                nbyte="F"
+                offset="0x20"
+                width="32"
+                writemask="1">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="M_AXI_GP1 security setting"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="security_apb"
+                nbyte="F"
+                offset="0x28"
+                width="32"
+                writemask="1">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="APB boot secure setting port"/>
+                </docsection>
+                <field access="w"
+                    bitoffset="5"
+                    name="DDRC"
+                    width="1"/>
+                <field access="w"
+                    bitoffset="4"
+                    name="TTC1"
+                    width="1"/>
+                <field access="w"
+                    bitoffset="3"
+                    name="AFI3"
+                    width="1"/>
+                <field access="w"
+                    bitoffset="2"
+                    name="AFI2"
+                    width="1"/>
+                <field access="w"
+                    bitoffset="1"
+                    name="AFI1"
+                    width="1"/>
+                <field access="w"
+                    name="AFI0"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

@@ -1,0 +1,605 @@
+# Macro Assembler
+
+.macro ABSF_D_FIDr2r3 reg2 reg3
+    .word 0x045807e0 | ((\reg2&0x1f)<<12) | ((\reg3&0x1f)<<28)
+.endm
+
+.macro ABSF_S_FII reg2 reg3
+    .word 0x03fc07e0 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro ABSF_S_FISr2r3 reg2 reg3
+    .word 0x044807e0 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro ADD_F01 reg1 reg2
+    .short 0x01c0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro ADD_F02s reg2 simm
+    .short 0x0240 | ((\reg2&0x1f)<<11) | ((\simm&0x1f)<<0)
+.endm
+
+.macro ADDF_D_FID reg1 reg2 reg3
+    .word 0x047007e0 | ((\reg1&0x1f)<<1) | ((\reg2&0x1f)<<12) | ((\reg3&0x1f)<<28)
+.endm
+
+.macro ADDF_S_FI reg1 reg2 reg3
+    .word 0x03e807e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro ADDF_S_FIS reg1 reg2 reg3
+    .word 0x046007e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro ADDI_F06s reg1 reg2 simm
+    .word 0x00000600 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\simm&0xffff)<<16)
+.endm
+
+.macro ADF_F11b cccc reg1 reg2 reg3
+    .word 0x03a007e0 | ((\cccc&0xf)<<17) | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro AND_F01 reg1 reg2
+    .short 0x0140 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro ANDI_F06u reg1 reg2 uimm
+    .word 0x000006c0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\uimm&0xffff)<<16)
+.endm
+
+.macro BSH_F12b reg2 reg3
+    .word 0x034207e0 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro BSW_F12b reg2 reg3
+    .word 0x034007e0 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro Bcond_F03 cond sdisp
+    .short 0x0580 | ((\cond&0xf)<<0) | ((\sdisp&0x1ff)<<11)
+.endm
+
+.macro CALLT_F02b uimm
+    .short 0x0200 | ((\uimm&0x3f)<<0)
+.endm
+
+.macro CEILF_DL_FIDr2r3 reg2 reg3
+    .word 0x045407e0 | ((\reg2&0x1f)<<12) | ((\reg3&0x1f)<<28)
+.endm
+
+.macro CEILF_DUL_FIDr2r3 reg2 reg3
+    .word 0x045407f2 | ((\reg2&0x1f)<<12) | ((\reg3&0x1f)<<28)
+.endm
+
+.macro CEILF_DUW_FIDr2r3 reg2 reg3
+    .word 0x045007f2 | ((\reg2&0x1f)<<12) | ((\reg3&0x1f)<<28)
+.endm
+
+.macro CEILF_DW_FIDSr2r3 reg2 reg3
+    .word 0x045007e2 | ((\reg2&0x1f)<<12) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro CEILF_SL_FISDr2r3 reg2 reg3
+    .word 0x044407e2 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<28)
+.endm
+
+.macro CEILF_SUL_FISDr2r3 reg2 reg3
+    .word 0x044407f2 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<28)
+.endm
+
+.macro CEILF_SUW_FISr2r3 reg2 reg3
+    .word 0x044007f2 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro CEILF_SW_FISr2r3 reg2 reg3
+    .word 0x044007e2 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro CLR1_F08 bit reg1 sdisp
+    .word 0x000087c0 | ((\bit&0x7)<<11) | ((\reg1&0x1f)<<0) | ((\sdisp&0xffff)<<16)
+.endm
+
+.macro CLR1_F09rs2 reg1 reg2
+    .word 0x00e407e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro CMOV_F11b cccc reg1 reg2 reg3
+    .word 0x032007e0 | ((\cccc&0xf)<<17) | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro CMOV_F12a cccc reg2 reg3 simm
+    .word 0x030007e0 | ((\cccc&0xf)<<17) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27) | ((\simm&0x1f)<<0)
+.endm
+
+.macro CMOVF_D_FIDccc ccc reg1 reg2 reg3
+    .word 0x041007e0 | ((\ccc&0x7)<<17) | ((\reg1&0x1f)<<1) | ((\reg2&0x1f)<<12) | ((\reg3&0x1f)<<28)
+.endm
+
+.macro CMOVF_S_FISccc cccc reg1 reg2 reg3
+    .word 0x040007e0 | ((\cccc&0x7)<<17) | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro CMP_F01 reg1 reg2
+    .short 0x01e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro CMP_F02s reg2 simm
+    .short 0x0260 | ((\reg2&0x1f)<<11) | ((\simm&0x1f)<<0)
+.endm
+
+.macro CMPF_D_FIDcond ccc cond reg1 reg2
+    .word 0x043007e0 | ((\ccc&0x7)<<17) | ((\cond&0xf)<<27) | ((\reg1&0x1f)<<1) | ((\reg2&0x1f)<<12)
+.endm
+
+.macro CTRET_F10a
+    .word 0x014407e0
+.endm
+
+.macro CVT_SW_FII reg2 reg3
+    .word 0x036007e0 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro CVT_WS_FII reg2 reg3
+    .word 0x037007e0 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro DBRET_F10a
+    .word 0x014607e0
+.endm
+
+.macro DBTRAP_F01a
+    .short 0xf840
+.endm
+
+.macro DI_F10a
+    .word 0x016007e0
+.endm
+
+.macro DISPOSE_F13il1 list12 uimm5
+    .word 0x00000640 | ((\list12&0xfff)<<21) | ((\uimm5&0x1f)<<1)
+.endm
+
+.macro DISPOSE_F13il2 list12 reg1 uimm5
+    .word 0x00000640 | ((\list12&0xfff)<<21) | ((\reg1&0x1f)<<16) | ((\uimm5&0x1f)<<1)
+.endm
+
+.macro DIV_F11 reg1 reg2 reg3
+    .word 0x02c007e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro DIVF_S_FI reg1 reg2 reg3
+    .word 0x03e007e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro DIVH_F01 reg1 reg2
+    .short 0x0040 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro DIVH_F11 reg1 reg2 reg3
+    .word 0x028007e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro DIVHU_F11 reg1 reg2 reg3
+    .word 0x028207e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro DIVU_F11 reg1 reg2 reg3
+    .word 0x02c207e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro EI_F10a
+    .word 0x016087e0
+.endm
+
+.macro HALT_F10a
+    .word 0x012007e0
+.endm
+
+.macro HSH_F12b reg2 reg3
+    .word 0x034607e0 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro HSW_F12b reg2 reg3
+    .word 0x034407e0 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro JARL_F05a reg2 sdisp
+    .word 0x00000780 | ((\reg2&0x1f)<<11) | ((\sdisp&0x3fffff)<<0)
+.endm
+
+.macro JARL_F06sa reg1 simm
+    .word 0x000002e0 | ((\reg1&0x1f)<<0) | ((\simm&0x7fff)<<17)
+.endm
+
+.macro JMP_F01b reg1
+    .short 0x0060 | ((\reg1&0x1f)<<0)
+.endm
+
+.macro JMP_F06sa reg1 simm
+    .word 0x000006e0 | ((\reg1&0x1f)<<0) | ((\simm&0x7fff)<<17)
+.endm
+
+.macro JR_F05b sdisp
+    .word 0x00000780 | ((\sdisp&0x3fffff)<<0)
+.endm
+
+.macro JR_F06sb simm
+    .word 0x000002e0 | ((\simm&0x7fff)<<17)
+.endm
+
+.macro LDFC_FIVr2b reg2
+    .word 0x037e07e0 | ((\reg2&0x1f)<<11)
+.endm
+
+.macro LDFF_FIVr2a reg2
+    .word 0x037a07e0 | ((\reg2&0x1f)<<11)
+.endm
+
+.macro LDSR_F09rs1 reg1 reg2
+    .word 0x002007e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro LD_B_F07la reg1 reg2 sdisp
+    .word 0x00000700 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\sdisp&0xffff)<<16)
+.endm
+
+.macro LD_BU_F07c reg1 reg2 sdisp
+    .word 0x00010780 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\sdisp&0xffff)<<17)
+.endm
+
+.macro LD_H_F07lb reg1 reg2 sdisp
+    .word 0x00000720 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\sdisp&0xffff)<<17)
+.endm
+
+.macro LD_HU_F07lb reg1 reg2 sdisp
+    .word 0x000107e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\sdisp&0xffff)<<17)
+.endm
+
+.macro LD_W_F07lb reg1 reg2 sdisp
+    .word 0x00010720 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\sdisp&0xffff)<<17)
+.endm
+
+.macro MAC_F11a reg1 reg2 reg3 reg4
+    .word 0x03c007e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0xf)<<28) | ((\reg4&0xf)<<17)
+.endm
+
+.macro MACU_F11a reg1 reg2 reg3 reg4
+    .word 0x03e007e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0xf)<<28) | ((\reg4&0xf)<<17)
+.endm
+
+.macro MAXF_S_FI reg1 reg2 reg3
+    .word 0x03f407e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro MINF_S_FI reg1 reg2 reg3
+    .word 0x03f007e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro MOV_F01 reg1 reg2
+    .short 0x0000 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro MOV_F02s reg2 simm
+    .short 0x0200 | ((\reg2&0x1f)<<11) | ((\simm&0x1f)<<0)
+.endm
+
+    /* WARNING UNSUPPORTED SIZE 48 */
+.macro MOV_F06ua reg1 uimm
+    .word 0x000000000620 | ((\reg1&0x1f)<<0) | ((\uimm&0xffffffff)<<16)
+.endm
+
+.macro MOVEA_F06s reg1 reg2 simm
+    .word 0x00000620 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\simm&0xffff)<<16)
+.endm
+
+.macro MOVHI_F06u reg1 reg2 uimm
+    .word 0x00000640 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\uimm&0xffff)<<16)
+.endm
+
+.macro MUL_F11 reg1 reg2 reg3
+    .word 0x022007e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro MUL_F12s reg2 reg3 simm
+    .word 0x024007e0 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27) | ((\simm&0x1ff)<<18)
+.endm
+
+.macro MULF_S_FI reg1 reg2 reg3
+    .word 0x03ec07e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro MULH_F01 reg1 reg2
+    .short 0x00e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro MULH_F02s reg2 simm
+    .short 0x02e0 | ((\reg2&0x1f)<<11) | ((\simm&0x1f)<<0)
+.endm
+
+.macro MULHI_F06s reg1 reg2 simm
+    .word 0x000006e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\simm&0xffff)<<16)
+.endm
+
+.macro MULU_F11 reg1 reg2 reg3
+    .word 0x022207e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro MULU_F12u reg2 reg3 uimm
+    .word 0x024207e0 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27) | ((\uimm&0x1ff)<<18)
+.endm
+
+.macro NEGF_S_FII reg2 reg3
+    .word 0x03f807e0 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro NOP_F01a
+    .short 0x0000
+.endm
+
+.macro NOT_F01 reg1 reg2
+    .short 0x0020 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro NOT1_F08 bit reg1 sdisp
+    .word 0x000047c0 | ((\bit&0x7)<<11) | ((\reg1&0x1f)<<0) | ((\sdisp&0xffff)<<16)
+.endm
+
+.macro NOT1_F09rs2 reg1 reg2
+    .word 0x00e207e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro OR_F01 reg1 reg2
+    .short 0x0100 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro ORI_F06u reg1 reg2 uimm
+    .word 0x00000680 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\uimm&0xffff)<<16)
+.endm
+
+.macro PREPARE_F13li list12 uimm5
+    .word 0x00010780 | ((\list12&0xfff)<<21) | ((\uimm5&0x1f)<<1)
+.endm
+
+.macro PREPARE_F13li00 list12 uimm5
+    .word 0x00030780 | ((\list12&0xfff)<<21) | ((\uimm5&0x1f)<<1)
+.endm
+
+    /* WARNING UNSUPPORTED SIZE 48 */
+.macro PREPARE_F13li01 list12 simm uimm5
+    .word 0x0000000b0780 | ((\list12&0xfff)<<21) | ((\simm&0xffff)<<32) | ((\uimm5&0x1f)<<1)
+.endm
+
+    /* WARNING UNSUPPORTED SIZE 48 */
+.macro PREPARE_F13li10 list12 simm uimm5
+    .word 0x000000130780 | ((\list12&0xfff)<<21) | ((\simm&0xffffffff)<<32) | ((\uimm5&0x1f)<<1)
+.endm
+
+.macro PREPARE_F13li11 list12 simm uimm5
+    .quad 0x00000000001b0780 | ((\list12&0xfff)<<0) | ((\simm&0xffffffff)<<32) | ((\uimm5&0x1f)<<1)
+.endm
+
+.macro RETI_F10a
+    .word 0x014007e0
+.endm
+
+.macro SAR_F02u reg2 uimm
+    .short 0x02a0 | ((\reg2&0x1f)<<11) | ((\uimm&0x1f)<<0)
+.endm
+
+.macro SAR_F09rr reg1 reg2
+    .word 0x00a007e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro SAR_F11 reg1 reg2 reg3
+    .word 0x00a207e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro SASF_F09 cccc reg2
+    .word 0x020007e0 | ((\cccc&0xf)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro SATADD_F01 reg1 reg2
+    .short 0x00c0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro SATADD_F02s reg2 simm
+    .short 0x0220 | ((\reg2&0x1f)<<11) | ((\simm&0x1f)<<0)
+.endm
+
+.macro SATADD_F11 reg1 reg2 reg3
+    .word 0x03ba07e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro SATSUB_F01 reg1 reg2
+    .short 0x00a0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro SATSUB_F11 reg1 reg2 reg3
+    .word 0x039a07e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro SATSUBI_F06s reg1 reg2 simm
+    .word 0x00000660 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\simm&0xffff)<<16)
+.endm
+
+.macro SATSUBR_F01 reg1 reg2
+    .short 0x0080 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro SBF_F11b cccc reg1 reg2 reg3
+    .word 0x038007e0 | ((\cccc&0xf)<<17) | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro SCH0L_F09rsa reg2 rfu1
+    .word 0x036407e0 | ((\reg2&0x1f)<<11) | ((\rfu1&0x1f)<<27)
+.endm
+
+.macro SCH0R_F09rsa reg2 rfu1
+    .word 0x036007e0 | ((\reg2&0x1f)<<11) | ((\rfu1&0x1f)<<27)
+.endm
+
+.macro SCH1L_F09rsa reg2 rfu1
+    .word 0x036607e0 | ((\reg2&0x1f)<<11) | ((\rfu1&0x1f)<<27)
+.endm
+
+.macro SCH1R_F09rsa reg2 rfu1
+    .word 0x036207e0 | ((\reg2&0x1f)<<11) | ((\rfu1&0x1f)<<27)
+.endm
+
+.macro SET1_F08 bit reg1 sdisp
+    .word 0x000007c0 | ((\bit&0x7)<<11) | ((\reg1&0x1f)<<0) | ((\sdisp&0xffff)<<16)
+.endm
+
+.macro SET1_F09rs2 reg1 reg2
+    .word 0x00e007e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro SETF_F09 cccc reg2
+    .word 0x000007e0 | ((\cccc&0xf)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro SHL_F02u reg2 uimm
+    .short 0x02c0 | ((\reg2&0x1f)<<11) | ((\uimm&0x1f)<<0)
+.endm
+
+.macro SHL_F09rr reg1 reg2
+    .word 0x00c007e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro SHL_F11 reg1 reg2 reg3
+    .word 0x00c207e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro SHR_F02u reg2 uimm
+    .short 0x0280 | ((\reg2&0x1f)<<11) | ((\uimm&0x1f)<<0)
+.endm
+
+.macro SHR_F09rr reg1 reg2
+    .word 0x008007e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro SHR_F11 reg1 reg2 reg3
+    .word 0x008207e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro SLD_B_F04la reg2 udisp
+    .short 0x0300 | ((\reg2&0x1f)<<11) | ((\udisp&0x7f)<<0)
+.endm
+
+.macro SLD_BU_F04db reg2 udisp
+    .short 0x0060 | ((\reg2&0x1f)<<11) | ((\udisp&0xf)<<0)
+.endm
+
+.macro SLD_H_F04lb reg2 udisp
+    .short 0x0400 | ((\reg2&0x1f)<<11) | ((\udisp&0xff)<<0)
+.endm
+
+.macro SLD_HU_F04dh reg2 udisp
+    .short 0x0070 | ((\reg2&0x1f)<<11) | ((\udisp&0x1f)<<0)
+.endm
+
+.macro SLD_W_F04lc reg2 udisp
+    .short 0x0500 | ((\reg2&0x1f)<<11) | ((\udisp&0xff)<<1)
+.endm
+
+.macro SST_B_F04sa reg2 udisp
+    .short 0x0380 | ((\reg2&0x1f)<<11) | ((\udisp&0x7f)<<0)
+.endm
+
+.macro SST_H_F04sb reg2 udisp
+    .short 0x0480 | ((\reg2&0x1f)<<11) | ((\udisp&0xff)<<0)
+.endm
+
+.macro SST_W_F04sc reg2 udisp
+    .short 0x0501 | ((\reg2&0x1f)<<11) | ((\udisp&0xff)<<1)
+.endm
+
+.macro STFC_FIVr3b reg3
+    .word 0x037c07e0 | ((\reg3&0x1f)<<27)
+.endm
+
+.macro STFF_FIVr3a reg3
+    .word 0x037807e0 | ((\reg3&0x1f)<<27)
+.endm
+
+.macro STSR_F09sr reg1 reg2
+    .word 0x004007e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro ST_B_F07sa reg1 reg2 sdisp
+    .word 0x00000740 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\sdisp&0xffff)<<16)
+.endm
+
+.macro ST_H_F07sb reg1 reg2 sdisp
+    .word 0x00000760 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\sdisp&0xffff)<<17)
+.endm
+
+.macro ST_W_F07sb reg1 reg2 sdisp
+    .word 0x00010760 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\sdisp&0xffff)<<17)
+.endm
+
+.macro SUB_F01 reg1 reg2
+    .short 0x01a0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro SUBF_S_FI reg1 reg2 reg3
+    .word 0x03e407e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro SUBR_F01 reg1 reg2
+    .short 0x0180 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro SWITCH_F01d reg1
+    .short 0x0040 | ((\reg1&0x1f)<<0)
+.endm
+
+.macro SXB_F01c reg1
+    .short 0x00a0 | ((\reg1&0x1f)<<0)
+.endm
+
+.macro SXH_F01c reg1
+    .short 0x00e0 | ((\reg1&0x1f)<<0)
+.endm
+
+.macro TRAP_F10b uimm
+    .word 0x010007e0 | ((\uimm&0x1f)<<0)
+.endm
+
+.macro TRFF_FIV
+    .word 0x037807e0
+.endm
+
+.macro TRNC_SW_FII reg2 reg3
+    .word 0x036807e0 | ((\reg2&0x1f)<<11) | ((\reg3&0x1f)<<27)
+.endm
+
+.macro TST_F01 reg1 reg2
+    .short 0x0160 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro TST1_F08 bit reg1 sdisp
+    .word 0x0000c7c0 | ((\bit&0x7)<<11) | ((\reg1&0x1f)<<0) | ((\sdisp&0xffff)<<16)
+.endm
+
+.macro TST1_F09rs2 reg1 reg2
+    .word 0x00e607e0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro XOR_F01 reg1 reg2
+    .short 0x0120 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11)
+.endm
+
+.macro XORI_F06u reg1 reg2 uimm
+    .word 0x000006a0 | ((\reg1&0x1f)<<0) | ((\reg2&0x1f)<<11) | ((\uimm&0xffff)<<16)
+.endm
+
+.macro ZXB_F01c reg1
+    .short 0x0080 | ((\reg1&0x1f)<<0)
+.endm
+
+.macro ZXH_F01c reg1
+    .short 0x00c0 | ((\reg1&0x1f)<<0)
+.endm
+

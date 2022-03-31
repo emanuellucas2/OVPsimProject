@@ -1,0 +1,201 @@
+<html>
+<title>OVP NX25F Many Core Demo</title>
+<head><style>
+	body {
+		text-align: center;
+	}
+	#page-wrap {
+		text-align: left;
+		 width: 90%;
+		 margin: 0 auto;
+	 }
+	#checkFiles {
+		text-align: left;
+		width: 90%;
+		margin: 0 auto;
+	 }
+	 
+</style></head>
+<body><div id='page-wrap'>
+<h1>Demonstration README - Many Core Example</h1>
+<p>Contents:</p>
+<ul>
+<li><a href=#rmWriteSectionManyIntro >Running a simulation with Many cores</a><br/></li>
+<li><a href=#rmWriteSectionRun >Running the simulation</a><br/></li>
+<li><a href=#rmWriteSectionQuantumleap >Accelerating a simulation with QuantumLeap (Using Host parallelism)</a><br/></li>
+<li><a href=#rmWriteSectionResults >Interpreting results</a><br/></li>
+<li><a href=#rmWriteSectionBuild >Building a Test Harness and Re-Building Applications</a><br/></li>
+</ul>
+<hr>
+<a id='rmWriteSectionManyIntro'>
+<h1>Running a simulation with Many cores</h1>
+</a>
+<p>
+		This demo shows running a simulation of a platform that has instanced many separate <a href=http://www.ovpworld.org/processor-model-variant-andes-nx25-nx25f title='look at OVPWorld page on this variant'>Andes NX25F</a>
+		processor cores. Each has its own memory map and runs without communication with the other cores.
+		The purpose of this demo is to show that the simulation scales to platforms using many cpu cores.
+	</p>
+<p><img src=../../../../pictures/Manycore24_Run.jpg alt=IMG_MANY24_RUN height=400></p>
+<p>
+		This platform can then be used to execute pre-compiled applications; the 
+		following are provided as examples:
+	</p>
+<ul>
+<li><a href=../../../Applications/dhrystone/dhrystone.c title='look at application source'>dhrystone.c</a> (<a href=../../../Applications/dhrystone title='look at application directory'>../../../Applications/dhrystone/dhrystone.RISCV64-O0-g.elf</a>)</li>
+</ul>
+<p>
+		After each application has executed, a simulation summary will be printed,
+		indicating the number of instructions executed, and the performance of the
+		simulation in terms of Millions of simulated Instructions executed Per
+		Second (MIPS)
+		<br/><br/>
+		A platform written in C similar to the one being used in this demonstration can be found
+		in the <a href=../../../../../../Examples/SimulationControl/simplePlatformInHarnessUsingOP title='look at example platform source and Makefile'>../Examples/SimulationControl/simplePlatformInHarnessUsingOP</a> directory that is installed in an OVPsim or Imperas install.
+		<br/><br/>
+		The C platform can be compiled with GCC under Linux or
+		using MinGW/MSYS from http://www.mingw.org under Windows.
+		The version of <a href=http://www.ovpworld.org/resources/windows title='look at MinGW/MSYS download page on OVPWorld'>MinGW/MSYS</a> that we use is available here.
+	</p>
+<hr>
+<a id='rmWriteSectionRun'>
+<h1>Running the simulation</h1>
+</a>
+<h2>From a Microsoft window manager or Linux / MSYS shell</h2>
+<p>
+		Launch the platform with a pre-compiled application; in Windows by double 
+		clicking one of the batch files (.bat) or in Linux / MSYS by executing one of the shell 
+		scripts (.sh).
+		<br/><br/>
+		The scripts will be available dependent upon the applications available:
+	</p>
+<ul>
+<li>Run_AMP4_Dhrystone.bat (Windows)</li>
+<li>Run_AMP4_Dhrystone.sh (Linux/MSYS)</li>
+<li>Run_AMP24_Dhrystone.bat (Windows)</li>
+<li>Run_AMP24_Dhrystone.sh (Linux/MSYS)</li>
+</ul>
+<p>The simulation will run and print statistics upon completion.</p>
+<h2>From the command line</h2>
+<p>
+		If running a DOS command window, or a MSYS shell, or a Linux shell, simply change
+		directory to an appropriate directory, then type the name of the ISS executable, iss.exe or issdemo.exe (dependent on installation), 
+		provide the name of the variant you want after the --variant argument, and provide the
+		application after the --program argument, for example:
+		<br/><br/>
+		cmd > issdemo.exe --variant NX25F --numprocessors 4   --program ../../../Applications/dhrystone/dhrystone.RISCV64-O0-g.elf
+		<br/><br/>
+		Note that often other options like --processorname and parameters such as --parameter endian=little, are also needed. Look at the above script files to see what is needed for a specific variant.
+		<br/><br/>
+		You can use issdemo.exe --help to see more options.
+		<br/><br/>
+		The simulation will run and print statistics upon completion.
+	</p>
+<hr>
+<a id='rmWriteSectionQuantumleap'>
+<h1>Accelerating a simulation with QuantumLeap (Using Host parallelism)</h1>
+</a>
+<p>
+		This demo includes scripts to illustrate the Imperas QuantumLeap(TM) technology.
+		This technology is only available with the Imperas Professional products, for
+		more information please contact info@imperas.com.
+		<br/><br/>
+		If you have an installation of the Imperas professional Simulator available please check the 
+		following is set up: IMPERAS_RUNTIME=CpuManager
+	</p>
+<p><img src=../../../../pictures/Manycore4_QL.jpg alt=IMG_MANY4_QL height=400></p>
+<p>
+		This platform can then be used to execute pre-compiled applications; the 
+		following are provided as examples:
+	</p>
+<ul>
+<li><a href=../../../Applications/dhrystone/dhrystone.c title='look at application source'>dhrystone.c</a> (<a href=../../../Applications/dhrystone title='look at application directory'>../../../Applications/dhrystone/dhrystone.RISCV64-O0-g.elf</a>)</li>
+</ul>
+<p>
+		QuantumLeap(TM) allows simulations of AMP and SMP multi-processor systems to 
+		utilize the host physical processors during the simulation.
+		<br/><br/>
+		Best results are obtained when the number of simulated processors is lower 
+		than the number of the host physical processors. This allows the simulator to 
+		run one simulated processor per host processor without the need for swapping
+		between the host resources. 
+		<br/><br/>
+		Note that when running with QuantumLeap enabled, the simulator reports 'Parallel' in its
+		run log, for example:
+		<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;CpuManager Parallel finished: Mon Jul 07 12:20:58 2014
+	</p>
+<hr>
+<a id='rmWriteSectionResults'>
+<h1>Interpreting results</h1>
+</a>
+<p>
+		At the end of simulation, a number of statistics will be printed.
+		Amongst the statistical information which is reported, are the number
+		of 'Simulated instructions' and the 'Simulated MIPS'.
+	</p>
+<p><img src=../../../../pictures/Single_Run_Output.jpg alt=IMG_RUNOUTPUT height=200></p>
+<p>
+		The 'Simulated instructions' will vary depending upon the application being
+		executed, this count indicates the number of simulated processor
+		instructions for the processors in the platform.
+		<br/><br>
+		The 'Simulated MIPS' will be a measure of the number of 'Simulated
+		instructions' over the host elapsed time.
+		The simulation must run for around 1 second of simulated time in order to print 
+		simulated MIPS statistics.
+		<br/><br>
+		If you have multiple processors in your simulation, there will be a statistics sections for
+		each processor, and then a summary for the overall simulation run.
+	</p>
+<hr>
+<a id='rmWriteSectionBuild'>
+<h1>Building a Test Harness and Re-Building Applications</h1>
+</a>
+<p>
+		In order to build a full product install must have been carried out. This may
+		be the OVP 'OVPsim' package or one of the Imperas Professional Tools
+		packages (*SDK or *DEV). 
+		<br/><br>
+		A processor cross compiler toolchain package must be installed to allow the 
+		applications to be rebuilt.
+	</p>
+<p>
+			An external toolchain to support this processor variant must be used. A set of Makefiles  
+		    so support this processor variant may be available from OVPWorld, with a package name 
+		    extension similar to <b>NAME..toolsupport.YYYYMMDD.v.OS.exe</b> Please check the requirements.		
+			<br/><br>
+		</p>
+<p>
+		An example of a Harness and Makefile to build it can be found in the example <a href=../../../../../../Examples/SimulationControl/simplePlatformInHarnessUsingOP/harness title='look at a Harness and a Makefile for building'>../Examples/SimulationControl/simplePlatformInHarnessUsingOP/harness</a> directory
+		<br/><br>
+		The application ELF files used can be re-built in the <a href=../../../Applications/dhrystone title='look at the Applications build directory'>applications</a> directory.
+	</p>
+<h3>Re-building Platform</h3>
+<p>
+		The platform/module can be compiled using MSYS/MinGW 
+		under Windows, and GCC under Linux.
+		<br/><br>
+		The compilation can be performed using the following command lines:
+		<br/><br>
+		<b>Windows Command shell</b><br>
+		This requires an MSYS environment setup<br>
+		>mingw32-make -f %IMPERAS_HOME%\ImperasLib\buildutils\Makefile.harness ^<br>
+				  &nbsp;&nbsp;&nbsp;&nbsp;SRC=harness.c ^<br>
+				  &nbsp;&nbsp;&nbsp;&nbsp;NOVLNV=1<br>
+		<br>
+		<b>Linux or Windows MSYS shell (if you have an MSYS environment set up)</b><br>
+		>make -f ${IMPERAS_HOME}/ImperasLib/buildutils/Makefile.harness \<br>
+				 &nbsp;&nbsp;&nbsp;&nbsp;SRC=harness.c \<br>
+				 &nbsp;&nbsp;&nbsp;&nbsp;NOVLNV=1<br>
+	</p>
+<h3>Re-building Application</h3>
+<p>
+		The applications were built using a Cross Compiler toolchain, that may be 
+		available from the OVPWorld website. An RISCV64.makefile.include is included
+		that is used to setup a basic build environment for that toolchain. This can 
+		be modified to use alternative compiler flags.
+	</p>
+<hr>
+<p>###</p>
+</div></body>
+</html>

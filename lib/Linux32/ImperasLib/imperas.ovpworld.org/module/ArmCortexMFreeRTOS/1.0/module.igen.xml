@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="ArmCortexMFreeRTOS"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="imperas.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets">
+        <net name="uart_irq"/>
+    </nets>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Platform for FreeRTOS bring"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="BareMetal platform for bring up of FreeRTOS on ARM Cortex-M3 processor"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="www.freertos.org"/>
+    </docsection>
+    <bus addresswidth="32"
+        name="bus1"/>
+    <processorinstance endian="little"
+        name="cpu1"
+        simulateexceptions="T">
+        <vlnvreference name="armm"
+            vendor="arm.ovpworld.org"/>
+        <attribute content="Cortex-M3"
+            name="variant"/>
+        <attribute content="1"
+            name="UAL"/>
+        <busmasterportconnection connection="bus1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus1"
+            name="DATA"/>
+        <netportconnection connection="uart_irq"
+            name="int"/>
+    </processorinstance>
+    <memoryinstance name="memory1">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x3fffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="memory2">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0xffffffff"
+            loaddress="0x41000000"
+            name="sp1"/>
+    </memoryinstance>
+    <peripheralinstance name="led">
+        <vlnvreference name="ledRegister"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x40004007"
+            loaddress="0x40004000"
+            name="busPort"/>
+        <attribute content="8"
+            name="availableLEDS"/>
+    </peripheralinstance>
+    <peripheralinstance name="sw">
+        <vlnvreference name="switchRegister"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x40006007"
+            loaddress="0x40006000"
+            name="busPort"/>
+    </peripheralinstance>
+    <peripheralinstance name="UART0">
+        <vlnvreference name="UartInterface"
+            vendor="ti.ovpworld.org"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x4000cfff"
+            loaddress="0x4000c000"
+            name="bport1"/>
+        <attribute content="1"
+            name="console"/>
+        <attribute content="1"
+            name="finishOnDisconnect"/>
+        <attribute content="1"
+            name="loopback"/>
+        <netportconnection connection="uart_irq"
+            name="irq"/>
+    </peripheralinstance>
+    <busportconnection connection="pBusMapped"
+        mustbeconnected="F"
+        name="pBusP"/>
+    <bus addresswidth="32"
+        name="pBusMapped"/>
+    <bridge name="pBusBridge">
+        <busslaveportconnection connection="bus1"
+            hiaddress="0x4010ffff"
+            loaddress="0x40100000"
+            name="sp1"/>
+        <busmasterportconnection connection="pBusMapped"
+            hiaddress="0x0000ffff"
+            loaddress="0x00000000"
+            name="mp1"/>
+    </bridge>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

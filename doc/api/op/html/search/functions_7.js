@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['if',['if',['../opProcessorFaultAddress_8c.html#a1e32ec9b0a855ce609e95bf603c353c5',1,'if(proc):&#160;opProcessorFaultAddress.c'],['../opProcessorRegRead_8c.html#a1c014e37416c684e308d0b079ac7c825',1,'if(opProcessorRegRead(proc, reg, buffer)):&#160;opProcessorRegRead.c'],['../opProcessorRegReadByName_8c.html#a2602a5bd8dde3a4f33bd8493b295c13b',1,'if(opProcessorRegReadByName(proc, &quot;R1&quot;, buffer)):&#160;opProcessorRegReadByName.c'],['../opProcessorRegWrite_8c.html#acc33ea9761cc36e5f66cc56774626416',1,'if(!opProcessorRegWrite(proc, &quot;R1&quot;, buffer)):&#160;opProcessorRegWrite.c'],['../opProcessorTraceBufferDump_8c.html#aca91eb2b00ec23b8fb3942de4d9ae91f',1,'if(last):&#160;opProcessorTraceBufferDump.c']]],
+  ['indenttext',['indentText',['../PlatformConstruction_2walker_2harness_2harness_8c.html#a40fe7d1ab234d770774d2db596376852',1,'indentText(Uns32 s):&#160;harness.c'],['../SimulationControl_2processorQuery_2harness_2harness_8c.html#a40fe7d1ab234d770774d2db596376852',1,'indentText(Uns32 s):&#160;harness.c']]]
+];

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="logicore-fit"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="xilinx.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="logiCore Fixed Interval Timer (PG110)"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Initial verion. Not clock accurate"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="pg110-fixed-interval-timer November 18, 2015"/>
+    </docsection>
+    <netport name="Rst"
+        type="input"
+        updatefunction="Reset_Reset"/>
+    <netport name="Interrupt"
+        type="output"/>
+    <formalattribute defaultvalue="100000"
+        name="C_NO_CLOCKS"
+        type="uns32"/>
+    <formalattribute defaultvalue="0"
+        name="C_INACCURACY"
+        type="uns32"/>
+    <formalattribute defaultvalue="100"
+        name="CLOCK_RATE"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The clock rate at which to count (default 100)"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

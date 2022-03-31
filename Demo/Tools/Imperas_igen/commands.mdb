@@ -1,0 +1,16 @@
+# These commands will show the initial Programmers View of the Platform
+#
+
+::puts "# Change to Debug console"
+idebug
+
+::puts "# issue view command"
+::puts "# Output from view command follows"
+view
+
+::puts "# Run the program"
+continue
+
+::puts "#### NOTES ####"
+::puts "# Use 'view' command to see components created"
+::puts "# type '::exit' to exit simulator"

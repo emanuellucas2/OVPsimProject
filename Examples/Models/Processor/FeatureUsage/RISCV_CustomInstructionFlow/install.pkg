@@ -1,0 +1,11 @@
+# Base installation requirements
+install Imperas_SDK Imperas_DEV
+install RUNTIME CpuManager
+# Must have suitable simulator features to run tools
+install PERSONALITY CPUMAN_MULTI
+install riscv.model
+install riscv.toolchain
+install Imperas.iGen
+install Imperas.iss
+install eGui_Eclipse
+vap     Imperas.VAP

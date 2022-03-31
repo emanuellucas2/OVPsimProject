@@ -1,0 +1,54 @@
+ 
+  Copyright (c) 2005-2021 Imperas Software Ltd. All Rights Reserved.
+
+  The contents of this file are provided under the Software License
+  Agreement that you accepted before downloading this file.
+
+  This source forms part of the Software and can be used for educational,
+  training, and demonstration purposes but cannot be used for derivative
+  works except in cases where the derivative works require OVP technology
+  to run.
+
+  For open source models released under licenses that you can use for
+  derivative works, please visit www.ovpworld.org or www.imperas.com
+  for the location of the open source models.
+
+
+FILE:Imperas/Examples/HelloWorld/README.txt
+
+INTRODUCTION -------------------------------------------------------
+
+This directory contains a number of very simple examples to allow a
+'Hello World' program to be executed on a virtual simulation platform.
+
+Application Cross Compilation --------------------------------------
+
+Each example requires that the application is cross compiled and 
+linked from the C source code to a binary file (elf) that can be loaded
+into memory of the virtual platform.
+These examples make use of the RISCV processor and the cross compiler 
+toolchain, installed using the riscv.toolchain package.
+
+Virtual Simulation Platform ----------------------------------------
+
+A virtual simulation platform is a definition of hardware devices and
+connections on which a software application binary file can be executed.
+
+There are many ways to create a simulation platform and this directory
+contains both pre-defined programs that can be configured to provide a hardware
+definition and other hardware definitions created by the user using standard APIs.
+
+  usingISS          : iss.exe (issdemo.exe) is a standard installed 
+                      program that allows a definition of N processors
+                      with memory (private and shared)
+  usingHarnessExe   : harness.exe is a standard installed program that
+                      loads a hardware definition module and controls it (OP API)
+  usingHarnessInC   : a user defined harness to load a hardware definition module
+                      and provide custom control of it (OP API)
+  usingHarnessInCPP : a user defined harness created in CPP to load a hardware
+                      definition module and provide custom control of it (OP API)
+  usingCPP          : a hardware definition and control all within CPP
+  usingSystemC      : a hardware definition using SystemC TLM2.0
+  usingOP           : a hardware definition using the OP API
+
+#

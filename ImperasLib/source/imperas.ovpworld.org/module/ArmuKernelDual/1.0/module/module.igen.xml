@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="ArmuKernelDual"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="F"
+    vendor="imperas.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="
+        This platform instantiates two modules for an ARM Cortex-A9MPx4 to execute the SMP UKernel
+        (ARM MPCore Boot and Synchronization Example Code)"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="BareMetal platform for execution of ARM binary uKernel file"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="http://www.arm.com/products/processors/cortex-a/arm-mpcore-sample-code.php"/>
+    </docsection>
+    <module name="sys0">
+        <vlnvreference library="module"
+            name="ArmuKernel"
+            vendor="imperas.ovpworld.org"
+            version="1.0"/>
+        <attribute content="uart0_1.log"
+            name="uart1logname"/>
+    </module>
+    <module name="sys1">
+        <vlnvreference library="module"
+            name="ArmuKernel"
+            vendor="imperas.ovpworld.org"
+            version="1.0"/>
+        <attribute content="uart1_1.log"
+            name="uart1logname"/>
+    </module>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

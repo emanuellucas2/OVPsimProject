@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="SystemIDCore"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="altera.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Altera Avalon System ID Core"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="No Support for pin level transitions"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Embedded Peripherals IP User Guide, UG-01085-11.0 11.0 June 2011"/>
+    </docsection>
+    <formalattribute name="id"
+        type="uns64"/>
+    <formalattribute name="timestamp"
+        type="uns64"/>
+    <busslaveport addresswidth="32"
+        name="sp1"
+        size="0x8">
+        <addressblock name="reg0"
+            size="0x8"
+            width="32">
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="id"
+                nbyte="F"
+                readfunction="read_id"
+                width="32"/>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="timestamp"
+                nbyte="F"
+                offset="0x4"
+                readfunction="read_timestamp"
+                width="32"/>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="dualFifo"
+    purpose="4"
+    releasestatus="3"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="vendor.com"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Example platform with riscv processor with custom FIFO extensions communicating with a peripheral using FIFOs.
+The processor&apos;s output FIFO port is connected to the input FIFO port of the peripheral and vice versa."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="None."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="No Reference, created as an example"/>
+    </docsection>
+    <bus addresswidth="32"
+        name="mainBus"/>
+    <memoryinstance name="ram">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="mainBus"
+            hiaddress="0xffffffff"
+            loaddress="0x0"
+            name="sp1"/>
+    </memoryinstance>
+    <processorinstance defaultsemihost="T"
+        name="proc">
+        <vlnvreference library="processor"
+            name="riscv"
+            vendor="vendor.com"/>
+        <attribute content="RV32X"
+            name="variant"/>
+        <busmasterportconnection connection="mainBus"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="mainBus"
+            name="DATA"/>
+        <fifoportconnection connection="fifo01"
+            name="fifoPortOut"/>
+        <fifoportconnection connection="fifo10"
+            name="fifoPortIn"/>
+    </processorinstance>
+    <peripheralinstance name="periph">
+        <vlnvreference name="fifo"
+            vendor="vendor.com"/>
+        <fifoportconnection connection="fifo01"
+            name="fifoPortIn"/>
+        <fifoportconnection connection="fifo10"
+            name="fifoPortOut"/>
+    </peripheralinstance>
+    <fifo depth="16"
+        name="fifo01"
+        width="32"/>
+    <fifo depth="16"
+        name="fifo10"
+        width="32"/>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

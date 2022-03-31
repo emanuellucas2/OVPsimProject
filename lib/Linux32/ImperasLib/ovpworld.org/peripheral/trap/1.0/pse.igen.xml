@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="trap"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Open a port and allocate a region that is defined by parameters."/>
+        <doctext name="txt_1"
+            text="The region can be configured to act as standard memory or can report read/write accesses."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This peripheral cannot be used in a hardware description used to generate a TLM platform."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="This is not based upon the operation of a real device but is intended to be used for bring up and development of new virtual platforms."/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        remappable="T"/>
+    <formalattribute name="portAddress"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Defines the memory address at which the port is connected."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="0x1000"
+        name="portSize"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Defines the size, in bytes, of the port (Default 0x1000)."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="False"
+        name="cbEnable"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Defines the behaviour on an access. The default operation provides a memory area. If this parameter is set all accesses are reported."/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

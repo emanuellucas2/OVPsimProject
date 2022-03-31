@@ -1,0 +1,2923 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="zynq_7000-slcr"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="xilinx.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Zynq 7000 Platform System Level Control Registers (SLCR)"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model implements the full set of registers. Only behavior required for processor reset control is included."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Zynq-7000 TRM (https://www.xilinx.com/support/documentation/user_guides/ug585-Zynq-7000-TRM.pdf)"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0xc00">
+        <addressblock name="ab"
+            size="0xc00"
+            width="32">
+            <localmemory name="buffer"
+                readfunction="regNoDefinitionRead"
+                size="0xc00"
+                writefunction="regNoDefinitionWrite"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SCL"
+                nbyte="F"
+                width="32"
+                writefunction="WriteSCL"
+                writemask="1">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Secure Configuration Lock"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="LOCK"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SLCR_LOCK"
+                nbyte="F"
+                offset="0x4"
+                readfunction="ReadSLCR_LOCK"
+                width="32"
+                writefunction="WriteSLCR_LOCK"
+                writemask="65535">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SLCR Write Protection Lock"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SLCR_UNLOCK"
+                nbyte="F"
+                offset="0x8"
+                readfunction="ReadSLCR_UNLOCK"
+                width="32"
+                writefunction="WriteSLCR_UNLOCK"
+                writemask="65535">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SLCR Write Protection Unlock"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="SLCR_LOCKSTA"
+                nbyte="F"
+                offset="0xc"
+                readfunction="ReadSLCR_LOCKSTA"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SLCR Write Protection Status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000001"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ARM_PLL_CTRL"
+                nbyte="F"
+                offset="0x100"
+                readfunction="ReadARM_PLL_CTRL"
+                width="32"
+                writefunction="WriteARM_PLL_CTRL"
+                writemask="520219">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="ARM PLL Control"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="12"
+                    name="PLL_FDIV"
+                    width="7"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="PLL_BYPASS_FORCE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="PLL_BYPASS_QUAL"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="PLL_PWRDWN"
+                    width="1"/>
+                <field access="rw"
+                    name="PLL_RESET"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0001A008"/>
+                <field bitoffset="2"
+                    name="__pad2"
+                    width="1"/>
+                <field bitoffset="5"
+                    name="__pad5"
+                    width="7"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDR_PLL_CTRL"
+                nbyte="F"
+                offset="0x104"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR PLL Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0001A008"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="IO_PLL_CTRL"
+                nbyte="F"
+                offset="0x108"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="IO PLL Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0001A008"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PLL_STATUS"
+                nbyte="F"
+                offset="0x10c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PLL Status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0000003F"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ARM_PLL_CFG"
+                nbyte="F"
+                offset="0x110"
+                readfunction="ReadARM_PLL_CFG"
+                width="32"
+                writefunction="WriteARM_PLL_CFG"
+                writemask="4194288">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="ARM PLL Configuration"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="12"
+                    name="LOC_CNT"
+                    width="10"/>
+                <field access="rw"
+                    bitoffset="8"
+                    name="PLL_CP"
+                    width="4"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="PLL_RES"
+                    width="4"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00177EA0"/>
+                <field bitoffset="0"
+                    name="__pad0"
+                    width="4"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDR_PLL_CFG"
+                nbyte="F"
+                offset="0x114"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR PLL Configuration"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00177EA0"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="IO_PLL_CFG"
+                nbyte="F"
+                offset="0x118"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="IO PLL Configuration"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00177EA0"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ARM_CLK_CTRL"
+                nbyte="F"
+                offset="0x120"
+                readfunction="ReadARM_CLK_CTRL"
+                width="32"
+                writefunction="WriteARM_CLK_CTRL"
+                writemask="520109872">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CPU Clock Control"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="28"
+                    name="CPU_PERICLKACT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="27"
+                    name="CPU_1XCLKACT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="26"
+                    name="CPU_2XCLKACT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="25"
+                    name="CPU_6OR3XCLKACT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="24"
+                    name="CPU_4OR4XCLKACT"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="8"
+                    name="DIVISOR"
+                    width="6"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="SRCSEL"
+                    width="2"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x1F000400"/>
+                <field bitoffset="0"
+                    name="__pad0"
+                    width="4"/>
+                <field bitoffset="6"
+                    name="__pad6"
+                    width="2"/>
+                <field bitoffset="14"
+                    name="__pad14"
+                    width="10"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDR_CLK_CTRL"
+                nbyte="F"
+                offset="0x124"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x18400003"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DCI_CLK_CTRL"
+                nbyte="F"
+                offset="0x128"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DCI clock control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x01E03201"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="APER_CLK_CTRL"
+                nbyte="F"
+                offset="0x12c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="AMBA Peripheral Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x01FFCCCD"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="USB0_CLK_CTRL"
+                nbyte="F"
+                offset="0x130"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="USB 0 ULPI Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00101941"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="USB1_CLK_CTRL"
+                nbyte="F"
+                offset="0x134"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="USB 1 ULPI Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00101941"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="GEM0_RCLK_CTRL"
+                nbyte="F"
+                offset="0x138"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="GigE 0 Rx Clock and Rx Signals Select"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000001"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="GEM1_RCLK_CTRL"
+                nbyte="F"
+                offset="0x13c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="GigE 1 Rx Clock and Rx Signals Select"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000001"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="GEM0_CLK_CTRL"
+                nbyte="F"
+                offset="0x140"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="GigE 0 Ref Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00003C01"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="GEM1_CLK_CTRL"
+                nbyte="F"
+                offset="0x144"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="GigE 1 Ref Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00003C01"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SMC_CLK_CTRL"
+                nbyte="F"
+                offset="0x148"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SMC Ref Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00003C21"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LQSPI_CLK_CTRL"
+                nbyte="F"
+                offset="0x14c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Quad SPI Ref Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00002821"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SDIO_CLK_CTRL"
+                nbyte="F"
+                offset="0x150"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SDIO Ref Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001E03"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="UART_CLK_CTRL"
+                nbyte="F"
+                offset="0x154"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Ref Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00003F03"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SPI_CLK_CTRL"
+                nbyte="F"
+                offset="0x158"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SPI Ref Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00003F03"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CAN_CLK_CTRL"
+                nbyte="F"
+                offset="0x15c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CAN Ref Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00501903"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CAN_MIOCLK_CTRL"
+                nbyte="F"
+                offset="0x160"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CAN MIO Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DBG_CLK_CTRL"
+                nbyte="F"
+                offset="0x164"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SoC Debug Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000F03"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="PCAP_CLK_CTRL"
+                nbyte="F"
+                offset="0x168"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PCAP Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000F01"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TOPSW_CLK_CTRL"
+                nbyte="F"
+                offset="0x16c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Central Interconnect Clock Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPGA0_CLK_CTRL"
+                nbyte="F"
+                offset="0x170"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 0 Output control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00101800"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPGA0_THR_CTRL"
+                nbyte="F"
+                offset="0x174"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 0 Throttle control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPGA0_THR_CNT"
+                nbyte="F"
+                offset="0x178"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 0 Throttle Count control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="FPGA0_THR_STA"
+                nbyte="F"
+                offset="0x17c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 0 Throttle Status read"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00010000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPGA1_CLK_CTRL"
+                nbyte="F"
+                offset="0x180"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 1 Output control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00101800"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPGA1_THR_CTRL"
+                nbyte="F"
+                offset="0x184"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 1 Throttle control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPGA1_THR_CNT"
+                nbyte="F"
+                offset="0x188"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 1 Throttle Count"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="FPGA1_THR_STA"
+                nbyte="F"
+                offset="0x18c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 1 Throttle Status control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00010000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPGA2_CLK_CTRL"
+                nbyte="F"
+                offset="0x190"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 2 output control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00101800"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPGA2_THR_CTRL"
+                nbyte="F"
+                offset="0x194"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 2 Throttle Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPGA2_THR_CNT"
+                nbyte="F"
+                offset="0x198"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 2 Throttle Count"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="FPGA2_THR_STA"
+                nbyte="F"
+                offset="0x19c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 2 Throttle Status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00010000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPGA3_CLK_CTRL"
+                nbyte="F"
+                offset="0x1a0"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 3 output control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00101800"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPGA3_THR_CTRL"
+                nbyte="F"
+                offset="0x1a4"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 3 Throttle Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPGA3_THR_CNT"
+                nbyte="F"
+                offset="0x1a8"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 3 Throttle Count"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="FPGA3_THR_STA"
+                nbyte="F"
+                offset="0x1ac"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PL Clock 3 Throttle Status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00010000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CLK_621_TRUE"
+                nbyte="F"
+                offset="0x1c4"
+                width="32"
+                writefunction="WriteCLK_621_TRUE"
+                writemask="1">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CPU Clock Ratio Mode select"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="CLK_621"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000001"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="PSS_RST_CTRL"
+                nbyte="F"
+                offset="0x200"
+                width="32"
+                writefunction="WritePSS_RST_CTRL">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PS Software Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDR_RST_CTRL"
+                nbyte="F"
+                offset="0x204"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR Software Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TOPSW_RST_CTRL"
+                nbyte="F"
+                offset="0x208"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Central Interconnect Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DMAC_RST_CTRL"
+                nbyte="F"
+                offset="0x20c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMAC Software Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="USB_RST_CTRL"
+                nbyte="F"
+                offset="0x210"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="USB Software Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="GEM_RST_CTRL"
+                nbyte="F"
+                offset="0x214"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Gigabit Ethernet SW Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SDIO_RST_CTRL"
+                nbyte="F"
+                offset="0x218"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SDIO Software Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SPI_RST_CTRL"
+                nbyte="F"
+                offset="0x21c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SPI Software Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CAN_RST_CTRL"
+                nbyte="F"
+                offset="0x220"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CAN Software Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="I2C_RST_CTRL"
+                nbyte="F"
+                offset="0x224"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="I2C Software Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="UART_RST_CTRL"
+                nbyte="F"
+                offset="0x228"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Software Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="GPIO_RST_CTRL"
+                nbyte="F"
+                offset="0x22c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="GPIO Software Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LQSPI_RST_CTRL"
+                nbyte="F"
+                offset="0x230"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Quad SPI Software Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SMC_RST_CTRL"
+                nbyte="F"
+                offset="0x234"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SMC Software Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="OCM_RST_CTRL"
+                nbyte="F"
+                offset="0x238"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="OCM Software Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FPGA_RST_CTRL"
+                nbyte="F"
+                offset="0x240"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="FPGA Software Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x01F33F0F"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="A9_CPU_RST_CTRL"
+                nbyte="F"
+                offset="0x244"
+                readfunction="ReadA9_CPU_RST_CTRL"
+                width="32"
+                writefunction="WriteA9_CPU_RST_CTRL">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="CPU Reset and Clock control"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="8"
+                    name="PERI_RST"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="A9_CLKSTOP1"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="A9_CLKSTOP0"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="A9_RST1"
+                    width="1"/>
+                <field access="rw"
+                    name="A9_RST0"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+                <field bitoffset="2"
+                    name="__pad2"
+                    width="2"/>
+                <field bitoffset="6"
+                    name="__pad6"
+                    width="2"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="RS_AWDT_CTRL"
+                nbyte="F"
+                offset="0x24c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Timer Reset Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="REBOOT_STATUS"
+                nbyte="F"
+                offset="0x258"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Reboot Status, persistent"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00400000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="BOOT_MODE"
+                nbyte="F"
+                offset="0x25c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Boot Mode Strapping Pins"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="APU_CTRL"
+                nbyte="F"
+                offset="0x300"
+                width="32"
+                writefunction="WriteAPU_CTRL">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="APU Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="WDT_CLK_SEL"
+                nbyte="F"
+                offset="0x304"
+                width="32"
+                writefunction="WriteWDT_CLK_SEL">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SWDT clock source select"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TZ_OCM_RAM0"
+                nbyte="F"
+                offset="0x400"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="OCM RAM TrustZone Config 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TZ_OCM_RAM1"
+                nbyte="F"
+                offset="0x404"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="OCM RAM TrustZone Config 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TZ_OCM"
+                nbyte="F"
+                offset="0x408"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="OCM ROM TrustZone Config"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TZ_DDR_RAM"
+                nbyte="F"
+                offset="0x430"
+                width="32"
+                writemask="1">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR RAM TrustZone Config"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TZ_DMA_NS"
+                nbyte="F"
+                offset="0x440"
+                width="32"
+                writemask="65535">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMAC TrustZone Config"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TZ_DMA_IRQ_NS"
+                nbyte="F"
+                offset="0x444"
+                width="32"
+                writemask="65535">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMAC TrustZone Config for Interrupts"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TZ_DMA_PERIPH_NS"
+                nbyte="F"
+                offset="0x448"
+                width="32"
+                writemask="1">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMAC TrustZone Config for Peripherals"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TZ_GEM"
+                nbyte="F"
+                offset="0x450"
+                width="32"
+                writemask="3">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Ethernet TrustZone Config"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TZ_SDIO"
+                nbyte="F"
+                offset="0x454"
+                width="32"
+                writemask="3">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SDIO TrustZone Config"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TZ_USB"
+                nbyte="F"
+                offset="0x458"
+                width="32"
+                writemask="3">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="USB TrustZone Config"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TZ_FPGA_M"
+                nbyte="F"
+                offset="0x484"
+                width="32"
+                writemask="3">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="FPGA master ports TrustZone Disable"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TZ_FPGA_AFI"
+                nbyte="F"
+                offset="0x488"
+                width="32"
+                writemask="15">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="FPGA AFI AXI ports TrustZone Disable"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="PSS_IDCODE"
+                nbyte="F"
+                offset="0x530"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PS IDCODE (REVISION=1 FAMILY=0x1b SUBFAMILY=0x9 DEVICE=0x11 (7z045) MANUFACTURE_ID=0x49"/>
+                </docsection>
+                <field access="r"
+                    bitoffset="28"
+                    name="REV"
+                    width="4"/>
+                <field access="r"
+                    bitoffset="21"
+                    name="FAM"
+                    width="7"/>
+                <field access="r"
+                    bitoffset="17"
+                    name="SUB"
+                    width="4"/>
+                <field access="r"
+                    bitoffset="12"
+                    name="DEV"
+                    width="5"/>
+                <field access="r"
+                    bitoffset="1"
+                    name="MAN"
+                    width="11"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x13747093"/>
+                <field bitoffset="0"
+                    name="__pad0"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDR_URGENT"
+                nbyte="F"
+                offset="0x600"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR Urgent Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDR_CAL_START"
+                nbyte="F"
+                offset="0x60c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR Calibration Start Triggers"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDR_REF_START"
+                nbyte="F"
+                offset="0x614"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR Refresh Start Triggers"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDR_CMD_STA"
+                nbyte="F"
+                offset="0x618"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR Command Store Status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDR_URGENT_SEL"
+                nbyte="F"
+                offset="0x61c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR Urgent Select"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDR_DFI_STATUS"
+                nbyte="F"
+                offset="0x620"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR DFI status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_00"
+                nbyte="F"
+                offset="0x700"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 0 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_01"
+                nbyte="F"
+                offset="0x704"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 1 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_02"
+                nbyte="F"
+                offset="0x708"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 2 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_03"
+                nbyte="F"
+                offset="0x70c"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 3 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_04"
+                nbyte="F"
+                offset="0x710"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 4 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_05"
+                nbyte="F"
+                offset="0x714"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 5 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_06"
+                nbyte="F"
+                offset="0x718"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 6 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_07"
+                nbyte="F"
+                offset="0x71c"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 7 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_08"
+                nbyte="F"
+                offset="0x720"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 8 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_09"
+                nbyte="F"
+                offset="0x724"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 9 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_10"
+                nbyte="F"
+                offset="0x728"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 10 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_11"
+                nbyte="F"
+                offset="0x72c"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 11 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_12"
+                nbyte="F"
+                offset="0x730"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 12 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_13"
+                nbyte="F"
+                offset="0x734"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 13 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_14"
+                nbyte="F"
+                offset="0x738"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 14 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_15"
+                nbyte="F"
+                offset="0x73c"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 15 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_16"
+                nbyte="F"
+                offset="0x740"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 16 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_17"
+                nbyte="F"
+                offset="0x744"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 17 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_18"
+                nbyte="F"
+                offset="0x748"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 18 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_19"
+                nbyte="F"
+                offset="0x74c"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 19 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_20"
+                nbyte="F"
+                offset="0x750"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 20 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_21"
+                nbyte="F"
+                offset="0x754"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 21 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_22"
+                nbyte="F"
+                offset="0x758"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 22 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_23"
+                nbyte="F"
+                offset="0x75c"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 23 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_24"
+                nbyte="F"
+                offset="0x760"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 24 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_25"
+                nbyte="F"
+                offset="0x764"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 25 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_26"
+                nbyte="F"
+                offset="0x768"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 26 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_27"
+                nbyte="F"
+                offset="0x76c"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 27 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_28"
+                nbyte="F"
+                offset="0x770"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 28 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_29"
+                nbyte="F"
+                offset="0x774"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 29 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_30"
+                nbyte="F"
+                offset="0x778"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 30 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_31"
+                nbyte="F"
+                offset="0x77c"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 31 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_32"
+                nbyte="F"
+                offset="0x780"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 32 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_33"
+                nbyte="F"
+                offset="0x784"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 33 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_34"
+                nbyte="F"
+                offset="0x788"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 34 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_35"
+                nbyte="F"
+                offset="0x78c"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 35 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_36"
+                nbyte="F"
+                offset="0x790"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 36 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_37"
+                nbyte="F"
+                offset="0x794"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 37 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_38"
+                nbyte="F"
+                offset="0x798"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 38 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_39"
+                nbyte="F"
+                offset="0x79c"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 39 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_40"
+                nbyte="F"
+                offset="0x7a0"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 40 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_41"
+                nbyte="F"
+                offset="0x7a4"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 41 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_42"
+                nbyte="F"
+                offset="0x7a8"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 42 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_43"
+                nbyte="F"
+                offset="0x7ac"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 43 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_44"
+                nbyte="F"
+                offset="0x7b0"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 44 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_45"
+                nbyte="F"
+                offset="0x7b4"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 45 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_46"
+                nbyte="F"
+                offset="0x7b8"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 46 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_47"
+                nbyte="F"
+                offset="0x7bc"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 47 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_48"
+                nbyte="F"
+                offset="0x7c0"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 48 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_49"
+                nbyte="F"
+                offset="0x7c4"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 49 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_50"
+                nbyte="F"
+                offset="0x7c8"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 50 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_51"
+                nbyte="F"
+                offset="0x7cc"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 51 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_52"
+                nbyte="F"
+                offset="0x7d0"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 52 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_PIN_53"
+                nbyte="F"
+                offset="0x7d4"
+                width="32"
+                writemask="16383">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO Pin 53 Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00001601"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_LOOPBACK"
+                nbyte="F"
+                offset="0x804"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loopback function within MIO"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_MST_TRI0"
+                nbyte="F"
+                offset="0x80c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO pin Tri-state Enables, 31:0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0xFFFFFFFF"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MIO_MST_TRI1"
+                nbyte="F"
+                offset="0x810"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO pin Tri-state Enables, 53:32"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x003FFFFF"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SD0_WP_CD_SEL"
+                nbyte="F"
+                offset="0x830"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SDIO 0 WP CD select"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SD1_WP_CD_SEL"
+                nbyte="F"
+                offset="0x834"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="SDIO 1 WP CD select"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LVL_SHFTR_EN"
+                nbyte="F"
+                offset="0x900"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Level Shifters Enable"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="OCM_CFG"
+                nbyte="F"
+                offset="0x910"
+                width="32"
+                writefunction="WriteOCM_CFG">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="OCM Address Mapping (user mode reset config)"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="3"
+                    name="OCM3"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="OCM2"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="OCM1"
+                    width="1"/>
+                <field access="rw"
+                    name="OCM0"
+                    width="1"/>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0000000f"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Reserved"
+                nbyte="F"
+                offset="0xa1c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Reserved"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00010101"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="GPIOB_CTRL"
+                nbyte="F"
+                offset="0xb00"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="PS IO Buffer Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="GPIOB_CFG_CMOS18"
+                nbyte="F"
+                offset="0xb04"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO GPIOB CMOS 1.8V config"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="GPIOB_CFG_CMOS25"
+                nbyte="F"
+                offset="0xb08"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO GPIOB CMOS 2.5V config"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="GPIOB_CFG_CMOS33"
+                nbyte="F"
+                offset="0xb0c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO GPIOB CMOS 3.3V config"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="GPIOB_CFG_HSTL"
+                nbyte="F"
+                offset="0xb14"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO GPIOB HSTL config"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="GPIOB_DRVR_BIAS_CTRL"
+                nbyte="F"
+                offset="0xb18"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="MIO GPIOB Driver Bias Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDRIOB_ADDR0"
+                nbyte="F"
+                offset="0xb40"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR IOB Config for A[14:0], CKE and DRST_B"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000800"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDRIOB_ADDR1"
+                nbyte="F"
+                offset="0xb44"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR IOB Config for BA[2:0], ODT, CS_B, WE_B, RAS_B and CAS_B"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000800"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDRIOB_DATA0"
+                nbyte="F"
+                offset="0xb48"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR IOB Config for Data 15:0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000800"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDRIOB_DATA1"
+                nbyte="F"
+                offset="0xb4c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR IOB Config for Data 31:16"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000800"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDRIOB_DIFF0"
+                nbyte="F"
+                offset="0xb50"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR IOB Config for DQS 1:0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000800"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDRIOB_DIFF1"
+                nbyte="F"
+                offset="0xb54"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR IOB Config for DQS 3:2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000800"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDRIOB_CLOCK"
+                nbyte="F"
+                offset="0xb58"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR IOB Config for Clock Output"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000800"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDRIOB_DRIVE_SLEW_ADDR"
+                nbyte="F"
+                offset="0xb5c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Drive and Slew controls for Address and Command pins of the DDR Interface"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDRIOB_DRIVE_SLEW_DATA"
+                nbyte="F"
+                offset="0xb60"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Drive and Slew controls for DQ pins of the DDR Interface"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDRIOB_DRIVE_SLEW_DIFF"
+                nbyte="F"
+                offset="0xb64"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Drive and Slew controls for DQS pins of the DDR Interface"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDRIOB_DRIVE_SLEW_CLOCK"
+                nbyte="F"
+                offset="0xb68"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Drive and Slew controls for Clock pins of the DDR Interface"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDRIOB_DDR_CTRL"
+                nbyte="F"
+                offset="0xb6c"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR IOB Buffer Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDRIOB_DCI_CTRL"
+                nbyte="F"
+                offset="0xb70"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR IOB DCI Config"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000020"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DDRIOB_DCI_STATUS"
+                nbyte="F"
+                offset="0xb74"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DDR IO Buffer DCI Status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="A9_RST0"
+        type="output"/>
+    <netport name="A9_RST1"
+        type="output"/>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="spOCMDDR"
+        remappable="T"/>
+    <busmasterport addresswidth="32"
+        addresswidthmax="0"
+        addresswidthmin="32"
+        mustbeconnected="T"
+        name="mpOCM"/>
+    <busmasterport addresswidth="32"
+        addresswidthmax="0"
+        addresswidthmin="32"
+        mustbeconnected="T"
+        name="mpDDR"/>
+    <formalattribute defaultvalue="0x767b"
+        name="lockcode"
+        type="Uns32"/>
+    <formalattribute defaultvalue="0xdf0d"
+        name="unlockcode"
+        type="Uns32"/>
+    <formalattribute defaultvalue="2"
+        name="deviceid"
+        type="Uns32"/>
+    <formalattribute defaultvalue="1"
+        name="devicerev"
+        type="Uns32"/>
+    <formalattribute defaultvalue="33"
+        name="psclock"
+        type="Uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Define the master clock (PS_CLK) frequency in MHz (default 33)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="500"
+        name="armmips"
+        type="Uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Define ARM CPU MIPS Rate in MIPS (default 500)"/>
+        </docsection>
+    </formalattribute>
+    <netport name="ARM1Deration"
+        type="output"/>
+    <netport name="ARM0Deration"
+        type="output"/>
+    <formalattribute defaultvalue="0x04"
+        name="bootmode"
+        type="Uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Define BOOT_MODE value (default 0x04)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="clockcontroldisable"
+        type="Boolean">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Disable change to ARM processor operating frequency when ARM PLL or clock control registers are modified."/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

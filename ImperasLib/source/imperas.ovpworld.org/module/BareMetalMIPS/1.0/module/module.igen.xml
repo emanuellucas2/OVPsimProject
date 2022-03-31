@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="BareMetalMIPS"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="F"
+    vendor="imperas.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Bare Metal hardware defintion with an MIPS32 Processor."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="BareMetal platform for execution of MIPS MIPS32 binary elf files."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="None"/>
+    </docsection>
+    <formalattribute defaultvalue="32"
+        max="64"
+        min="32"
+        name="addressbits"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Allows the address bits for the main bus to be modified (default 32)"/>
+        </docsection>
+    </formalattribute>
+    <bus addresswidth="addressbits"
+        name="bus"/>
+    <processorinstance defaultsemihost="T"
+        name="cpu">
+        <vlnvreference library="processor"
+            name="mips32_r1r5"
+            vendor="mips.ovpworld.org"/>
+        <busmasterportconnection connection="bus"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus"
+            name="DATA"/>
+    </processorinstance>
+    <memoryinstance name="memory1">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus"
+            hiaddress="0x400fffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <memoryinstance name="memory2">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus"
+            hiaddress="0xffffffff"
+            loaddress="0x40110000"
+            name="sp1"/>
+    </memoryinstance>
+    <busportconnection connection="pBusMapped"
+        mustbeconnected="F"
+        name="pBusP"/>
+    <bus addresswidth="32"
+        name="pBusMapped"/>
+    <bridge name="pBusBridge">
+        <busslaveportconnection connection="bus"
+            hiaddress="0x4010ffff"
+            loaddress="0x40100000"
+            name="sp1"/>
+        <busmasterportconnection connection="pBusMapped"
+            hiaddress="0x0000ffff"
+            loaddress="0x00000000"
+            name="mp1"/>
+    </bridge>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

@@ -1,0 +1,68 @@
+<html lang="en">
+<link rel="icon" type="image/icon" href="/imperas.ico">
+
+<head>
+    <title>Imperas Simulation</title>
+    <meta   charset="utf-8"/>
+    <link   rel="stylesheet"        href="normal.css"   type="text/css"/>
+    <script language="JavaScript"   src="runtime.js"        ></script>
+</head>
+
+<body onload="startRefresh('/', 500);">
+
+    <table><tr>
+    <td>
+        <table>
+            <tr>
+                <td class='ovplabel'> Switches=</td><td><div class='ovptext' id="switches"></div></td>
+            </tr>
+        </table>
+       
+        <table>
+            <tr>
+               <td><div class='ovpswitchtoggle' id="sw3" onmousedown="ovpswitchclicked(event)"></div></td>
+               <td><div class='ovpswitchtoggle' id="sw2" onmousedown="ovpswitchclicked(event)"></div></td>
+               <td><div class='ovpswitchtoggle' id="sw1" onmousedown="ovpswitchclicked(event)"></div></td>
+               <td><div class='ovpswitchtoggle' id="sw0" onmousedown="ovpswitchclicked(event)"></div></td>
+            </tr>
+        </table>
+    </td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+        <table>
+            <tr>
+                <td class='ovplabel'>Button LEDS</td><td></div></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><div class='ovpbuttonled' id="bled3" onmousedown="ovpswitchclicked(event)" title='clickable'></div></td>
+                <td><div class='ovpbuttonled' id="bled2" onmousedown="ovpswitchclicked(event)" title='clickable'></div></td>
+                <td><div class='ovpbuttonled' id="bled1" onmousedown="ovpswitchclicked(event)" title='clickable'></div></td>
+                <td><div class='ovpbuttonled' id="bled0" onmousedown="ovpswitchclicked(event)" title='clickable'></div></td>
+            </tr>
+        </table>
+    </td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+        <table>
+            <tr>
+                <td class='ovplabel'>DIP Switches</td><td></div></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+               <td><div class='ovpswitchdip' id="swt3" onmousedown="ovpswitchclicked(event)"></div></td>
+               <td><div class='ovpswitchdip' id="swt2" onmousedown="ovpswitchclicked(event)"></div></td>
+               <td><div class='ovpswitchdip' id="swt1" onmousedown="ovpswitchclicked(event)"></div></td>
+               <td><div class='ovpswitchdip' id="swt0" onmousedown="ovpswitchclicked(event)"></div></td>
+            </tr>
+        </table>    
+    </td>
+    </tr></table>
+    <br/>
+    <table>
+        <br/><br/>
+        <tr><td class='ovplabel'>Power Button </td></tr>
+        <tr><td><div class='ovppower' id="power0" onmousedown="ovpswitchclicked(event)" title='click to quit simulation'>SIMULATION NOT RUNNING</div></td></tr>
+    </table>
+
+<div class='console' id='console'></div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="KinetisPIT"
+    nbyte="T"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="freescale.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Model of the PIT peripheral used on the Freescale Kinetis platform"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Provides the base behaviour for the OVP Freescale Kinetis platforms"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="www.freescale.com/Kinetis"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <netport name="Reset"
+        type="input"/>
+    <netport hiarray="3"
+        loarray="0"
+        name="irq%u"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="IRQ port"/>
+        </docsection>
+    </netport>
+    <netport hiarray="3"
+        loarray="0"
+        name="trg%u"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Trigger port"/>
+        </docsection>
+    </netport>
+    <formalattribute defaultvalue="80"
+        name="frequency"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Frequency of the clock input in MHz (default is 80MHz)"/>
+        </docsection>
+    </formalattribute>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x100"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MCR"
+                nbyte="T"
+                offset="0x0"
+                width="32"
+                writefunction="writeMCR"
+                writemask="3">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000002"/>
+                <field access="rw"
+                    name="FRZ"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="MDIS"
+                    width="1"/>
+            </memorymappedregister>
+        </addressblock>
+        <addressblock hiarray="0x3"
+            loarray="0x0"
+            name="ab2"
+            offset="0x100"
+            size="0x10"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LDVAL"
+                nbyte="T"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer Load Value Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000000"/>
+                <field access="rw"
+                    bitoffset="0"
+                    name="TSV"
+                    width="32"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CVAL"
+                nbyte="T"
+                offset="0x4"
+                readfunction="readCVAL"
+                viewfunction="viewCVAL"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Current Timer Value Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000000"/>
+                <field access="rw"
+                    bitoffset="0"
+                    name="TVL"
+                    width="32"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TCTRL"
+                nbyte="T"
+                offset="0x8"
+                width="32"
+                writefunction="writeTCTRL"
+                writemask="3">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer Control Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000000"/>
+                <field access="rw"
+                    name="TEN"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="TIE"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="TFLG"
+                nbyte="T"
+                offset="0xc"
+                width="32"
+                writefunction="writeTFLG"
+                writemask="1">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Timer Flag Register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000000"/>
+                <field access="rw"
+                    bitoffset="0"
+                    name="TIF"
+                    width="1"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

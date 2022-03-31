@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="userStart"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="Alpha2x16Display"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="This is a simple test peripheral creating a 2x16 alphanumeric display."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This is not representing a real device and provides simple operations as an example."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="This is not based upon a real device"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="busPort"
+        size="0x4">
+        <addressblock name="A"
+            size="0x4"
+            width="8">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="control"
+                nbyte="F"
+                width="8"
+                writefunction="controlWrite">
+                <reset mask="0xff"
+                    name="resetNet"
+                    value="0"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="invert"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="set"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="clear"
+                    width="1"/>
+                <field access="rw"
+                    name="enable"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="address"
+                nbyte="F"
+                offset="0x1"
+                width="8">
+                <reset mask="0xff"
+                    name="resetNet"
+                    value="0"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="status"
+                nbyte="F"
+                offset="0x2"
+                width="8"
+                writefunction="statusWriteError">
+                <reset mask="0xff"
+                    name="resetNet"
+                    value="0"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="enable"
+                    width="1"/>
+                <field access="rw"
+                    name="busy"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="data"
+                nbyte="F"
+                offset="0x3"
+                readfunction="dataRead"
+                width="8"
+                writefunction="dataWrite"/>
+        </addressblock>
+    </busslaveport>
+    <netport name="interrupt"
+        type="output"/>
+    <formalmacro name="BHM_HTTP_FORMALS"/>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

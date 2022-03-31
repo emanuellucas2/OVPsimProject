@@ -1,0 +1,3026 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="zynq_7000-dmac"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="xilinx.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Zynq 7000 Platform DMA Controller (DMAC)"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model implements the full set of registers. There is no behavior included."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Zynq-7000 TRM (https://www.xilinx.com/support/documentation/user_guides/ug585-Zynq-7000-TRM.pdf)"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bportS"
+        size="0x1000">
+        <addressblock name="abS"
+            size="0x1000"
+            width="32">
+            <localmemory name="buffer"
+                readfunction="regNoDefinitionReadS"
+                size="0x1000"
+                writefunction="regNoDefinitionWriteS"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DSR"
+                nbyte="F"
+                width="32"
+                writemask="511">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMA Manager Status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DPC"
+                nbyte="F"
+                offset="0x4"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMA Program Counter"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INTEN"
+                nbyte="F"
+                offset="0x20"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMASEV Instruction Response Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INT_EVENT_RIS"
+                nbyte="F"
+                offset="0x24"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Event Interrupt Raw Status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INTMIS"
+                nbyte="F"
+                offset="0x28"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INTCLR"
+                nbyte="F"
+                offset="0x2c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Clear"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FSRD"
+                nbyte="F"
+                offset="0x30"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Fault Status DMA Manager"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FSRC"
+                nbyte="F"
+                offset="0x34"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Fault Status DMA Channel"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTRD"
+                nbyte="F"
+                offset="0x38"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Fault Type DMA Manager"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR0"
+                nbyte="F"
+                offset="0x40"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR1"
+                nbyte="F"
+                offset="0x44"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR2"
+                nbyte="F"
+                offset="0x48"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR3"
+                nbyte="F"
+                offset="0x4c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR4"
+                nbyte="F"
+                offset="0x50"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR5"
+                nbyte="F"
+                offset="0x54"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 5"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR6"
+                nbyte="F"
+                offset="0x58"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 6"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR7"
+                nbyte="F"
+                offset="0x5c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 7"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR0"
+                nbyte="F"
+                offset="0x100"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC0"
+                nbyte="F"
+                offset="0x104"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR1"
+                nbyte="F"
+                offset="0x108"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC1"
+                nbyte="F"
+                offset="0x10c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR2"
+                nbyte="F"
+                offset="0x110"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC2"
+                nbyte="F"
+                offset="0x114"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR3"
+                nbyte="F"
+                offset="0x118"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC3"
+                nbyte="F"
+                offset="0x11c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR4"
+                nbyte="F"
+                offset="0x120"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC4"
+                nbyte="F"
+                offset="0x124"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR5"
+                nbyte="F"
+                offset="0x128"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 5"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC5"
+                nbyte="F"
+                offset="0x12c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 5"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR6"
+                nbyte="F"
+                offset="0x130"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 6"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC6"
+                nbyte="F"
+                offset="0x134"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 6"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR7"
+                nbyte="F"
+                offset="0x138"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 7"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC7"
+                nbyte="F"
+                offset="0x13c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 7"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR0"
+                nbyte="F"
+                offset="0x400"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source Address DMA Channel 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR0"
+                nbyte="F"
+                offset="0x404"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR0"
+                nbyte="F"
+                offset="0x408"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 0 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00800200"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_0"
+                nbyte="F"
+                offset="0x40c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_0"
+                nbyte="F"
+                offset="0x410"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR1"
+                nbyte="F"
+                offset="0x420"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source address DMA Channel 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR1"
+                nbyte="F"
+                offset="0x424"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR1"
+                nbyte="F"
+                offset="0x428"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 1 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00800200"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_1"
+                nbyte="F"
+                offset="0x42c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_1"
+                nbyte="F"
+                offset="0x430"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR2"
+                nbyte="F"
+                offset="0x440"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source Address DMA Channel 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR2"
+                nbyte="F"
+                offset="0x444"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR2"
+                nbyte="F"
+                offset="0x448"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 2 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00800200"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_2"
+                nbyte="F"
+                offset="0x44c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_2"
+                nbyte="F"
+                offset="0x450"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR3"
+                nbyte="F"
+                offset="0x460"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source Address DMA Channel 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR3"
+                nbyte="F"
+                offset="0x464"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR3"
+                nbyte="F"
+                offset="0x468"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 3 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00800200"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_3"
+                nbyte="F"
+                offset="0x46c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_3"
+                nbyte="F"
+                offset="0x470"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR4"
+                nbyte="F"
+                offset="0x480"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source Address DMA Channel 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR4"
+                nbyte="F"
+                offset="0x484"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR4"
+                nbyte="F"
+                offset="0x488"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 4 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00800200"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_4"
+                nbyte="F"
+                offset="0x48c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_4"
+                nbyte="F"
+                offset="0x490"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR5"
+                nbyte="F"
+                offset="0x4a0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source Address DMA Channel 5"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR5"
+                nbyte="F"
+                offset="0x4a4"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 5"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR5"
+                nbyte="F"
+                offset="0x4a8"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 5 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00800200"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_5"
+                nbyte="F"
+                offset="0x4ac"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 5"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_5"
+                nbyte="F"
+                offset="0x4b0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 5"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR6"
+                nbyte="F"
+                offset="0x4c0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source Address DMA Channel 6"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR6"
+                nbyte="F"
+                offset="0x4c4"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 6"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR6"
+                nbyte="F"
+                offset="0x4c8"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 6 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00800200"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_6"
+                nbyte="F"
+                offset="0x4cc"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 6"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_6"
+                nbyte="F"
+                offset="0x4d0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 6"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR7"
+                nbyte="F"
+                offset="0x4e0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source Address DMA Channel 7"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR7"
+                nbyte="F"
+                offset="0x4e4"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 7"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR7"
+                nbyte="F"
+                offset="0x4e8"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 7 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00800200"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_7"
+                nbyte="F"
+                offset="0x4ec"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 7"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_7"
+                nbyte="F"
+                offset="0x4f0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 7"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DBGSTATUS"
+                nbyte="F"
+                offset="0xd00"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMA Manager Execution Status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DBGCMD"
+                nbyte="F"
+                offset="0xd04"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMA Manager Instr. command "/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DBGINST0"
+                nbyte="F"
+                offset="0xd08"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMA Manager Instruction Part A"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DBGINST1"
+                nbyte="F"
+                offset="0xd0c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMA Manager Instruction Part B"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CR0"
+                nbyte="F"
+                offset="0xe00"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Config. 0: Events, Peripheral Interfaces, PC, Mode (dmac0_ns: 0x00000000 dmac0_s: 0x001E3071 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x001E3071"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CR1"
+                nbyte="F"
+                offset="0xe04"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Config. 1: Instruction Cache (dmac0_ns: 0x00000000 dmac0_s: 0x00000074 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000074"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CR2"
+                nbyte="F"
+                offset="0xe08"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Config. 2: DMA Mgr Boot Addr"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CR3"
+                nbyte="F"
+                offset="0xe0c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Config. 3: Security state of IRQs"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CR4"
+                nbyte="F"
+                offset="0xe10"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Config 4, Security of Periph Interfaces"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CRD"
+                nbyte="F"
+                offset="0xe14"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMA configuration (dmac0_ns: 0x00000000 dmac0_s: 0x07FF7F73 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x07FF7F73"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="WD"
+                nbyte="F"
+                offset="0xe80"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Timer"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="periph_id_0"
+                nbyte="F"
+                offset="0xfe0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Peripheral Identification register 0 (dmac0_ns: 0x00000000 dmac0_s: 0x00000030 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000030"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="periph_id_1"
+                nbyte="F"
+                offset="0xfe4"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Peripheral Identification register 1 (dmac0_ns: 0x00000000 dmac0_s: 0x00000013 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000013"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="periph_id_2"
+                nbyte="F"
+                offset="0xfe8"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Peripheral Identification register 2 (dmac0_ns: 0x00000000 dmac0_s: 0x00000024 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000024"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="periph_id_3"
+                nbyte="F"
+                offset="0xfec"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Peripheral Identification register 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="pcell_id_0"
+                nbyte="F"
+                offset="0xff0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Component Identification register 0 (dmac0_ns: 0x00000000 dmac0_s: 0x0000000D)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x0000000D"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="pcell_id_1"
+                nbyte="F"
+                offset="0xff4"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Component Identification register 1 (dmac0_ns: 0x00000000 dmac0_s: 0x000000F0)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x000000F0"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="pcell_id_2"
+                nbyte="F"
+                offset="0xff8"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Component Identification register 2 (dmac0_ns: 0x00000000 dmac0_s: 0x00000005)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000005"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="pcell_id_3"
+                nbyte="F"
+                offset="0xffc"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Component Identification register 3 (dmac0_ns: 0x00000000 dmac0_s: 0x000000B1)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x000000B1"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bportNS"
+        size="0x1000">
+        <addressblock name="abNS"
+            size="0x1000"
+            width="32">
+            <localmemory name="buffer"
+                readfunction="regNoDefinitionReadNS"
+                size="0x1000"
+                writefunction="regNoDefinitionWriteNS"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DSR"
+                nbyte="F"
+                width="32"
+                writemask="511">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMA Manager Status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DPC"
+                nbyte="F"
+                offset="0x4"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMA Program Counter"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INTEN"
+                nbyte="F"
+                offset="0x20"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMASEV Instruction Response Control"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INT_EVENT_RIS"
+                nbyte="F"
+                offset="0x24"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Event Interrupt Raw Status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INTMIS"
+                nbyte="F"
+                offset="0x28"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="INTCLR"
+                nbyte="F"
+                offset="0x2c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Interrupt Clear"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FSRD"
+                nbyte="F"
+                offset="0x30"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Fault Status DMA Manager"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FSRC"
+                nbyte="F"
+                offset="0x34"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Fault Status DMA Channel"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTRD"
+                nbyte="F"
+                offset="0x38"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Fault Type DMA Manager"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR0"
+                nbyte="F"
+                offset="0x40"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR1"
+                nbyte="F"
+                offset="0x44"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR2"
+                nbyte="F"
+                offset="0x48"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR3"
+                nbyte="F"
+                offset="0x4c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR4"
+                nbyte="F"
+                offset="0x50"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR5"
+                nbyte="F"
+                offset="0x54"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 5"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR6"
+                nbyte="F"
+                offset="0x58"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 6"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="FTR7"
+                nbyte="F"
+                offset="0x5c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Default Type DMA Channel 7"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR0"
+                nbyte="F"
+                offset="0x100"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC0"
+                nbyte="F"
+                offset="0x104"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR1"
+                nbyte="F"
+                offset="0x108"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC1"
+                nbyte="F"
+                offset="0x10c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR2"
+                nbyte="F"
+                offset="0x110"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC2"
+                nbyte="F"
+                offset="0x114"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR3"
+                nbyte="F"
+                offset="0x118"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC3"
+                nbyte="F"
+                offset="0x11c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR4"
+                nbyte="F"
+                offset="0x120"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC4"
+                nbyte="F"
+                offset="0x124"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR5"
+                nbyte="F"
+                offset="0x128"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 5"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC5"
+                nbyte="F"
+                offset="0x12c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 5"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR6"
+                nbyte="F"
+                offset="0x130"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 6"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC6"
+                nbyte="F"
+                offset="0x134"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 6"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CSR7"
+                nbyte="F"
+                offset="0x138"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Status DMA Channel 7"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CPC7"
+                nbyte="F"
+                offset="0x13c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel PC for DMA Channel 7"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR0"
+                nbyte="F"
+                offset="0x400"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source Address DMA Channel 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR0"
+                nbyte="F"
+                offset="0x404"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR0"
+                nbyte="F"
+                offset="0x408"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 0 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_0"
+                nbyte="F"
+                offset="0x40c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_0"
+                nbyte="F"
+                offset="0x410"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 0"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR1"
+                nbyte="F"
+                offset="0x420"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source address DMA Channel 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR1"
+                nbyte="F"
+                offset="0x424"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR1"
+                nbyte="F"
+                offset="0x428"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 1 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_1"
+                nbyte="F"
+                offset="0x42c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_1"
+                nbyte="F"
+                offset="0x430"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 1"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR2"
+                nbyte="F"
+                offset="0x440"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source Address DMA Channel 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR2"
+                nbyte="F"
+                offset="0x444"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR2"
+                nbyte="F"
+                offset="0x448"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 2 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_2"
+                nbyte="F"
+                offset="0x44c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_2"
+                nbyte="F"
+                offset="0x450"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 2"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR3"
+                nbyte="F"
+                offset="0x460"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source Address DMA Channel 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR3"
+                nbyte="F"
+                offset="0x464"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR3"
+                nbyte="F"
+                offset="0x468"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 3 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_3"
+                nbyte="F"
+                offset="0x46c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_3"
+                nbyte="F"
+                offset="0x470"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR4"
+                nbyte="F"
+                offset="0x480"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source Address DMA Channel 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR4"
+                nbyte="F"
+                offset="0x484"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR4"
+                nbyte="F"
+                offset="0x488"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 4 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_4"
+                nbyte="F"
+                offset="0x48c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_4"
+                nbyte="F"
+                offset="0x490"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 4"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR5"
+                nbyte="F"
+                offset="0x4a0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source Address DMA Channel 5"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR5"
+                nbyte="F"
+                offset="0x4a4"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 5"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR5"
+                nbyte="F"
+                offset="0x4a8"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 5 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_5"
+                nbyte="F"
+                offset="0x4ac"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 5"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_5"
+                nbyte="F"
+                offset="0x4b0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 5"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR6"
+                nbyte="F"
+                offset="0x4c0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source Address DMA Channel 6"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR6"
+                nbyte="F"
+                offset="0x4c4"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 6"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR6"
+                nbyte="F"
+                offset="0x4c8"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 6 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_6"
+                nbyte="F"
+                offset="0x4cc"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 6"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_6"
+                nbyte="F"
+                offset="0x4d0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 6"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="SAR7"
+                nbyte="F"
+                offset="0x4e0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Source Address DMA Channel 7"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DAR7"
+                nbyte="F"
+                offset="0x4e4"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Destination Addr DMA Channel 7"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CCR7"
+                nbyte="F"
+                offset="0x4e8"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Channel Control DMA Channel 7 (dmac0_ns: 0x00000000 dmac0_s: 0x00800200 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC0_7"
+                nbyte="F"
+                offset="0x4ec"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 0 DMA Channel 7"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LC1_7"
+                nbyte="F"
+                offset="0x4f0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Loop Counter 1 DMA Channel 7"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DBGSTATUS"
+                nbyte="F"
+                offset="0xd00"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMA Manager Execution Status"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DBGCMD"
+                nbyte="F"
+                offset="0xd04"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMA Manager Instr. command "/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DBGINST0"
+                nbyte="F"
+                offset="0xd08"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMA Manager Instruction Part A"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="DBGINST1"
+                nbyte="F"
+                offset="0xd0c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMA Manager Instruction Part B"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CR0"
+                nbyte="F"
+                offset="0xe00"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Config. 0: Events, Peripheral Interfaces, PC, Mode (dmac0_ns: 0x00000000 dmac0_s: 0x001E3071 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CR1"
+                nbyte="F"
+                offset="0xe04"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Config. 1: Instruction Cache (dmac0_ns: 0x00000000 dmac0_s: 0x00000074 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CR2"
+                nbyte="F"
+                offset="0xe08"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Config. 2: DMA Mgr Boot Addr"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CR3"
+                nbyte="F"
+                offset="0xe0c"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Config. 3: Security state of IRQs"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CR4"
+                nbyte="F"
+                offset="0xe10"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Config 4, Security of Periph Interfaces"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CRD"
+                nbyte="F"
+                offset="0xe14"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DMA configuration (dmac0_ns: 0x00000000 dmac0_s: 0x07FF7F73 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="WD"
+                nbyte="F"
+                offset="0xe80"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Watchdog Timer"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="periph_id_0"
+                nbyte="F"
+                offset="0xfe0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Peripheral Identification register 0 (dmac0_ns: 0x00000000 dmac0_s: 0x00000030 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="periph_id_1"
+                nbyte="F"
+                offset="0xfe4"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Peripheral Identification register 1 (dmac0_ns: 0x00000000 dmac0_s: 0x00000013 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="periph_id_2"
+                nbyte="F"
+                offset="0xfe8"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Peripheral Identification register 2 (dmac0_ns: 0x00000000 dmac0_s: 0x00000024 )"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="periph_id_3"
+                nbyte="F"
+                offset="0xfec"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Peripheral Identification register 3"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="pcell_id_0"
+                nbyte="F"
+                offset="0xff0"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Component Identification register 0 (dmac0_ns: 0x00000000 dmac0_s: 0x0000000D)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="pcell_id_1"
+                nbyte="F"
+                offset="0xff4"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Component Identification register 1 (dmac0_ns: 0x00000000 dmac0_s: 0x000000F0)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="pcell_id_2"
+                nbyte="F"
+                offset="0xff8"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Component Identification register 2 (dmac0_ns: 0x00000000 dmac0_s: 0x00000005)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="pcell_id_3"
+                nbyte="F"
+                offset="0xffc"
+                width="32"
+                writemask="4294967295">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Component Identification register 3 (dmac0_ns: 0x00000000 dmac0_s: 0x000000B1)"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport hiarray="7"
+        loarray="0"
+        name="Int%u"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text=" DMAC Interrupt"/>
+        </docsection>
+    </netport>
+    <netport name="inta"
+        type="output">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Interrupt DMAC Transfer Abort"/>
+        </docsection>
+    </netport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

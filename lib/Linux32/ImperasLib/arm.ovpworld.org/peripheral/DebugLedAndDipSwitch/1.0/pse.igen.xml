@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="DebugLedAndDipSwitch"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="arm.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="ARM Integrator Board Debug LEDs and DIP Switch Interface"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="none"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="Integrator User Guide Compact Platform Baseboard HBI-0086 (DUI 0159B)"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LED_ALPHA"
+                nbyte="F"
+                width="32"
+                writefunction="writeAlpha">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Alphanumeric Characters register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LED_LIGHTS"
+                nbyte="F"
+                offset="0x4"
+                width="32"
+                writefunction="writeLED">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="LED Control register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="LED_SWITCHES"
+                nbyte="F"
+                offset="0x8"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="DIP Switch register"/>
+                </docsection>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

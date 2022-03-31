@@ -1,0 +1,16 @@
+#
+# Please obtain a license key from the supplier who provided this software 
+# distribution, from http://www.OVPworld.org or by emailing ovpsim@imperas.com
+# and place the license key information you receive in this file
+#
+
+#### OVPsim non-commercial license keys for EmanuelLucas emanuel.lucas@grad.ufsc.br personal
+#### Please put them in $IMPERAS_HOME/OVPsim.lic
+#### Generated on 29-Mar-2022 for 90 days duration
+
+#### Hostname1 emanuel-Aspire-E1-572
+
+FEATURE IMP_OVPSIM_20211118 imperasd 1.0 27-jun-2022 uncounted \
+    HOSTID=5cc9d337c9a4 SIGN="08ED 40E5 D868 836E DC0A 0C43 CF9B \
+    60FB 2C01 87FF 8003 A28E 6805 DD51 BED7 066E 4864 100A 1AF2 \
+    11C4 7D43 35EF 86DE 9DBE BFD8 16EB 87CF 2B47 1E2F 90DC"

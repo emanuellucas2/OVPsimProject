@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="KinetisPMC"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="freescale.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Model of the PMC peripheral used on the Freescale Kinetis platform"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Provides the base behaviour for the OVP Freescale Kinetis platforms"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="www.freescale.com/Kinetis"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x3"
+            width="8">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LVDSC1"
+                nbyte="F"
+                width="8"
+                writemask="115">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x10"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Low Voltage Detect Status and Control 1 Register, offset: 0x0 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="6"
+                    name="LVDACK"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="LVDF"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="LVDIE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="LVDRE"
+                    width="1"/>
+                <field access="rw"
+                    name="LVDV"
+                    width="2"/>
+                <field bitoffset="2"
+                    name="__pad2"
+                    width="2"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="LVDSC2"
+                nbyte="F"
+                offset="0x1"
+                width="8"
+                writemask="99">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Low Voltage Detect Status and Control 2 Register, offset: 0x1 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="6"
+                    name="LVWACK"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="7"
+                    name="LVWF"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="LVWIE"
+                    width="1"/>
+                <field access="rw"
+                    name="LVWV"
+                    width="2"/>
+                <field bitoffset="2"
+                    name="__pad2"
+                    width="3"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="REGSC"
+                nbyte="F"
+                offset="0x2"
+                width="8"
+                writemask="9">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x04"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Regulator Status and Control Register, offset: 0x2 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="3"
+                    name="ACKISO"
+                    width="1"/>
+                <field access="rw"
+                    name="BGBE"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="BGEN"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="REGONS"
+                    width="1"/>
+                <field bitoffset="1"
+                    name="__pad1"
+                    width="1"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="Reset"
+        type="input"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

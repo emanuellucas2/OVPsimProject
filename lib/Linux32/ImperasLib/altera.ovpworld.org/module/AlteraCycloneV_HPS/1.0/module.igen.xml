@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="AlteraCycloneV_HPS"
+    purpose="4"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="F"
+    vendor="altera.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets">
+        <net name="ir199"/>
+        <net name="ir200"/>
+        <net name="ir201"/>
+        <net name="ir202"/>
+        <net name="ir194"/>
+        <net name="ir195"/>
+        <net name="cpu0Reset"/>
+        <net name="cpu1Reset"/>
+    </nets>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="This platform models the Altera Cyclone V SOC FPGA chip Hard Processor System."/>
+        <doctext name="txt_1"
+            text="The processor is an ARM Cortex-A9MPx2."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Peripherals are modeled only to the extent required to boot and run Operating Systems such as Linux."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Cyclone V Handbook Volume 3: Hard Processor System Technical Reference Manual cv_5v4 2013.12.30."/>
+    </docsection>
+    <bus addresswidth="32"
+        name="smbus"/>
+    <processorinstance endian="little"
+        mips="100.0"
+        name="cpu"
+        simulateexceptions="T">
+        <vlnvreference name="arm"
+            vendor="arm.ovpworld.org"
+            version="1.0"/>
+        <attribute content="Cortex-A9MPx2"
+            name="variant"/>
+        <attribute content="ISA"
+            name="compatibility"/>
+        <attribute content="1"
+            name="UAL"/>
+        <attribute content="0"
+            name="showHiddenRegs"/>
+        <attribute content="0xfffec000"
+            name="override_CBAR"/>
+        <attribute content="6"
+            name="override_GICD_TYPER_ITLines"/>
+        <busmasterportconnection connection="smbus"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="smbus"
+            name="DATA"/>
+        <netportconnection connection="ir199"
+            name="SPI199"/>
+        <netportconnection connection="ir200"
+            name="SPI200"/>
+        <netportconnection connection="ir201"
+            name="SPI201"/>
+        <netportconnection connection="ir202"
+            name="SPI202"/>
+        <netportconnection connection="ir194"
+            name="SPI194"/>
+        <netportconnection connection="ir195"
+            name="SPI195"/>
+        <netportconnection connection="cpu0Reset"
+            name="reset_CPU0"/>
+        <netportconnection connection="cpu1Reset"
+            name="reset_CPU1"/>
+    </processorinstance>
+    <memoryinstance name="sram1">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="smbus"
+            hiaddress="0x3fffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <peripheralinstance name="L2">
+        <vlnvreference name="L2CachePL310"
+            vendor="arm.ovpworld.org"/>
+        <busslaveportconnection connection="smbus"
+            hiaddress="0xfffeffff"
+            loaddress="0xfffef000"
+            name="bport1"/>
+    </peripheralinstance>
+    <peripheralinstance name="timer0">
+        <vlnvreference name="dw-apb-timer"
+            vendor="altera.ovpworld.org"/>
+        <busslaveportconnection connection="smbus"
+            hiaddress="0xffc08fff"
+            loaddress="0xffc08000"
+            name="bport1"/>
+        <netportconnection connection="ir199"
+            name="irq"/>
+    </peripheralinstance>
+    <peripheralinstance name="timer1">
+        <vlnvreference name="dw-apb-timer"
+            vendor="altera.ovpworld.org"/>
+        <busslaveportconnection connection="smbus"
+            hiaddress="0xffc09fff"
+            loaddress="0xffc09000"
+            name="bport1"/>
+        <netportconnection connection="ir200"
+            name="irq"/>
+    </peripheralinstance>
+    <peripheralinstance name="timer2">
+        <vlnvreference name="dw-apb-timer"
+            vendor="altera.ovpworld.org"/>
+        <busslaveportconnection connection="smbus"
+            hiaddress="0xffd00fff"
+            loaddress="0xffd00000"
+            name="bport1"/>
+        <netportconnection connection="ir201"
+            name="irq"/>
+    </peripheralinstance>
+    <peripheralinstance name="timer3">
+        <vlnvreference name="dw-apb-timer"
+            vendor="altera.ovpworld.org"/>
+        <busslaveportconnection connection="smbus"
+            hiaddress="0xffd01fff"
+            loaddress="0xffd01000"
+            name="bport1"/>
+        <netportconnection connection="ir202"
+            name="irq"/>
+    </peripheralinstance>
+    <peripheralinstance name="uart0">
+        <vlnvreference name="dw-apb-uart"
+            vendor="altera.ovpworld.org"/>
+        <attribute content="uart0.log"
+            name="outfile"/>
+        <attribute content="1"
+            name="console"/>
+        <attribute content="1"
+            name="finishOnDisconnect"/>
+        <busslaveportconnection connection="smbus"
+            hiaddress="0xffc02fff"
+            loaddress="0xffc02000"
+            name="bport1"/>
+        <netportconnection connection="ir194"
+            name="intOut"/>
+    </peripheralinstance>
+    <peripheralinstance name="uart1">
+        <vlnvreference name="dw-apb-uart"
+            vendor="altera.ovpworld.org"/>
+        <attribute content="uart1.log"
+            name="outfile"/>
+        <attribute content="1"
+            name="console"/>
+        <attribute name="finishOnDisconnect"/>
+        <busslaveportconnection connection="smbus"
+            hiaddress="0xffc03fff"
+            loaddress="0xffc03000"
+            name="bport1"/>
+        <netportconnection connection="ir195"
+            name="intOut"/>
+    </peripheralinstance>
+    <peripheralinstance name="RSTMGR0">
+        <vlnvreference name="RSTMGR"
+            vendor="altera.ovpworld.org"/>
+        <busslaveportconnection connection="smbus"
+            hiaddress="0xffd05fff"
+            loaddress="0xffd05000"
+            name="bport1"/>
+        <netportconnection connection="cpu0Reset"
+            name="cpu0Reset"/>
+        <netportconnection connection="cpu1Reset"
+            name="cpu1Reset"/>
+    </peripheralinstance>
+    <peripheralinstance name="SYSMGR0">
+        <vlnvreference name="trap"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="smbus"
+            name="bport1"
+            remappable="T"/>
+        <attribute content="0xffd08000"
+            name="portAddress"/>
+    </peripheralinstance>
+    <peripheralinstance name="CLKMGR0">
+        <vlnvreference name="trap"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="smbus"
+            name="bport1"
+            remappable="T"/>
+        <attribute content="0xffd04000"
+            name="portAddress"/>
+    </peripheralinstance>
+    <peripheralinstance name="pdma0">
+        <vlnvreference name="trap"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="smbus"
+            name="bport1"
+            remappable="T"/>
+        <attribute content="0xffe01000"
+            name="portAddress"/>
+    </peripheralinstance>
+    <peripheralinstance name="gmac0">
+        <vlnvreference name="trap"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="smbus"
+            name="bport1"
+            remappable="T"/>
+        <attribute content="0xff700000"
+            name="portAddress"/>
+    </peripheralinstance>
+    <peripheralinstance name="emac0_dma">
+        <vlnvreference name="trap"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="smbus"
+            name="bport1"
+            remappable="T"/>
+        <attribute content="0xff701000"
+            name="portAddress"/>
+    </peripheralinstance>
+    <peripheralinstance name="gmac1">
+        <vlnvreference name="trap"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="smbus"
+            name="bport1"
+            remappable="T"/>
+        <attribute content="0xff702000"
+            name="portAddress"/>
+    </peripheralinstance>
+    <peripheralinstance name="emac1_dma">
+        <vlnvreference name="trap"
+            vendor="ovpworld.org"/>
+        <busslaveportconnection connection="smbus"
+            name="bport1"
+            remappable="T"/>
+        <attribute content="0xff703000"
+            name="portAddress"/>
+    </peripheralinstance>
+    <peripheralinstance name="smartLoader">
+        <vlnvreference name="SmartLoaderArmLinux"
+            vendor="arm.ovpworld.org"/>
+        <busmasterportconnection connection="smbus"
+            hiaddress="0xffffffff"
+            loaddress="0"
+            name="mport"/>
+        <attribute content="0xffffffff"
+            name="boardid"/>
+        <attribute content="zImage"
+            name="kernel"/>
+        <attribute content="fs.img"
+            name="initrd"/>
+        <attribute content="mem=1024M console=ttyS0"
+            name="command"/>
+        <attribute content="0x00000000"
+            name="physicalbase"/>
+        <attribute content="0x40000000"
+            name="memsize"/>
+        <attribute content="0"
+            name="disable"/>
+    </peripheralinstance>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

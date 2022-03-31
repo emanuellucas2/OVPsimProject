@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="CoreUARTapb"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="microsemi.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Microsemi CoreUARTapb"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Basic functionality for transmit and receive"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="CoreUARTapb handbook v5.2 https://www.microsemi.com/document-portal/doc_view/130958-coreuartapb-handbook"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="port0"
+        size="0x18">
+        <addressblock name="Reg"
+            size="0x18"
+            width="32">
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="TxData"
+                nbyte="F"
+                width="32"
+                writefunction="TxDataWrite"/>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="RxData"
+                nbyte="F"
+                offset="0x4"
+                readfunction="RxDataRead"
+                width="32"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Ctrl1"
+                nbyte="F"
+                offset="0x8"
+                readfunction="Ctrl1Read"
+                width="32"
+                writefunction="Ctrl1Write">
+                <field access="rw"
+                    bitoffset="0"
+                    name="BAUD_VALUE"
+                    width="8"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Ctrl2"
+                nbyte="F"
+                offset="0xc"
+                readfunction="Ctrl2Read"
+                width="32"
+                writefunction="Ctrl2Write">
+                <field access="rw"
+                    name="BIT8"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="PARITY_EN"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="ODD_N_EVEN"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="BAUD_VALUE"
+                    width="5"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="Status"
+                nbyte="F"
+                offset="0x10"
+                readfunction="StatusRead"
+                width="32">
+                <field access="r"
+                    name="TXRDY"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="1"
+                    name="RXRDY"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="2"
+                    name="PARITY_ERR"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="3"
+                    name="OVERFLOW"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="4"
+                    name="FRAMING_ERR"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="Ctrl3"
+                nbyte="F"
+                offset="0x14"
+                readfunction="Ctrl3Read"
+                width="32"
+                writefunction="Ctrl3Write">
+                <field access="rw"
+                    bitoffset="0"
+                    name="BAUD_VALUE_FRACTION"
+                    width="3"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <formalmacro name="BHM_SER_OPEN_AUTO_FORMALS"/>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

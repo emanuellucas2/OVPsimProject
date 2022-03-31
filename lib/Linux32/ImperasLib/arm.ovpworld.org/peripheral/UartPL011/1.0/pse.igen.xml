@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="closeDown"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="UartPL011"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="arm.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="ARM PL011 UART"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="This is not a complete model of the PL011. There is no modeling of physical aspects of the UART, such as baud rates etc."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="ARM PrimeCell UART (PL011) Technical Reference Manual (ARM DDI 0183)"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="dr"
+                nbyte="F"
+                readfunction="readDR"
+                width="32"
+                writefunction="writeDR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UARTDR"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ecr"
+                nbyte="F"
+                offset="0x4"
+                readfunction="readECR"
+                width="32"
+                writefunction="writeECR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UARTECR"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="3"
+                    name="OE"
+                    width="1"/>
+                <field bitoffset="0"
+                    name="__pad0"
+                    width="3"/>
+            </memorymappedregister>
+            <localmemory access="r"
+                name="flags"
+                offset="0x18"
+                size="0x4"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ilpr"
+                nbyte="F"
+                offset="0x20"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UARTILPR"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ibrd"
+                nbyte="F"
+                offset="0x24"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UARTIBRD"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="vbrd"
+                nbyte="F"
+                offset="0x28"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UARTFBRD"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="lcr"
+                nbyte="F"
+                offset="0x2c"
+                width="32"
+                writefunction="writeLCR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UARTLCR_H"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="4"
+                    name="FEN"
+                    width="1"/>
+                <field bitoffset="0"
+                    name="__pad0"
+                    width="4"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="cr"
+                nbyte="F"
+                offset="0x30"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UARTCR"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ifl"
+                nbyte="F"
+                offset="0x34"
+                width="32"
+                writefunction="writeIFL">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UARTIFS"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="int_enabled"
+                nbyte="F"
+                offset="0x38"
+                width="32"
+                writefunction="writeIMSC">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UARTIMSC"/>
+                </docsection>
+            </memorymappedregister>
+            <localmemory access="r"
+                name="int_level"
+                offset="0x3c"
+                size="0x4"/>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="mis"
+                nbyte="F"
+                offset="0x40"
+                readfunction="readMIS"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UARTMIS"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="icr"
+                nbyte="F"
+                offset="0x44"
+                width="32"
+                writefunction="writeICR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UARTDICR"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="dmacr"
+                nbyte="F"
+                offset="0x48"
+                width="32"
+                writefunction="writeDMA">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UARTDMACR"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                hiarray="0x7"
+                isvolatile="T"
+                loarray="0x0"
+                name="id%u"
+                nbyte="T"
+                offset="0xfe0"
+                readfunction="readID"
+                userdata="_index"
+                width="32"/>
+        </addressblock>
+    </busslaveport>
+    <formalattribute name="variant"
+        type="enumeration">
+        <enum name="ARM"
+            value="0"/>
+        <enum name="LUMINARY"
+            value="1"/>
+    </formalattribute>
+    <formalattribute name="charmode"
+        type="boolean"/>
+    <formalmacro name="BHM_SER_OPEN_AUTO_FORMALS"/>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <netport name="irq"
+        type="output"/>
+    <netport name="DirectWrite"
+        type="output"/>
+    <netport name="DirectRead"
+        type="input"
+        updatefunction="directReadCB"/>
+    <formalattribute name="directReadWrite"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable the use of the DirectRead and DirectWrite connections"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

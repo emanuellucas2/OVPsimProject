@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    extensionfile="model"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="Ps2Control"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="intel.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="PS2 Keyboard/Mouse Controller."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This is a preliminary model with sufficient functionality
+to enable Linux to Boot on the MIPS:MALTA platform.
+Mouse functions are currently turned off."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="SMsC FDC37M817 Super I/O Controller Datasheet"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="config"
+        size="0x8"/>
+    <netport name="kbdInterrupt"
+        type="output"/>
+    <netport name="mouseInterrupt"
+        type="output"/>
+    <netport name="reset"
+        type="input"/>
+    <formalattribute name="disableInput"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="If set, disables mouse and keyboard events."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="2000"
+        name="pollPeriod"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Number of uS between each polling of the keyboard and mouse queues. (default 2000)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="grabDisable"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="If set, disables grabbing of the mouse by the VGA/input window."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="cursorEnable"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="If set, shows a basic software cursor in the VGA/input window at the mouse position."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="isMouse"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="If set, turns on mouse input function."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="isKeyboard"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="If set, turns on keyboard input function."/>
+        </docsection>
+    </formalattribute>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

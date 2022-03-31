@@ -1,0 +1,130 @@
+IMPERAS_HOME := $(shell getpath.exe "$(IMPERAS_HOME)")
+include $(IMPERAS_HOME)/bin/Makefile.include
+
+ifndef IMPERAS_HOME
+  IMPERAS_ERROR := $(error "IMPERAS_HOME not defined")
+endif
+
+include $(IMPERAS_HOME)/ImperasLib/buildutils/Makefile.common
+
+#
+# VLNVROOT & VLNVSRC MUST be absolute paths
+#
+ifndef VLNVROOT
+    VLNVROOT_ERROR := $(error "VLNVROOT not defined")
+else
+    VLNVROOT_INT := $(shell getpath.exe "$(VLNVROOT)")
+    ifeq ($(VLNVROOT_INT),)
+        VLNVROOT_ERROR := $(error "VLNVROOT_INT not determined. VLNVROOT=$(VLNVROOT) must exist")
+    endif
+endif
+
+ifndef VLNVSRC
+    VLNVSRC_ERROR := $(error "VLNVSRC not defined")
+else
+    VLNVSRC_INT  := $(shell getpath.exe "$(VLNVSRC)")
+    ifeq ($(VLNVSRC_INT),)
+        VLNVSRC_ERROR := $(error "VLNVSRC_INT not determined. VLNVSRC=$(VLNVSRC) must exist")
+    endif
+endif
+
+DEP_SUFFIX = h c cpp S xml
+
+#
+# For each of pse, model & platform dirs, generate a list of
+# src file directories *SRC
+# vlnv lists *VLNV
+# and object directories *OBJ
+#
+PSESRC  = $(foreach d, $(sort $(wildcard $(VLNVSRC_INT)/*/*/*/*/pse/Makefile)), $(subst /pse/Makefile,,$(d)))
+PSEVLNV = $(foreach d, $(PSESRC), $(subst $(VLNVSRC_INT)/,,$(d)))
+PSEOBJ  = $(foreach d, $(PSESRC), $(subst $(VLNVSRC_INT),$(VLNVROOT_INT),$(d))/pse.pse)
+
+PSETLM  = $(foreach d, $(sort $(wildcard $(VLNVSRC_INT)/*/*/*/*/pse/Makefile)), $(subst /pse/Makefile,/tlm/pse.igen.hpp,$(d)))
+
+MODELSRC  = $(foreach d, $(sort $(wildcard $(VLNVSRC_INT)/*/*/*/*/model/Makefile)), $(subst /model/Makefile,,$(d)))
+MODELVLNV = $(foreach d, $(MODELSRC), $(subst $(VLNVSRC_INT)/,,$(d)))
+MODELOBJ  = $(foreach d, $(MODELSRC), $(subst $(VLNVSRC_INT),$(VLNVROOT_INT),$(d))/model.$(IMPERAS_SHRSUF))
+
+MODULESRC  = $(foreach d, $(sort $(wildcard $(VLNVSRC_INT)/*/*/*/*/module/Makefile)), $(subst /module/Makefile,,$(d)))
+MODULEVLNV = $(foreach d, $(MODULESRC), $(subst $(VLNVSRC_INT)/,,$(d)))
+MODULEOBJ  = $(foreach d, $(MODULESRC), $(subst $(VLNVSRC_INT),$(VLNVROOT_INT),$(d))/model.$(IMPERAS_SHRSUF))
+
+PLATFORMSRC  = $(foreach d, $(sort $(wildcard $(VLNVSRC_INT)/*/*/*/*/platform/Makefile)), $(subst /platform/Makefile,,$(d)))
+PLATFORMVLNV = $(foreach d, $(PLATFORMSRC), $(subst $(VLNVSRC_INT)/,,$(d)))
+PLATFORMOBJ  = $(foreach d, $(PLATFORMSRC), $(subst $(VLNVSRC_INT),$(VLNVROOT_INT),$(d))/platform.$(IMPERAS_ARCH).exe)
+
+HTTP_SUFFIX = $(sort $(suffix $(wildcard $(VLNVSRC_INT)/*/*/*/*/httpvis/*)))
+HTTPVISSRC  = $(foreach s, $(HTTP_SUFFIX), $(wildcard $(VLNVSRC_INT)/*/*/*/*/httpvis/*$(s)))
+HTTPVISOBJ  = $(foreach d, $(HTTPVISSRC), $(subst $(VLNVSRC_INT),$(VLNVROOT_INT),$(d)))
+HTTPVISDIR  = $(foreach d, $(wildcard $(VLNVSRC_INT)/*/*/*/*/httpvis), $(subst /httpvis,,$(d)))
+HTTPVISVLNV = $(foreach d, $(HTTPVISDIR), $(subst $(VLNVSRC_INT)/,,$(d)))
+
+CLEANSRC  = $(foreach d, $(sort $(wildcard $(VLNVSRC_INT)/*/*/*/*/*/Makefile)), $(subst /Makefile,,$(d)))
+CLEANSRC += $(foreach d, $(sort $(wildcard */*/*/*/*/Makefile)), $(subst /Makefile,,$(d)))
+
+all: compile
+
+compile: $(PSEOBJ) $(MODELOBJ) $(MODULEOBJ) $(PLATFORMOBJ) $(HTTPVISOBJ) $(PSETLM)
+
+define DEPENDPSE
+$(VLNVROOT_INT)/$(1)/pse.pse: $(sort $(wildcard $(VLNVSRC_INT)/$(1)/pse/*.$(2)))
+endef
+$(VLNVROOT_INT)/%/pse.pse: $(VLNVSRC_INT)/%/pse FORCE_MODEL_REMAKE
+	$(V) mkdir -p $(@D)
+	$(V) $(MAKE) VLNVROOT=$(VLNVROOT_INT) -C $(VLNVSRC_INT)/$*/pse
+
+define DEPENDPSETLM
+$(VLNVSRC_INT)/$(1)/tlm/pse.igen.hpp: $(VLNVROOT_INT)/$(1)/pse.pse
+endef
+$(VLNVSRC_INT)/%/tlm/pse.igen.hpp: $(VLNVROOT_INT)/%/pse.pse
+	$(V) mkdir -p $(@D)
+	$(V) $(MAKE) VLNVROOT=$(VLNVROOT_INT) VLNVSRC=$(VLNVSRC_INT) -C $(VLNVSRC_INT)/$*/pse $@
+
+
+define DEPENDMODEL
+$(VLNVROOT_INT)/$(1)/model.$(IMPERAS_SHRSUF): $(sort $(wildcard $(VLNVSRC_INT)/$(1)/model/*.$(2)))
+endef
+$(VLNVROOT_INT)/%/model.$(IMPERAS_SHRSUF): $(VLNVSRC_INT)/%/model FORCE_MODEL_REMAKE
+	$(V) mkdir -p $(@D)
+	$(V) $(MAKE) VLNVROOT=$(VLNVROOT_INT) -C $(VLNVSRC_INT)/$*/model
+
+define DEPENDMODULE
+$(VLNVROOT_INT)/$(1)/model.$(IMPERAS_SHRSUF): $(sort $(wildcard $(VLNVSRC_INT)/$(1)/module/*.$(2)))
+endef
+$(VLNVROOT_INT)/%/model.$(IMPERAS_SHRSUF): $(VLNVSRC_INT)/%/module FORCE_MODEL_REMAKE
+	$(V) mkdir -p $(@D)
+	$(V) $(MAKE) VLNVROOT=$(VLNVROOT_INT) -C $(VLNVSRC_INT)/$*/module
+
+define DEPENDPLATFORM
+$(VLNVROOT_INT)/$(1)/platform.$(IMPERAS_ARCH).exe: $(sort $(wildcard $(VLNVSRC_INT)/$(1)/platform/*.$(2)))
+endef
+$(VLNVROOT_INT)/%/platform.$(IMPERAS_ARCH).exe: $(VLNVSRC_INT)/%/platform FORCE_MODEL_REMAKE
+	$(V) mkdir -p $(@D)
+	$(V) $(MAKE) VLNVROOT=$(VLNVROOT_INT) -C $(VLNVSRC_INT)/$*/platform
+
+define DEPENDHTTPVIS
+# 1=VLNV 2=.suffix
+$(VLNVROOT_INT)/$(1)/httpvis/%$(2): $(VLNVSRC_INT)/$(1)/httpvis/%$(2)
+	$(V) mkdir -p $$(@D)
+	$(V) cp $$< $$@
+endef
+
+$(foreach s, $(DEP_SUFFIX),  $(foreach v, $(PSEVLNV),      $(eval $(call DEPENDPSE,$(v),$(s)))))
+                             $(foreach v, $(PSEVLNV),      $(eval $(call DEPENDPSETLM,$(v))))
+$(foreach s, $(DEP_SUFFIX),  $(foreach v, $(MODELVLNV),    $(eval $(call DEPENDMODEL,$(v),$(s)))))
+$(foreach s, $(DEP_SUFFIX),  $(foreach v, $(MODULEVLNV),   $(eval $(call DEPENDMODULE,$(v),$(s)))))
+$(foreach s, $(DEP_SUFFIX),  $(foreach v, $(PLATFORMVLNV), $(eval $(call DEPENDPLATFORM,$(v),$(s)))))
+$(foreach s, $(HTTP_SUFFIX), $(foreach v, $(HTTPVISVLNV),  $(eval $(call DEPENDHTTPVIS,$(v),$(s)))))
+
+define clean_Template
+clean::
+ifeq ($(wildcard $(1)),)
+	@echo "$(1) not found, please invoke clean target in source directory, for example add -C <VLNVSRC>"
+else
+	$(V) $(MAKE) -C $(1) VLNVROOT=$(VLNVROOT_INT) clean
+endif
+endef
+$(foreach M,$(CLEANSRC),$(eval $(call clean_Template,$(M))))
+
+FORCE_MODEL_REMAKE::

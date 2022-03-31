@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <semihostlibrary imagefile="model"
+    library="semihosting"
+    name="m16cNewlib"
+    releasestatus="0"
+    vendor="posedgesoft.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Semihosting libc newlib."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <supportedprocessor name="M16C">
+        <vlnvreference library="processor"
+            name="m16c"
+            vendor="posedgesoft.ovpworld.org"
+            version="1.0"/>
+    </supportedprocessor>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </semihostlibrary>

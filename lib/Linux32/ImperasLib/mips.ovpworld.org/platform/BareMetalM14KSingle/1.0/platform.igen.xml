@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw clp="T"
+    clpAllArgs="T"
+    clpExtArgs="T"
+    clpStdArgs="T"
+    diagnostics="F"
+    httpvis="F"
+    library="platform"
+    name="BareMetalM14KSingle"
+    purpose="0"
+    releasestatus="4"
+    saverestore="F"
+    stoponctrlc="F"
+    vendor="mips.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Bare Metal Platform for a MIPS M14K Processor.
+                The bare metal platform instantiates a single M14K processor instance, using big endian data ordering.
+                        
+                The platform can be passed any application compiled to a MIPS elf format as the argument 
+                It will also allow a port number to be specified to allow the connection of a remote GDB debugger.
+                
+                platform.OS.exe -program application.CROSS.elf [-port &lt;gdb port number&gt;]
+                
+                Where OS is Linux or Windows"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="BareMetal platform for execution of MIPS M14K binary files compiled with CodeSourcery CrossCompiler toolchain."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="None"/>
+    </docsection>
+    <processorinstance endian="big"
+        name="cpu0">
+        <vlnvreference library="processor"
+            name="mips32_r1r5"
+            vendor="mips.ovpworld.org"/>
+        <extlibrary directLoad="T"
+            name="mips32Newlib_0">
+            <vlnvreference library="semihosting"
+                name="mips32Newlib"
+                vendor="mips.ovpworld.org"
+                version="1.0"/>
+        </extlibrary>
+        <attribute content="M14K"
+            name="variant"/>
+        <busmasterportconnection connection="bus1"
+            name="INSTRUCTION"/>
+        <busmasterportconnection connection="bus1"
+            name="DATA"/>
+    </processorinstance>
+    <bus addresswidth="32"
+        name="bus1"/>
+    <memoryinstance name="memory">
+        <vlnvreference name="ram"/>
+        <busslaveportconnection connection="bus1"
+            hiaddress="0xffffffff"
+            loaddress="0x00000000"
+            name="sp1"/>
+    </memoryinstance>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

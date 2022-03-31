@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="PciIDE"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="intel.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="PCI:IDE interface.
+This forms part of the 82371 PIIX4 chip.
+It implements 4 IDE interfaces and 2 DMA controllers."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model has sufficient functionality to allow a Linux Kernel to Boot on the MIPS:MALTA platform."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Intel 82371EB South Bridge Chipset Datasheet"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="busPort"
+        remappable="T"
+        size="0x8">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="PCI main bus connection for register access."/>
+        </docsection>
+    </busslaveport>
+    <busslaveport addresswidth="32"
+        name="PCIconfig"
+        remappable="T"
+        size="0x800">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="PCI configuration bus connection."/>
+        </docsection>
+    </busslaveport>
+    <busmasterport addresswidth="32"
+        addresswidthmax="40"
+        addresswidthmin="32"
+        name="dmaPort">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="PCI DMA bus connection."/>
+        </docsection>
+    </busmasterport>
+    <netport name="intOut0"
+        type="output"/>
+    <netport name="intOut1"
+        type="output"/>
+    <formalattribute name="PCIslot"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify which PCI slot the device occupies."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="PCIfunction"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify which PCI function:code the device implements."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="Drive0Name"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Virtual disk file for IDE channel 0"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="Drive0Delta"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Delta file for IDE channel 0. This feature is incomplete."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="Drive1Name"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Virtual disk file for IDE channel 1"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="Drive1Delta"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Delta file for IDE channel 1. This feature is incomplete."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="Drive2Name"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Virtual disk file for IDE channel 2"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="Drive2Delta"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Delta file for IDE channel 2. This feature is incomplete."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="Drive3Name"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Virtual disk file for IDE channel 3"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="Drive3Delta"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Delta file for IDE channel 3. This feature is incomplete."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="little"
+        name="endian"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the system endian, &quot;big&quot; or &quot;little&quot;; used for writing boot code. Default is &quot;little&quot; endian."/>
+        </docsection>
+    </formalattribute>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

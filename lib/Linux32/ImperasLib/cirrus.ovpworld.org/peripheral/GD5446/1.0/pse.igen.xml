@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    extensionfile="model"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="GD5446"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="cirrus.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Cirrus CL GD5446 VGA controller."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="This model has sufficient functionality to allow a Linux Kernel to Boot on the MIPS:MALTA platform. 
+                       The VGA peripheral utilises memory mapping. 
+                       This requires the use of ICM memory for the frame buffers, which currently may stop its use in SystemC TLM2 platforms."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="CL-GD5446 Preliminary Databook, Version 2.0, November 1996"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="config"
+        size="0x30">
+        <addressblock name="ab"
+            size="0x30"
+            width="8">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="cr_index"
+                nbyte="F"
+                offset="0x4"
+                width="8"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="cr"
+                nbyte="F"
+                offset="0x5"
+                width="8"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="gr_index"
+                nbyte="F"
+                offset="0x1e"
+                width="8"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ar_index"
+                nbyte="F"
+                offset="0x10"
+                width="8"/>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="ar"
+                nbyte="F"
+                offset="0x11"
+                width="8"/>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="msrWrite"
+                nbyte="F"
+                offset="0x12"
+                width="8"/>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="st00"
+                nbyte="F"
+                offset="0x12"
+                width="8"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="gr"
+                nbyte="F"
+                offset="0x1f"
+                width="8"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="sr_index"
+                nbyte="F"
+                offset="0x14"
+                width="8"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="sr"
+                nbyte="F"
+                offset="0x15"
+                width="8"/>
+            <memorymappedregister access="w"
+                isvolatile="T"
+                name="fcrWrite"
+                nbyte="F"
+                offset="0xa"
+                width="8"/>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="st01"
+                nbyte="F"
+                offset="0xa"
+                width="8"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="dac_read_index"
+                nbyte="F"
+                offset="0x17"
+                width="8"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="dac_write_index"
+                nbyte="F"
+                offset="0x18"
+                width="8"/>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="dac_cache"
+                nbyte="F"
+                offset="0x19"
+                width="8"/>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="fcrRead"
+                nbyte="F"
+                offset="0x1a"
+                width="8"/>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="msrRead"
+                nbyte="F"
+                offset="0x1c"
+                width="8"/>
+        </addressblock>
+    </busslaveport>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="memory"
+        remappable="T"
+        size="0x400000"/>
+    <busslaveport addresswidth="32"
+        name="PCIconfig"
+        remappable="T"
+        size="0x800"/>
+    <formalattribute name="PCIslot"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify which PCI slot the device occupies."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="PCIfunction"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify which PCI function the device responds to."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="200"
+        name="scanDelay"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Number of uS between frame refreshes."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="noGraphics"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="If non:zero, disables the graphics window."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="title"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Title for the VGA screen."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="little"
+        name="endian"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set the system endian, &quot;big&quot; or &quot;little&quot;; used for writing boot code. Default is &quot;little&quot; endian."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="pixelChecksum"
+        type="boolean">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Write a checksum of each screen contents"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

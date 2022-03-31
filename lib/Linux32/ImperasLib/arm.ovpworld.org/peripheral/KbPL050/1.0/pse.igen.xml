@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    extensionfile="model"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="KbPL050"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="arm.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="ARM PL050 PS2 Keyboard or mouse controller"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="None"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="ARM PrimeCell PS2 Keyboard/Mouse Interface (PL050) Technical Reference Manual (ARM DDI 0143)"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <formalattribute name="isMouse"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="if non:zero, this device is the mouse (isKeyboard should be 0)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="isKeyboard"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="if non:zero, this device is the keyboard (isMouse should be 0)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="grabDisable"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="If non:zero, disables grabbing of the mouse by the VGA/input window."/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="cursorEnable"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="If non:zero, shows a basic software cursor in the VGA/input window at the mouse position."/>
+        </docsection>
+    </formalattribute>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x1000"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="cr"
+                nbyte="F"
+                width="8"
+                writefunction="writeCR">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="KMICR"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="stat"
+                nbyte="F"
+                offset="0x4"
+                readfunction="readSTAT"
+                width="8">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="KMISTAT"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="6"
+                    name="TXEMPTY"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="TXBUSY"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="RXFULL"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="RXBUSY"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="RXPARITY"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="KMIC"
+                    width="1"/>
+                <field access="rw"
+                    name="KMID"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="data"
+                nbyte="F"
+                offset="0x8"
+                readfunction="readDATA"
+                width="8"
+                writefunction="writeDATA">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="KMIDATA"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="clk"
+                nbyte="F"
+                offset="0xc"
+                width="8">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="KMICLKDIV"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="iir"
+                nbyte="F"
+                offset="0x10"
+                readfunction="readIIR"
+                width="8">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="KMIIR"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                hiarray="0x7"
+                isvolatile="T"
+                loarray="0x0"
+                name="id%u"
+                nbyte="T"
+                offset="0xfe0"
+                readfunction="readID"
+                width="32"/>
+        </addressblock>
+    </busslaveport>
+    <netport name="irq"
+        type="output"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

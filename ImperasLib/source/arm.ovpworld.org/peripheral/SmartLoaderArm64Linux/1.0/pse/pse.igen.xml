@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="SmartLoaderArm64Linux"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="arm.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Psuedo-peripheral to perform memory initialisation for an Arm64 Linux kernel boot:
+    Loads Linux kernel image file, device tree blob and (optional) initial ram disk image into memory. 
+    Writes tiny boot code at physical memory base to configure regs and then jump to the Kernel entry.
+    Modifies the device tree to always use the spin-table enable-method."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Only supports little endian"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="See ARM Linux boot requirements in Linux source tree at documentation/arm64/booting.txt"/>
+    </docsection>
+    <busmasterport addresswidth="32"
+        addresswidthmax="49"
+        addresswidthmin="32"
+        mustbeconnected="T"
+        name="mport">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Master port - connect to same bus connected to Linux processor&apos;s data port"/>
+        </docsection>
+    </busmasterport>
+    <formalattribute defaultvalue="Image"
+        name="kernel"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Name of the the Linux kernel image file (default: Image)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="kerneladdr"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Address to load the Linux kernel image file (default: physicalbase+0x00080000)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="dtb"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Name of the device tree blob file. (required)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="command"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set command line passed to kernel. (optional)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="append"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Append to the command line passed to kernel. (optional)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="initrd"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Name of the initial ram disk file to load. (optional)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="physicalbase"
+        type="uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The physical address of the base of memory. (default: 0)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="disable"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Set to True to disable the smart loader"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

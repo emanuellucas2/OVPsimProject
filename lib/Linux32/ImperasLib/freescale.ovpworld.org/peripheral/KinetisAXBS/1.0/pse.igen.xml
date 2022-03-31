@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="KinetisAXBS"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="freescale.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Model of the AXBS peripheral used on the Freescale Kinetis platform"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Provides the base behaviour for the OVP Freescale Kinetis platforms"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="www.freescale.com/Kinetis"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock hiarray="0x7"
+            loarray="0x0"
+            name="ab%u"
+            size="0x100"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="PRS"
+                nbyte="T"
+                width="32"
+                writemask="2004318071">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x76543210">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Priority Registers Slave, array offset: 0x0, array step: 0x100"/>
+                    </docsection>
+                </reset>
+                <field access="rw"
+                    name="M0"
+                    width="3"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="M1"
+                    width="3"/>
+                <field access="rw"
+                    bitoffset="8"
+                    name="M2"
+                    width="3"/>
+                <field access="rw"
+                    bitoffset="12"
+                    name="M3"
+                    width="3"/>
+                <field access="rw"
+                    bitoffset="16"
+                    name="M4"
+                    width="3"/>
+                <field access="rw"
+                    bitoffset="20"
+                    name="M5"
+                    width="3"/>
+                <field access="rw"
+                    bitoffset="24"
+                    name="M6"
+                    width="3"/>
+                <field access="rw"
+                    bitoffset="28"
+                    name="M7"
+                    width="3"/>
+                <field bitoffset="3"
+                    name="__pad3"
+                    width="1"/>
+                <field bitoffset="7"
+                    name="__pad7"
+                    width="1"/>
+                <field bitoffset="11"
+                    name="__pad11"
+                    width="1"/>
+                <field bitoffset="15"
+                    name="__pad15"
+                    width="1"/>
+                <field bitoffset="19"
+                    name="__pad19"
+                    width="1"/>
+                <field bitoffset="23"
+                    name="__pad23"
+                    width="1"/>
+                <field bitoffset="27"
+                    name="__pad27"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CRS"
+                nbyte="T"
+                offset="0x10"
+                width="32"
+                writemask="2004318071">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0x00000337">
+                    <docsection name="doc"
+                        text="Description">
+                        <doctext name="txt"
+                            text="Control Register, array offset: 0x10, array step: 0x100"/>
+                    </docsection>
+                </reset>
+                <field access="rw"
+                    bitoffset="8"
+                    name="ARB"
+                    width="2"/>
+                <field access="rw"
+                    bitoffset="30"
+                    name="HLP"
+                    width="1"/>
+                <field access="rw"
+                    name="PARK"
+                    width="3"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="PCTL"
+                    width="2"/>
+                <field access="rw"
+                    bitoffset="31"
+                    name="RO"
+                    width="1"/>
+                <field bitoffset="3"
+                    name="__pad3"
+                    width="1"/>
+                <field bitoffset="6"
+                    name="__pad6"
+                    width="2"/>
+                <field bitoffset="10"
+                    name="__pad10"
+                    width="20"/>
+            </memorymappedregister>
+        </addressblock>
+        <addressblock name="ac"
+            offset="0x800"
+            size="0x800"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MGPCR0"
+                nbyte="F"
+                width="32"
+                writemask="7">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Master General Purpose Control Register, offset: 0x800 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="AULB"
+                    width="3"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MGPCR1"
+                nbyte="F"
+                offset="0x100"
+                width="32"
+                writemask="7">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Master General Purpose Control Register, offset: 0x900 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="AULB"
+                    width="3"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MGPCR2"
+                nbyte="F"
+                offset="0x200"
+                width="32"
+                writemask="7">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Master General Purpose Control Register, offset: 0xA00 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="AULB"
+                    width="3"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MGPCR3"
+                nbyte="F"
+                offset="0x300"
+                width="32"
+                writemask="7">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Master General Purpose Control Register, offset: 0xB00 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="AULB"
+                    width="3"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MGPCR6"
+                nbyte="F"
+                offset="0x600"
+                width="32"
+                writemask="7">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Master General Purpose Control Register, offset: 0xE00 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="AULB"
+                    width="3"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="MGPCR7"
+                nbyte="F"
+                offset="0x700"
+                width="32"
+                writemask="7">
+                <reset mask="0xffffffff"
+                    name="Reset"
+                    value="0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Master General Purpose Control Register, offset: 0xF00 "/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="AULB"
+                    width="3"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="Reset"
+        type="input"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

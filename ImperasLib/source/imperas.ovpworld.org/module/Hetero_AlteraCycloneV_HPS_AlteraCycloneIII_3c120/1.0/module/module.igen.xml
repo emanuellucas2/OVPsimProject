@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <hw diagnostics="F"
+    httpvis="F"
+    library="module"
+    name="Hetero_AlteraCycloneV_HPS_AlteraCycloneIII_3c120"
+    purpose="4"
+    releasestatus="3"
+    saverestore="F"
+    stoponctrlc="T"
+    vendor="imperas.ovpworld.org"
+    verbose="F"
+    version="1.0"
+    visibility="0">
+    <nets name="nets"/>
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="This platform instances both the Altera Cyclone V (ARM) and Cyclone III (Nios_II) processor systems"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Peripherals are modeled only to the extent required to boot and run Operating Systems such as Linux."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Altera Cyclone III 3c120 Reference Guide and Cyclone V Handbook Volume 3: Hard Processor System Technical Reference Manual cv_5v4 2013.12.30"/>
+    </docsection>
+    <module name="CycloneV_HPS">
+        <vlnvreference library="module"
+            name="AlteraCycloneV_HPS"
+            vendor="altera.ovpworld.org"
+            version="1.0"/>
+    </module>
+    <module name="CycloneIII">
+        <vlnvreference library="module"
+            name="AlteraCycloneIII_3c120"
+            vendor="altera.ovpworld.org"
+            version="1.0"/>
+    </module>
+    <attribute content="1"
+        name="stoponcontrolc"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </hw>

@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="Uart"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="freescale.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Freescale UART - Supports interrupts and fifos."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="
+Error conditions, DMA, ISO7816 mode and Wake up are not supported.
+"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="Freescale Kinetis Peripheral User Guide"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="ab"
+            size="0x20"
+            width="8">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="bdh"
+                nbyte="F"
+                width="8"
+                writefunction="writeBDH"
+                writemask="223">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Baud Rate Registers:High"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="sbr"
+                    width="5"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="bdl"
+                nbyte="F"
+                offset="0x1"
+                width="8"
+                writefunction="writeBDL">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x04"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Baud Rate Registers:Low"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="c1"
+                nbyte="F"
+                offset="0x2"
+                width="8">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Control Register 1"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="c2"
+                nbyte="F"
+                offset="0x3"
+                width="8"
+                writefunction="writeC2">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Control Register 2"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="7"
+                    name="tie"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="tcie"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="5"
+                    name="rie"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="ilie"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="te"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="re"
+                    width="1"/>
+                <field bitoffset="0"
+                    name="__pad0"
+                    width="2"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="s1"
+                nbyte="F"
+                offset="0x4"
+                readfunction="readS1"
+                width="8">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0xC0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Status Register 1"/>
+                </docsection>
+                <field access="r"
+                    bitoffset="7"
+                    name="tdre"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="6"
+                    name="tc"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="5"
+                    name="rdrf"
+                    width="1"/>
+                <field access="r"
+                    bitoffset="4"
+                    name="idle"
+                    width="1"/>
+                <field bitoffset="0"
+                    name="__pad0"
+                    width="4"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="s2"
+                nbyte="F"
+                offset="0x5"
+                width="8"
+                writemask="254">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Status Register 2"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="c3"
+                nbyte="F"
+                offset="0x6"
+                width="8"
+                writemask="127">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Control Register 3"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="d"
+                nbyte="F"
+                offset="0x7"
+                readfunction="readD"
+                width="8"
+                writefunction="writeD">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Data Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ma1"
+                nbyte="F"
+                offset="0x8"
+                width="8">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Match Address Registers 1"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="ma2"
+                nbyte="F"
+                offset="0x9"
+                width="8">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Match Address Registers 2"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="c4"
+                nbyte="F"
+                offset="0xa"
+                width="8"
+                writefunction="writeC4">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Control Register 4"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="0"
+                    name="brfa"
+                    width="5"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="c5"
+                nbyte="F"
+                offset="0xb"
+                width="8"
+                writemask="160">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Control Register 5"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="ed"
+                nbyte="F"
+                offset="0xc"
+                width="8">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Extended Data Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="modem"
+                nbyte="F"
+                offset="0xd"
+                width="8"
+                writemask="15">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Modem Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="infrared"
+                nbyte="F"
+                offset="0xe"
+                width="8"
+                writemask="7">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART Infrared Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="pfifo"
+                nbyte="F"
+                offset="0x10"
+                width="8"
+                writemask="136">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x22"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART FIFO Parameters Register"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="7"
+                    name="txfe"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="4"
+                    name="txfifosize"
+                    width="3"/>
+                <field access="rw"
+                    bitoffset="3"
+                    name="rxfe"
+                    width="1"/>
+                <field access="rw"
+                    name="rxfifosize"
+                    width="3"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="cfifo"
+                nbyte="F"
+                offset="0x11"
+                width="8"
+                writefunction="writeCFIFO"
+                writemask="195">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART FIFO Control Register"/>
+                </docsection>
+                <field access="rw"
+                    bitoffset="7"
+                    name="txflush"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="6"
+                    name="rxflush"
+                    width="1"/>
+                <field bitoffset="0"
+                    name="__pad0"
+                    width="6"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="sfifo"
+                nbyte="F"
+                offset="0x12"
+                width="8"
+                writemask="3">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0xc0"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART FIFO Status Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="twfifo"
+                nbyte="F"
+                offset="0x13"
+                width="8"
+                writefunction="writeTWFIFO">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART FIFO Transmit Watermark Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="tcfifo"
+                nbyte="F"
+                offset="0x14"
+                width="8">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART FIFO Transmit Count Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="rwfifo"
+                nbyte="F"
+                offset="0x15"
+                width="8"
+                writefunction="writeRWFIFO">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x01"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART FIFO Receive Watermark Register"/>
+                </docsection>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="rcfifo"
+                nbyte="F"
+                offset="0x16"
+                width="8">
+                <reset mask="0xff"
+                    name="Reset"
+                    value="0x00"/>
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="UART FIFO Receive Count Register"/>
+                </docsection>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="DirectWrite"
+        type="output"/>
+    <netport name="DirectRead"
+        type="input"
+        updatefunction="directReadCB"/>
+    <netport name="Interrupt"
+        type="output"/>
+    <netport name="Reset"
+        type="input"
+        updatefunction="resetCB"/>
+    <formalattribute name="directReadWrite"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Enable the use of the DirectRead and DirectWrite connections"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="fifoSize"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Size of fifos (default 128)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="moduleClkFreq"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Frequency (in hertz) of module clock used in baud rate calculation (default=10.2 MHz)"/>
+        </docsection>
+    </formalattribute>
+    <formalmacro name="BHM_SER_OPEN_AUTO_FORMALS"/>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

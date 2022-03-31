@@ -1,0 +1,74 @@
+Copyright (c) 2005-2021 Imperas Ltd. All Rights Reserved.
+
+Name
+----
+    andes.ovpworld.org/module/AE350/1.0
+
+
+Attributes that can be overridden
+---------------------------------
+    cpu0/variant
+    BMC/portAddress
+    BMC/portSize
+    BMC/cbEnable
+    AHBDEC/portAddress
+    AHBDEC/portSize
+    AHBDEC/cbEnable
+    MAC/portAddress
+    MAC/portSize
+    MAC/cbEnable
+    LCDC/portAddress
+    LCDC/portSize
+    LCDC/cbEnable
+    SMC/portAddress
+    SMC/portSize
+    SMC/cbEnable
+    PLMT/numharts
+    PLMT/clockMHz
+    PLIC_SW/portAddress
+    PLIC_SW/portSize
+    PLIC_SW/cbEnable
+    PLDM/portAddress
+    PLDM/portSize
+    PLDM/cbEnable
+    APBBRG/portAddress
+    APBBRG/portSize
+    APBBRG/cbEnable
+    SMU/portAddress
+    SMU/portSize
+    SMU/cbEnable
+    UART1/console
+    UART1/finishOnDisconnect
+    UART2/console
+    UART2/finishOnDisconnect
+    PIT/portAddress
+    PIT/portSize
+    PIT/cbEnable
+    WDT/portAddress
+    WDT/portSize
+    WDT/cbEnable
+    RTC/portAddress
+    RTC/portSize
+    RTC/cbEnable
+    GPIO/portAddress
+    GPIO/portSize
+    GPIO/cbEnable
+    I2C/portAddress
+    I2C/portSize
+    I2C/cbEnable
+    SPI1/portAddress
+    SPI1/portSize
+    SPI1/cbEnable
+    DMAC/portAddress
+    DMAC/portSize
+    DMAC/cbEnable
+    AC97/portAddress
+    AC97/portSize
+    AC97/cbEnable
+    SDC/portAddress
+    SDC/portSize
+    SDC/cbEnable
+    SPI2/portAddress
+    SPI2/portSize
+    SPI2/cbEnable
+

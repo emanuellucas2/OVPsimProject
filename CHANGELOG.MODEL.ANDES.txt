@@ -1,0 +1,84 @@
+###############################################################################
+#                       CHANGELOG.MODEL.RISCV.txt                             #
+#      Copyright (c) 2005-2021 Imperas Software Ltd., www.imperas.com         #
+#               Covered under your Software License Agreement                 #
+#                                                                             #
+###############################################################################
+#                                                                             #
+# This CHANGELOG contains information specific to the ANDES RISC-V processor  #
+# model                                                                       #
+# Please also refer to the change logs below that form part of this changelog #
+#    CHANGELOG.MODEL.RISCV.txt                                                #
+#    CHANGELOG.OVP.txt                                                        #
+#                                                                             #
+###############################################################################
+    Date : 20211231                        Version : 20211118.0
+###############################################################################
+
+###############################################################################
+##                                                                           ##
+## Date 2021-December-06                                                     ##
+##                                                                           ##
+## Release 20211118.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+New Andes Processor Model Input Ports
+-------------------------------------------------------------------------------
+- All Andes processor models now have up to 6 additional ports (depending on 
+  the configuration of the processor): 
+     MExternalInterruptID 
+     SExternalInterruptID
+     UExternalInterruptID 
+     MExternalInterruptACK 
+     SExternalInterruptACK
+     UExternalInterruptACK
+  See below for details on their usage.
+
+Andes Vectored Interrupt Mode Now Supported
+-------------------------------------------------------------------------------
+- The modified behavior of exceptions when both mmsc_cfg.VPLIC and 
+  mmisc_ctl.VEC_PLIC are set is now modeled properly:
+  1) The mmisc_ctl.VEC_PLIC is only writable if mmsc_cfg.VPLIC=1.
+  2) When vectored interrupt mode is active (i.e. mmisc_ctl.VEC_PLIC=1) the
+     m/s/utvec CSRs must point to tables of 4-byte addresses, rather than 4-byte
+     instructions. 
+  3) When a M/S/UExternalInterrupt input is asserted the interrupt ID is read 
+     from the M/S/UExternalInterruptID input and used to index into the vector 
+     table pointed to by the m/s/utvec CSR to get the address of the 
+     exception handler.
+  4) When a vectored interrupt exception handler is called, a 1->0 pulse is 
+     sent to the M/S/UExternalInterruptACK output net port. These ports must be 
+     connected to the corresponding PLIC ports in order to use Andes PLIC 
+     vectored interrupts.
+
+Changes to default values for the mmsc_cfg CSR
+-------------------------------------------------------------------------------
+- The default values for the mmsc_cfg register for all Andes processor variants 
+  now has the VPLIC field (bit 12) set to 1 by default.  
+- The NX27V variant now has the HSP field (bit 5) set to 1 by default (this was 
+  the ONLY Andes variant that did not already have this set by default.)
+- As always, the default mmsc_cfg value can be changed by overriding the
+  mmsc_cfg parameter on the Andes processor model instance.
+
+- Additional variants have been added to the model.
+ 
+###############################################################################
+##                                                                           ##
+## Date 2021-September-17                                                    ##
+##                                                                           ##
+## Release 20210917.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+- ILM and DLM have been implemented (previously, there was a partial
+  implementation that modeled some aspects of access permissions but not the
+  memory itself).
+
+###############################################################################
+##                                                                           ##
+## Date 2021-June-18                                                         ##
+##                                                                           ##
+## Release 20210617.0                                                        ##
+##                                                                           ##
+###############################################################################

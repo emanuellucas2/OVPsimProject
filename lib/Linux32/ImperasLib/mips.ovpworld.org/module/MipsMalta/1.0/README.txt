@@ -1,0 +1,85 @@
+Copyright (c) 2005-2021 Imperas Ltd. All Rights Reserved.
+
+Name
+----
+    mips.ovpworld.org/module/MipsMalta/1.0
+
+
+Attributes that can be overridden
+---------------------------------
+    mipsle1/variant
+    mipsle1/vectoredinterrupt
+    mipsle1/config1MMUSizeM1
+    PIIX4/PCIslot
+    PIIX4-IDE/PCIslot
+    PIIX4-IDE/PCIfunction
+    PCI_PM/PCIslot
+    PCI_PM/PCIfunction
+    PCI_NET/PCIslot
+    PCI_NET/PCIfunction
+    intCtrlMaster/spen
+    pciBrD_intCtrlMaster_io/spLoAddress
+    pciBrD_intCtrlMaster_io/mpLoAddress
+    pciBrD_intCtrlMaster_io/portSize
+    pciBrD_intCtrlMaster_io/enableBridge
+    pciBrD_intCtrlMaster_elcr/spLoAddress
+    pciBrD_intCtrlMaster_elcr/mpLoAddress
+    pciBrD_intCtrlMaster_elcr/portSize
+    pciBrD_intCtrlMaster_elcr/enableBridge
+    intCtrlSlave/spen
+    pciBrD_intCtrlSlave_io/spLoAddress
+    pciBrD_intCtrlSlave_io/mpLoAddress
+    pciBrD_intCtrlSlave_io/portSize
+    pciBrD_intCtrlSlave_io/enableBridge
+    pciBrD_intCtrlSlave_elcr/spLoAddress
+    pciBrD_intCtrlSlave_elcr/mpLoAddress
+    pciBrD_intCtrlSlave_elcr/portSize
+    pciBrD_intCtrlSlave_elcr/enableBridge
+    pciBrD__SUPERIO_REG__bport1/spLoAddress
+    pciBrD__SUPERIO_REG__bport1/mpLoAddress
+    pciBrD__SUPERIO_REG__bport1/portSize
+    pciBrD__SUPERIO_REG__bport1/enableBridge
+    vga/scanDelay
+    vga/PCIslot
+    vga/title
+    pciBrD_vga_config/spLoAddress
+    pciBrD_vga_config/mpLoAddress
+    pciBrD_vga_config/portSize
+    pciBrD_vga_config/enableBridge
+    ps2if/pollPeriod
+    ps2if/grabDisable
+    pciBrD_ps2if_config/spLoAddress
+    pciBrD_ps2if_config/mpLoAddress
+    pciBrD_ps2if_config/portSize
+    pciBrD_ps2if_config/enableBridge
+    pciBrD_pit_bport1/spLoAddress
+    pciBrD_pit_bport1/mpLoAddress
+    pciBrD_pit_bport1/portSize
+    pciBrD_pit_bport1/enableBridge
+    pciBrD_rtc_busPort/spLoAddress
+    pciBrD_rtc_busPort/mpLoAddress
+    pciBrD_rtc_busPort/portSize
+    pciBrD_rtc_busPort/enableBridge
+    uartTTY0/outfile
+    uartTTY0/finishOnDisconnect
+    pciBrD_uartTTY0_bport1/spLoAddress
+    pciBrD_uartTTY0_bport1/mpLoAddress
+    pciBrD_uartTTY0_bport1/portSize
+    pciBrD_uartTTY0_bport1/enableBridge
+    uartTTY1/outfile
+    uartTTY1/finishOnDisconnect
+    pciBrD_uartTTY1_bport1/spLoAddress
+    pciBrD_uartTTY1_bport1/mpLoAddress
+    pciBrD_uartTTY1_bport1/portSize
+    pciBrD_uartTTY1_bport1/enableBridge
+    pciBrD_fd0_bport1/spLoAddress
+    pciBrD_fd0_bport1/mpLoAddress
+    pciBrD_fd0_bport1/portSize
+    pciBrD_fd0_bport1/enableBridge
+    uartCBUS/outfile
+    maltaFpga/stoponsoftreset
+    pciBrD_alphaDisplay_busPort/spLoAddress
+    pciBrD_alphaDisplay_busPort/mpLoAddress
+    pciBrD_alphaDisplay_busPort/portSize
+    pciBrD_alphaDisplay_busPort/enableBridge
+

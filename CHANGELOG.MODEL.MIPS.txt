@@ -1,0 +1,139 @@
+###############################################################################
+#                       CHANGELOG.MODEL.MIPS.txt                              #
+#      Copyright (c) 2005-2021 Imperas Software Ltd., www.imperas.com         #
+#               Covered under your Software License Agreement                 #
+#                                                                             #
+###############################################################################
+#                                                                             #
+# This CHANGELOG contains information specific to the MIPS processor model    #
+# Please also refer to the change logs below that form part of this changelog #
+#    CHANGELOG.OVP.txt                                                        #
+#                                                                             #
+###############################################################################
+    Date : 20211231                        Version : 20211118.0
+###############################################################################
+
+###############################################################################
+##                                                                           ##
+## Date 2021-December-06                                                     ##
+##                                                                           ##
+## Release 20211118.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+###############################################################################
+##                                                                           ##
+## Date 2021-April-08                                                        ##
+##                                                                           ##
+## Release 20210408.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+MIPS Processor Model
+-------------------------------------------------------------------------------
+- Modified the behaviour in EIC mode to generate the required vector when 
+  presented with vector number on RIPL.
+- Add CMP Global register CPC_FAULT_ENABLE available when Functional Safety 
+  enabled.
+- Add CMP MMIO registers. These registers have no behaviour and should be 
+  initialized at simulation start using parameters.
+ 
+###############################################################################
+##                                                                           ##
+## Date 2020-June-30                                                         ##
+##                                                                           ##
+## Release 20200630.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+MIPS Processor Model
+-------------------------------------------------------------------------------
+- Corrected the masking of bottom address bits, indicating ISA mode, on 
+  microMIPS architecture devices when setting breakpoints.
+- Update GCR_CONFIG register for 64-bit processors
+- Set default NUM_CLUSTERS=1 in GCR_CONFIG for I6500
+
+###############################################################################
+##                                                                           ##
+## Date 2019-November-06                                                     ##
+##                                                                           ##
+## Release 20191106.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+###############################################################################
+##                                                                           ##
+## Date 2019-October-09                                                      ##
+##                                                                           ##
+## Release 20191009.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+MIPS (mips R6) Processor Model
+-------------------------------------------------------------------------------
+- Add processor modes for ERL=1, KX=0/1, UX=0/1.
+- Allow uncached unmapped access to xuseg when ERL=1. Restrict to UX=1 mode only.
+- Guest.Config6 and Config7 sensitive to GuestCtl0Ext.OG flag when not implemented.
+- Config7/Config6 are not reserved architecture so no GPSI.
+- Allow Guest.DebugContextID to be read and written.
+- Add support for i7200 w/ 10 cores.
+- Fix integer rounding and MAXA/MINA implementations.
+- Fix off-by-one in Wired.Limit range check.
+
+- Fix disassembly of nanoMIPS ADDIU instruction in negative constant case.
+- Allow config override of wiredLimitBits and wiredWiredBits.
+- Add definition of C0.BCConfig.RBH field.
+- Improved accuracy of MIPSr6 branch Forbidden Slots handling.
+- Do not use callbacks for USPRAM.  Now emits additional informational
+  messages on USPRAM initialization.
+- Fix syntax problems that prevent compilation with gcc-9.x
+- Remove several unused declarations and other dead code.
+- Specify 4 perf counters for MIPS64R6.
+- Generate RI Exception for unused DSP opcodes on R6 processors.
+- Correctly decode MFHC0 and MTHC0 instructions on nanoMIPS.
+- Improve handling of NAN results in FP instructions.
+- Correctly implement MSA FLOG2, FMIN_A, and FMAX_A instructions.
+- Improve overflow handling in FP instructions.
+- Improve handling of SC instruction on some processors.
+- Improve accuracy of Guest mode CP0 register access handling, including
+  generating GPSI in more cases where it is required.
+- Correctly implement SCWP and LLWP instructions.
+
+###############################################################################
+##                                                                           ##
+## Date 2019-June-28                                                         ##
+##                                                                           ##
+## Release 20190628.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+###############################################################################
+##                                                                           ##
+## Date 2019-March-06                                                        ##
+##                                                                           ##
+## Release 20190306.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+MIPS (mips R6) Processor Model
+-------------------------------------------------------------------------------
+- improved load/store performance
+- Correct PC-Relative to not add PC at decode time
+- Timer/software always routable for I6400/I6500 WatchHi.MMID/ASID changes
+- Map CC_NOVALUE to CC_UNCACHED instead of an assert
+- Correct BIUInfoSystemC include path to mips32_r1r5
+- Add configDS parameter to cacheless cores
+- Fix CM debug output of 32-bit registers on 64-bit cores
+- Removed aliased registers from register change output
+- Fixed load/store flag size issue that could cause a corruption in rare 
+  circumstances.
+
+###############################################################################
+##                                                                           ##
+## Date 2018-November-14                                                     ##
+##                                                                           ##
+## Release 20181114.0                                                        ##
+##                                                                           ##
+###############################################################################
+
+Please see CHANGELOG.OVP.txt for all changes prior to the above release

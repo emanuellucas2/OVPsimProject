@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="dw-apb-timer"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="altera.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Model of dw-apb-timer for CycloneV platform."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Limitations">
+        <doctext name="txt"
+            text="Only functionality required for Altera Cyclone-V is implemented: single timer, 32 bits, little endian only"/>
+        <doctext name="txt_1"
+            text="Resolution of this timer is limited to the simulation time slice (aka quantum) size"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Reference">
+        <doctext name="txt"
+            text="Cyclone V Device Handbook Volume 3: Hard Processor System Technical Reference Manual cv_5v4 2013.12.30"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <formalattribute defaultvalue="200"
+        name="frequency"
+        type="uns32">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Specify frequency of the counters in MHz (default is 200MHz)"/>
+        </docsection>
+    </formalattribute>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="bport1"
+        size="0x1000">
+        <addressblock name="timer1"
+            size="0x14"
+            width="32">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="loadcount"
+                nbyte="F"
+                width="32"
+                writefunction="Writeloadcount">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="currentval"
+                nbyte="F"
+                offset="0x4"
+                readfunction="Readcurrentval"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+            </memorymappedregister>
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="controlreg"
+                nbyte="F"
+                offset="0x8"
+                width="32"
+                writefunction="Writecontrolreg">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+                <field access="rw"
+                    name="enable"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="mode"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="2"
+                    name="interrupt_mask"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="eoi"
+                nbyte="F"
+                offset="0xc"
+                readfunction="Readeoi"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+                <field access="r"
+                    bitoffset="0"
+                    name="eoi"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="intstat"
+                nbyte="F"
+                offset="0x10"
+                readfunction="Readintstat"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x00000000"/>
+                <field access="r"
+                    bitoffset="0"
+                    name="intstat"
+                    width="1"/>
+            </memorymappedregister>
+        </addressblock>
+        <addressblock name="timers"
+            offset="0xa0"
+            size="0x10"
+            width="32">
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="intstat"
+                nbyte="F"
+                readfunction="Readintstat"
+                width="32">
+                <field access="r"
+                    bitoffset="0"
+                    name="intstat"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="eoi"
+                nbyte="F"
+                offset="0x4"
+                readfunction="Readeoi"
+                width="32">
+                <field access="r"
+                    bitoffset="0"
+                    name="eoi"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="rawintstat"
+                nbyte="F"
+                offset="0x8"
+                readfunction="Readrawintstat"
+                width="32">
+                <field access="r"
+                    bitoffset="0"
+                    name="intstat"
+                    width="1"/>
+            </memorymappedregister>
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="compversion"
+                nbyte="F"
+                offset="0xc"
+                width="32">
+                <reset mask="0xffffffff"
+                    name="resetNet"
+                    value="0x3230352a"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="irq"
+        type="output"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

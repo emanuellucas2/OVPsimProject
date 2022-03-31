@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="config"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="temperatureSensor"
+    nbyte="F"
+    recursive="F"
+    releasestatus="4"
+    saveRestore="F"
+    vendor="ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Simple test peripheral to illustrate the way in which test data can be used, in this case to display a temperature value."/>
+        <doctext name="txt_1"
+            text="A single read-only register provides a temperature value in a format in which bit 31 when set indicates a negative temperature and the value represents temperature x100."/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="None"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="This is not based upon a real device"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        mustbeconnected="T"
+        name="busPort"
+        size="0x4">
+        <addressblock name="A"
+            size="0x4"
+            width="32">
+            <memorymappedregister access="r"
+                isvolatile="T"
+                name="data"
+                nbyte="F"
+                offset="0x0"
+                readfunction="readData"
+                width="32">
+                <docsection name="doc"
+                    text="Description">
+                    <doctext name="txt"
+                        text="Temperature value data register"/>
+                </docsection>
+                <field access="r"
+                    bitoffset="31"
+                    name="sBit"
+                    width="1"/>
+                <field access="r"
+                    name="data"
+                    width="31"/>
+                <reset mask="0xffffffff"
+                    name="reset"
+                    value="0"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <netport name="reset"
+        type="input">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Reset signal"/>
+        </docsection>
+    </netport>
+    <formalattribute defaultvalue="30"
+        max="80"
+        min="-40"
+        name="inittemp"
+        type="double">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="used to set the initial temperature reading (default 30)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="60"
+        max="100"
+        min="40"
+        name="maxtemp"
+        type="double">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="used to set the maximum temperature reached when using rate increase (default 60)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute defaultvalue="1"
+        max="10"
+        min="-10"
+        name="ratechange"
+        type="double">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The temperature will change at a rate of degree Centigrade per second according to this parameter (default 1)"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="datafile"
+        type="string">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="The temperature change over time can be defined by a set of values in a file."/>
+            <doctext name="txt_1"
+                text="The file format contains a simulation time and a temperature on each line in readable ascii format e.g. 10.1 27.45 indicates at time 10.1 seconds set temperature to 27.45 oC."/>
+        </docsection>
+    </formalattribute>
+    <formalmacro name="BHM_HTTP_FORMALS"/>
+    <formalmacro name="BHM_RECORD_REPLAY_FORMALS"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

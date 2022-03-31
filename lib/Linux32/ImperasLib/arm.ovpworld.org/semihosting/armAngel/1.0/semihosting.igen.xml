@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <semihostlibrary imagefile="model"
+    library="semihosting"
+    name="armAngel"
+    releasestatus="0"
+    vendor="arm.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Semihosting of ARM Angel Trap Codes"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Copyright (c) 2005-2021 Imperas Software Ltd. All Rights Reserved. Commercial License Required."/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="The semihosting of ARM angel traps is at a beta release stage.
+    It has been tested against the CodeSourcery toolchain with the following limitations. 
+    The following functions are not yet intercepted correctly 
+    1) stat; 
+    2) printing floats and doubles; 
+    3) gettimeofday; 
+    
+    Codesourcey does not appear to generate correct code for operations that require file open e.g. fwrite, fread"/>
+    </docsection>
+    <supportedprocessor name="arm">
+        <vlnvreference library="processor"
+            name="arm"
+            vendor="arm.ovpworld.org"
+            version="1.0"/>
+    </supportedprocessor>
+    <supportedprocessor name="armm">
+        <vlnvreference library="processor"
+            name="armm"
+            vendor="arm.ovpworld.org"
+            version="1.0"/>
+    </supportedprocessor>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </semihostlibrary>

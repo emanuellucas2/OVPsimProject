@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="clkgen"
+    nbyte="F"
+    recursive="F"
+    releasestatus="0"
+    saveRestore="F"
+    vendor="renesas.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Renesas Clock Generator"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="Register View Model Only"/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="R01UH0128ED0700, Rev. 7.00, Oct 06, 2010"/>
+    </docsection>
+    <busslaveport addresswidth="32"
+        name="CLKGENP0"
+        size="0x1">
+        <addressblock name="reg0"
+            size="0x1"
+            width="8">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CANCKSEL"
+                nbyte="F"
+                offset="0x0"
+                width="8"
+                writefunction="writeCANCKSEL"
+                writemask="1">
+                <reset mask="0xff"
+                    name="IRESET"
+                    value="0x00"/>
+                <field access="rw"
+                    bitoffset="0"
+                    name="CANCK0"
+                    width="1"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <busslaveport addresswidth="32"
+        name="CLKGENP1"
+        size="0x1">
+        <addressblock name="reg0"
+            size="0x1"
+            width="8">
+            <memorymappedregister access="rw"
+                isvolatile="T"
+                name="CLM"
+                nbyte="F"
+                offset="0x0"
+                width="8"
+                writefunction="writeCLM"
+                writemask="3">
+                <reset mask="0xff"
+                    name="IRESET"
+                    value="0x00"/>
+                <field access="rw"
+                    name="CLME"
+                    width="1"/>
+                <field access="rw"
+                    bitoffset="1"
+                    name="CLMD"
+                    width="1"/>
+            </memorymappedregister>
+        </addressblock>
+    </busslaveport>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>

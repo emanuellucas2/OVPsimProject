@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <semihostlibrary imagefile="model"
+    library="intercept"
+    name="exitControl"
+    releasestatus="0"
+    vendor="riscv.ovpworld.org"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Description">
+        <doctext name="txt"
+            text="Allows the specification of mechanisms that will cause the simulation to exit"/>
+    </docsection>
+    <formalattribute name="symbol"
+        type="String">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="symbol on which to exit simulation"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="address"
+        type="Uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="address on which to exit simulation"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="onWriteToHost"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="if function write_to_host() is executed exit simulation"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="onTerminate"
+        type="bool">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="if function terminate() is executed exit simulation"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="onOpcode"
+        type="Uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="if opcode is executed exit simulation"/>
+        </docsection>
+    </formalattribute>
+    <formalattribute name="ecallResultReg"
+        type="Uns64">
+        <docsection name="doc"
+            text="Description">
+            <doctext name="txt"
+                text="Result Register, read on ecall, for RISCV.org Conformance Test reporting. 3=GP, 10=A0 or 28=T3"/>
+        </docsection>
+    </formalattribute>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </semihostlibrary>

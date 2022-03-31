@@ -1,0 +1,3 @@
+install RUNTIME CpuManager
+install Imperas.iss
+install riscv.toolchain

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <peripheral constructor="constructor"
+    destructor="destructor"
+    formalValues="F"
+    httpvis="F"
+    imagefile="pse.pse"
+    library="peripheral"
+    name="fifo"
+    nbyte="F"
+    recursive="F"
+    releasestatus="3"
+    saveRestore="F"
+    vendor="vendor.com"
+    version="1.0"
+    visibility="0">
+    <docsection name="doc"
+        text="Description">
+        <doctext name="txt"
+            text="Example FIFO"/>
+    </docsection>
+    <docsection name="doc_1"
+        text="Licensing">
+        <doctext name="txt"
+            text="Open Source Apache 2.0"/>
+    </docsection>
+    <docsection name="doc_2"
+        text="Limitations">
+        <doctext name="txt"
+            text="none."/>
+    </docsection>
+    <docsection name="doc_3"
+        text="Reference">
+        <doctext name="txt"
+            text="No Reference, created as an example"/>
+    </docsection>
+    <fifoport name="fifoPortIn"
+        type="input"
+        width="32"/>
+    <fifoport name="fifoPortOut"
+        type="output"
+        width="32"/>
+    <fileversion major="1"
+        minor="0"
+        name="_version_0"/>
+ </peripheral>
